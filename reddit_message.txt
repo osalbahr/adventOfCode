@@ -1,0 +1,9 @@
+Solved in C++
+
+https://github.com/osalbahr/adventOfCode
+
+Feel free to ask any questions!
+
+You can find more C++ solutions (and other languages) here:
+
+https://github.com/Bogdanp/awesome-advent-of-code#c-2
