@@ -72,6 +72,14 @@ static void printTree( Tree *tree )
     printTree( tree->children[ i ] );
 }
 
+static void freeTree( Tree *tree )
+{
+  for ( int i = 0; i < tree->size; i++ )
+    freeTree( tree->children[ i ] );
+
+  free( tree );
+}
+
 int main()
 {
   Tree *current = NULL;
@@ -132,4 +140,6 @@ int main()
 
   printTree( root );
   cout << "part1 = " << part1 << endl;
+
+  freeTree( root );
 }
