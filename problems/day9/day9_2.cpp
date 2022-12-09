@@ -23,6 +23,10 @@ static bool adjacent( pair<int,int> a, pair<int, int> b )
 // Let tail follow head
 static pair<int,int> getNew( pair<int,int> t, pair<int,int> h )
 {
+  // No need to change anything
+  if ( adjacent( t, h ) )
+    return t;
+
   // How far away are they?
   int xDiff = h.x - t.x;
   int yDiff = h.y - t.y;
@@ -42,7 +46,7 @@ int main()
   set<pair<int,int> > locations;
 
   // tail at 0, head at size-1
-  int size = 2;
+  int size = 10;
   vector<pi> snake( size );
 
   locations.insert( snake[ 0 ] );
@@ -73,23 +77,24 @@ int main()
         break;
     }
 
+    // Do n moves in the desired direction
+    pi *h = &snake[ size - 1 ];
     for ( int i = 1; i <= n; i++ ) {
-      // Does tail need to move?
-      pair<int,int> newH = mp( snake[ 1 ].x + xDiff, snake[ 1 ].y + yDiff );
-      if ( !adjacent( snake[ 0 ], newH ) ) {
-        // t = h; // cannot generalize
-        // Apply rules
-        snake[ 0 ] = getNew( snake[ 0 ], newH );
+      // Move the head
+      *h = mp( h->x + xDiff, h->y + yDiff );
 
-        locations.insert( snake[ 0 ] );
+      // Update the snake
+      for ( int j = size - 2; j >= 0; j-- ) {
+        snake[ j ] = getNew( snake[ j ], snake[ j + 1 ] );
       }
 
-      // Move head
-      snake[ 1 ] = newH;
 
       // cout << "head: " << h.x << "," << h.y << endl;
       // cout << "tail: " << t.x << "," << t.y << endl;
       // cout << endl;
+
+      // Always insert t
+      locations.insert( snake[ 0 ] );
     }
   }
 
