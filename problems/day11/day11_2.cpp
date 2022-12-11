@@ -26,10 +26,14 @@ int idx = 0;
 // Keep track of inspections here
 vector<long> inspections( 8 );
 
+// To reduce big numbers
+int reducer = 1;
+
 static long applyOperation( long worryLevel, string operation )
 {
-  cout << worryLevel << endl;
-  cout << operation << endl;
+  worryLevel %= reducer;
+  // cout << worryLevel << endl;
+  // cout << operation << endl;
   long operand;
   if ( operation[ 1 ] == 'o' ) {
     operand = worryLevel;
@@ -43,37 +47,47 @@ static long applyOperation( long worryLevel, string operation )
     worryLevel *= operand;
   }
 
-  cout << worryLevel << endl;
+  // cout << worryLevel << endl;
 
   if ( worryLevel < 0 )
     exit( 1 );
 
+  worryLevel %= reducer;
   return worryLevel;
 }
 
 static void doRound()
 {
   for ( int i = 0; i < idx; i++ ) {
-    cout << "Monkey " << i << endl;
+    // cout << "Monkey " << i << endl;
 
     Monkey *monkey = monkeys[ i ];
     vector<long> *items = monkey->items;
     inspections[ i ] += items->size();
-    // cout << inspections[ i ] << endl;
+    // // cout << inspections[ i ] << endl;
     for ( auto worryLevel : *items ) {
 
-      // cout << "Item " << worryLevel << endl;;
+      // // cout << "Item " << worryLevel << endl;;
       worryLevel = applyOperation( worryLevel, *monkey->operation );
-      // cout << "After " << worryLevel << endl;
+      // // cout << "After " << worryLevel << endl;
 
 
-      // cout << "True idx: " << monkey->trueIdx << endl;
+      // // cout << "True idx: " << monkey->trueIdx << endl;
       int throwIdx = worryLevel % monkey->divideTest == 0 ?
                      monkey->trueIdx :
                      monkey->falseIdx;
 
-      // cout << "Throwing to " << throwIdx << endl;
+      // // cout << "Throwing to " << throwIdx << endl;
       monkeys[ throwIdx ]->items->push_back( worryLevel );
+
+      // // cout << "Inner items: " << endl;
+      // for ( int i = 0; i < idx; i++ ) {
+      //   // cout << "Monkey " << i << ": ";
+      //   for ( int item : *monkeys[ i ]->items )
+      //     // cout << item << ", ";
+      //   // cout << endl;
+      // }
+
     }
     items->clear();
   }
@@ -149,14 +163,28 @@ int main()
     idx++;
   }
 
+  for ( int i = 0; i < idx; i++ ) {
+    reducer *= monkeys[ i ]->divideTest;
+  }
+  // cout << reducer << endl;
+
 
   int rounds = 10000;
   for ( int round = 1; round <= rounds; round++ ) {
     doRound();
 
-    cout << "Round summary: " << round << endl;
-    for ( int i = 0; i < idx; i++ )
-      cout << "Monkey " << i << ": " << inspections[ i ] << endl;
+    // // cout << "Round summary: " << round << endl;
+    // for ( int i = 0; i < idx; i++ )
+    //   // cout << "Monkey " << i << ": " << inspections[ i ] << endl;
+    
+    // // cout << "Round items: " << round << endl;
+    // for ( int i = 0; i < idx; i++ ) {
+    //   // cout << "Monkey " << i << ": ";
+    //   for ( int item : *monkeys[ i ]->items )
+    //     // cout << item << ", ";
+    //   // cout << endl;
+    // }
+
   }
 
   // Find top 2
