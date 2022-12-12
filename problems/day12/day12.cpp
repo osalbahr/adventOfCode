@@ -36,13 +36,6 @@ void findPaths( vector<pair<int,int>> path )
     for ( int j = -1; j <= 1; j++ ) {
       if ( i != 0 && j != 0 )
         continue;
-      
-      
-      
-
-      
-      
-      
 
       int newX = start.first + i;
       int newY = start.second + j;
@@ -52,8 +45,6 @@ void findPaths( vector<pair<int,int>> path )
       if ( newY < 0 || newY >= grid[ 0 ].size() )
         continue;
 
-      
-
       if ( path.size() > 1 ) {
         
         pair<int,int> last = path[ path.size() - 1 ];
@@ -62,18 +53,11 @@ void findPaths( vector<pair<int,int>> path )
           continue;
       }
       
-      
       char newChar = grid[ newX ][ newY ];
       
       if ( newChar == 'E' ) {
         newChar = 'z';
       }
-
-      
-      
-      
-      
-      
 
       pair<int,int> newPos = { newX, newY };
       if ( newChar > currentChar + 1 ) {
@@ -81,9 +65,6 @@ void findPaths( vector<pair<int,int>> path )
         continue;
       }
 
-      
-      
-      
       bool found = false;
       for ( auto prev : path ) {
         if ( prev == newPos ) {
@@ -93,24 +74,8 @@ void findPaths( vector<pair<int,int>> path )
       }
       if ( found )
         continue;
-
-      
-      
-      
-      
-
-      
-      
       
       path.push_back( newPos );
-      
-      
-      
-
-      
-      
-      
-      
       
       if ( paths.insert( path ).second ) {
         if ( paths.size() % 100000 == 0 ) {
@@ -119,30 +84,12 @@ void findPaths( vector<pair<int,int>> path )
           printPath( path );
         }
         
-        
-
-        
-        
         findPaths( path );
-        
-        
-        
         path.pop_back();
-        
-        
-        
-        
-        
       } else {
         return;
       }
-      
     }
-
-  
-  
-  
-  
 }
 
 int main()
@@ -185,28 +132,12 @@ int main()
   vector<int> lengths;
   
   for ( auto path : paths ) {
-    
-    
     pair<int,int> last = path[ path.size() - 1 ];
     if ( grid[ last.x ][ last.y ] == 'E' ) {
       lengths.push_back( path.size() );
-      
-      
-      
-      
-      
-      
-      
-      
     }
-    
   }
-  
   
   sort( lengths.begin(), lengths.end() );
   cout << lengths[ 0 ] - 1 << endl;
-
-  
-  
-  
 }
