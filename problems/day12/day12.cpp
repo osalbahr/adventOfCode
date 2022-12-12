@@ -120,6 +120,11 @@ void findPaths( vector<pair<int,int>> path )
       // cout << "pop" << endl;
       
       if ( paths.insert( path ).second ) {
+        if ( paths.size() % 100000 == 0 ) {
+          cout << paths.size() << endl;
+          cout << path.size() << endl;
+          printPath( path );
+        }
         // printPath( path );
         // cout << "6" << endl;
 
@@ -187,12 +192,12 @@ int main()
   vector<int> lengths;
   // cout << "auto" << endl;
   for ( auto path : paths ) {
-    printPath( path );
+    // printPath( path );
     // cout << "auto1.5" << endl;
     pair<int,int> last = path[ path.size() - 1 ];
     if ( grid[ last.x ][ last.y ] == 'E' ) {
       lengths.push_back( path.size() );
-      REPORT( path.size() );
+      // REPORT( path.size() );
       // if ( path.size() == 26 ) {
       //   // printPath( path );
       //   for ( auto p : path ) {
