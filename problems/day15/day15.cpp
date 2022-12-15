@@ -20,8 +20,7 @@ for ( int i = 0; i < ( X ); i++ )
 #define y second
 
 int lineOfInterest;
-int leftIdx = INT_MAX;
-int rightIdx = INT_MIN;
+bool normal = false;
 
 map<pi,char> grid;
 
@@ -94,12 +93,21 @@ void mark( Sensor sensor )
   int x = sensor.coords.x;
   int y = sensor.coords.y;
   REPORT( dist );
-  if ( abs( y - lineOfInterest ) > dist ) {
+  if ( !normal && abs( y - lineOfInterest ) > dist ) {
     REPORT( y - lineOfInterest );
     return;
   }
   // REPORT( y );
-  for ( int r = lineOfInterest; r <= lineOfInterest; r++ ) {
+
+  int lineOfInterest1, lineOfInterest2;
+  if ( normal ) {
+    lineOfInterest1 = y - dist;
+    lineOfInterest2 = y + dist;
+  } else {
+    lineOfInterest1 = lineOfInterest2 = lineOfInterest;
+  }
+
+  for ( int r = lineOfInterest1; r <= lineOfInterest2; r++ ) {
     // REPORT( r );
     int rem = dist - abs( y - r );
     // REPORT( rem );
@@ -235,12 +243,11 @@ static void printGrid()
 
 int main( int argc, char *argv[] )
 {
-  if ( argc != 2 ) {
-    cerr << "Usage: day15 <lineOfInterest>" << endl;
-    exit( 1 );
+  if ( argc == 2 ) {
+    lineOfInterest = atoi(argv[ 1 ]);
+  } else {
+    normal = true;
   }
-
-  lineOfInterest = atoi(argv[ 1 ]);
 
   fclose( fopen( "1.PARSE", "w" ) );
 
@@ -317,6 +324,11 @@ int main( int argc, char *argv[] )
   //   REPORT( pair.second );
   // }
 
- REPORT( lineOfInterest );
- REPORT( cannot[ lineOfInterest ] );
+ if ( normal ) {
+  REPORT( cannot[ 10 ] );
+  REPORT( cannot[ 2000000 ] );
+ } else {
+  REPORT( lineOfInterest );
+  REPORT( cannot[ lineOfInterest ] );
+ }
 }
