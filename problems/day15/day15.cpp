@@ -87,77 +87,13 @@ int distance( Sensor sensor )
   return abs( s.x - b.x ) + abs( s.y - b.y );
 }
 
-void mark( Sensor sensor )
-{
-  // Mark with #
-  int dist = distance( sensor );
-  // REPORT( dist );
-  int x = sensor.coords.x;
-  int y = sensor.coords.y;
-  // REPORT( dist );
-  if ( abs( y - lineOfInterest ) > dist ) {
-    // REPORT( y - lineOfInterest );
-    return;
-  }
-  // REPORT( y );
-
-  int lineOfInterest1, lineOfInterest2;
-  if ( normal ) {
-    lineOfInterest1 = y - dist;
-    lineOfInterest2 = y + dist;
-  } else {
-    lineOfInterest1 = lineOfInterest2 = lineOfInterest;
-  }
-
-  for ( int r = lineOfInterest1; r <= lineOfInterest2; r++ ) {
-    int rem = dist - abs( y - r );
-    // REPORT( rem );
-    for ( int c = x - rem; c <= x + rem; c++ ) {
-      if ( c == INT_MAX ) {
-        REPORT( c );
-        exit( 1 );
-      }
-      // REPORT( r );
-      // REPORT( c );
-      pair<int,int> poi = { c, r };
-      if ( grid.find( poi ) == grid.end() ) {
-        grid[ poi ] = '#';
-        auto old = cannot.find( r );
-        if ( old != cannot.end() && old->second == INT_MAX ) {
-          REPORT( old->second );
-          exit( 1 );
-        }
-        cannot[ r ]++;
-      }
-    } 
-  }
-
-  // Mark S
-  pair<int,int> sp = sensor.coords;
-  grid[ sp ] = 'S';
-  // printf( "Mark S x=%d, y=%d\n", sensor.coords.x, sensor.coords.y );
-
-  // Mark B
-  pair<int,int> bp = sensor.beacon.coords;
-  if ( grid[ bp ] != 'B' ) {
-    // REPORT( "here" );
-    grid[ bp ] = 'B';
-    // cannot[ bp.y ]--;
-  }
-}
-
-static void printSensor( Sensor s )
-{
-  FILE *out = fopen( "1.PARSE", "a" );
-  auto sc = s.coords;
-  auto bc = s.beacon.coords;
-  fprintf( out, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d\n",
-                            sc.x, sc.y,                      bc.x, bc.y );
-}
-
-#ifdef VIZ
 static void printGrid()
 {
+  if ( grid.size() == 0 ) {
+    cout << "Empty grid" << endl;
+    return;
+  }
+
   int minX;
   int maxX;
   int minY;
@@ -175,6 +111,8 @@ static void printGrid()
     if ( point.y > maxY )
       maxY = point.y;
   }
+
+#ifdef VIZ
   // Get height of col number
   // Add 1 for sign or zero
   int temp = minY;
@@ -232,8 +170,89 @@ static void printGrid()
     }
     cout << endl;
   }
-}
 #endif
+
+  // Print the numbers
+  if ( normal ) {
+    for ( int r = minY; r <= maxY; r++ ) {
+      printf( "At [%d] = %d\n", r, cannot[ r ] );
+    }
+  } else {
+    printf( "At [%d] = %d\n", lineOfInterest, cannot[ lineOfInterest ] );
+  }
+}
+
+void mark( Sensor sensor )
+{
+  // Mark with #
+  int dist = distance( sensor );
+  // REPORT( dist );
+  int x = sensor.coords.x;
+  int y = sensor.coords.y;
+  // REPORT( dist );
+  if ( !normal && abs( y - lineOfInterest ) > dist ) {
+    // REPORT( y - lineOfInterest );
+    return;
+  }
+  // REPORT( y );
+
+  int lineOfInterest1, lineOfInterest2;
+  if ( normal ) {
+    lineOfInterest1 = y - dist;
+    lineOfInterest2 = y + dist;
+  } else {
+    lineOfInterest1 = lineOfInterest2 = lineOfInterest;
+  }
+
+  int r = lineOfInterest1;
+  for (; r <= lineOfInterest2; r++ ) {
+    int rem = dist - abs( y - r );
+    // REPORT( rem );
+    for ( int c = x - rem; c <= x + rem; c++ ) {
+      if ( c == INT_MAX ) {
+        REPORT( c );
+        exit( 1 );
+      }
+      // REPORT( r );
+      // REPORT( c );
+      pair<int,int> poi = { c, r };
+      if ( grid.find( poi ) == grid.end() ) {
+        grid[ poi ] = '#';
+        auto old = cannot.find( r );
+        if ( old != cannot.end() && old->second == INT_MAX ) {
+          REPORT( old->second );
+          exit( 1 );
+        }
+
+        cannot[ r ]++;
+      }
+    } 
+  }
+  r--;
+
+
+  // Mark S
+  pair<int,int> sp = sensor.coords;
+  grid[ sp ] = 'S';
+  // printf( "Mark S x=%d, y=%d\n", sensor.coords.x, sensor.coords.y );
+
+  // Mark B
+  pair<int,int> bp = sensor.beacon.coords;
+  if ( grid[ bp ] != 'B' ) {
+    // REPORT( "here" );
+    grid[ bp ] = 'B';
+    // cannot[ bp.y ]--;
+  }
+}
+
+static void printSensor( Sensor s )
+{
+  FILE *out = fopen( "1.PARSE", "a" );
+  auto sc = s.coords;
+  auto bc = s.beacon.coords;
+  fprintf( out, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d\n",
+                            sc.x, sc.y,                      bc.x, bc.y );
+}
 
 int main( int argc, char *argv[] )
 {
@@ -265,38 +284,8 @@ int main( int argc, char *argv[] )
   }
   
 #ifdef VIZ
-  minX = INT_MAX, maxX = INT_MIN;
-  minY = INT_MAX, maxY = INT_MIN;
-  for ( auto itemPair : grid ) {
-    pi point = itemPair.first;
-    // REPORT( point.x );
-    // REPORT( point.y );
-    if ( point.x < minX )
-      minX = point.x;
-    if ( point.x > maxX )
-      maxX = point.x;
-    if ( point.y < minY )
-      minY = point.y;
-    if ( point.y > maxY )
-      maxY = point.y;
-  }
-
   cout << "After:" << endl;
-  printGrid();
 #endif
-  // for ( auto pair : grid ) {
-  //   REPORT( pair.first.x );
-  //   REPORT( pair.first.y );
-  //   REPORT( pair.second );
-  // }
 
-  if ( normal ) {
-    for ( lineOfInterest = -10; lineOfInterest <= 16; lineOfInterest++ ) {
-      REPORT( lineOfInterest );
-      REPORT( cannot[ lineOfInterest ] );
-    }
-  } else {
-    REPORT( lineOfInterest );
-    REPORT( cannot[ lineOfInterest ] );
-  }
+  printGrid();
 }
