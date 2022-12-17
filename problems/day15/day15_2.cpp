@@ -267,6 +267,13 @@ static void printSensor( Sensor s, FILE *fp )
   fflush( fp );
 }
 
+static bool reachSensor( Sensor s, pi p )
+{
+  int dist = distance( s );
+  int dist2 = abs( s.coords.x - p.x ) + abs( s.coords.y - p.y );
+  return dist2 <= dist;
+}
+
 int main( int argc, char *argv[] )
 {
   if ( argc != 2 ) {
@@ -293,10 +300,10 @@ int main( int argc, char *argv[] )
   printGrid();
 #endif
 
-  for ( Sensor sensor : sensors ) {
-    printSensor( sensor, stdout );
-    mark( sensor );
-  }
+  // for ( Sensor sensor : sensors ) {
+  //   printSensor( sensor, stdout );
+  //   mark( sensor );
+  // }
   
 #ifdef VIZ
   cout << "After:" << endl;
@@ -307,22 +314,22 @@ int main( int argc, char *argv[] )
   // Find result
   bool xFound = false;
   bool yFound = false;
-  for ( int x = 0; x <= distressMax; x++ ) {
-    if ( cannotX[ x ] == distressMax ) {
-      REPORT( x );
-      xFound = true;
-      int signal;
-      REPORT( signal = ( x * 4000000 ) );
-      for ( int y = 0; y <= distressMax; y++ ) {
-        auto it = grid.find( { x, y } );
-        if ( it == grid.end() ) {
-          REPORT( y );
-          yFound = true;
-          REPORT( signal += y );
+  for ( int x = 0; !xFound && x <= distressMax; x++ ) {
+    if ( x % 10 == 0 ) REPORT( x );
+    for ( int y = 0; !yFound && y <= distressMax; y++ ) {
+      bool reachable_point = false;
+      for ( Sensor s : sensors )
+        if ( reachSensor( s, { x, y } ) ) {
+          reachable_point = true;
           break;
         }
+
+      if ( !reachable_point ) {
+        xFound = true;
+        yFound = true;
+        REPORTN( x ), REPORT( y );
+        REPORT( 4000000 * x + y );
       }
-      break;
     }
   }
 
