@@ -96,9 +96,10 @@ int distance( Sensor sensor )
 
 static void printGrid()
 {
-#ifndef VERBOSE
+#if !defined( VIZ ) && !defined( VERBOSE )
   return;
 #endif
+
   if ( grid.size() == 0 ) {
     cout << "Empty grid" << endl;
     return;
@@ -184,6 +185,7 @@ static void printGrid()
   }
 #endif
 
+#ifdef VERBOSE
   // Print the numbers
   if ( normal ) {
     for ( int c = minX; c <= maxX; c++ ) {
@@ -192,6 +194,7 @@ static void printGrid()
   } else {
     printf( "At [%d] = %d\n", lineOfInterest, cannotX[ lineOfInterest ] );
   }
+#endif
 }
 
 void mark( Sensor sensor )
@@ -291,7 +294,7 @@ int main( int argc, char *argv[] )
 #endif
 
   for ( Sensor sensor : sensors ) {
-    // printSensor( sensor, stdout );
+    printSensor( sensor, stdout );
     mark( sensor );
   }
   
