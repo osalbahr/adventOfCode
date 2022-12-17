@@ -241,7 +241,7 @@ void mark( Sensor sensor )
   if ( grid[ bp ] != 'B' ) {
     // REPORT( "here" );
     grid[ bp ] = 'B';
-    // cannot[ bp.y ]--;
+    cannot[ bp.y ]--;
   }
 }
 
