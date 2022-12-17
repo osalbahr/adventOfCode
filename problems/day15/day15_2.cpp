@@ -267,11 +267,13 @@ static void printSensor( Sensor s, FILE *fp )
   fflush( fp );
 }
 
-static bool reachSensor( Sensor s, pi p )
+// Returns a positive number if p is too close
+// The number is how far you can skip ahead
+static int diffSensor( Sensor s, pi p )
 {
   int dist = distance( s );
   int dist2 = abs( s.coords.x - p.x ) + abs( s.coords.y - p.y );
-  return dist2 <= dist;
+  return dist - dist2;
 }
 
 int main( int argc, char *argv[] )
@@ -315,11 +317,13 @@ int main( int argc, char *argv[] )
   bool xFound = false;
   bool yFound = false;
   for ( int x = 0; !xFound && x <= distressMax; x++ ) {
-    if ( x % 10 == 0 ) REPORT( x );
+    // if ( x % 1000000 == 0 ) REPORT( x );
     for ( int y = 0; !yFound && y <= distressMax; y++ ) {
+      // REPORTN( x ), REPORT( y );
       bool reachable_point = false;
+      int skipAhead;
       for ( Sensor s : sensors )
-        if ( reachSensor( s, { x, y } ) ) {
+        if ( ( skipAhead = diffSensor( s, { x, y } ) ) >= 0 ) {
           reachable_point = true;
           break;
         }
@@ -328,7 +332,11 @@ int main( int argc, char *argv[] )
         xFound = true;
         yFound = true;
         REPORTN( x ), REPORT( y );
-        REPORT( 4000000 * x + y );
+        REPORT( (long)4000000 * x + y );
+      } else {
+        y += skipAhead;
+        if ( y > distressMax ) // Skip column
+          break;
       }
     }
   }
