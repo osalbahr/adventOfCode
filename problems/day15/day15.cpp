@@ -1,3 +1,5 @@
+// #define VIZ
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -92,9 +94,9 @@ void mark( Sensor sensor )
   // REPORT( dist );
   int x = sensor.coords.x;
   int y = sensor.coords.y;
-  REPORT( dist );
-  if ( !normal && abs( y - lineOfInterest ) > dist ) {
-    REPORT( y - lineOfInterest );
+  // REPORT( dist );
+  if ( abs( y - lineOfInterest ) > dist ) {
+    // REPORT( y - lineOfInterest );
     return;
   }
   // REPORT( y );
@@ -108,35 +110,25 @@ void mark( Sensor sensor )
   }
 
   for ( int r = lineOfInterest1; r <= lineOfInterest2; r++ ) {
-    // REPORT( r );
     int rem = dist - abs( y - r );
     // REPORT( rem );
     for ( int c = x - rem; c <= x + rem; c++ ) {
+      if ( c == INT_MAX ) {
+        REPORT( c );
+        exit( 1 );
+      }
       // REPORT( r );
       // REPORT( c );
       pair<int,int> poi = { c, r };
       if ( grid.find( poi ) == grid.end() ) {
         grid[ poi ] = '#';
+        auto old = cannot.find( r );
+        if ( old != cannot.end() && old->second == INT_MAX ) {
+          REPORT( old->second );
+          exit( 1 );
+        }
         cannot[ r ]++;
       }
-      // REPORT( "before" );
-      // REPORT( it->second );
-      // printf( "(%d,%d) = #\n", r, c );
-      // grid[ poi ] = '#';
-
-      // cout << "Printing grid" << endl;
-      // for ( auto itemPair : grid ) {
-      //   pi point = itemPair.first;
-      //   REPORT( point.y );
-      // }
-
-      // REPORT( "after" );
-      // REPORT( it->second );
-      // cannot[ r ]++;
-      // if ( r == 10 ) {
-      //   REPORT( c );
-      //   REPORT( cannot[ r ] );
-      // }
     } 
   }
 
@@ -148,7 +140,7 @@ void mark( Sensor sensor )
   // Mark B
   pair<int,int> bp = sensor.beacon.coords;
   if ( grid[ bp ] != 'B' ) {
-    REPORT( "here" );
+    // REPORT( "here" );
     grid[ bp ] = 'B';
     // cannot[ bp.y ]--;
   }
@@ -163,6 +155,7 @@ static void printSensor( Sensor s )
                             sc.x, sc.y,                      bc.x, bc.y );
 }
 
+#ifdef VIZ
 static void printGrid()
 {
   int minX;
@@ -240,6 +233,7 @@ static void printGrid()
     cout << endl;
   }
 }
+#endif
 
 int main( int argc, char *argv[] )
 {
@@ -260,45 +254,17 @@ int main( int argc, char *argv[] )
     printSensor( sensor );
   }
 
+#ifdef VIZ
   cout << "Before:" << endl;
-  int minX;
-  int maxX;
-  int minY;
-  int maxY;
-  minX = INT_MAX, maxX = INT_MIN;
-  minY = INT_MAX, maxY = INT_MIN;
-  for ( auto itemPair : grid ) {
-    pi point = itemPair.first;
-    if ( point.x < minX )
-      minX = point.x;
-    if ( point.x > maxX )
-      maxX = point.x;
-    if ( point.y < minY )
-      minY = point.y;
-    if ( point.y > maxY )
-      maxY = point.y;
-  }
-
-  for ( int i = minX; i <= maxX; i++ ) {
-    for ( int j = minY; j <= maxY; j++ ) {
-      auto it = grid.find( { i, j } );
-      if ( it == grid.end() )
-        cout << '.';
-      else {
-        char ch = it->second;
-        // if ( ch == '#' )
-        //   ch = '.';
-        cout << ch;
-      }
-    }
-    cout << endl;
-  }
+  printGrid();
+#endif
 
   for ( Sensor sensor : sensors ) {
-    REPORT( sensor.coords.y );
+    // REPORT( sensor.coords.y );
     mark( sensor );
   }
   
+#ifdef VIZ
   minX = INT_MAX, maxX = INT_MIN;
   minY = INT_MAX, maxY = INT_MIN;
   for ( auto itemPair : grid ) {
@@ -317,18 +283,20 @@ int main( int argc, char *argv[] )
 
   cout << "After:" << endl;
   printGrid();
-
+#endif
   // for ( auto pair : grid ) {
   //   REPORT( pair.first.x );
   //   REPORT( pair.first.y );
   //   REPORT( pair.second );
   // }
 
- if ( normal ) {
-  REPORT( cannot[ 10 ] );
-  REPORT( cannot[ 2000000 ] );
- } else {
-  REPORT( lineOfInterest );
-  REPORT( cannot[ lineOfInterest ] );
- }
+  if ( normal ) {
+    for ( lineOfInterest = -10; lineOfInterest <= 16; lineOfInterest++ ) {
+      REPORT( lineOfInterest );
+      REPORT( cannot[ lineOfInterest ] );
+    }
+  } else {
+    REPORT( lineOfInterest );
+    REPORT( cannot[ lineOfInterest ] );
+  }
 }
