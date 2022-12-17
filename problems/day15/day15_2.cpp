@@ -1,4 +1,5 @@
-#define VIZ
+// #define VIZ
+// #define VERBOSE
 
 #include <iostream>
 #include <vector>
@@ -13,6 +14,9 @@
 using namespace std;
 
 #define REPORT( X ) cout << #X << " = " << ( X ) << endl
+
+// like echo -n
+#define REPORTN( X ) cout << #X << " = " << ( X ) << ", "
 
 #define forn( X ) \
 for ( int i = 0; i < ( X ); i++ )
@@ -30,7 +34,7 @@ map<pi,char> grid;
 // cannot exist given column x
 map<int,int> cannotX;
 
-int distressMax = 20;
+int distressMax;
 
 typedef struct BeaconTag {
   pi coords;
@@ -92,6 +96,9 @@ int distance( Sensor sensor )
 
 static void printGrid()
 {
+#ifndef VERBOSE
+  return;
+#endif
   if ( grid.size() == 0 ) {
     cout << "Empty grid" << endl;
     return;
@@ -203,20 +210,19 @@ void mark( Sensor sensor )
 
   int col1, col2;
   if ( normal ) {
-    // col1 = max( 0, y - dist );
-    col1 = x - dist;
-    // col2 = min( distressMax, y + dist );
-    col2 = x + dist;
+    col1 = max( 0, x - dist );
+    // col1 = x - dist;
+    col2 = min( distressMax, x + dist );
+    // col2 = x + dist;
   } else {
     col1 = col2 = lineOfInterest;
   }
 
   int c = col1;
   for (; c <= col2; c++ ) {
-    REPORT( c );
     int rem = dist - abs( x - c );
     // REPORT( rem );
-    for ( int r = /*max( 0,*/ y - rem /*)*/; r <= /*min( distressMax,*/ y + rem /*)*/; r++ ) {
+    for ( int r = max( 0, y - rem ); r <= min( distressMax, y + rem ); r++ ) {
       if ( r == INT_MAX ) {
         REPORT( r );
         exit( 1 );
@@ -239,43 +245,45 @@ void mark( Sensor sensor )
   c--;
 
 
-  // Mark S
-  pair<int,int> sp = sensor.coords;
-  grid[ sp ] = 'S';
-  // printf( "Mark S x=%d, y=%d\n", sensor.coords.x, sensor.coords.y );
+  // // Mark S
+  // pair<int,int> sp = sensor.coords;
+  // grid[ sp ] = 'S';
+  // // printf( "Mark S x=%d, y=%d\n", sensor.coords.x, sensor.coords.y );
 
-  // Mark B
-  pair<int,int> bp = sensor.beacon.coords;
-  grid[ bp ] = 'B';
+  // // Mark B
+  // pair<int,int> bp = sensor.beacon.coords;
+  // grid[ bp ] = 'B';
 }
 
-static void printSensor( Sensor s )
+static void printSensor( Sensor s, FILE *fp )
 {
-  FILE *out = fopen( "1.PARSE", "a" );
   auto sc = s.coords;
   auto bc = s.beacon.coords;
-  fprintf( out, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d\n",
+  fprintf( fp, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d\n",
                             sc.x, sc.y,                      bc.x, bc.y );
+  fflush( fp );
 }
 
 int main( int argc, char *argv[] )
 {
-  if ( argc == 2 ) {
-    lineOfInterest = atoi(argv[ 1 ]);
-  } else {
-    normal = true;
+  if ( argc != 2 ) {
+    cerr << "Usage: day15_2 <distress max>" << endl;
+    exit( 1 );
   }
+  distressMax = atoi( argv[ 1 ] );
+  normal = true;
 
   fclose( fopen( "1.PARSE", "w" ) );
 
   string line;
 
+  FILE *out = fopen( "1.PARSE", "a" );
   while ( getline( cin, line ) ) {
     Sensor sensor = Sensor()( line );
     sensors.push_back( sensor );
-    
-    printSensor( sensor );
+    printSensor( sensor, out );
   }
+  fclose( out );
 
 #ifdef VIZ
   cout << "Before:" << endl;
@@ -283,7 +291,7 @@ int main( int argc, char *argv[] )
 #endif
 
   for ( Sensor sensor : sensors ) {
-    // REPORT( sensor.coords.y );
+    // printSensor( sensor, stdout );
     mark( sensor );
   }
   
@@ -292,4 +300,28 @@ int main( int argc, char *argv[] )
 #endif
 
   printGrid();
+
+  // Find result
+  bool xFound = false;
+  bool yFound = false;
+  for ( int x = 0; x <= distressMax; x++ ) {
+    if ( cannotX[ x ] == distressMax ) {
+      REPORT( x );
+      xFound = true;
+      int signal;
+      REPORT( signal = ( x * 4000000 ) );
+      for ( int y = 0; y <= distressMax; y++ ) {
+        auto it = grid.find( { x, y } );
+        if ( it == grid.end() ) {
+          REPORT( y );
+          yFound = true;
+          REPORT( signal += y );
+          break;
+        }
+      }
+      break;
+    }
+  }
+
+  REPORTN( xFound ), REPORT( yFound );
 }
