@@ -1,6 +1,6 @@
 Solved in C++
 
-https://github.com/osalbahr/adventOfCode
+https://github.com/osalbahr/adventOfCode/tree/main/problems/day15
 
 Feel free to ask any questions!
 
