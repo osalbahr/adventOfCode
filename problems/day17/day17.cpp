@@ -9,6 +9,8 @@
 using namespace std;
 
 #define REPORT( X ) cout << #X << " = " << ( X ) << endl
+#define REPORTP( P ) cout << #P << " = " << "(" << P.x << "," << P.y << ")" << endl
+
 
 #define forn( X ) \
 for ( int i = 0; i < ( X ); i++ )
@@ -121,29 +123,12 @@ static void printGrid()
 
   // Print numbers
   // REPORT( height );
-  for ( int div = pow( 10, height ); div != 0; div /= 10 ) {
-    cout << "   ";
-    // REPORT( div );
-    for ( int x = minX; x <= maxX; x++ ) {
-      if ( x % 5 == 0 ) {
-        int digit = ( abs(x) / div ) % 10;
-        if ( digit == 0 && div != 1 ) {
-          // Look ahead
-          if ( x < 0 && ( abs(x) / (div/10) ) % 10 != 0 )
-            cout << "-";
-          else
-            cout << " ";
-        }
-        else
-          cout << digit;
-      } else {
-        cout << " ";
-      }
-    }
-    cout << endl;
+  cout << "    ";
+  for ( int i = minX; i <= maxX; i++ ) {
+    cout << i;
   }
-
-  for ( int j = minY; j <= maxY; j++ ) {
+  cout << endl;
+  for ( int j = maxY; j >= minY; j-- ) {
     printf( "%3d ", j );
     for ( int i = minX; i <= maxX; i++ ) {
       auto it = grid.find( { i, j } );
@@ -187,9 +172,15 @@ static pi jetMove( pi initial, pi *shape, int size )
   return diff;
 }
 
-static bool downMove( pi &initial, pi *shape, int size )
+static bool downMove( pi initial, pi *shape, int size )
 {
-  return false;
+  for ( int i = 0; i < size; i++ ) {
+    pi current = initial + shape[ i ];
+    if ( current.y <= 0 || grid.count( current ) > 0 )
+      return false;
+  }
+
+  return true;
 }
 
 static void placeShape( int n )
@@ -203,7 +194,6 @@ static void placeShape( int n )
   // Try to go down
   bool goDown = true;
   while ( goDown ) {
-    REPORT( goDown );
     for ( int i = 0; i < size; i++ ) {
       pi current = initial + shape[ i ] + 3 * down;
       if ( current.y == 0 || grid.count( current ) > 0 ) {
@@ -221,7 +211,10 @@ static void placeShape( int n )
   bool station = false;
   while ( !station ) {
     initial = initial + jetMove( initial, shape, size );
-    if ( !downMove( initial, shape, size ) ) {
+    bool canDown;
+    if ( ( canDown = downMove( initial, shape, size ) ) ) {
+      initial = initial + down;
+    } else {
       station = true;
     }
   }
@@ -231,14 +224,17 @@ static void placeShape( int n )
   }
 }
 
-int main()
+int main( int argc, char *argv[] )
 {
+  if ( argc != 2 ) {
+    cerr << "Usage: day17 n" << endl;
+    exit( 1 );
+  }
+  int n = atoi( argv[ 1 ] );
   cin >> jetPattern;
   
   printGrid();
-  REPORT( "placeShape pre" );
-  forn( 100 )
+  forn( n )
     placeShape( i % 5 );
-  REPORT( "placeShape post" );
   printGrid();
 }
