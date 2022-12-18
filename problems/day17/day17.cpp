@@ -13,7 +13,7 @@ using namespace std;
 
 
 #define forn( X ) \
-for ( int i = 0; i < ( X ); i++ )
+for ( int i = 1; i <= ( X ); i++ )
 
 #define x first
 #define y second
@@ -81,22 +81,11 @@ static void printGrid()
     return;
   }
 
-  int minX;
-  int maxX;
-  int minY;
-  int maxY;
-  minX = INT_MAX, maxX = INT_MIN;
-  minY = INT_MAX, maxY = INT_MIN;
-
-  minX = 0;
-  maxX = 6;
+  int minY = INT_MAX, maxY = INT_MIN;
+  int minX = 0, maxX = 6;
 
   for ( auto itemPair : grid ) {
     pi point = itemPair.first;
-    if ( point.x < minX )
-      minX = point.x;
-    if ( point.x > maxX )
-      maxX = point.x;
     if ( point.y < minY )
       minY = point.y;
     if ( point.y > maxY )
@@ -143,6 +132,8 @@ static void printGrid()
     }
     cout << endl;
   }
+
+  REPORT( ( height = maxY ) );
 }
 
 static char jetDirection()
@@ -175,7 +166,7 @@ static pi jetMove( pi initial, pi *shape, int size )
 static bool downMove( pi initial, pi *shape, int size )
 {
   for ( int i = 0; i < size; i++ ) {
-    pi current = initial + shape[ i ];
+    pi current = initial + shape[ i ] + down;
     if ( current.y <= 0 || grid.count( current ) > 0 )
       return false;
   }
@@ -233,8 +224,10 @@ int main( int argc, char *argv[] )
   int n = atoi( argv[ 1 ] );
   cin >> jetPattern;
   
-  printGrid();
-  forn( n )
-    placeShape( i % 5 );
-  printGrid();
+  forn( n ) {
+    REPORT( i );
+    placeShape( (i-1) % 5 );
+    printGrid();
+    cout << endl;
+  }
 }
