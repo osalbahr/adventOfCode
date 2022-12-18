@@ -62,7 +62,7 @@ pi box[] = { {0,0}, {0,1}, {1,1}, {1,0} };
 int boxSize = sizeof( box ) / sizeof( box[ 0 ] );
 
 pi *shapes[] = { horizontal, plusShape, reverseL, vertical, box };
-int sizes[] = { horizontalSize, plusShapeSize, reverseLSize, verticalSize };
+int sizes[] = { horizontalSize, plusShapeSize, reverseLSize, verticalSize, boxSize };
 
 // Yes, this is the grid
 // x = [0, 6]
@@ -159,7 +159,6 @@ static bool downMove( pi initial, pi *shape, int size )
 // Temporarily put, print, erase a shape
 static void printGridTemp( pi initial, pi *shape, int size )
 {
-  REPORT( "printGridTemp" );
   for ( int i = 0; i < size; i++ )
     grid[ initial + shape[ i ] ] = '@';
   printGrid();
