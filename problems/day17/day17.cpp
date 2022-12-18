@@ -1,3 +1,5 @@
+// #define VIZ
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -74,15 +76,10 @@ int height = 0;
 string jetPattern;
 int idx = 0;
 
-static void printGrid()
+// Returns maxY
+static int updateHeight()
 {
-  if ( grid.size() == 0 ) {
-    cout << "Empty grid" << endl;
-    return;
-  }
-
-  int minY = 0, maxY = INT_MIN;
-  int minX = 0, maxX = 6;
+  int maxY = INT_MIN;
 
   for ( auto itemPair : grid ) {
     pi point = itemPair.first;
@@ -90,6 +87,23 @@ static void printGrid()
       maxY = point.y;
   }
 
+  height = maxY + 1;
+  return maxY;
+}
+
+static void printGrid()
+{
+  if ( grid.size() == 0 ) {
+    cout << "Empty grid" << endl;
+    return;
+  }
+
+  // Get the height
+  int maxY = updateHeight();
+
+#ifdef VIZ
+  int minY = 0;
+  int minX = 0, maxX = 6;
   // Print numbers
   // REPORT( height );
   cout << "    ";
@@ -112,6 +126,7 @@ static void printGrid()
     }
     cout << endl;
   }
+#endif
 
   height = maxY + 1;
   REPORT( height );
@@ -132,7 +147,6 @@ pi down = {0,-1};
 static pi jetMove( pi initial, pi *shape, int size )
 {
   char dir = jetDirection();
-  REPORT( dir );
   pi diff = dir == '>' ? rightDiff : leftDiff;
 
   for ( int i = 0; i < size; i++ ) {
@@ -156,69 +170,42 @@ static bool downMove( pi initial, pi *shape, int size )
   return true;
 }
 
-// Temporarily put, print, erase a shape
-static void printGridTemp( pi initial, pi *shape, int size )
-{
-  for ( int i = 0; i < size; i++ )
-    grid[ initial + shape[ i ] ] = '@';
-  printGrid();
-  for ( int i = 0; i < size; i++ )
-    grid.erase( initial + shape[ i ] );
-}
+// // Temporarily put, print, erase a shape
+// static void printGridTemp( pi initial, pi *shape, int size )
+// {
+//   for ( int i = 0; i < size; i++ )
+//     grid[ initial + shape[ i ] ] = '@';
+//   printGrid();
+//   for ( int i = 0; i < size; i++ )
+//     grid.erase( initial + shape[ i ] );
+// }
 
 static void placeShape( int n )
 {
   pi *shape = shapes[ n ];
   int size = sizes[ n ];
 
-  // Assume worst case
-  pi initial = { 2, height + 3 + 1 }; // one more for plusShape
-
-  // Try to go down
-  bool goDown = true;
-  REPORT( "Assumption" );
-  printGridTemp( initial, shape, size );
-  while ( goDown ) {
-    REPORT( goDown );
-    for ( int i = 0; i < size; i++ ) {
-      // Look ahead for 3 spaces
-      pi current = initial + shape[ i ] + ( 3 + 1 ) * down;
-      if ( current.y < 0 || grid.count( current ) > 0 ) {
-        goDown = false;
-        break;
-      }
-    }
-
-    if ( goDown ) {
-      initial = initial + down;
-    }
-  }
-
-  REPORT( "Initial" );
-  printGridTemp( initial, shape, size );
+  pi initial = { 2, height + 3 }; // one more for plusShape
+  if ( shape == plusShape )
+    initial.y++;
 
   // Now we determined initial location, let it fall
   bool station = false;
   while ( !station ) {
     initial = initial + jetMove( initial, shape, size );
-    // REPORT( "jetMove" );
-    // printGridTemp( initial, shape, size );
     bool canDown;
     if ( ( canDown = downMove( initial, shape, size ) ) ) {
       initial = initial + down;
-      // REPORT( "downMove" );
-      // printGridTemp( initial, shape, size );
     } else {
       station = true;
     }
   }
 
-  // REPORT( "Final" );
-  // printGridTemp( initial, shape, size );
-
   for ( int i = 0; i < size; i++ ) {
     grid[ initial + shape[ i ] ] = '#';
   }
+
+  updateHeight();
 }
 
 int main( int argc, char *argv[] )
@@ -230,11 +217,8 @@ int main( int argc, char *argv[] )
   int n = atoi( argv[ 1 ] );
   cin >> jetPattern;
   
-  forn( n ) {
-    REPORT( i + 1 );
+  forn( n )
     placeShape( i % 5 );
-    REPORT( "Done" );
-    printGrid();
-    cout << endl;
-  }
+
+  printGrid();
 }
