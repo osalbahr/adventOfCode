@@ -13,7 +13,7 @@ using namespace std;
 
 
 #define forn( X ) \
-for ( int i = 1; i <= ( X ); i++ )
+for ( int i = 0; i < ( X ); i++ )
 
 #define x first
 #define y second
@@ -46,7 +46,7 @@ int plusShapeSize = sizeof( plusShape ) / sizeof( plusShape[ 0 ] );
 // ..#
 // ..#
 // ###
-pi reverseL[] = { {0,0}, {1,0}, {2,0}, {3,0}, {3,1}, {3,2} };
+pi reverseL[] = { {0,0}, {1,0}, {2,0}, {2,1}, {2,2} };
 int reverseLSize = sizeof( reverseL ) / sizeof( reverseL[ 0 ] );
 
 // #
@@ -81,34 +81,14 @@ static void printGrid()
     return;
   }
 
-  int minY = INT_MAX, maxY = INT_MIN;
+  int minY = 0, maxY = INT_MIN;
   int minX = 0, maxX = 6;
 
   for ( auto itemPair : grid ) {
     pi point = itemPair.first;
-    if ( point.y < minY )
-      minY = point.y;
     if ( point.y > maxY )
       maxY = point.y;
   }
-
-  // Get height of col number
-  // Add 1 for sign or zero
-  int temp = minY;
-  // REPORT( minY );
-  int height = temp <= 0 ? 1 : 0;
-  temp /= 10;
-  while ( ( temp /= 10 ) != 0 )
-    height++;
-  // REPORT( height );
-
-  int temp2 = maxY;
-  int height2 = temp2 <= 0 ? 1 : 0;
-  temp /= 10;
-  while ( ( temp /= 10 ) != 0 )
-    height2++;
-  
-  height = max( height, height2 );
 
   // Print numbers
   // REPORT( height );
@@ -133,7 +113,8 @@ static void printGrid()
     cout << endl;
   }
 
-  REPORT( ( height = maxY ) );
+  height = maxY + 1;
+  REPORT( height );
 }
 
 static char jetDirection()
@@ -151,11 +132,12 @@ pi down = {0,-1};
 static pi jetMove( pi initial, pi *shape, int size )
 {
   char dir = jetDirection();
+  REPORT( dir );
   pi diff = dir == '>' ? rightDiff : leftDiff;
 
   for ( int i = 0; i < size; i++ ) {
     pi current = initial + shape[ i ] + diff;
-    if ( current.x < 0 || current.x > 0 )
+    if ( current.x < 0 || current.x > 6 || grid.count( current ) > 0 )
       return {0,0};
   }
 
@@ -167,11 +149,22 @@ static bool downMove( pi initial, pi *shape, int size )
 {
   for ( int i = 0; i < size; i++ ) {
     pi current = initial + shape[ i ] + down;
-    if ( current.y <= 0 || grid.count( current ) > 0 )
+    if ( current.y < 0 || grid.count( current ) > 0 )
       return false;
   }
 
   return true;
+}
+
+// Temporarily put, print, erase a shape
+static void printGridTemp( pi initial, pi *shape, int size )
+{
+  REPORT( "printGridTemp" );
+  for ( int i = 0; i < size; i++ )
+    grid[ initial + shape[ i ] ] = '@';
+  printGrid();
+  for ( int i = 0; i < size; i++ )
+    grid.erase( initial + shape[ i ] );
 }
 
 static void placeShape( int n )
@@ -184,10 +177,14 @@ static void placeShape( int n )
 
   // Try to go down
   bool goDown = true;
+  REPORT( "Assumption" );
+  printGridTemp( initial, shape, size );
   while ( goDown ) {
+    REPORT( goDown );
     for ( int i = 0; i < size; i++ ) {
-      pi current = initial + shape[ i ] + 3 * down;
-      if ( current.y == 0 || grid.count( current ) > 0 ) {
+      // Look ahead for 3 spaces
+      pi current = initial + shape[ i ] + ( 3 + 1 ) * down;
+      if ( current.y < 0 || grid.count( current ) > 0 ) {
         goDown = false;
         break;
       }
@@ -198,17 +195,27 @@ static void placeShape( int n )
     }
   }
 
+  REPORT( "Initial" );
+  printGridTemp( initial, shape, size );
+
   // Now we determined initial location, let it fall
   bool station = false;
   while ( !station ) {
     initial = initial + jetMove( initial, shape, size );
+    // REPORT( "jetMove" );
+    // printGridTemp( initial, shape, size );
     bool canDown;
     if ( ( canDown = downMove( initial, shape, size ) ) ) {
       initial = initial + down;
+      // REPORT( "downMove" );
+      // printGridTemp( initial, shape, size );
     } else {
       station = true;
     }
   }
+
+  // REPORT( "Final" );
+  // printGridTemp( initial, shape, size );
 
   for ( int i = 0; i < size; i++ ) {
     grid[ initial + shape[ i ] ] = '#';
@@ -225,8 +232,9 @@ int main( int argc, char *argv[] )
   cin >> jetPattern;
   
   forn( n ) {
-    REPORT( i );
-    placeShape( (i-1) % 5 );
+    REPORT( i + 1 );
+    placeShape( i % 5 );
+    REPORT( "Done" );
     printGrid();
     cout << endl;
   }
