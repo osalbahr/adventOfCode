@@ -319,7 +319,7 @@ int main( int argc, char *argv[] )
   bool yFound = false;
   for ( int x = 0; !xFound && x <= distressMax; x++ ) {
     // if ( x % 1000000 == 0 ) REPORT( x );
-    for ( int y = 0; !yFound && y <= distressMax; y++ ) {
+    for ( int y = 0; !yFound && y <= distressMax; ) {
       // REPORTN( x ), REPORT( y );
       bool reachable_point = false;
       int skipAhead;
@@ -335,7 +335,7 @@ int main( int argc, char *argv[] )
         REPORTN( x ), REPORT( y );
         REPORT( (long)4000000 * x + y );
       } else {
-        y += skipAhead;
+        y += skipAhead + 1;
         if ( y > distressMax ) // Skip column
           break;
       }
