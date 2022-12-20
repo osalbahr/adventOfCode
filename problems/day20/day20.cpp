@@ -39,6 +39,16 @@ static void printListReverse( List *list, FILE *fp )
 //   }
 // }
 
+static void freeList( List *list )
+{
+  for ( Node *c = list->head; c; ) {
+    Node *temp = c;
+    c = temp->next;
+    free( temp );
+  }
+  free( list );
+}
+
 int main()
 {
   List *list = (List *)malloc( sizeof( *list ) );
@@ -49,14 +59,14 @@ int main()
   int n;
   cin >> n;
   Node *head;
-  head = (Node *)malloc( sizeof( *list ) );
+  head = (Node *)malloc( sizeof( *head ) );
   head->n = n;
   head->prev = nullptr;
   list->head = head;
 
   Node *prev = head;
   while ( cin >> n ) {
-    Node *temp = (Node *)malloc( sizeof( *list ) );
+    Node *temp = (Node *)malloc( sizeof( *temp ) );
     temp->n = n;
     prev->next = temp;
     temp->prev = prev;
@@ -81,4 +91,6 @@ int main()
   // // Mix them
   // mix( list );
   // printList( list, stdout );
+
+  freeList( list );
 }
