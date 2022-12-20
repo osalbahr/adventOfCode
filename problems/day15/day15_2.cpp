@@ -10,6 +10,7 @@
 
 #include <cstdio>
 #include <cmath>
+#include <climits>
 
 using namespace std;
 
