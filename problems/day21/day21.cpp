@@ -87,6 +87,10 @@ static long getVal( string name )
   long n1 = getVal( act.m1 );
   long n2 = getVal( act.m2 );
 
+  // Part 2 check
+  if ( name == "root" )
+    REPORT( n1 == n2 );
+
   long val;
   switch( act.op ) {
     case '+':
