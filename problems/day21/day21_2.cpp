@@ -25,6 +25,8 @@ typedef struct {
 // vector<Monkey> monkeys;
 map<string,Monkey> monkeys;
 
+set<string> dependOnHumn;
+
 static Monkey parseMonkey( string line )
 {
   Monkey m;
@@ -77,28 +79,15 @@ static Monkey parseMonkey( string line )
 //   }
 // }
 
-static long getVal( string name, int humn )
+static long getVal( string name )
 {
-  if ( name == "humn" )
-    return humn;
-
   Monkey m = monkeys[ name ];
   if ( m.isNumber )
     return m.n;
   
   Action act = m.act;
-  long n1 = getVal( act.m1, humn );
-  long n2 = getVal( act.m2, humn );
-
-  if ( name == "root" ) {
-    if ( n1 == n2 ) {
-      return humn;
-    } else {
-      humn++;
-      if ( humn % 1000 == 0 ) REPORT( humn );
-      return getVal( "root", humn );
-    }
-  }
+  long n1 = getVal( act.m1 );
+  long n2 = getVal( act.m2 );
 
   long val;
   switch( act.op ) {
@@ -112,28 +101,172 @@ static long getVal( string name, int humn )
       val = n1 * n2;
       break;
     case '/':
-      if ( n1 % n2 != 0 ) {
-        humn++;
-        if ( humn % 1000 == 0 ) REPORT( humn );
-        return getVal( "root", humn );
-      }
       val = n1 / n2;
       break;
     default:
-      cerr << "getVal failed" << endl;
+      cerr << "getVal: unkown op" << endl;
       exit( 1 );
   }
 
   if ( val < 0 ) {
-    // fprintf( stderr, "%ld %c %ld = %ld\n", n1, act.op, n2, val );
-    // cerr << "val overflowed" << endl;
-    humn++;
-    if ( humn % 1000 == 0 ) REPORT( humn );
-    return getVal( "root", humn );
+    fprintf( stderr, "%ld %c %ld = %ld\n", n1, act.op, n2, val );
+    cerr << "val overflowed" << endl;
+    exit( 1 );
+  }
+  return val;
+}
+
+// if unkownLeft
+// target = newTarget <op> otherVal
+// Example:
+// 150 = x / 4
+static long getNewTarget( bool unkownLeft, long target, char op, long otherVal )
+{
+  // position does not matter
+  switch( op ) {
+    case '+':
+      return target - otherVal;
+    case '*':
+      return target / otherVal;
+  }
+
+  if ( unkownLeft ) {
+    switch( op ) {
+      case '/':
+        // target = x / otherVal
+        // x =
+        return target * otherVal;
+      case '-':
+        // target = x - otherVal
+        // x =
+        return target + otherVal;
+      default:
+        cerr << "getNewTarget (left): op (" << op << ") not implemented" << endl;
+        exit( 1 );
+    }
+  } else {
+    switch( op ) {
+      case '/':
+        // target = otherVal / x
+        // x =
+        cerr << "Does this ever happen?" << endl;
+        exit( 1 );
+        return otherVal / target;
+      case '-':
+        // target = otherVal - x
+        // x =
+        return otherVal - target;
+      default:
+        cerr << "getNewTarget (right): op (" << op << ") not implemented" << endl;
+        exit( 1 );
+    }
+  }
+}
+// What value does humn need to be for
+// the given monkey name to be target
+static long getValHumn( string name, long target )
+{
+  // REPORT( name );
+  // REPORT( target );
+  if ( name == "humn" )
+    return target;
+
+  Monkey m = monkeys[ name ];
+  if ( m.isNumber ) {
+    cerr << "isNumber not for getValHumn" << endl;
     exit( 1 );
   }
 
-  return val;
+  
+  Action act = m.act;
+  string m1 = act.m1;
+  string m2 = act.m2;
+
+  // One of them depends on humn
+  string depends;
+  string other;
+  if ( dependOnHumn.count( m1 ) > 0 ) {
+    depends = m1;
+    other = m2;
+  } else {
+    depends = m2;
+    other = m1;
+  }
+  // REPORT( other );
+  long otherVal = getVal( other );
+  // REPORT( otherVal );
+
+  bool unkownLeft = depends == m1;
+
+  // if unkownLeft
+  // target = newTarget <op> otherVal
+  // Example:
+  // 150 = x / 4
+  long newTarget = getNewTarget( unkownLeft, target, act.op, otherVal );
+  // REPORT( newTarget );
+
+  return getValHumn( depends, newTarget );
+}
+
+static long getValRoot()
+{
+  Monkey m = monkeys[ "root" ];
+  Action act = m.act;
+  string m1 = act.m1;
+  string m2 = act.m2;
+
+  // One of them depends on humn
+  string depends;
+  string other;
+  if ( dependOnHumn.count( m1 ) > 0 ) {
+    depends = m1;
+    other = m2;
+  } else {
+    depends = m2;
+    other = m1;
+  }
+  long target = getVal( other );
+
+  return getValHumn( depends, target );
+}
+
+static void mark()
+{
+  for ( auto item : monkeys ) {
+    string name = item.first;
+    Monkey m = item.second;
+    if ( m.isNumber || dependOnHumn.count( name ) > 0 )
+      continue;
+
+    Action act = m.act;
+    string m1 = act.m1;
+    string m2 = act.m2;
+
+    if ( dependOnHumn.count( m1 ) > 0 || dependOnHumn.count( m2 ) > 0 ) {
+      dependOnHumn.insert( m.name );
+      mark();
+    }
+  }
+}
+
+static bool both()
+{
+  for ( auto item : monkeys ) {
+    string name = item.first;
+    Monkey m = item.second;
+    if ( m.isNumber )
+      continue;
+
+    Action act = m.act;
+    string m1 = act.m1;
+    string m2 = act.m2;
+
+    if ( dependOnHumn.count( m1 ) > 0 && dependOnHumn.count( m2 ) > 0 ) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 int main()
@@ -145,12 +278,16 @@ int main()
     monkeys[ m.name ] = m;
   }
 
+  dependOnHumn.insert( "humn" );
+  mark();
+  if ( both() ) {
+    cerr << "Can't be both" << endl;
+  }
+
   // fclose( fopen( "PARSE", "w" ) );
   // FILE *parse = fopen( "PARSE", "w" );
   // printMonkeys( parse );
   // fclose( parse );
 
-  int humn = 1;
-  if ( humn % 1000 == 0 ) REPORT( humn );
-  cout << getVal( "root", humn ) << endl;
+  cout << getValRoot() << endl;
 }
