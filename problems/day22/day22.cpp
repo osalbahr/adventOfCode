@@ -5,16 +5,15 @@
 #include <sstream>
 
 #include <cstdio>
+#include <climits>
 
 #include <ctype.h>
 
 using namespace std;
 
 #define REPORT( X ) cout << #X " = " << X << endl
-// #define REPORTP( P )\
-// printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
-#define REPORTP( P )\
-printf( "%s = (%d,%d)\n", #P, P.row+1, P.col+1 )
+// #define REPORTP( P ) printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
+#define REPORTP( P ) printf( "%s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 
 typedef pair<int,int> pi;
 #define col first
@@ -47,7 +46,7 @@ static pi wrap( pi p, int dir )
       //   cout << " ";
       // cout << "v" << endl;
       // cout << currentRow << endl;
-      if ( p.col >= currentRow.size() ) {
+      if ( p.col >= (signed)currentRow.size() ) {
         // REPORTP( p );
         // REPORT( "Wrapping right" );
         // cout << "-> ";
@@ -71,7 +70,7 @@ static pi wrap( pi p, int dir )
 
     case downDir:
       // REPORT( p.row );
-      if ( p.row >= grid.size() || grid[ p.row ][ p.col ] == ' ' ) {
+      if ( p.row >= (signed)grid.size() || grid[ p.row ][ p.col ] == ' ' ) {
         // REPORT( "Wrapping down (0)" );
         p.row = 0;
       }
@@ -189,7 +188,7 @@ static pi getEnd( pi start )
   pi end = start;
   REPORTP( end );
   int moves = 0;
-  while ( pathIdx < path.size() ) {
+  while ( pathIdx < (signed)path.size() ) {
     pi newEnd = movePath( end );
     // REPORT( path.substr( pathIdx ) );
     if ( newEnd != end ) {
