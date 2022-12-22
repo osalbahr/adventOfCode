@@ -11,8 +11,10 @@
 using namespace std;
 
 #define REPORT( X ) cout << #X " = " << X << endl
+// #define REPORTP( P )\
+// printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 #define REPORTP( P )\
-printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
+printf( "%s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 
 typedef pair<int,int> pi;
 #define col first
@@ -155,6 +157,8 @@ static pi movePath( pi p )
       exit( 1 );
     }
     p = moveDigit( p, length );
+
+    cout << path.substr( pathIdx, n ) << endl;
   } else {
     if ( nextCh == 'R' ) {
       dir = ( dir + 1 ) % 4;
@@ -168,10 +172,11 @@ static pi movePath( pi p )
       exit( 1 );
     }
     // cout << "New ";
-    // REPORT( dir );
     n = 1;
+
+    cout << "dir = " << dir << " (" + path.substr( pathIdx, n ) + ")" << endl;
   }
-  // REPORT( path.substr( pathIdx ) );
+
   pathIdx += n;
   return p;
 }
@@ -182,14 +187,14 @@ int limit = INT_MAX;
 static pi getEnd( pi start )
 {
   pi end = start;
+  REPORTP( end );
   int moves = 0;
   while ( pathIdx < path.size() ) {
     pi newEnd = movePath( end );
     // REPORT( path.substr( pathIdx ) );
     if ( newEnd != end ) {
-      // REPORTP( end );
-      // REPORTP( newEnd );
       end = newEnd;
+      REPORTP( end );
     }
     // REPORT( ++moves );
     if ( moves == limit ) {
