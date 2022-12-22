@@ -1,4 +1,4 @@
-#define DEBUG
+// #define DEBUG
 
 #include <iostream>
 #include <vector>
@@ -257,7 +257,7 @@ int main( int argc, char *argv[] )
   REPORT( end.row + 1 );
   REPORT( end.col + 1 );
   
-  printf( "End at (%d,%d)\n", end.row+1, end.col+1 );
-  REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) );
-  cout << 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) << endl;
+  printf( "End at (%d,%d), dir = %d\n", end.row+1, end.col+1, dir );
+  REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir );
+  cout << 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir << endl;
 }
