@@ -1,0 +1,10331 @@
+dir = Right
+end = (1,51)
+44, dir = Right
+Wall at next = (1,62)
+end = (1,61)
+L
+dir = Up
+38, dir = Up
+next = (0,61)
+wrapped = (150,61)
+remaining = 37
+Wall at next = (141,61)
+end = (142,61)
+L
+dir = Left
+13, dir = Left
+Wall at next = (142,52)
+end = (142,53)
+R
+dir = Up
+1, dir = Up
+end = (141,53)
+L
+dir = Left
+36, dir = Left
+Wall at next = (141,41)
+end = (141,42)
+R
+dir = Up
+5, dir = Up
+Wall at next = (140,42)
+No move end = (141,42)
+L
+dir = Left
+24, dir = Left
+Wall at next = (141,41)
+No move end = (141,42)
+R
+dir = Up
+44, dir = Up
+Wall at next = (140,42)
+No move end = (141,42)
+R
+dir = Right
+31, dir = Right
+Wall at next = (141,56)
+end = (141,55)
+L
+dir = Up
+25, dir = Up
+Wall at next = (133,55)
+end = (134,55)
+R
+dir = Right
+23, dir = Right
+Wall at next = (134,56)
+No move end = (134,55)
+R
+dir = Down
+46, dir = Down
+Wall at next = (146,55)
+end = (145,55)
+R
+dir = Left
+23, dir = Left
+Wall at next = (145,52)
+end = (145,53)
+L
+dir = Down
+35, dir = Down
+next = (151,53)
+wrapped = (1,53)
+remaining = 29
+Wall at next = (4,53)
+end = (3,53)
+R
+dir = Left
+36, dir = Left
+next = (3,50)
+wrapped = (3,150)
+remaining = 33
+Wall at next = (3,145)
+end = (3,146)
+L
+dir = Down
+49, dir = Down
+Wall at next = (18,146)
+end = (17,146)
+R
+dir = Left
+29, dir = Left
+Wall at next = (17,128)
+end = (17,129)
+R
+dir = Up
+28, dir = Up
+Wall at next = (5,129)
+end = (6,129)
+R
+dir = Right
+48, dir = Right
+Wall at next = (6,131)
+end = (6,130)
+L
+dir = Up
+19, dir = Up
+Wall at next = (1,130)
+end = (2,130)
+L
+dir = Left
+4, dir = Left
+end = (2,126)
+L
+dir = Down
+37, dir = Down
+Wall at next = (4,126)
+end = (3,126)
+L
+dir = Right
+48, dir = Right
+Wall at next = (3,131)
+end = (3,130)
+L
+dir = Up
+22, dir = Up
+Wall at next = (1,130)
+end = (2,130)
+R
+dir = Right
+39, dir = Right
+next = (2,151)
+wrapped = (2,51)
+remaining = 18
+end = (2,69)
+L
+dir = Up
+2, dir = Up
+next = (0,69)
+wrapped = (150,69)
+remaining = 0
+end = (150,69)
+L
+dir = Left
+43, dir = Left
+Wall at next = (150,59)
+end = (150,60)
+L
+dir = Down
+15, dir = Down
+next = (151,60)
+wrapped = (1,60)
+remaining = 14
+Wall at next = (3,60)
+end = (2,60)
+L
+dir = Right
+33, dir = Right
+Wall at next = (2,73)
+end = (2,72)
+L
+dir = Up
+3, dir = Up
+next = (0,72)
+wrapped = (150,72)
+remaining = 1
+end = (149,72)
+R
+dir = Right
+27, dir = Right
+Wall at next = (149,75)
+end = (149,74)
+L
+dir = Up
+26, dir = Up
+end = (123,74)
+R
+dir = Right
+23, dir = Right
+Wall at next = (123,91)
+end = (123,90)
+L
+dir = Up
+1, dir = Up
+Wall at next = (122,90)
+No move end = (123,90)
+L
+dir = Left
+22, dir = Left
+Wall at next = (123,73)
+end = (123,74)
+L
+dir = Down
+2, dir = Down
+end = (125,74)
+R
+dir = Left
+1, dir = Left
+end = (125,73)
+L
+dir = Down
+15, dir = Down
+Wall at next = (126,73)
+No move end = (125,73)
+R
+dir = Left
+28, dir = Left
+Wall at next = (125,48)
+end = (125,49)
+L
+dir = Down
+44, dir = Down
+Wall at next = (134,49)
+end = (133,49)
+R
+dir = Left
+48, dir = Left
+Wall at next = (133,47)
+end = (133,48)
+R
+dir = Up
+18, dir = Up
+Wall at next = (128,48)
+end = (129,48)
+L
+dir = Left
+24, dir = Left
+Wall at next = (129,37)
+end = (129,38)
+L
+dir = Down
+22, dir = Down
+Wall at next = (146,38)
+end = (145,38)
+L
+dir = Right
+8, dir = Right
+Wall at next = (145,39)
+No move end = (145,38)
+R
+dir = Down
+1, dir = Down
+Wall at next = (146,38)
+No move end = (145,38)
+L
+dir = Right
+2, dir = Right
+Wall at next = (145,39)
+No move end = (145,38)
+L
+dir = Up
+10, dir = Up
+end = (135,38)
+L
+dir = Left
+43, dir = Left
+Wall at next = (135,32)
+end = (135,33)
+L
+dir = Down
+11, dir = Down
+Wall at next = (144,33)
+end = (143,33)
+R
+dir = Left
+9, dir = Left
+Wall at next = (143,24)
+end = (143,25)
+L
+dir = Down
+7, dir = Down
+end = (150,25)
+R
+dir = Left
+44, dir = Left
+Wall at next = (150,2)
+end = (150,3)
+R
+dir = Up
+25, dir = Up
+end = (125,3)
+R
+dir = Right
+43, dir = Right
+Wall at next = (125,22)
+end = (125,21)
+L
+dir = Up
+48, dir = Up
+Wall at next = (123,21)
+end = (124,21)
+L
+dir = Left
+47, dir = Left
+Wall at next = (124,20)
+No move end = (124,21)
+R
+dir = Up
+44, dir = Up
+Wall at next = (123,21)
+No move end = (124,21)
+R
+dir = Right
+42, dir = Right
+Wall at next = (124,22)
+No move end = (124,21)
+R
+dir = Down
+11, dir = Down
+Wall at next = (128,21)
+end = (127,21)
+L
+dir = Right
+41, dir = Right
+Wall at next = (127,24)
+end = (127,23)
+R
+dir = Down
+15, dir = Down
+end = (142,23)
+L
+dir = Right
+3, dir = Right
+end = (142,26)
+L
+dir = Up
+38, dir = Up
+Wall at next = (139,26)
+end = (140,26)
+R
+dir = Right
+32, dir = Right
+Wall at next = (140,30)
+end = (140,29)
+L
+dir = Up
+13, dir = Up
+end = (127,29)
+L
+dir = Left
+39, dir = Left
+Wall at next = (127,25)
+end = (127,26)
+R
+dir = Up
+27, dir = Up
+Wall at next = (121,26)
+end = (122,26)
+L
+dir = Left
+22, dir = Left
+Wall at next = (122,16)
+end = (122,17)
+R
+dir = Up
+50, dir = Up
+Wall at next = (113,17)
+end = (114,17)
+R
+dir = Right
+44, dir = Right
+Wall at next = (114,26)
+end = (114,25)
+L
+dir = Up
+30, dir = Up
+Wall at next = (111,25)
+end = (112,25)
+R
+dir = Right
+29, dir = Right
+Wall at next = (112,33)
+end = (112,32)
+R
+dir = Down
+28, dir = Down
+Wall at next = (121,32)
+end = (120,32)
+R
+dir = Left
+11, dir = Left
+Wall at next = (120,28)
+end = (120,29)
+R
+dir = Up
+20, dir = Up
+Wall at next = (110,29)
+end = (111,29)
+L
+dir = Left
+41, dir = Left
+Wall at next = (111,27)
+end = (111,28)
+L
+dir = Down
+38, dir = Down
+Wall at next = (114,28)
+end = (113,28)
+R
+dir = Left
+18, dir = Left
+Wall at next = (113,17)
+end = (113,18)
+R
+dir = Up
+41, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+R
+dir = Right
+50, dir = Right
+Wall at next = (103,31)
+end = (103,30)
+L
+dir = Up
+12, dir = Up
+next = (100,30)
+wrapped = (200,30)
+remaining = 9
+Wall at next = (200,30)
+end = (101,30)
+L
+dir = Left
+2, dir = Left
+end = (101,28)
+R
+dir = Up
+13, dir = Up
+next = (100,28)
+wrapped = (200,28)
+remaining = 12
+Wall at next = (199,28)
+end = (200,28)
+L
+dir = Left
+48, dir = Left
+Wall at next = (200,16)
+end = (200,17)
+R
+dir = Up
+38, dir = Up
+Wall at next = (196,17)
+end = (197,17)
+L
+dir = Left
+42, dir = Left
+next = (197,0)
+wrapped = (197,50)
+remaining = 25
+Wall at next = (197,47)
+end = (197,48)
+L
+dir = Down
+35, dir = Down
+Wall at next = (198,48)
+No move end = (197,48)
+L
+dir = Right
+9, dir = Right
+next = (197,51)
+wrapped = (197,1)
+remaining = 6
+end = (197,7)
+L
+dir = Up
+35, dir = Up
+Wall at next = (195,7)
+end = (196,7)
+L
+dir = Left
+26, dir = Left
+next = (196,0)
+wrapped = (196,50)
+remaining = 19
+Wall at next = (196,49)
+end = (196,50)
+L
+dir = Down
+36, dir = Down
+Wall at next = (198,50)
+end = (197,50)
+L
+dir = Right
+16, dir = Right
+next = (197,51)
+wrapped = (197,1)
+remaining = 15
+end = (197,16)
+R
+dir = Down
+18, dir = Down
+Wall at next = (200,16)
+end = (199,16)
+L
+dir = Right
+7, dir = Right
+Wall at next = (199,18)
+end = (199,17)
+L
+dir = Up
+47, dir = Up
+Wall at next = (196,17)
+end = (197,17)
+L
+dir = Left
+22, dir = Left
+next = (197,0)
+wrapped = (197,50)
+remaining = 5
+Wall at next = (197,47)
+end = (197,48)
+L
+dir = Down
+28, dir = Down
+Wall at next = (198,48)
+No move end = (197,48)
+R
+dir = Left
+37, dir = Left
+Wall at next = (197,47)
+No move end = (197,48)
+R
+dir = Up
+9, dir = Up
+Wall at next = (190,48)
+end = (191,48)
+L
+dir = Left
+26, dir = Left
+Wall at next = (191,34)
+end = (191,35)
+R
+dir = Up
+40, dir = Up
+Wall at next = (171,35)
+end = (172,35)
+L
+dir = Left
+35, dir = Left
+Wall at next = (172,17)
+end = (172,18)
+R
+dir = Up
+21, dir = Up
+end = (151,18)
+L
+dir = Left
+4, dir = Left
+end = (151,14)
+R
+dir = Up
+31, dir = Up
+Wall at next = (147,14)
+end = (148,14)
+L
+dir = Left
+2, dir = Left
+end = (148,12)
+L
+dir = Down
+25, dir = Down
+Wall at next = (149,12)
+No move end = (148,12)
+R
+dir = Left
+28, dir = Left
+Wall at next = (148,10)
+end = (148,11)
+L
+dir = Down
+37, dir = Down
+Wall at next = (149,11)
+No move end = (148,11)
+R
+dir = Left
+36, dir = Left
+Wall at next = (148,10)
+No move end = (148,11)
+R
+dir = Up
+11, dir = Up
+Wall at next = (142,11)
+end = (143,11)
+L
+dir = Left
+15, dir = Left
+Wall at next = (143,5)
+end = (143,6)
+L
+dir = Down
+38, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+L
+dir = Right
+33, dir = Right
+Wall at next = (155,21)
+end = (155,20)
+R
+dir = Down
+38, dir = Down
+Wall at next = (165,20)
+end = (164,20)
+L
+dir = Right
+50, dir = Right
+Wall at next = (164,45)
+end = (164,44)
+L
+dir = Up
+40, dir = Up
+Wall at next = (152,44)
+end = (153,44)
+L
+dir = Left
+1, dir = Left
+end = (153,43)
+R
+dir = Up
+22, dir = Up
+Wall at next = (152,43)
+No move end = (153,43)
+L
+dir = Left
+13, dir = Left
+end = (153,30)
+R
+dir = Up
+8, dir = Up
+end = (145,30)
+L
+dir = Left
+38, dir = Left
+Wall at next = (145,19)
+end = (145,20)
+L
+dir = Down
+12, dir = Down
+Wall at next = (147,20)
+end = (146,20)
+R
+dir = Left
+42, dir = Left
+Wall at next = (146,18)
+end = (146,19)
+R
+dir = Up
+3, dir = Up
+Wall at next = (145,19)
+No move end = (146,19)
+R
+dir = Right
+31, dir = Right
+Wall at next = (146,28)
+end = (146,27)
+L
+dir = Up
+19, dir = Up
+Wall at next = (138,27)
+end = (139,27)
+L
+dir = Left
+20, dir = Left
+Wall at next = (139,26)
+No move end = (139,27)
+R
+dir = Up
+44, dir = Up
+Wall at next = (138,27)
+No move end = (139,27)
+L
+dir = Left
+6, dir = Left
+Wall at next = (139,26)
+No move end = (139,27)
+R
+dir = Up
+37, dir = Up
+Wall at next = (138,27)
+No move end = (139,27)
+L
+dir = Left
+14, dir = Left
+Wall at next = (139,26)
+No move end = (139,27)
+L
+dir = Down
+5, dir = Down
+end = (144,27)
+R
+dir = Left
+25, dir = Left
+Wall at next = (144,21)
+end = (144,22)
+R
+dir = Up
+28, dir = Up
+Wall at next = (125,22)
+end = (126,22)
+R
+dir = Right
+7, dir = Right
+end = (126,29)
+R
+dir = Down
+33, dir = Down
+Wall at next = (147,29)
+end = (146,29)
+R
+dir = Left
+22, dir = Left
+Wall at next = (146,28)
+No move end = (146,29)
+R
+dir = Up
+48, dir = Up
+Wall at next = (110,29)
+end = (111,29)
+R
+dir = Right
+8, dir = Right
+end = (111,37)
+R
+dir = Down
+11, dir = Down
+Wall at next = (112,37)
+No move end = (111,37)
+L
+dir = Right
+41, dir = Right
+Wall at next = (111,40)
+end = (111,39)
+R
+dir = Down
+4, dir = Down
+end = (115,39)
+R
+dir = Left
+10, dir = Left
+end = (115,29)
+R
+dir = Up
+16, dir = Up
+Wall at next = (110,29)
+end = (111,29)
+R
+dir = Right
+43, dir = Right
+Wall at next = (111,40)
+end = (111,39)
+R
+dir = Down
+48, dir = Down
+Wall at next = (117,39)
+end = (116,39)
+R
+dir = Left
+14, dir = Left
+Wall at next = (116,38)
+No move end = (116,39)
+R
+dir = Up
+27, dir = Up
+Wall at next = (102,39)
+end = (103,39)
+L
+dir = Left
+47, dir = Left
+Wall at next = (103,36)
+end = (103,37)
+R
+dir = Up
+21, dir = Up
+Wall at next = (101,37)
+end = (102,37)
+R
+dir = Right
+17, dir = Right
+Wall at next = (102,39)
+end = (102,38)
+L
+dir = Up
+6, dir = Up
+Wall at next = (101,38)
+No move end = (102,38)
+L
+dir = Left
+11, dir = Left
+Wall at next = (102,36)
+end = (102,37)
+L
+dir = Down
+20, dir = Down
+Wall at next = (112,37)
+end = (111,37)
+R
+dir = Left
+31, dir = Left
+Wall at next = (111,27)
+end = (111,28)
+L
+dir = Down
+24, dir = Down
+Wall at next = (114,28)
+end = (113,28)
+R
+dir = Left
+22, dir = Left
+Wall at next = (113,17)
+end = (113,18)
+R
+dir = Up
+46, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+L
+dir = Left
+12, dir = Left
+Wall at next = (103,12)
+end = (103,13)
+R
+dir = Up
+8, dir = Up
+next = (100,13)
+wrapped = (200,13)
+remaining = 5
+end = (195,13)
+L
+dir = Left
+17, dir = Left
+Wall at next = (195,10)
+end = (195,11)
+R
+dir = Up
+18, dir = Up
+Wall at next = (194,11)
+No move end = (195,11)
+L
+dir = Left
+5, dir = Left
+Wall at next = (195,10)
+No move end = (195,11)
+R
+dir = Up
+37, dir = Up
+Wall at next = (194,11)
+No move end = (195,11)
+L
+dir = Left
+43, dir = Left
+Wall at next = (195,10)
+No move end = (195,11)
+R
+dir = Up
+21, dir = Up
+Wall at next = (194,11)
+No move end = (195,11)
+L
+dir = Left
+38, dir = Left
+Wall at next = (195,10)
+No move end = (195,11)
+L
+dir = Down
+31, dir = Down
+Wall at next = (198,11)
+end = (197,11)
+R
+dir = Left
+49, dir = Left
+next = (197,0)
+wrapped = (197,50)
+remaining = 38
+Wall at next = (197,47)
+end = (197,48)
+R
+dir = Up
+46, dir = Up
+Wall at next = (190,48)
+end = (191,48)
+L
+dir = Left
+25, dir = Left
+Wall at next = (191,34)
+end = (191,35)
+L
+dir = Down
+29, dir = Down
+Wall at next = (193,35)
+end = (192,35)
+L
+dir = Right
+28, dir = Right
+Wall at next = (192,46)
+end = (192,45)
+R
+dir = Down
+36, dir = Down
+Wall at next = (194,45)
+end = (193,45)
+L
+dir = Right
+48, dir = Right
+next = (193,51)
+wrapped = (193,1)
+remaining = 42
+Wall at next = (193,10)
+end = (193,9)
+R
+dir = Down
+6, dir = Down
+Wall at next = (198,9)
+end = (197,9)
+R
+dir = Left
+23, dir = Left
+next = (197,0)
+wrapped = (197,50)
+remaining = 14
+Wall at next = (197,47)
+end = (197,48)
+R
+dir = Up
+39, dir = Up
+Wall at next = (190,48)
+end = (191,48)
+L
+dir = Left
+43, dir = Left
+Wall at next = (191,34)
+end = (191,35)
+R
+dir = Up
+12, dir = Up
+end = (179,35)
+L
+dir = Left
+26, dir = Left
+Wall at next = (179,30)
+end = (179,31)
+L
+dir = Down
+42, dir = Down
+Wall at next = (194,31)
+end = (193,31)
+L
+dir = Right
+21, dir = Right
+Wall at next = (193,34)
+end = (193,33)
+R
+dir = Down
+48, dir = Down
+next = (201,33)
+wrapped = (101,33)
+remaining = 40
+Wall at next = (101,33)
+end = (200,33)
+R
+dir = Left
+13, dir = Left
+Wall at next = (200,30)
+end = (200,31)
+L
+dir = Down
+24, dir = Down
+next = (201,31)
+wrapped = (101,31)
+remaining = 23
+Wall at next = (103,31)
+end = (102,31)
+R
+dir = Left
+6, dir = Left
+Wall at next = (102,27)
+end = (102,28)
+L
+dir = Down
+44, dir = Down
+Wall at next = (114,28)
+end = (113,28)
+R
+dir = Left
+21, dir = Left
+Wall at next = (113,17)
+end = (113,18)
+R
+dir = Up
+16, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+L
+dir = Left
+41, dir = Left
+Wall at next = (103,12)
+end = (103,13)
+R
+dir = Up
+38, dir = Up
+next = (100,13)
+wrapped = (200,13)
+remaining = 35
+Wall at next = (175,13)
+end = (176,13)
+L
+dir = Left
+37, dir = Left
+next = (176,0)
+wrapped = (176,50)
+remaining = 24
+Wall at next = (176,49)
+end = (176,50)
+L
+dir = Down
+8, dir = Down
+Wall at next = (178,50)
+end = (177,50)
+L
+dir = Right
+48, dir = Right
+next = (177,51)
+wrapped = (177,1)
+remaining = 47
+Wall at next = (177,1)
+No move end = (177,50)
+R
+dir = Down
+49, dir = Down
+Wall at next = (178,50)
+No move end = (177,50)
+R
+dir = Left
+32, dir = Left
+Wall at next = (177,44)
+end = (177,45)
+R
+dir = Up
+8, dir = Up
+Wall at next = (176,45)
+No move end = (177,45)
+L
+dir = Left
+40, dir = Left
+Wall at next = (177,44)
+No move end = (177,45)
+L
+dir = Down
+34, dir = Down
+Wall at next = (187,45)
+end = (186,45)
+R
+dir = Left
+3, dir = Left
+end = (186,42)
+R
+dir = Up
+50, dir = Up
+Wall at next = (180,42)
+end = (181,42)
+R
+dir = Right
+17, dir = Right
+next = (181,51)
+wrapped = (181,1)
+remaining = 8
+end = (181,9)
+R
+dir = Down
+20, dir = Down
+Wall at next = (183,9)
+end = (182,9)
+R
+dir = Left
+43, dir = Left
+Wall at next = (182,5)
+end = (182,6)
+L
+dir = Down
+40, dir = Down
+Wall at next = (188,6)
+end = (187,6)
+R
+dir = Left
+39, dir = Left
+Wall at next = (187,4)
+end = (187,5)
+L
+dir = Down
+26, dir = Down
+Wall at next = (200,5)
+end = (199,5)
+R
+dir = Left
+41, dir = Left
+Wall at next = (199,3)
+end = (199,4)
+L
+dir = Down
+23, dir = Down
+next = (201,4)
+wrapped = (101,4)
+remaining = 21
+Wall at next = (101,4)
+end = (200,4)
+R
+dir = Left
+41, dir = Left
+Wall at next = (200,3)
+No move end = (200,4)
+L
+dir = Down
+33, dir = Down
+next = (201,4)
+wrapped = (101,4)
+remaining = 32
+Wall at next = (101,4)
+No move end = (200,4)
+L
+dir = Right
+24, dir = Right
+Wall at next = (200,5)
+No move end = (200,4)
+R
+dir = Down
+25, dir = Down
+next = (201,4)
+wrapped = (101,4)
+remaining = 24
+Wall at next = (101,4)
+No move end = (200,4)
+L
+dir = Right
+44, dir = Right
+Wall at next = (200,5)
+No move end = (200,4)
+R
+dir = Down
+6, dir = Down
+next = (201,4)
+wrapped = (101,4)
+remaining = 5
+Wall at next = (101,4)
+No move end = (200,4)
+R
+dir = Left
+50, dir = Left
+Wall at next = (200,3)
+No move end = (200,4)
+R
+dir = Up
+6, dir = Up
+end = (194,4)
+R
+dir = Right
+45, dir = Right
+Wall at next = (194,7)
+end = (194,6)
+L
+dir = Up
+37, dir = Up
+Wall at next = (189,6)
+end = (190,6)
+L
+dir = Left
+4, dir = Left
+end = (190,2)
+R
+dir = Up
+4, dir = Up
+end = (186,2)
+L
+dir = Left
+11, dir = Left
+next = (186,0)
+wrapped = (186,50)
+remaining = 9
+Wall at next = (186,48)
+end = (186,49)
+L
+dir = Down
+49, dir = Down
+Wall at next = (196,49)
+end = (195,49)
+L
+dir = Right
+20, dir = Right
+next = (195,51)
+wrapped = (195,1)
+remaining = 18
+Wall at next = (195,7)
+end = (195,6)
+R
+dir = Down
+49, dir = Down
+Wall at next = (198,6)
+end = (197,6)
+R
+dir = Left
+48, dir = Left
+next = (197,0)
+wrapped = (197,50)
+remaining = 42
+Wall at next = (197,47)
+end = (197,48)
+R
+dir = Up
+30, dir = Up
+Wall at next = (190,48)
+end = (191,48)
+L
+dir = Left
+29, dir = Left
+Wall at next = (191,34)
+end = (191,35)
+R
+dir = Up
+23, dir = Up
+Wall at next = (171,35)
+end = (172,35)
+L
+dir = Left
+32, dir = Left
+Wall at next = (172,17)
+end = (172,18)
+L
+dir = Down
+1, dir = Down
+end = (173,18)
+R
+dir = Left
+19, dir = Left
+next = (173,0)
+wrapped = (173,50)
+remaining = 1
+end = (173,49)
+L
+dir = Down
+8, dir = Down
+Wall at next = (176,49)
+end = (175,49)
+R
+dir = Left
+17, dir = Left
+end = (175,32)
+L
+dir = Down
+34, dir = Down
+Wall at next = (197,32)
+end = (196,32)
+L
+dir = Right
+33, dir = Right
+Wall at next = (196,49)
+end = (196,48)
+R
+dir = Down
+6, dir = Down
+Wall at next = (198,48)
+end = (197,48)
+R
+dir = Left
+4, dir = Left
+Wall at next = (197,47)
+No move end = (197,48)
+L
+dir = Down
+42, dir = Down
+Wall at next = (198,48)
+No move end = (197,48)
+L
+dir = Right
+33, dir = Right
+next = (197,51)
+wrapped = (197,1)
+remaining = 30
+Wall at next = (197,25)
+end = (197,24)
+L
+dir = Up
+22, dir = Up
+end = (175,24)
+L
+dir = Left
+43, dir = Left
+Wall at next = (175,19)
+end = (175,20)
+R
+dir = Up
+15, dir = Up
+Wall at next = (166,20)
+end = (167,20)
+R
+dir = Right
+47, dir = Right
+Wall at next = (167,34)
+end = (167,33)
+L
+dir = Up
+40, dir = Up
+Wall at next = (161,33)
+end = (162,33)
+R
+dir = Right
+18, dir = Right
+Wall at next = (162,37)
+end = (162,36)
+L
+dir = Up
+1, dir = Up
+end = (161,36)
+R
+dir = Right
+37, dir = Right
+next = (161,51)
+wrapped = (161,1)
+remaining = 22
+Wall at next = (161,2)
+end = (161,1)
+R
+dir = Down
+19, dir = Down
+Wall at next = (163,1)
+end = (162,1)
+L
+dir = Right
+40, dir = Right
+Wall at next = (162,7)
+end = (162,6)
+L
+dir = Up
+6, dir = Up
+Wall at next = (156,6)
+end = (157,6)
+L
+dir = Left
+42, dir = Left
+Wall at next = (157,2)
+end = (157,3)
+R
+dir = Up
+18, dir = Up
+Wall at next = (152,3)
+end = (153,3)
+L
+dir = Left
+16, dir = Left
+next = (153,0)
+wrapped = (153,50)
+remaining = 13
+end = (153,37)
+R
+dir = Up
+8, dir = Up
+end = (145,37)
+R
+dir = Right
+49, dir = Right
+Wall at next = (145,39)
+end = (145,38)
+R
+dir = Down
+21, dir = Down
+Wall at next = (146,38)
+No move end = (145,38)
+R
+dir = Left
+46, dir = Left
+Wall at next = (145,36)
+end = (145,37)
+R
+dir = Up
+22, dir = Up
+Wall at next = (139,37)
+end = (140,37)
+R
+dir = Right
+43, dir = Right
+Wall at next = (140,42)
+end = (140,41)
+L
+dir = Up
+35, dir = Up
+Wall at next = (127,41)
+end = (128,41)
+R
+dir = Right
+11, dir = Right
+Wall at next = (128,43)
+end = (128,42)
+L
+dir = Up
+40, dir = Up
+next = (100,42)
+wrapped = (200,42)
+remaining = 12
+end = (188,42)
+R
+dir = Right
+14, dir = Right
+next = (188,51)
+wrapped = (188,1)
+remaining = 5
+Wall at next = (188,6)
+end = (188,5)
+R
+dir = Down
+38, dir = Down
+Wall at next = (200,5)
+end = (199,5)
+L
+dir = Right
+17, dir = Right
+Wall at next = (199,18)
+end = (199,17)
+R
+dir = Down
+14, dir = Down
+next = (201,17)
+wrapped = (101,17)
+remaining = 12
+Wall at next = (108,17)
+end = (107,17)
+L
+dir = Right
+8, dir = Right
+end = (107,25)
+L
+dir = Up
+41, dir = Up
+Wall at next = (104,25)
+end = (105,25)
+R
+dir = Right
+1, dir = Right
+end = (105,26)
+R
+dir = Down
+20, dir = Down
+Wall at next = (107,26)
+end = (106,26)
+R
+dir = Left
+8, dir = Left
+end = (106,18)
+L
+dir = Down
+28, dir = Down
+Wall at next = (117,18)
+end = (116,18)
+R
+dir = Left
+8, dir = Left
+end = (116,10)
+R
+dir = Up
+46, dir = Up
+Wall at next = (107,10)
+end = (108,10)
+L
+dir = Left
+10, dir = Left
+next = (108,0)
+wrapped = (108,100)
+remaining = 0
+end = (108,100)
+R
+dir = Up
+43, dir = Up
+Wall at next = (80,100)
+end = (81,100)
+R
+dir = Right
+44, dir = Right
+next = (81,101)
+wrapped = (81,51)
+remaining = 43
+Wall at next = (81,51)
+No move end = (81,100)
+R
+dir = Down
+3, dir = Down
+end = (84,100)
+R
+dir = Left
+31, dir = Left
+end = (84,69)
+L
+dir = Down
+42, dir = Down
+Wall at next = (94,69)
+end = (93,69)
+R
+dir = Left
+12, dir = Left
+end = (93,57)
+L
+dir = Down
+19, dir = Down
+end = (112,57)
+L
+dir = Right
+17, dir = Right
+end = (112,74)
+R
+dir = Down
+18, dir = Down
+end = (130,74)
+R
+dir = Left
+16, dir = Left
+Wall at next = (130,63)
+end = (130,64)
+L
+dir = Down
+32, dir = Down
+Wall at next = (136,64)
+end = (135,64)
+L
+dir = Right
+50, dir = Right
+Wall at next = (135,71)
+end = (135,70)
+R
+dir = Down
+8, dir = Down
+Wall at next = (143,70)
+end = (142,70)
+L
+dir = Right
+17, dir = Right
+end = (142,87)
+L
+dir = Up
+49, dir = Up
+Wall at next = (137,87)
+end = (138,87)
+L
+dir = Left
+12, dir = Left
+Wall at next = (138,80)
+end = (138,81)
+L
+dir = Down
+8, dir = Down
+end = (146,81)
+R
+dir = Left
+13, dir = Left
+Wall at next = (146,80)
+No move end = (146,81)
+L
+dir = Down
+13, dir = Down
+next = (151,81)
+wrapped = (1,81)
+remaining = 8
+Wall at next = (2,81)
+end = (1,81)
+R
+dir = Left
+31, dir = Left
+Wall at next = (1,77)
+end = (1,78)
+L
+dir = Down
+2, dir = Down
+end = (3,78)
+L
+dir = Right
+40, dir = Right
+Wall at next = (3,91)
+end = (3,90)
+R
+dir = Down
+36, dir = Down
+Wall at next = (13,90)
+end = (12,90)
+L
+dir = Right
+22, dir = Right
+Wall at next = (12,109)
+end = (12,108)
+R
+dir = Down
+38, dir = Down
+Wall at next = (24,108)
+end = (23,108)
+L
+dir = Right
+16, dir = Right
+Wall at next = (23,123)
+end = (23,122)
+R
+dir = Down
+35, dir = Down
+Wall at next = (49,122)
+end = (48,122)
+L
+dir = Right
+13, dir = Right
+Wall at next = (48,127)
+end = (48,126)
+R
+dir = Down
+24, dir = Down
+next = (51,126)
+wrapped = (1,126)
+remaining = 21
+Wall at next = (4,126)
+end = (3,126)
+L
+dir = Right
+22, dir = Right
+Wall at next = (3,131)
+end = (3,130)
+L
+dir = Up
+23, dir = Up
+Wall at next = (1,130)
+end = (2,130)
+R
+dir = Right
+48, dir = Right
+next = (2,151)
+wrapped = (2,51)
+remaining = 27
+Wall at next = (2,73)
+end = (2,72)
+R
+dir = Down
+3, dir = Down
+end = (5,72)
+R
+dir = Left
+12, dir = Left
+Wall at next = (5,66)
+end = (5,67)
+R
+dir = Up
+2, dir = Up
+end = (3,67)
+R
+dir = Right
+22, dir = Right
+end = (3,89)
+L
+dir = Up
+10, dir = Up
+next = (0,89)
+wrapped = (150,89)
+remaining = 7
+end = (143,89)
+L
+dir = Left
+50, dir = Left
+Wall at next = (143,82)
+end = (143,83)
+L
+dir = Down
+49, dir = Down
+Wall at next = (145,83)
+end = (144,83)
+R
+dir = Left
+13, dir = Left
+Wall at next = (144,73)
+end = (144,74)
+L
+dir = Down
+38, dir = Down
+next = (151,74)
+wrapped = (1,74)
+remaining = 31
+Wall at next = (10,74)
+end = (9,74)
+R
+dir = Left
+37, dir = Left
+Wall at next = (9,70)
+end = (9,71)
+R
+dir = Up
+15, dir = Up
+next = (0,71)
+wrapped = (150,71)
+remaining = 6
+Wall at next = (148,71)
+end = (149,71)
+R
+dir = Right
+8, dir = Right
+Wall at next = (149,75)
+end = (149,74)
+L
+dir = Up
+24, dir = Up
+end = (125,74)
+L
+dir = Left
+36, dir = Left
+Wall at next = (125,48)
+end = (125,49)
+L
+dir = Down
+15, dir = Down
+Wall at next = (134,49)
+end = (133,49)
+R
+dir = Left
+6, dir = Left
+Wall at next = (133,47)
+end = (133,48)
+L
+dir = Down
+34, dir = Down
+Wall at next = (137,48)
+end = (136,48)
+R
+dir = Left
+36, dir = Left
+Wall at next = (136,40)
+end = (136,41)
+R
+dir = Up
+18, dir = Up
+Wall at next = (127,41)
+end = (128,41)
+R
+dir = Right
+33, dir = Right
+Wall at next = (128,43)
+end = (128,42)
+L
+dir = Up
+28, dir = Up
+next = (100,42)
+wrapped = (200,42)
+remaining = 0
+end = (200,42)
+R
+dir = Right
+37, dir = Right
+next = (200,51)
+wrapped = (200,1)
+remaining = 28
+Wall at next = (200,3)
+end = (200,2)
+L
+dir = Up
+7, dir = Up
+end = (193,2)
+L
+dir = Left
+9, dir = Left
+next = (193,0)
+wrapped = (193,50)
+remaining = 7
+Wall at next = (193,43)
+end = (193,44)
+R
+dir = Up
+5, dir = Up
+end = (188,44)
+R
+dir = Right
+18, dir = Right
+next = (188,51)
+wrapped = (188,1)
+remaining = 11
+Wall at next = (188,6)
+end = (188,5)
+R
+dir = Down
+6, dir = Down
+end = (194,5)
+R
+dir = Left
+8, dir = Left
+next = (194,0)
+wrapped = (194,50)
+remaining = 3
+end = (194,47)
+R
+dir = Up
+14, dir = Up
+end = (180,47)
+R
+dir = Right
+13, dir = Right
+next = (180,51)
+wrapped = (180,1)
+remaining = 9
+Wall at next = (180,7)
+end = (180,6)
+L
+dir = Up
+49, dir = Up
+Wall at next = (179,6)
+No move end = (180,6)
+R
+dir = Right
+25, dir = Right
+Wall at next = (180,7)
+No move end = (180,6)
+R
+dir = Down
+33, dir = Down
+Wall at next = (188,6)
+end = (187,6)
+L
+dir = Right
+25, dir = Right
+Wall at next = (187,7)
+No move end = (187,6)
+L
+dir = Up
+32, dir = Up
+Wall at next = (179,6)
+end = (180,6)
+R
+dir = Right
+38, dir = Right
+Wall at next = (180,7)
+No move end = (180,6)
+R
+dir = Down
+46, dir = Down
+Wall at next = (188,6)
+end = (187,6)
+R
+dir = Left
+49, dir = Left
+Wall at next = (187,4)
+end = (187,5)
+R
+dir = Up
+27, dir = Up
+Wall at next = (183,5)
+end = (184,5)
+L
+dir = Left
+4, dir = Left
+end = (184,1)
+R
+dir = Up
+23, dir = Up
+Wall at next = (183,1)
+No move end = (184,1)
+R
+dir = Right
+28, dir = Right
+Wall at next = (184,15)
+end = (184,14)
+L
+dir = Up
+5, dir = Up
+Wall at next = (183,14)
+No move end = (184,14)
+R
+dir = Right
+8, dir = Right
+Wall at next = (184,15)
+No move end = (184,14)
+L
+dir = Up
+50, dir = Up
+Wall at next = (183,14)
+No move end = (184,14)
+L
+dir = Left
+44, dir = Left
+next = (184,0)
+wrapped = (184,50)
+remaining = 30
+Wall at next = (184,43)
+end = (184,44)
+L
+dir = Down
+15, dir = Down
+Wall at next = (199,44)
+end = (198,44)
+L
+dir = Right
+5, dir = Right
+Wall at next = (198,48)
+end = (198,47)
+L
+dir = Up
+23, dir = Up
+Wall at next = (197,47)
+No move end = (198,47)
+R
+dir = Right
+28, dir = Right
+Wall at next = (198,48)
+No move end = (198,47)
+R
+dir = Down
+15, dir = Down
+next = (201,47)
+wrapped = (101,47)
+remaining = 12
+Wall at next = (106,47)
+end = (105,47)
+R
+dir = Left
+22, dir = Left
+end = (105,25)
+R
+dir = Up
+10, dir = Up
+Wall at next = (104,25)
+No move end = (105,25)
+L
+dir = Left
+26, dir = Left
+Wall at next = (105,15)
+end = (105,16)
+L
+dir = Down
+28, dir = Down
+Wall at next = (109,16)
+end = (108,16)
+R
+dir = Left
+36, dir = Left
+next = (108,0)
+wrapped = (108,100)
+remaining = 20
+end = (108,80)
+R
+dir = Up
+12, dir = Up
+Wall at next = (106,80)
+end = (107,80)
+R
+dir = Right
+18, dir = Right
+Wall at next = (107,84)
+end = (107,83)
+R
+dir = Down
+24, dir = Down
+Wall at next = (109,83)
+end = (108,83)
+R
+dir = Left
+11, dir = Left
+Wall at next = (108,76)
+end = (108,77)
+R
+dir = Up
+21, dir = Up
+Wall at next = (106,77)
+end = (107,77)
+L
+dir = Left
+33, dir = Left
+Wall at next = (107,73)
+end = (107,74)
+L
+dir = Down
+3, dir = Down
+end = (110,74)
+L
+dir = Right
+21, dir = Right
+end = (110,95)
+R
+dir = Down
+38, dir = Down
+Wall at next = (112,95)
+end = (111,95)
+R
+dir = Left
+1, dir = Left
+end = (111,94)
+L
+dir = Down
+20, dir = Down
+Wall at next = (115,94)
+end = (114,94)
+R
+dir = Left
+20, dir = Left
+Wall at next = (114,86)
+end = (114,87)
+R
+dir = Up
+13, dir = Up
+end = (101,87)
+L
+dir = Left
+22, dir = Left
+Wall at next = (101,83)
+end = (101,84)
+L
+dir = Down
+17, dir = Down
+Wall at next = (105,84)
+end = (104,84)
+R
+dir = Left
+15, dir = Left
+Wall at next = (104,81)
+end = (104,82)
+L
+dir = Down
+30, dir = Down
+Wall at next = (120,82)
+end = (119,82)
+R
+dir = Left
+34, dir = Left
+Wall at next = (119,66)
+end = (119,67)
+L
+dir = Down
+3, dir = Down
+end = (122,67)
+L
+dir = Right
+28, dir = Right
+Wall at next = (122,75)
+end = (122,74)
+R
+dir = Down
+43, dir = Down
+next = (151,74)
+wrapped = (1,74)
+remaining = 14
+Wall at next = (10,74)
+end = (9,74)
+R
+dir = Left
+37, dir = Left
+Wall at next = (9,70)
+end = (9,71)
+R
+dir = Up
+6, dir = Up
+end = (3,71)
+R
+dir = Right
+36, dir = Right
+Wall at next = (3,91)
+end = (3,90)
+R
+dir = Down
+5, dir = Down
+end = (8,90)
+R
+dir = Left
+36, dir = Left
+Wall at next = (8,87)
+end = (8,88)
+L
+dir = Down
+32, dir = Down
+end = (40,88)
+R
+dir = Left
+6, dir = Left
+Wall at next = (40,85)
+end = (40,86)
+L
+dir = Down
+7, dir = Down
+Wall at next = (42,86)
+end = (41,86)
+R
+dir = Left
+17, dir = Left
+Wall at next = (41,85)
+No move end = (41,86)
+L
+dir = Down
+18, dir = Down
+Wall at next = (42,86)
+No move end = (41,86)
+L
+dir = Right
+16, dir = Right
+Wall at next = (41,93)
+end = (41,92)
+L
+dir = Up
+48, dir = Up
+Wall at next = (32,92)
+end = (33,92)
+R
+dir = Right
+2, dir = Right
+end = (33,94)
+L
+dir = Up
+12, dir = Up
+end = (21,94)
+L
+dir = Left
+50, dir = Left
+Wall at next = (21,90)
+end = (21,91)
+R
+dir = Up
+48, dir = Up
+Wall at next = (13,91)
+end = (14,91)
+L
+dir = Left
+46, dir = Left
+Wall at next = (14,74)
+end = (14,75)
+R
+dir = Up
+15, dir = Up
+Wall at next = (2,75)
+end = (3,75)
+L
+dir = Left
+20, dir = Left
+Wall at next = (3,60)
+end = (3,61)
+L
+dir = Down
+28, dir = Down
+Wall at next = (13,61)
+end = (12,61)
+R
+dir = Left
+21, dir = Left
+Wall at next = (12,56)
+end = (12,57)
+L
+dir = Down
+33, dir = Down
+Wall at next = (26,57)
+end = (25,57)
+R
+dir = Left
+46, dir = Left
+next = (25,50)
+wrapped = (25,150)
+remaining = 39
+Wall at next = (25,142)
+end = (25,143)
+R
+dir = Up
+22, dir = Up
+end = (3,143)
+L
+dir = Left
+16, dir = Left
+Wall at next = (3,133)
+end = (3,134)
+R
+dir = Up
+42, dir = Up
+next = (0,134)
+wrapped = (50,134)
+remaining = 39
+Wall at next = (50,134)
+end = (1,134)
+L
+dir = Left
+41, dir = Left
+Wall at next = (1,130)
+end = (1,131)
+R
+dir = Up
+45, dir = Up
+next = (0,131)
+wrapped = (50,131)
+remaining = 44
+Wall at next = (31,131)
+end = (32,131)
+R
+dir = Right
+29, dir = Right
+Wall at next = (32,136)
+end = (32,135)
+L
+dir = Up
+18, dir = Up
+Wall at next = (29,135)
+end = (30,135)
+R
+dir = Right
+48, dir = Right
+Wall at next = (30,142)
+end = (30,141)
+R
+dir = Down
+41, dir = Down
+next = (51,141)
+wrapped = (1,141)
+remaining = 20
+Wall at next = (20,141)
+end = (19,141)
+R
+dir = Left
+13, dir = Left
+Wall at next = (19,134)
+end = (19,135)
+L
+dir = Down
+37, dir = Down
+Wall at next = (24,135)
+end = (23,135)
+L
+dir = Right
+16, dir = Right
+Wall at next = (23,146)
+end = (23,145)
+L
+dir = Up
+47, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+R
+dir = Right
+20, dir = Right
+Wall at next = (23,146)
+No move end = (23,145)
+L
+dir = Up
+21, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+R
+dir = Right
+46, dir = Right
+Wall at next = (23,146)
+No move end = (23,145)
+L
+dir = Up
+14, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+L
+dir = Left
+28, dir = Left
+Wall at next = (23,134)
+end = (23,135)
+R
+dir = Up
+3, dir = Up
+end = (20,135)
+L
+dir = Left
+36, dir = Left
+Wall at next = (20,125)
+end = (20,126)
+R
+dir = Up
+36, dir = Up
+Wall at next = (9,126)
+end = (10,126)
+L
+dir = Left
+18, dir = Left
+Wall at next = (10,122)
+end = (10,123)
+L
+dir = Down
+35, dir = Down
+Wall at next = (23,123)
+end = (22,123)
+L
+dir = Right
+27, dir = Right
+Wall at next = (22,129)
+end = (22,128)
+R
+dir = Down
+43, dir = Down
+Wall at next = (28,128)
+end = (27,128)
+L
+dir = Right
+34, dir = Right
+Wall at next = (27,144)
+end = (27,143)
+R
+dir = Down
+4, dir = Down
+end = (31,143)
+R
+dir = Left
+15, dir = Left
+Wall at next = (31,131)
+end = (31,132)
+R
+dir = Up
+36, dir = Up
+Wall at next = (25,132)
+end = (26,132)
+R
+dir = Right
+1, dir = Right
+end = (26,133)
+R
+dir = Down
+50, dir = Down
+Wall at next = (34,133)
+end = (33,133)
+R
+dir = Left
+29, dir = Left
+Wall at next = (33,130)
+end = (33,131)
+L
+dir = Down
+11, dir = Down
+end = (44,131)
+L
+dir = Right
+45, dir = Right
+Wall at next = (44,136)
+end = (44,135)
+R
+dir = Down
+30, dir = Down
+Wall at next = (48,135)
+end = (47,135)
+L
+dir = Right
+32, dir = Right
+Wall at next = (47,138)
+end = (47,137)
+L
+dir = Up
+3, dir = Up
+end = (44,137)
+L
+dir = Left
+10, dir = Left
+Wall at next = (44,136)
+No move end = (44,137)
+L
+dir = Down
+40, dir = Down
+Wall at next = (48,137)
+end = (47,137)
+L
+dir = Right
+23, dir = Right
+Wall at next = (47,138)
+No move end = (47,137)
+R
+dir = Down
+50, dir = Down
+Wall at next = (48,137)
+No move end = (47,137)
+R
+dir = Left
+30, dir = Left
+Wall at next = (47,123)
+end = (47,124)
+R
+dir = Up
+1, dir = Up
+end = (46,124)
+R
+dir = Right
+20, dir = Right
+Wall at next = (46,144)
+end = (46,143)
+L
+dir = Up
+32, dir = Up
+Wall at next = (44,143)
+end = (45,143)
+L
+dir = Left
+22, dir = Left
+Wall at next = (45,139)
+end = (45,140)
+L
+dir = Down
+31, dir = Down
+Wall at next = (50,140)
+end = (49,140)
+L
+dir = Right
+48, dir = Right
+Wall at next = (49,143)
+end = (49,142)
+L
+dir = Up
+44, dir = Up
+Wall at next = (44,142)
+end = (45,142)
+R
+dir = Right
+32, dir = Right
+next = (45,151)
+wrapped = (45,51)
+remaining = 23
+Wall at next = (45,52)
+end = (45,51)
+L
+dir = Up
+14, dir = Up
+Wall at next = (44,51)
+No move end = (45,51)
+L
+dir = Left
+44, dir = Left
+next = (45,50)
+wrapped = (45,150)
+remaining = 43
+Wall at next = (45,139)
+end = (45,140)
+R
+dir = Up
+19, dir = Up
+Wall at next = (39,140)
+end = (40,140)
+L
+dir = Left
+29, dir = Left
+Wall at next = (40,137)
+end = (40,138)
+R
+dir = Up
+25, dir = Up
+Wall at next = (38,138)
+end = (39,138)
+R
+dir = Right
+48, dir = Right
+Wall at next = (39,140)
+end = (39,139)
+R
+dir = Down
+37, dir = Down
+Wall at next = (45,139)
+end = (44,139)
+L
+dir = Right
+16, dir = Right
+Wall at next = (44,142)
+end = (44,141)
+L
+dir = Up
+38, dir = Up
+Wall at next = (22,141)
+end = (23,141)
+R
+dir = Right
+28, dir = Right
+Wall at next = (23,146)
+end = (23,145)
+L
+dir = Up
+4, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+L
+dir = Left
+21, dir = Left
+Wall at next = (23,134)
+end = (23,135)
+L
+dir = Down
+40, dir = Down
+Wall at next = (24,135)
+No move end = (23,135)
+L
+dir = Right
+24, dir = Right
+Wall at next = (23,146)
+end = (23,145)
+L
+dir = Up
+26, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+R
+dir = Right
+36, dir = Right
+Wall at next = (23,146)
+No move end = (23,145)
+L
+dir = Up
+16, dir = Up
+Wall at next = (22,145)
+No move end = (23,145)
+R
+dir = Right
+38, dir = Right
+Wall at next = (23,146)
+No move end = (23,145)
+R
+dir = Down
+28, dir = Down
+Wall at next = (39,145)
+end = (38,145)
+R
+dir = Left
+9, dir = Left
+Wall at next = (38,138)
+end = (38,139)
+L
+dir = Down
+17, dir = Down
+Wall at next = (45,139)
+end = (44,139)
+L
+dir = Right
+21, dir = Right
+Wall at next = (44,142)
+end = (44,141)
+L
+dir = Up
+24, dir = Up
+Wall at next = (22,141)
+end = (23,141)
+L
+dir = Left
+33, dir = Left
+Wall at next = (23,134)
+end = (23,135)
+R
+dir = Up
+42, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 19
+Wall at next = (48,135)
+end = (49,135)
+L
+dir = Left
+49, dir = Left
+Wall at next = (49,128)
+end = (49,129)
+R
+dir = Up
+50, dir = Up
+Wall at next = (39,129)
+end = (40,129)
+R
+dir = Right
+8, dir = Right
+Wall at next = (40,133)
+end = (40,132)
+R
+dir = Down
+48, dir = Down
+next = (51,132)
+wrapped = (1,132)
+remaining = 37
+Wall at next = (9,132)
+end = (8,132)
+R
+dir = Left
+30, dir = Left
+Wall at next = (8,104)
+end = (8,105)
+R
+dir = Up
+14, dir = Up
+Wall at next = (4,105)
+end = (5,105)
+L
+dir = Left
+50, dir = Left
+Wall at next = (5,66)
+end = (5,67)
+R
+dir = Up
+48, dir = Up
+next = (0,67)
+wrapped = (150,67)
+remaining = 43
+Wall at next = (141,67)
+end = (142,67)
+L
+dir = Left
+4, dir = Left
+end = (142,63)
+L
+dir = Down
+4, dir = Down
+end = (146,63)
+L
+dir = Right
+27, dir = Right
+Wall at next = (146,66)
+end = (146,65)
+R
+dir = Down
+24, dir = Down
+next = (151,65)
+wrapped = (1,65)
+remaining = 19
+end = (20,65)
+R
+dir = Left
+11, dir = Left
+end = (20,54)
+R
+dir = Up
+36, dir = Up
+Wall at next = (18,54)
+end = (19,54)
+L
+dir = Left
+20, dir = Left
+next = (19,50)
+wrapped = (19,150)
+remaining = 16
+Wall at next = (19,134)
+end = (19,135)
+L
+dir = Down
+43, dir = Down
+Wall at next = (24,135)
+end = (23,135)
+R
+dir = Left
+38, dir = Left
+Wall at next = (23,134)
+No move end = (23,135)
+R
+dir = Up
+34, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 11
+Wall at next = (48,135)
+end = (49,135)
+R
+dir = Right
+18, dir = Right
+Wall at next = (49,143)
+end = (49,142)
+L
+dir = Up
+3, dir = Up
+end = (46,142)
+R
+dir = Right
+43, dir = Right
+Wall at next = (46,144)
+end = (46,143)
+R
+dir = Down
+21, dir = Down
+Wall at next = (49,143)
+end = (48,143)
+R
+dir = Left
+36, dir = Left
+Wall at next = (48,137)
+end = (48,138)
+L
+dir = Down
+16, dir = Down
+next = (51,138)
+wrapped = (1,138)
+remaining = 13
+Wall at next = (5,138)
+end = (4,138)
+R
+dir = Left
+12, dir = Left
+Wall at next = (4,136)
+end = (4,137)
+L
+dir = Down
+33, dir = Down
+Wall at next = (18,137)
+end = (17,137)
+L
+dir = Right
+12, dir = Right
+Wall at next = (17,147)
+end = (17,146)
+R
+dir = Down
+7, dir = Down
+Wall at next = (18,146)
+No move end = (17,146)
+R
+dir = Left
+11, dir = Left
+end = (17,135)
+R
+dir = Up
+25, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 8
+Wall at next = (48,135)
+end = (49,135)
+R
+dir = Right
+36, dir = Right
+Wall at next = (49,143)
+end = (49,142)
+R
+dir = Down
+25, dir = Down
+next = (51,142)
+wrapped = (1,142)
+remaining = 23
+Wall at next = (11,142)
+end = (10,142)
+L
+dir = Right
+19, dir = Right
+next = (10,151)
+wrapped = (10,51)
+remaining = 10
+Wall at next = (10,54)
+end = (10,53)
+L
+dir = Up
+2, dir = Up
+end = (8,53)
+L
+dir = Left
+14, dir = Left
+Wall at next = (8,51)
+end = (8,52)
+L
+dir = Down
+37, dir = Down
+Wall at next = (12,52)
+end = (11,52)
+L
+dir = Right
+44, dir = Right
+Wall at next = (11,54)
+end = (11,53)
+R
+dir = Down
+7, dir = Down
+Wall at next = (15,53)
+end = (14,53)
+R
+dir = Left
+20, dir = Left
+Wall at next = (14,51)
+end = (14,52)
+L
+dir = Down
+44, dir = Down
+Wall at next = (24,52)
+end = (23,52)
+L
+dir = Right
+7, dir = Right
+end = (23,59)
+L
+dir = Up
+16, dir = Up
+Wall at next = (13,59)
+end = (14,59)
+L
+dir = Left
+13, dir = Left
+Wall at next = (14,51)
+end = (14,52)
+L
+dir = Down
+31, dir = Down
+Wall at next = (24,52)
+end = (23,52)
+R
+dir = Left
+15, dir = Left
+Wall at next = (23,51)
+No move end = (23,52)
+R
+dir = Up
+34, dir = Up
+Wall at next = (12,52)
+end = (13,52)
+L
+dir = Left
+30, dir = Left
+next = (13,50)
+wrapped = (13,150)
+remaining = 28
+end = (13,122)
+L
+dir = Down
+31, dir = Down
+end = (44,122)
+L
+dir = Right
+22, dir = Right
+Wall at next = (44,124)
+end = (44,123)
+R
+dir = Down
+42, dir = Down
+Wall at next = (47,123)
+end = (46,123)
+R
+dir = Left
+44, dir = Left
+Wall at next = (46,115)
+end = (46,116)
+R
+dir = Up
+24, dir = Up
+Wall at next = (24,116)
+end = (25,116)
+L
+dir = Left
+39, dir = Left
+Wall at next = (25,103)
+end = (25,104)
+L
+dir = Down
+23, dir = Down
+Wall at next = (27,104)
+end = (26,104)
+L
+dir = Right
+30, dir = Right
+Wall at next = (26,113)
+end = (26,112)
+L
+dir = Up
+4, dir = Up
+Wall at next = (22,112)
+end = (23,112)
+L
+dir = Left
+39, dir = Left
+Wall at next = (23,105)
+end = (23,106)
+L
+dir = Down
+36, dir = Down
+Wall at next = (39,106)
+end = (38,106)
+L
+dir = Right
+43, dir = Right
+Wall at next = (38,108)
+end = (38,107)
+R
+dir = Down
+30, dir = Down
+Wall at next = (47,107)
+end = (46,107)
+L
+dir = Right
+33, dir = Right
+Wall at next = (46,114)
+end = (46,113)
+L
+dir = Up
+32, dir = Up
+Wall at next = (38,113)
+end = (39,113)
+L
+dir = Left
+18, dir = Left
+Wall at next = (39,106)
+end = (39,107)
+L
+dir = Down
+22, dir = Down
+Wall at next = (47,107)
+end = (46,107)
+L
+dir = Right
+7, dir = Right
+Wall at next = (46,114)
+end = (46,113)
+L
+dir = Up
+15, dir = Up
+Wall at next = (38,113)
+end = (39,113)
+R
+dir = Right
+10, dir = Right
+end = (39,123)
+L
+dir = Up
+8, dir = Up
+Wall at next = (34,123)
+end = (35,123)
+L
+dir = Left
+19, dir = Left
+end = (35,104)
+R
+dir = Up
+36, dir = Up
+Wall at next = (27,104)
+end = (28,104)
+L
+dir = Left
+19, dir = Left
+Wall at next = (28,98)
+end = (28,99)
+R
+dir = Up
+24, dir = Up
+Wall at next = (22,99)
+end = (23,99)
+L
+dir = Left
+47, dir = Left
+Wall at next = (23,98)
+No move end = (23,99)
+L
+dir = Down
+17, dir = Down
+Wall at next = (32,99)
+end = (31,99)
+L
+dir = Right
+34, dir = Right
+Wall at next = (31,102)
+end = (31,101)
+L
+dir = Up
+16, dir = Up
+end = (15,101)
+L
+dir = Left
+17, dir = Left
+Wall at next = (15,100)
+No move end = (15,101)
+L
+dir = Down
+29, dir = Down
+Wall at next = (37,101)
+end = (36,101)
+L
+dir = Right
+41, dir = Right
+Wall at next = (36,103)
+end = (36,102)
+L
+dir = Up
+45, dir = Up
+Wall at next = (35,102)
+No move end = (36,102)
+R
+dir = Right
+10, dir = Right
+Wall at next = (36,103)
+No move end = (36,102)
+R
+dir = Down
+35, dir = Down
+Wall at next = (42,102)
+end = (41,102)
+L
+dir = Right
+30, dir = Right
+Wall at next = (41,120)
+end = (41,119)
+R
+dir = Down
+41, dir = Down
+Wall at next = (44,119)
+end = (43,119)
+L
+dir = Right
+50, dir = Right
+Wall at next = (43,124)
+end = (43,123)
+R
+dir = Down
+3, dir = Down
+end = (46,123)
+R
+dir = Left
+23, dir = Left
+Wall at next = (46,115)
+end = (46,116)
+L
+dir = Down
+7, dir = Down
+next = (51,116)
+wrapped = (1,116)
+remaining = 2
+end = (3,116)
+R
+dir = Left
+12, dir = Left
+Wall at next = (3,110)
+end = (3,111)
+L
+dir = Down
+30, dir = Down
+Wall at next = (13,111)
+end = (12,111)
+R
+dir = Left
+11, dir = Left
+Wall at next = (12,109)
+end = (12,110)
+L
+dir = Down
+40, dir = Down
+next = (51,110)
+wrapped = (1,110)
+remaining = 1
+end = (2,110)
+R
+dir = Left
+12, dir = Left
+end = (2,98)
+R
+dir = Up
+20, dir = Up
+Wall at next = (1,98)
+No move end = (2,98)
+R
+dir = Right
+41, dir = Right
+Wall at next = (2,114)
+end = (2,113)
+R
+dir = Down
+8, dir = Down
+Wall at next = (4,113)
+end = (3,113)
+R
+dir = Left
+16, dir = Left
+Wall at next = (3,110)
+end = (3,111)
+L
+dir = Down
+20, dir = Down
+Wall at next = (13,111)
+end = (12,111)
+L
+dir = Right
+21, dir = Right
+Wall at next = (12,113)
+end = (12,112)
+R
+dir = Down
+36, dir = Down
+Wall at next = (22,112)
+end = (21,112)
+R
+dir = Left
+3, dir = Left
+end = (21,109)
+R
+dir = Up
+25, dir = Up
+Wall at next = (18,109)
+end = (19,109)
+L
+dir = Left
+5, dir = Left
+Wall at next = (19,104)
+end = (19,105)
+L
+dir = Down
+33, dir = Down
+Wall at next = (23,105)
+end = (22,105)
+L
+dir = Right
+15, dir = Right
+Wall at next = (22,112)
+end = (22,111)
+L
+dir = Up
+43, dir = Up
+Wall at next = (14,111)
+end = (15,111)
+L
+dir = Left
+36, dir = Left
+Wall at next = (15,100)
+end = (15,101)
+L
+dir = Down
+50, dir = Down
+Wall at next = (37,101)
+end = (36,101)
+R
+dir = Left
+19, dir = Left
+Wall at next = (36,87)
+end = (36,88)
+R
+dir = Up
+9, dir = Up
+end = (27,88)
+L
+dir = Left
+19, dir = Left
+end = (27,69)
+R
+dir = Up
+7, dir = Up
+end = (20,69)
+R
+dir = Right
+6, dir = Right
+Wall at next = (20,71)
+end = (20,70)
+R
+dir = Down
+41, dir = Down
+Wall at next = (48,70)
+end = (47,70)
+L
+dir = Right
+19, dir = Right
+Wall at next = (47,84)
+end = (47,83)
+R
+dir = Down
+26, dir = Down
+Wall at next = (54,83)
+end = (53,83)
+R
+dir = Left
+5, dir = Left
+Wall at next = (53,82)
+No move end = (53,83)
+L
+dir = Down
+10, dir = Down
+Wall at next = (54,83)
+No move end = (53,83)
+R
+dir = Left
+37, dir = Left
+Wall at next = (53,82)
+No move end = (53,83)
+R
+dir = Up
+10, dir = Up
+end = (43,83)
+R
+dir = Right
+28, dir = Right
+Wall at next = (43,85)
+end = (43,84)
+R
+dir = Down
+26, dir = Down
+Wall at next = (47,84)
+end = (46,84)
+R
+dir = Left
+16, dir = Left
+end = (46,68)
+R
+dir = Up
+7, dir = Up
+end = (39,68)
+R
+dir = Right
+45, dir = Right
+Wall at next = (39,72)
+end = (39,71)
+L
+dir = Up
+2, dir = Up
+end = (37,71)
+L
+dir = Left
+11, dir = Left
+Wall at next = (37,63)
+end = (37,64)
+R
+dir = Up
+18, dir = Up
+end = (19,64)
+L
+dir = Left
+43, dir = Left
+next = (19,50)
+wrapped = (19,150)
+remaining = 29
+Wall at next = (19,134)
+end = (19,135)
+R
+dir = Up
+44, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 25
+Wall at next = (48,135)
+end = (49,135)
+R
+dir = Right
+19, dir = Right
+Wall at next = (49,143)
+end = (49,142)
+L
+dir = Up
+47, dir = Up
+Wall at next = (44,142)
+end = (45,142)
+R
+dir = Right
+34, dir = Right
+next = (45,151)
+wrapped = (45,51)
+remaining = 25
+Wall at next = (45,52)
+end = (45,51)
+R
+dir = Down
+2, dir = Down
+end = (47,51)
+L
+dir = Right
+15, dir = Right
+Wall at next = (47,54)
+end = (47,53)
+R
+dir = Down
+13, dir = Down
+end = (60,53)
+L
+dir = Right
+46, dir = Right
+Wall at next = (60,67)
+end = (60,66)
+R
+dir = Down
+43, dir = Down
+Wall at next = (77,66)
+end = (76,66)
+R
+dir = Left
+32, dir = Left
+Wall at next = (76,65)
+No move end = (76,66)
+R
+dir = Up
+39, dir = Up
+Wall at next = (52,66)
+end = (53,66)
+L
+dir = Left
+3, dir = Left
+Wall at next = (53,63)
+end = (53,64)
+R
+dir = Up
+46, dir = Up
+Wall at next = (45,64)
+end = (46,64)
+R
+dir = Right
+38, dir = Right
+Wall at next = (46,90)
+end = (46,89)
+R
+dir = Down
+36, dir = Down
+Wall at next = (50,89)
+end = (49,89)
+L
+dir = Right
+14, dir = Right
+end = (49,103)
+R
+dir = Down
+13, dir = Down
+next = (51,103)
+wrapped = (1,103)
+remaining = 11
+Wall at next = (4,103)
+end = (3,103)
+L
+dir = Right
+9, dir = Right
+Wall at next = (3,105)
+end = (3,104)
+R
+dir = Down
+22, dir = Down
+Wall at next = (8,104)
+end = (7,104)
+L
+dir = Right
+40, dir = Right
+Wall at next = (7,115)
+end = (7,114)
+L
+dir = Up
+27, dir = Up
+Wall at next = (4,114)
+end = (5,114)
+R
+dir = Right
+15, dir = Right
+Wall at next = (5,127)
+end = (5,126)
+L
+dir = Up
+25, dir = Up
+Wall at next = (4,126)
+No move end = (5,126)
+R
+dir = Right
+1, dir = Right
+Wall at next = (5,127)
+No move end = (5,126)
+R
+dir = Down
+50, dir = Down
+Wall at next = (9,126)
+end = (8,126)
+R
+dir = Left
+26, dir = Left
+Wall at next = (8,104)
+end = (8,105)
+R
+dir = Up
+12, dir = Up
+Wall at next = (4,105)
+end = (5,105)
+R
+dir = Right
+1, dir = Right
+end = (5,106)
+L
+dir = Up
+25, dir = Up
+Wall at next = (4,106)
+No move end = (5,106)
+L
+dir = Left
+26, dir = Left
+end = (5,80)
+L
+dir = Down
+24, dir = Down
+Wall at next = (11,80)
+end = (10,80)
+R
+dir = Left
+20, dir = Left
+Wall at next = (10,74)
+end = (10,75)
+L
+dir = Down
+16, dir = Down
+Wall at next = (23,75)
+end = (22,75)
+L
+dir = Right
+18, dir = Right
+Wall at next = (22,82)
+end = (22,81)
+L
+dir = Up
+17, dir = Up
+Wall at next = (21,81)
+No move end = (22,81)
+L
+dir = Left
+8, dir = Left
+end = (22,73)
+R
+dir = Up
+4, dir = Up
+Wall at next = (18,73)
+end = (19,73)
+L
+dir = Left
+29, dir = Left
+next = (19,50)
+wrapped = (19,150)
+remaining = 6
+end = (19,144)
+L
+dir = Down
+17, dir = Down
+Wall at next = (27,144)
+end = (26,144)
+R
+dir = Left
+33, dir = Left
+Wall at next = (26,125)
+end = (26,126)
+L
+dir = Down
+35, dir = Down
+Wall at next = (37,126)
+end = (36,126)
+R
+dir = Left
+24, dir = Left
+Wall at next = (36,104)
+end = (36,105)
+L
+dir = Down
+30, dir = Down
+Wall at next = (46,105)
+end = (45,105)
+L
+dir = Right
+36, dir = Right
+Wall at next = (45,139)
+end = (45,138)
+R
+dir = Down
+6, dir = Down
+Wall at next = (47,138)
+end = (46,138)
+R
+dir = Left
+13, dir = Left
+end = (46,125)
+L
+dir = Down
+23, dir = Down
+Wall at next = (50,125)
+end = (49,125)
+R
+dir = Left
+28, dir = Left
+Wall at next = (49,124)
+No move end = (49,125)
+L
+dir = Down
+34, dir = Down
+Wall at next = (50,125)
+No move end = (49,125)
+R
+dir = Left
+8, dir = Left
+Wall at next = (49,124)
+No move end = (49,125)
+R
+dir = Up
+1, dir = Up
+end = (48,125)
+L
+dir = Left
+36, dir = Left
+Wall at next = (48,108)
+end = (48,109)
+L
+dir = Down
+24, dir = Down
+next = (51,109)
+wrapped = (1,109)
+remaining = 21
+Wall at next = (12,109)
+end = (11,109)
+L
+dir = Right
+43, dir = Right
+Wall at next = (11,112)
+end = (11,111)
+R
+dir = Down
+22, dir = Down
+Wall at next = (13,111)
+end = (12,111)
+R
+dir = Left
+26, dir = Left
+Wall at next = (12,109)
+end = (12,110)
+R
+dir = Up
+8, dir = Up
+Wall at next = (5,110)
+end = (6,110)
+R
+dir = Right
+3, dir = Right
+end = (6,113)
+L
+dir = Up
+6, dir = Up
+Wall at next = (4,113)
+end = (5,113)
+L
+dir = Left
+24, dir = Left
+Wall at next = (5,110)
+end = (5,111)
+R
+dir = Up
+41, dir = Up
+next = (0,111)
+wrapped = (50,111)
+remaining = 36
+Wall at next = (43,111)
+end = (44,111)
+L
+dir = Left
+11, dir = Left
+Wall at next = (44,104)
+end = (44,105)
+R
+dir = Up
+12, dir = Up
+Wall at next = (32,105)
+end = (33,105)
+R
+dir = Right
+9, dir = Right
+end = (33,114)
+L
+dir = Up
+27, dir = Up
+Wall at next = (14,114)
+end = (15,114)
+L
+dir = Left
+35, dir = Left
+Wall at next = (15,100)
+end = (15,101)
+R
+dir = Up
+30, dir = Up
+next = (0,101)
+wrapped = (50,101)
+remaining = 15
+Wall at next = (37,101)
+end = (38,101)
+R
+dir = Right
+20, dir = Right
+Wall at next = (38,108)
+end = (38,107)
+L
+dir = Up
+43, dir = Up
+Wall at next = (21,107)
+end = (22,107)
+R
+dir = Right
+47, dir = Right
+Wall at next = (22,112)
+end = (22,111)
+R
+dir = Down
+3, dir = Down
+end = (25,111)
+L
+dir = Right
+7, dir = Right
+end = (25,118)
+L
+dir = Up
+31, dir = Up
+Wall at next = (13,118)
+end = (14,118)
+R
+dir = Right
+47, dir = Right
+Wall at next = (14,119)
+No move end = (14,118)
+L
+dir = Up
+19, dir = Up
+Wall at next = (13,118)
+No move end = (14,118)
+L
+dir = Left
+34, dir = Left
+Wall at next = (14,114)
+end = (14,115)
+L
+dir = Down
+19, dir = Down
+end = (33,115)
+L
+dir = Right
+11, dir = Right
+end = (33,126)
+R
+dir = Down
+25, dir = Down
+Wall at next = (37,126)
+end = (36,126)
+L
+dir = Right
+45, dir = Right
+Wall at next = (36,129)
+end = (36,128)
+L
+dir = Up
+38, dir = Up
+Wall at next = (31,128)
+end = (32,128)
+R
+dir = Right
+1, dir = Right
+end = (32,129)
+R
+dir = Down
+31, dir = Down
+Wall at next = (36,129)
+end = (35,129)
+L
+dir = Right
+3, dir = Right
+end = (35,132)
+R
+dir = Down
+38, dir = Down
+next = (51,132)
+wrapped = (1,132)
+remaining = 22
+Wall at next = (9,132)
+end = (8,132)
+L
+dir = Right
+32, dir = Right
+next = (8,151)
+wrapped = (8,51)
+remaining = 13
+Wall at next = (8,51)
+end = (8,150)
+R
+dir = Down
+21, dir = Down
+Wall at next = (22,150)
+end = (21,150)
+R
+dir = Left
+16, dir = Left
+Wall at next = (21,140)
+end = (21,141)
+R
+dir = Up
+10, dir = Up
+Wall at next = (20,141)
+No move end = (21,141)
+L
+dir = Left
+4, dir = Left
+Wall at next = (21,140)
+No move end = (21,141)
+R
+dir = Up
+28, dir = Up
+Wall at next = (20,141)
+No move end = (21,141)
+L
+dir = Left
+10, dir = Left
+Wall at next = (21,140)
+No move end = (21,141)
+R
+dir = Up
+29, dir = Up
+Wall at next = (20,141)
+No move end = (21,141)
+R
+dir = Right
+41, dir = Right
+next = (21,151)
+wrapped = (21,51)
+remaining = 31
+Wall at next = (21,71)
+end = (21,70)
+L
+dir = Up
+33, dir = Up
+Wall at next = (15,70)
+end = (16,70)
+L
+dir = Left
+17, dir = Left
+Wall at next = (16,68)
+end = (16,69)
+R
+dir = Up
+16, dir = Up
+next = (0,69)
+wrapped = (150,69)
+remaining = 0
+end = (150,69)
+R
+dir = Right
+19, dir = Right
+Wall at next = (150,88)
+end = (150,87)
+R
+dir = Down
+8, dir = Down
+next = (151,87)
+wrapped = (1,87)
+remaining = 7
+Wall at next = (8,87)
+end = (7,87)
+R
+dir = Left
+16, dir = Left
+end = (7,71)
+R
+dir = Up
+38, dir = Up
+next = (0,71)
+wrapped = (150,71)
+remaining = 31
+Wall at next = (148,71)
+end = (149,71)
+R
+dir = Right
+24, dir = Right
+Wall at next = (149,75)
+end = (149,74)
+R
+dir = Down
+33, dir = Down
+next = (151,74)
+wrapped = (1,74)
+remaining = 31
+Wall at next = (10,74)
+end = (9,74)
+R
+dir = Left
+25, dir = Left
+Wall at next = (9,70)
+end = (9,71)
+L
+dir = Down
+13, dir = Down
+Wall at next = (20,71)
+end = (19,71)
+L
+dir = Right
+21, dir = Right
+end = (19,92)
+R
+dir = Down
+33, dir = Down
+Wall at next = (32,92)
+end = (31,92)
+R
+dir = Left
+45, dir = Left
+Wall at next = (31,91)
+No move end = (31,92)
+R
+dir = Up
+13, dir = Up
+end = (18,92)
+R
+dir = Right
+16, dir = Right
+end = (18,108)
+R
+dir = Down
+16, dir = Down
+Wall at next = (24,108)
+end = (23,108)
+R
+dir = Left
+22, dir = Left
+Wall at next = (23,105)
+end = (23,106)
+R
+dir = Up
+49, dir = Up
+Wall at next = (14,106)
+end = (15,106)
+R
+dir = Right
+32, dir = Right
+Wall at next = (15,116)
+end = (15,115)
+L
+dir = Up
+4, dir = Up
+end = (11,115)
+R
+dir = Right
+46, dir = Right
+Wall at next = (11,136)
+end = (11,135)
+L
+dir = Up
+7, dir = Up
+end = (4,135)
+L
+dir = Left
+9, dir = Left
+Wall at next = (4,128)
+end = (4,129)
+L
+dir = Down
+1, dir = Down
+Wall at next = (5,129)
+No move end = (4,129)
+L
+dir = Right
+44, dir = Right
+Wall at next = (4,136)
+end = (4,135)
+R
+dir = Down
+8, dir = Down
+end = (12,135)
+L
+dir = Right
+40, dir = Right
+next = (12,151)
+wrapped = (12,51)
+remaining = 24
+Wall at next = (12,52)
+end = (12,51)
+L
+dir = Up
+39, dir = Up
+Wall at next = (8,51)
+end = (9,51)
+R
+dir = Right
+41, dir = Right
+Wall at next = (9,70)
+end = (9,69)
+L
+dir = Up
+38, dir = Up
+next = (0,69)
+wrapped = (150,69)
+remaining = 29
+Wall at next = (147,69)
+end = (148,69)
+R
+dir = Right
+1, dir = Right
+end = (148,70)
+R
+dir = Down
+12, dir = Down
+next = (151,70)
+wrapped = (1,70)
+remaining = 9
+Wall at next = (9,70)
+end = (8,70)
+L
+dir = Right
+14, dir = Right
+Wall at next = (8,72)
+end = (8,71)
+L
+dir = Up
+5, dir = Up
+end = (3,71)
+R
+dir = Right
+35, dir = Right
+Wall at next = (3,91)
+end = (3,90)
+L
+dir = Up
+36, dir = Up
+next = (0,90)
+wrapped = (150,90)
+remaining = 33
+Wall at next = (145,90)
+end = (146,90)
+R
+dir = Right
+49, dir = Right
+next = (146,101)
+wrapped = (146,1)
+remaining = 38
+Wall at next = (146,7)
+end = (146,6)
+L
+dir = Up
+8, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+R
+dir = Right
+27, dir = Right
+Wall at next = (142,11)
+end = (142,10)
+L
+dir = Up
+30, dir = Up
+Wall at next = (131,10)
+end = (132,10)
+L
+dir = Left
+18, dir = Left
+Wall at next = (132,9)
+No move end = (132,10)
+R
+dir = Up
+29, dir = Up
+Wall at next = (131,10)
+No move end = (132,10)
+L
+dir = Left
+14, dir = Left
+Wall at next = (132,9)
+No move end = (132,10)
+L
+dir = Down
+15, dir = Down
+end = (147,10)
+L
+dir = Right
+33, dir = Right
+Wall at next = (147,14)
+end = (147,13)
+L
+dir = Up
+7, dir = Up
+Wall at next = (146,13)
+No move end = (147,13)
+R
+dir = Right
+4, dir = Right
+Wall at next = (147,14)
+No move end = (147,13)
+L
+dir = Up
+2, dir = Up
+Wall at next = (146,13)
+No move end = (147,13)
+R
+dir = Right
+16, dir = Right
+Wall at next = (147,14)
+No move end = (147,13)
+L
+dir = Up
+28, dir = Up
+Wall at next = (146,13)
+No move end = (147,13)
+L
+dir = Left
+49, dir = Left
+Wall at next = (147,5)
+end = (147,6)
+R
+dir = Up
+27, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+R
+dir = Right
+28, dir = Right
+Wall at next = (142,11)
+end = (142,10)
+R
+dir = Down
+18, dir = Down
+Wall at next = (148,10)
+end = (147,10)
+R
+dir = Left
+29, dir = Left
+Wall at next = (147,5)
+end = (147,6)
+R
+dir = Up
+14, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+R
+dir = Right
+6, dir = Right
+Wall at next = (142,11)
+end = (142,10)
+R
+dir = Down
+50, dir = Down
+Wall at next = (148,10)
+end = (147,10)
+R
+dir = Left
+43, dir = Left
+Wall at next = (147,5)
+end = (147,6)
+L
+dir = Down
+14, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+R
+dir = Left
+30, dir = Left
+next = (155,0)
+wrapped = (155,50)
+remaining = 24
+Wall at next = (155,30)
+end = (155,31)
+L
+dir = Down
+36, dir = Down
+Wall at next = (156,31)
+No move end = (155,31)
+L
+dir = Right
+32, dir = Right
+next = (155,51)
+wrapped = (155,1)
+remaining = 12
+end = (155,13)
+R
+dir = Down
+18, dir = Down
+Wall at next = (158,13)
+end = (157,13)
+R
+dir = Left
+23, dir = Left
+Wall at next = (157,10)
+end = (157,11)
+L
+dir = Down
+5, dir = Down
+Wall at next = (160,11)
+end = (159,11)
+R
+dir = Left
+11, dir = Left
+Wall at next = (159,8)
+end = (159,9)
+R
+dir = Up
+20, dir = Up
+Wall at next = (149,9)
+end = (150,9)
+L
+dir = Left
+12, dir = Left
+Wall at next = (150,2)
+end = (150,3)
+L
+dir = Down
+26, dir = Down
+Wall at next = (152,3)
+end = (151,3)
+R
+dir = Left
+41, dir = Left
+next = (151,0)
+wrapped = (151,50)
+remaining = 38
+Wall at next = (151,49)
+end = (151,50)
+L
+dir = Down
+10, dir = Down
+end = (161,50)
+L
+dir = Right
+10, dir = Right
+next = (161,51)
+wrapped = (161,1)
+remaining = 9
+Wall at next = (161,2)
+end = (161,1)
+R
+dir = Down
+1, dir = Down
+end = (162,1)
+L
+dir = Right
+21, dir = Right
+Wall at next = (162,7)
+end = (162,6)
+L
+dir = Up
+26, dir = Up
+Wall at next = (156,6)
+end = (157,6)
+R
+dir = Right
+36, dir = Right
+Wall at next = (157,8)
+end = (157,7)
+L
+dir = Up
+23, dir = Up
+Wall at next = (149,7)
+end = (150,7)
+L
+dir = Left
+38, dir = Left
+Wall at next = (150,2)
+end = (150,3)
+L
+dir = Down
+47, dir = Down
+Wall at next = (152,3)
+end = (151,3)
+R
+dir = Left
+16, dir = Left
+next = (151,0)
+wrapped = (151,50)
+remaining = 13
+Wall at next = (151,49)
+end = (151,50)
+L
+dir = Down
+29, dir = Down
+Wall at next = (174,50)
+end = (173,50)
+R
+dir = Left
+3, dir = Left
+end = (173,47)
+L
+dir = Down
+30, dir = Down
+Wall at next = (174,47)
+No move end = (173,47)
+R
+dir = Left
+4, dir = Left
+Wall at next = (173,45)
+end = (173,46)
+L
+dir = Down
+22, dir = Down
+Wall at next = (174,46)
+No move end = (173,46)
+L
+dir = Right
+42, dir = Right
+next = (173,51)
+wrapped = (173,1)
+remaining = 37
+Wall at next = (173,21)
+end = (173,20)
+R
+dir = Down
+21, dir = Down
+Wall at next = (186,20)
+end = (185,20)
+L
+dir = Right
+35, dir = Right
+Wall at next = (185,23)
+end = (185,22)
+R
+dir = Down
+36, dir = Down
+next = (201,22)
+wrapped = (101,22)
+remaining = 20
+Wall at next = (109,22)
+end = (108,22)
+R
+dir = Left
+4, dir = Left
+end = (108,18)
+L
+dir = Down
+3, dir = Down
+end = (111,18)
+R
+dir = Left
+31, dir = Left
+next = (111,0)
+wrapped = (111,100)
+remaining = 13
+Wall at next = (111,98)
+end = (111,99)
+L
+dir = Down
+28, dir = Down
+Wall at next = (114,99)
+end = (113,99)
+R
+dir = Left
+22, dir = Left
+Wall at next = (113,86)
+end = (113,87)
+R
+dir = Up
+47, dir = Up
+Wall at next = (95,87)
+end = (96,87)
+R
+dir = Right
+17, dir = Right
+Wall at next = (96,89)
+end = (96,88)
+R
+dir = Down
+33, dir = Down
+Wall at next = (120,88)
+end = (119,88)
+L
+dir = Right
+3, dir = Right
+end = (119,91)
+R
+dir = Down
+41, dir = Down
+Wall at next = (120,91)
+No move end = (119,91)
+L
+dir = Right
+20, dir = Right
+next = (119,101)
+wrapped = (119,1)
+remaining = 10
+Wall at next = (119,5)
+end = (119,4)
+L
+dir = Up
+35, dir = Up
+Wall at next = (114,4)
+end = (115,4)
+L
+dir = Left
+1, dir = Left
+end = (115,3)
+L
+dir = Down
+13, dir = Down
+Wall at next = (122,3)
+end = (121,3)
+L
+dir = Right
+43, dir = Right
+Wall at next = (121,16)
+end = (121,15)
+R
+dir = Down
+42, dir = Down
+Wall at next = (130,15)
+end = (129,15)
+R
+dir = Left
+1, dir = Left
+end = (129,14)
+R
+dir = Up
+11, dir = Up
+end = (118,14)
+R
+dir = Right
+31, dir = Right
+Wall at next = (118,23)
+end = (118,22)
+R
+dir = Down
+3, dir = Down
+end = (121,22)
+R
+dir = Left
+23, dir = Left
+Wall at next = (121,16)
+end = (121,17)
+R
+dir = Up
+17, dir = Up
+Wall at next = (113,17)
+end = (114,17)
+L
+dir = Left
+7, dir = Left
+Wall at next = (114,16)
+No move end = (114,17)
+R
+dir = Up
+25, dir = Up
+Wall at next = (113,17)
+No move end = (114,17)
+L
+dir = Left
+24, dir = Left
+Wall at next = (114,16)
+No move end = (114,17)
+R
+dir = Up
+29, dir = Up
+Wall at next = (113,17)
+No move end = (114,17)
+R
+dir = Right
+11, dir = Right
+Wall at next = (114,26)
+end = (114,25)
+L
+dir = Up
+3, dir = Up
+Wall at next = (111,25)
+end = (112,25)
+L
+dir = Left
+26, dir = Left
+Wall at next = (112,21)
+end = (112,22)
+L
+dir = Down
+31, dir = Down
+Wall at next = (124,22)
+end = (123,22)
+R
+dir = Left
+40, dir = Left
+Wall at next = (123,21)
+No move end = (123,22)
+L
+dir = Down
+1, dir = Down
+Wall at next = (124,22)
+No move end = (123,22)
+L
+dir = Right
+18, dir = Right
+Wall at next = (123,25)
+end = (123,24)
+L
+dir = Up
+1, dir = Up
+end = (122,24)
+L
+dir = Left
+12, dir = Left
+Wall at next = (122,16)
+end = (122,17)
+R
+dir = Up
+29, dir = Up
+Wall at next = (113,17)
+end = (114,17)
+L
+dir = Left
+19, dir = Left
+Wall at next = (114,16)
+No move end = (114,17)
+R
+dir = Up
+23, dir = Up
+Wall at next = (113,17)
+No move end = (114,17)
+R
+dir = Right
+32, dir = Right
+Wall at next = (114,26)
+end = (114,25)
+R
+dir = Down
+39, dir = Down
+Wall at next = (116,25)
+end = (115,25)
+L
+dir = Right
+21, dir = Right
+end = (115,46)
+R
+dir = Down
+32, dir = Down
+Wall at next = (121,46)
+end = (120,46)
+L
+dir = Right
+12, dir = Right
+end = (120,58)
+R
+dir = Down
+34, dir = Down
+Wall at next = (121,58)
+No move end = (120,58)
+R
+dir = Left
+26, dir = Left
+Wall at next = (120,36)
+end = (120,37)
+R
+dir = Up
+6, dir = Up
+Wall at next = (119,37)
+No move end = (120,37)
+R
+dir = Right
+13, dir = Right
+end = (120,50)
+R
+dir = Down
+41, dir = Down
+Wall at next = (133,50)
+end = (132,50)
+L
+dir = Right
+36, dir = Right
+Wall at next = (132,58)
+end = (132,57)
+R
+dir = Down
+19, dir = Down
+Wall at next = (150,57)
+end = (149,57)
+R
+dir = Left
+9, dir = Left
+Wall at next = (149,51)
+end = (149,52)
+L
+dir = Down
+47, dir = Down
+next = (151,52)
+wrapped = (1,52)
+remaining = 45
+Wall at next = (12,52)
+end = (11,52)
+L
+dir = Right
+18, dir = Right
+Wall at next = (11,54)
+end = (11,53)
+R
+dir = Down
+31, dir = Down
+Wall at next = (15,53)
+end = (14,53)
+R
+dir = Left
+30, dir = Left
+Wall at next = (14,51)
+end = (14,52)
+R
+dir = Up
+40, dir = Up
+Wall at next = (12,52)
+end = (13,52)
+R
+dir = Right
+44, dir = Right
+Wall at next = (13,54)
+end = (13,53)
+R
+dir = Down
+5, dir = Down
+Wall at next = (15,53)
+end = (14,53)
+R
+dir = Left
+30, dir = Left
+Wall at next = (14,51)
+end = (14,52)
+R
+dir = Up
+17, dir = Up
+Wall at next = (12,52)
+end = (13,52)
+L
+dir = Left
+30, dir = Left
+next = (13,50)
+wrapped = (13,150)
+remaining = 28
+end = (13,122)
+L
+dir = Down
+9, dir = Down
+end = (22,122)
+L
+dir = Right
+45, dir = Right
+Wall at next = (22,129)
+end = (22,128)
+L
+dir = Up
+47, dir = Up
+Wall at next = (17,128)
+end = (18,128)
+L
+dir = Left
+42, dir = Left
+Wall at next = (18,124)
+end = (18,125)
+R
+dir = Up
+26, dir = Up
+next = (0,125)
+wrapped = (50,125)
+remaining = 8
+Wall at next = (50,125)
+end = (1,125)
+R
+dir = Right
+37, dir = Right
+Wall at next = (1,130)
+end = (1,129)
+L
+dir = Up
+7, dir = Up
+next = (0,129)
+wrapped = (50,129)
+remaining = 6
+end = (44,129)
+L
+dir = Left
+3, dir = Left
+end = (44,126)
+L
+dir = Down
+1, dir = Down
+end = (45,126)
+R
+dir = Left
+37, dir = Left
+Wall at next = (45,90)
+end = (45,91)
+L
+dir = Down
+46, dir = Down
+Wall at next = (52,91)
+end = (51,91)
+L
+dir = Right
+8, dir = Right
+end = (51,99)
+R
+dir = Down
+11, dir = Down
+Wall at next = (53,99)
+end = (52,99)
+L
+dir = Right
+13, dir = Right
+next = (52,101)
+wrapped = (52,51)
+remaining = 11
+Wall at next = (52,51)
+end = (52,100)
+R
+dir = Down
+13, dir = Down
+end = (65,100)
+R
+dir = Left
+22, dir = Left
+Wall at next = (65,94)
+end = (65,95)
+R
+dir = Up
+45, dir = Up
+Wall at next = (61,95)
+end = (62,95)
+R
+dir = Right
+28, dir = Right
+next = (62,101)
+wrapped = (62,51)
+remaining = 22
+Wall at next = (62,54)
+end = (62,53)
+R
+dir = Down
+3, dir = Down
+end = (65,53)
+L
+dir = Right
+39, dir = Right
+Wall at next = (65,55)
+end = (65,54)
+L
+dir = Up
+1, dir = Up
+end = (64,54)
+L
+dir = Left
+22, dir = Left
+Wall at next = (64,51)
+end = (64,52)
+R
+dir = Up
+4, dir = Up
+end = (60,52)
+R
+dir = Right
+19, dir = Right
+Wall at next = (60,67)
+end = (60,66)
+L
+dir = Up
+27, dir = Up
+Wall at next = (52,66)
+end = (53,66)
+L
+dir = Left
+16, dir = Left
+Wall at next = (53,63)
+end = (53,64)
+R
+dir = Up
+49, dir = Up
+Wall at next = (45,64)
+end = (46,64)
+R
+dir = Right
+47, dir = Right
+Wall at next = (46,90)
+end = (46,89)
+L
+dir = Up
+2, dir = Up
+Wall at next = (45,89)
+No move end = (46,89)
+R
+dir = Right
+50, dir = Right
+Wall at next = (46,90)
+No move end = (46,89)
+L
+dir = Up
+42, dir = Up
+Wall at next = (45,89)
+No move end = (46,89)
+L
+dir = Left
+32, dir = Left
+Wall at next = (46,58)
+end = (46,59)
+L
+dir = Down
+45, dir = Down
+Wall at next = (50,59)
+end = (49,59)
+L
+dir = Right
+5, dir = Right
+end = (49,64)
+L
+dir = Up
+46, dir = Up
+Wall at next = (45,64)
+end = (46,64)
+R
+dir = Right
+14, dir = Right
+end = (46,78)
+L
+dir = Up
+19, dir = Up
+Wall at next = (35,78)
+end = (36,78)
+R
+dir = Right
+17, dir = Right
+Wall at next = (36,82)
+end = (36,81)
+L
+dir = Up
+34, dir = Up
+Wall at next = (35,81)
+No move end = (36,81)
+L
+dir = Left
+20, dir = Left
+Wall at next = (36,75)
+end = (36,76)
+L
+dir = Down
+45, dir = Down
+Wall at next = (41,76)
+end = (40,76)
+R
+dir = Left
+22, dir = Left
+Wall at next = (40,67)
+end = (40,68)
+R
+dir = Up
+7, dir = Up
+end = (33,68)
+R
+dir = Right
+49, dir = Right
+Wall at next = (33,75)
+end = (33,74)
+R
+dir = Down
+32, dir = Down
+Wall at next = (45,74)
+end = (44,74)
+L
+dir = Right
+10, dir = Right
+end = (44,84)
+R
+dir = Down
+12, dir = Down
+Wall at next = (47,84)
+end = (46,84)
+L
+dir = Right
+45, dir = Right
+Wall at next = (46,90)
+end = (46,89)
+R
+dir = Down
+48, dir = Down
+Wall at next = (50,89)
+end = (49,89)
+R
+dir = Left
+16, dir = Left
+end = (49,73)
+L
+dir = Down
+7, dir = Down
+end = (56,73)
+R
+dir = Left
+33, dir = Left
+Wall at next = (56,69)
+end = (56,70)
+R
+dir = Up
+4, dir = Up
+end = (52,70)
+L
+dir = Left
+27, dir = Left
+Wall at next = (52,66)
+end = (52,67)
+R
+dir = Up
+34, dir = Up
+Wall at next = (40,67)
+end = (41,67)
+R
+dir = Right
+50, dir = Right
+Wall at next = (41,73)
+end = (41,72)
+R
+dir = Down
+38, dir = Down
+Wall at next = (43,72)
+end = (42,72)
+L
+dir = Right
+28, dir = Right
+Wall at next = (42,81)
+end = (42,80)
+R
+dir = Down
+36, dir = Down
+Wall at next = (57,80)
+end = (56,80)
+R
+dir = Left
+20, dir = Left
+Wall at next = (56,69)
+end = (56,70)
+L
+dir = Down
+22, dir = Down
+Wall at next = (71,70)
+end = (70,70)
+R
+dir = Left
+3, dir = Left
+end = (70,67)
+L
+dir = Down
+37, dir = Down
+Wall at next = (73,67)
+end = (72,67)
+R
+dir = Left
+11, dir = Left
+end = (72,56)
+L
+dir = Down
+33, dir = Down
+Wall at next = (73,56)
+No move end = (72,56)
+R
+dir = Left
+17, dir = Left
+next = (72,50)
+wrapped = (72,100)
+remaining = 11
+end = (72,89)
+R
+dir = Up
+4, dir = Up
+end = (68,89)
+R
+dir = Right
+41, dir = Right
+next = (68,101)
+wrapped = (68,51)
+remaining = 29
+Wall at next = (68,53)
+end = (68,52)
+R
+dir = Down
+50, dir = Down
+Wall at next = (70,52)
+end = (69,52)
+R
+dir = Left
+14, dir = Left
+next = (69,50)
+wrapped = (69,100)
+remaining = 12
+Wall at next = (69,100)
+end = (69,51)
+L
+dir = Down
+47, dir = Down
+Wall at next = (77,51)
+end = (76,51)
+R
+dir = Left
+34, dir = Left
+next = (76,50)
+wrapped = (76,100)
+remaining = 33
+Wall at next = (76,98)
+end = (76,99)
+L
+dir = Down
+5, dir = Down
+Wall at next = (77,99)
+No move end = (76,99)
+L
+dir = Right
+47, dir = Right
+next = (76,101)
+wrapped = (76,51)
+remaining = 45
+Wall at next = (76,65)
+end = (76,64)
+R
+dir = Down
+19, dir = Down
+Wall at next = (82,64)
+end = (81,64)
+L
+dir = Right
+26, dir = Right
+Wall at next = (81,65)
+No move end = (81,64)
+L
+dir = Up
+42, dir = Up
+Wall at next = (68,64)
+end = (69,64)
+R
+dir = Right
+38, dir = Right
+Wall at next = (69,74)
+end = (69,73)
+L
+dir = Up
+41, dir = Up
+Wall at next = (58,73)
+end = (59,73)
+R
+dir = Right
+27, dir = Right
+Wall at next = (59,89)
+end = (59,88)
+L
+dir = Up
+34, dir = Up
+Wall at next = (58,88)
+No move end = (59,88)
+R
+dir = Right
+4, dir = Right
+Wall at next = (59,89)
+No move end = (59,88)
+R
+dir = Down
+29, dir = Down
+Wall at next = (65,88)
+end = (64,88)
+R
+dir = Left
+44, dir = Left
+Wall at next = (64,83)
+end = (64,84)
+L
+dir = Down
+35, dir = Down
+Wall at next = (67,84)
+end = (66,84)
+L
+dir = Right
+11, dir = Right
+Wall at next = (66,86)
+end = (66,85)
+L
+dir = Up
+23, dir = Up
+Wall at next = (43,85)
+end = (44,85)
+L
+dir = Left
+12, dir = Left
+end = (44,73)
+R
+dir = Up
+32, dir = Up
+Wall at next = (41,73)
+end = (42,73)
+L
+dir = Left
+13, dir = Left
+Wall at next = (42,66)
+end = (42,67)
+R
+dir = Up
+18, dir = Up
+Wall at next = (40,67)
+end = (41,67)
+R
+dir = Right
+21, dir = Right
+Wall at next = (41,73)
+end = (41,72)
+R
+dir = Down
+50, dir = Down
+Wall at next = (43,72)
+end = (42,72)
+L
+dir = Right
+2, dir = Right
+end = (42,74)
+R
+dir = Down
+16, dir = Down
+Wall at next = (45,74)
+end = (44,74)
+L
+dir = Right
+24, dir = Right
+end = (44,98)
+L
+dir = Up
+16, dir = Up
+Wall at next = (37,98)
+end = (38,98)
+R
+dir = Right
+10, dir = Right
+Wall at next = (38,108)
+end = (38,107)
+L
+dir = Up
+35, dir = Up
+Wall at next = (21,107)
+end = (22,107)
+R
+dir = Right
+43, dir = Right
+Wall at next = (22,112)
+end = (22,111)
+L
+dir = Up
+36, dir = Up
+Wall at next = (14,111)
+end = (15,111)
+L
+dir = Left
+19, dir = Left
+Wall at next = (15,100)
+end = (15,101)
+L
+dir = Down
+32, dir = Down
+Wall at next = (37,101)
+end = (36,101)
+L
+dir = Right
+30, dir = Right
+Wall at next = (36,103)
+end = (36,102)
+R
+dir = Down
+21, dir = Down
+Wall at next = (42,102)
+end = (41,102)
+R
+dir = Left
+3, dir = Left
+end = (41,99)
+R
+dir = Up
+2, dir = Up
+end = (39,99)
+L
+dir = Left
+44, dir = Left
+Wall at next = (39,91)
+end = (39,92)
+R
+dir = Up
+6, dir = Up
+end = (33,92)
+R
+dir = Right
+32, dir = Right
+end = (33,124)
+R
+dir = Down
+5, dir = Down
+end = (38,124)
+L
+dir = Right
+14, dir = Right
+Wall at next = (38,126)
+end = (38,125)
+L
+dir = Up
+22, dir = Up
+Wall at next = (26,125)
+end = (27,125)
+R
+dir = Right
+8, dir = Right
+end = (27,133)
+R
+dir = Down
+17, dir = Down
+Wall at next = (34,133)
+end = (33,133)
+L
+dir = Right
+1, dir = Right
+end = (33,134)
+R
+dir = Down
+42, dir = Down
+Wall at next = (41,134)
+end = (40,134)
+L
+dir = Right
+13, dir = Right
+Wall at next = (40,137)
+end = (40,136)
+R
+dir = Down
+26, dir = Down
+Wall at next = (44,136)
+end = (43,136)
+R
+dir = Left
+9, dir = Left
+end = (43,127)
+L
+dir = Down
+20, dir = Down
+Wall at next = (48,127)
+end = (47,127)
+R
+dir = Left
+23, dir = Left
+Wall at next = (47,123)
+end = (47,124)
+R
+dir = Up
+28, dir = Up
+Wall at next = (44,124)
+end = (45,124)
+R
+dir = Right
+11, dir = Right
+end = (45,135)
+R
+dir = Down
+31, dir = Down
+Wall at next = (48,135)
+end = (47,135)
+R
+dir = Left
+6, dir = Left
+end = (47,129)
+L
+dir = Down
+38, dir = Down
+next = (51,129)
+wrapped = (1,129)
+remaining = 34
+Wall at next = (5,129)
+end = (4,129)
+R
+dir = Left
+4, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+L
+dir = Down
+40, dir = Down
+Wall at next = (5,129)
+No move end = (4,129)
+R
+dir = Left
+37, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+L
+dir = Down
+47, dir = Down
+Wall at next = (5,129)
+No move end = (4,129)
+L
+dir = Right
+11, dir = Right
+Wall at next = (4,136)
+end = (4,135)
+L
+dir = Up
+26, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 22
+Wall at next = (48,135)
+end = (49,135)
+R
+dir = Right
+31, dir = Right
+Wall at next = (49,143)
+end = (49,142)
+R
+dir = Down
+8, dir = Down
+next = (51,142)
+wrapped = (1,142)
+remaining = 6
+end = (7,142)
+L
+dir = Right
+44, dir = Right
+next = (7,151)
+wrapped = (7,51)
+remaining = 35
+end = (7,86)
+L
+dir = Up
+25, dir = Up
+next = (0,86)
+wrapped = (150,86)
+remaining = 18
+Wall at next = (148,86)
+end = (149,86)
+L
+dir = Left
+33, dir = Left
+Wall at next = (149,83)
+end = (149,84)
+R
+dir = Up
+38, dir = Up
+Wall at next = (148,84)
+No move end = (149,84)
+L
+dir = Left
+20, dir = Left
+Wall at next = (149,83)
+No move end = (149,84)
+R
+dir = Up
+44, dir = Up
+Wall at next = (148,84)
+No move end = (149,84)
+R
+dir = Right
+37, dir = Right
+Wall at next = (149,99)
+end = (149,98)
+L
+dir = Up
+50, dir = Up
+Wall at next = (134,98)
+end = (135,98)
+L
+dir = Left
+16, dir = Left
+Wall at next = (135,88)
+end = (135,89)
+R
+dir = Up
+41, dir = Up
+Wall at next = (126,89)
+end = (127,89)
+L
+dir = Left
+33, dir = Left
+Wall at next = (127,88)
+No move end = (127,89)
+R
+dir = Up
+42, dir = Up
+Wall at next = (126,89)
+No move end = (127,89)
+L
+dir = Left
+50, dir = Left
+Wall at next = (127,88)
+No move end = (127,89)
+R
+dir = Up
+50, dir = Up
+Wall at next = (126,89)
+No move end = (127,89)
+R
+dir = Right
+19, dir = Right
+next = (127,101)
+wrapped = (127,1)
+remaining = 7
+end = (127,8)
+L
+dir = Up
+2, dir = Up
+end = (125,8)
+R
+dir = Right
+18, dir = Right
+Wall at next = (125,22)
+end = (125,21)
+R
+dir = Down
+14, dir = Down
+Wall at next = (128,21)
+end = (127,21)
+L
+dir = Right
+39, dir = Right
+Wall at next = (127,24)
+end = (127,23)
+R
+dir = Down
+12, dir = Down
+end = (139,23)
+L
+dir = Right
+50, dir = Right
+Wall at next = (139,26)
+end = (139,25)
+R
+dir = Down
+7, dir = Down
+Wall at next = (141,25)
+end = (140,25)
+R
+dir = Left
+30, dir = Left
+Wall at next = (140,11)
+end = (140,12)
+L
+dir = Down
+50, dir = Down
+Wall at next = (149,12)
+end = (148,12)
+L
+dir = Right
+18, dir = Right
+Wall at next = (148,28)
+end = (148,27)
+L
+dir = Up
+26, dir = Up
+Wall at next = (138,27)
+end = (139,27)
+L
+dir = Left
+34, dir = Left
+Wall at next = (139,26)
+No move end = (139,27)
+R
+dir = Up
+48, dir = Up
+Wall at next = (138,27)
+No move end = (139,27)
+L
+dir = Left
+30, dir = Left
+Wall at next = (139,26)
+No move end = (139,27)
+L
+dir = Down
+43, dir = Down
+Wall at next = (170,27)
+end = (169,27)
+L
+dir = Right
+8, dir = Right
+Wall at next = (169,28)
+No move end = (169,27)
+R
+dir = Down
+29, dir = Down
+Wall at next = (170,27)
+No move end = (169,27)
+L
+dir = Right
+44, dir = Right
+Wall at next = (169,28)
+No move end = (169,27)
+R
+dir = Down
+17, dir = Down
+Wall at next = (170,27)
+No move end = (169,27)
+L
+dir = Right
+21, dir = Right
+Wall at next = (169,28)
+No move end = (169,27)
+L
+dir = Up
+29, dir = Up
+end = (140,27)
+R
+dir = Right
+29, dir = Right
+Wall at next = (140,30)
+end = (140,29)
+L
+dir = Up
+27, dir = Up
+end = (113,29)
+L
+dir = Left
+37, dir = Left
+Wall at next = (113,17)
+end = (113,18)
+L
+dir = Down
+17, dir = Down
+Wall at next = (117,18)
+end = (116,18)
+L
+dir = Right
+22, dir = Right
+Wall at next = (116,25)
+end = (116,24)
+L
+dir = Up
+8, dir = Up
+end = (108,24)
+L
+dir = Left
+39, dir = Left
+Wall at next = (108,17)
+end = (108,18)
+L
+dir = Down
+50, dir = Down
+Wall at next = (117,18)
+end = (116,18)
+R
+dir = Left
+34, dir = Left
+Wall at next = (116,5)
+end = (116,6)
+R
+dir = Up
+9, dir = Up
+end = (107,6)
+L
+dir = Left
+9, dir = Left
+Wall at next = (107,4)
+end = (107,5)
+R
+dir = Up
+30, dir = Up
+Wall at next = (105,5)
+end = (106,5)
+R
+dir = Right
+33, dir = Right
+Wall at next = (106,31)
+end = (106,30)
+L
+dir = Up
+10, dir = Up
+next = (100,30)
+wrapped = (200,30)
+remaining = 4
+Wall at next = (200,30)
+end = (101,30)
+R
+dir = Right
+22, dir = Right
+Wall at next = (101,32)
+end = (101,31)
+R
+dir = Down
+41, dir = Down
+Wall at next = (103,31)
+end = (102,31)
+L
+dir = Right
+44, dir = Right
+Wall at next = (102,36)
+end = (102,35)
+R
+dir = Down
+28, dir = Down
+Wall at next = (109,35)
+end = (108,35)
+L
+dir = Right
+33, dir = Right
+Wall at next = (108,51)
+end = (108,50)
+L
+dir = Up
+3, dir = Up
+Wall at next = (107,50)
+No move end = (108,50)
+L
+dir = Left
+34, dir = Left
+Wall at next = (108,17)
+end = (108,18)
+R
+dir = Up
+47, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+L
+dir = Left
+42, dir = Left
+Wall at next = (103,12)
+end = (103,13)
+L
+dir = Down
+2, dir = Down
+end = (105,13)
+R
+dir = Left
+9, dir = Left
+Wall at next = (105,5)
+end = (105,6)
+L
+dir = Down
+47, dir = Down
+Wall at next = (119,6)
+end = (118,6)
+R
+dir = Left
+24, dir = Left
+next = (118,0)
+wrapped = (118,100)
+remaining = 18
+Wall at next = (118,89)
+end = (118,90)
+L
+dir = Down
+2, dir = Down
+end = (120,90)
+L
+dir = Right
+29, dir = Right
+Wall at next = (120,91)
+No move end = (120,90)
+R
+dir = Down
+49, dir = Down
+Wall at next = (122,90)
+end = (121,90)
+R
+dir = Left
+38, dir = Left
+Wall at next = (121,89)
+No move end = (121,90)
+L
+dir = Down
+7, dir = Down
+Wall at next = (122,90)
+No move end = (121,90)
+R
+dir = Left
+16, dir = Left
+Wall at next = (121,89)
+No move end = (121,90)
+R
+dir = Up
+36, dir = Up
+Wall at next = (93,90)
+end = (94,90)
+R
+dir = Right
+39, dir = Right
+Wall at next = (94,91)
+No move end = (94,90)
+L
+dir = Up
+11, dir = Up
+Wall at next = (93,90)
+No move end = (94,90)
+R
+dir = Right
+25, dir = Right
+Wall at next = (94,91)
+No move end = (94,90)
+L
+dir = Up
+15, dir = Up
+Wall at next = (93,90)
+No move end = (94,90)
+R
+dir = Right
+16, dir = Right
+Wall at next = (94,91)
+No move end = (94,90)
+R
+dir = Down
+32, dir = Down
+Wall at next = (122,90)
+end = (121,90)
+L
+dir = Right
+31, dir = Right
+Wall at next = (121,91)
+No move end = (121,90)
+L
+dir = Up
+14, dir = Up
+end = (107,90)
+L
+dir = Left
+30, dir = Left
+Wall at next = (107,84)
+end = (107,85)
+L
+dir = Down
+26, dir = Down
+Wall at next = (125,85)
+end = (124,85)
+L
+dir = Right
+23, dir = Right
+Wall at next = (124,94)
+end = (124,93)
+L
+dir = Up
+27, dir = Up
+Wall at next = (105,93)
+end = (106,93)
+R
+dir = Right
+9, dir = Right
+next = (106,101)
+wrapped = (106,1)
+remaining = 1
+Wall at next = (106,1)
+end = (106,100)
+R
+dir = Down
+32, dir = Down
+Wall at next = (124,100)
+end = (123,100)
+R
+dir = Left
+22, dir = Left
+Wall at next = (123,97)
+end = (123,98)
+R
+dir = Up
+17, dir = Up
+Wall at next = (117,98)
+end = (118,98)
+L
+dir = Left
+8, dir = Left
+end = (118,90)
+R
+dir = Up
+26, dir = Up
+Wall at next = (93,90)
+end = (94,90)
+R
+dir = Right
+4, dir = Right
+Wall at next = (94,91)
+No move end = (94,90)
+L
+dir = Up
+24, dir = Up
+Wall at next = (93,90)
+No move end = (94,90)
+L
+dir = Left
+33, dir = Left
+Wall at next = (94,82)
+end = (94,83)
+R
+dir = Up
+11, dir = Up
+end = (83,83)
+L
+dir = Left
+32, dir = Left
+Wall at next = (83,77)
+end = (83,78)
+R
+dir = Up
+48, dir = Up
+Wall at next = (70,78)
+end = (71,78)
+R
+dir = Right
+40, dir = Right
+Wall at next = (71,79)
+No move end = (71,78)
+L
+dir = Up
+11, dir = Up
+Wall at next = (70,78)
+No move end = (71,78)
+L
+dir = Left
+39, dir = Left
+Wall at next = (71,70)
+end = (71,71)
+R
+dir = Up
+18, dir = Up
+end = (53,71)
+L
+dir = Left
+7, dir = Left
+end = (53,64)
+L
+dir = Down
+20, dir = Down
+Wall at next = (68,64)
+end = (67,64)
+R
+dir = Left
+26, dir = Left
+Wall at next = (67,58)
+end = (67,59)
+R
+dir = Up
+42, dir = Up
+Wall at next = (54,59)
+end = (55,59)
+L
+dir = Left
+22, dir = Left
+Wall at next = (55,51)
+end = (55,52)
+L
+dir = Down
+28, dir = Down
+Wall at next = (70,52)
+end = (69,52)
+R
+dir = Left
+11, dir = Left
+next = (69,50)
+wrapped = (69,100)
+remaining = 9
+Wall at next = (69,100)
+end = (69,51)
+L
+dir = Down
+26, dir = Down
+Wall at next = (77,51)
+end = (76,51)
+L
+dir = Right
+23, dir = Right
+Wall at next = (76,65)
+end = (76,64)
+R
+dir = Down
+8, dir = Down
+Wall at next = (82,64)
+end = (81,64)
+R
+dir = Left
+6, dir = Left
+Wall at next = (81,63)
+No move end = (81,64)
+L
+dir = Down
+27, dir = Down
+Wall at next = (82,64)
+No move end = (81,64)
+R
+dir = Left
+20, dir = Left
+Wall at next = (81,63)
+No move end = (81,64)
+R
+dir = Up
+28, dir = Up
+Wall at next = (68,64)
+end = (69,64)
+R
+dir = Right
+44, dir = Right
+Wall at next = (69,74)
+end = (69,73)
+R
+dir = Down
+6, dir = Down
+Wall at next = (73,73)
+end = (72,73)
+R
+dir = Left
+35, dir = Left
+Wall at next = (72,68)
+end = (72,69)
+L
+dir = Down
+33, dir = Down
+Wall at next = (74,69)
+end = (73,69)
+R
+dir = Left
+12, dir = Left
+Wall at next = (73,68)
+No move end = (73,69)
+R
+dir = Up
+47, dir = Up
+Wall at next = (56,69)
+end = (57,69)
+R
+dir = Right
+39, dir = Right
+Wall at next = (57,78)
+end = (57,77)
+R
+dir = Down
+7, dir = Down
+Wall at next = (64,77)
+end = (63,77)
+L
+dir = Right
+9, dir = Right
+Wall at next = (63,78)
+No move end = (63,77)
+L
+dir = Up
+29, dir = Up
+Wall at next = (55,77)
+end = (56,77)
+L
+dir = Left
+16, dir = Left
+Wall at next = (56,69)
+end = (56,70)
+R
+dir = Up
+48, dir = Up
+Wall at next = (48,70)
+end = (49,70)
+L
+dir = Left
+14, dir = Left
+Wall at next = (49,58)
+end = (49,59)
+R
+dir = Up
+43, dir = Up
+Wall at next = (41,59)
+end = (42,59)
+R
+dir = Right
+43, dir = Right
+Wall at next = (42,60)
+No move end = (42,59)
+L
+dir = Up
+9, dir = Up
+Wall at next = (41,59)
+No move end = (42,59)
+L
+dir = Left
+27, dir = Left
+Wall at next = (42,57)
+end = (42,58)
+R
+dir = Up
+30, dir = Up
+Wall at next = (40,58)
+end = (41,58)
+L
+dir = Left
+20, dir = Left
+Wall at next = (41,55)
+end = (41,56)
+L
+dir = Down
+16, dir = Down
+Wall at next = (45,56)
+end = (44,56)
+R
+dir = Left
+31, dir = Left
+Wall at next = (44,53)
+end = (44,54)
+L
+dir = Down
+31, dir = Down
+Wall at next = (47,54)
+end = (46,54)
+R
+dir = Left
+5, dir = Left
+next = (46,50)
+wrapped = (46,150)
+remaining = 1
+end = (46,149)
+R
+dir = Up
+2, dir = Up
+end = (44,149)
+L
+dir = Left
+6, dir = Left
+Wall at next = (44,144)
+end = (44,145)
+R
+dir = Up
+40, dir = Up
+Wall at next = (39,145)
+end = (40,145)
+R
+dir = Right
+40, dir = Right
+Wall at next = (40,149)
+end = (40,148)
+R
+dir = Down
+17, dir = Down
+next = (51,148)
+wrapped = (1,148)
+remaining = 6
+Wall at next = (4,148)
+end = (3,148)
+L
+dir = Right
+27, dir = Right
+next = (3,151)
+wrapped = (3,51)
+remaining = 24
+Wall at next = (3,60)
+end = (3,59)
+L
+dir = Up
+15, dir = Up
+next = (0,59)
+wrapped = (150,59)
+remaining = 12
+Wall at next = (150,59)
+end = (1,59)
+L
+dir = Left
+48, dir = Left
+next = (1,50)
+wrapped = (1,150)
+remaining = 39
+Wall at next = (1,150)
+end = (1,51)
+R
+dir = Up
+40, dir = Up
+next = (0,51)
+wrapped = (150,51)
+remaining = 39
+Wall at next = (149,51)
+end = (150,51)
+R
+dir = Right
+16, dir = Right
+Wall at next = (150,57)
+end = (150,56)
+R
+dir = Down
+32, dir = Down
+next = (151,56)
+wrapped = (1,56)
+remaining = 31
+Wall at next = (12,56)
+end = (11,56)
+L
+dir = Right
+12, dir = Right
+end = (11,68)
+L
+dir = Up
+21, dir = Up
+Wall at next = (6,68)
+end = (7,68)
+R
+dir = Right
+35, dir = Right
+Wall at next = (7,88)
+end = (7,87)
+R
+dir = Down
+35, dir = Down
+Wall at next = (8,87)
+No move end = (7,87)
+R
+dir = Left
+21, dir = Left
+end = (7,66)
+R
+dir = Up
+49, dir = Up
+Wall at next = (5,66)
+end = (6,66)
+L
+dir = Left
+15, dir = Left
+end = (6,51)
+R
+dir = Up
+9, dir = Up
+next = (0,51)
+wrapped = (150,51)
+remaining = 3
+Wall at next = (149,51)
+end = (150,51)
+L
+dir = Left
+36, dir = Left
+Wall at next = (150,50)
+No move end = (150,51)
+L
+dir = Down
+10, dir = Down
+next = (151,51)
+wrapped = (1,51)
+remaining = 9
+Wall at next = (8,51)
+end = (7,51)
+R
+dir = Left
+20, dir = Left
+next = (7,50)
+wrapped = (7,150)
+remaining = 19
+Wall at next = (7,138)
+end = (7,139)
+L
+dir = Down
+10, dir = Down
+end = (17,139)
+L
+dir = Right
+37, dir = Right
+Wall at next = (17,147)
+end = (17,146)
+L
+dir = Up
+17, dir = Up
+next = (0,146)
+wrapped = (50,146)
+remaining = 0
+end = (50,146)
+R
+dir = Right
+46, dir = Right
+next = (50,151)
+wrapped = (50,51)
+remaining = 41
+Wall at next = (50,59)
+end = (50,58)
+L
+dir = Up
+17, dir = Up
+Wall at next = (49,58)
+No move end = (50,58)
+R
+dir = Right
+31, dir = Right
+Wall at next = (50,59)
+No move end = (50,58)
+R
+dir = Down
+2, dir = Down
+end = (52,58)
+R
+dir = Left
+37, dir = Left
+Wall at next = (52,55)
+end = (52,56)
+R
+dir = Up
+13, dir = Up
+Wall at next = (51,56)
+No move end = (52,56)
+R
+dir = Right
+17, dir = Right
+Wall at next = (52,66)
+end = (52,65)
+L
+dir = Up
+6, dir = Up
+end = (46,65)
+R
+dir = Right
+47, dir = Right
+Wall at next = (46,90)
+end = (46,89)
+L
+dir = Up
+17, dir = Up
+Wall at next = (45,89)
+No move end = (46,89)
+R
+dir = Right
+33, dir = Right
+Wall at next = (46,90)
+No move end = (46,89)
+L
+dir = Up
+29, dir = Up
+Wall at next = (45,89)
+No move end = (46,89)
+L
+dir = Left
+44, dir = Left
+Wall at next = (46,58)
+end = (46,59)
+L
+dir = Down
+6, dir = Down
+Wall at next = (50,59)
+end = (49,59)
+R
+dir = Left
+21, dir = Left
+Wall at next = (49,58)
+No move end = (49,59)
+R
+dir = Up
+42, dir = Up
+Wall at next = (41,59)
+end = (42,59)
+L
+dir = Left
+23, dir = Left
+Wall at next = (42,57)
+end = (42,58)
+L
+dir = Down
+9, dir = Down
+Wall at next = (46,58)
+end = (45,58)
+R
+dir = Left
+21, dir = Left
+Wall at next = (45,56)
+end = (45,57)
+L
+dir = Down
+9, dir = Down
+Wall at next = (46,57)
+No move end = (45,57)
+L
+dir = Right
+8, dir = Right
+Wall at next = (45,64)
+end = (45,63)
+L
+dir = Up
+45, dir = Up
+Wall at next = (37,63)
+end = (38,63)
+R
+dir = Right
+39, dir = Right
+Wall at next = (38,75)
+end = (38,74)
+R
+dir = Down
+27, dir = Down
+Wall at next = (45,74)
+end = (44,74)
+R
+dir = Left
+45, dir = Left
+Wall at next = (44,53)
+end = (44,54)
+R
+dir = Up
+9, dir = Up
+end = (35,54)
+R
+dir = Right
+47, dir = Right
+Wall at next = (35,78)
+end = (35,77)
+L
+dir = Up
+30, dir = Up
+Wall at next = (33,77)
+end = (34,77)
+R
+dir = Right
+5, dir = Right
+end = (34,82)
+L
+dir = Up
+15, dir = Up
+Wall at next = (28,82)
+end = (29,82)
+L
+dir = Left
+8, dir = Left
+Wall at next = (29,80)
+end = (29,81)
+L
+dir = Down
+40, dir = Down
+Wall at next = (35,81)
+end = (34,81)
+R
+dir = Left
+45, dir = Left
+Wall at next = (34,75)
+end = (34,76)
+L
+dir = Down
+24, dir = Down
+Wall at next = (41,76)
+end = (40,76)
+R
+dir = Left
+49, dir = Left
+Wall at next = (40,67)
+end = (40,68)
+R
+dir = Up
+5, dir = Up
+end = (35,68)
+L
+dir = Left
+43, dir = Left
+Wall at next = (35,52)
+end = (35,53)
+R
+dir = Up
+26, dir = Up
+Wall at next = (30,53)
+end = (31,53)
+R
+dir = Right
+37, dir = Right
+Wall at next = (31,55)
+end = (31,54)
+L
+dir = Up
+22, dir = Up
+Wall at next = (18,54)
+end = (19,54)
+L
+dir = Left
+1, dir = Left
+end = (19,53)
+R
+dir = Up
+15, dir = Up
+Wall at next = (17,53)
+end = (18,53)
+R
+dir = Right
+30, dir = Right
+Wall at next = (18,54)
+No move end = (18,53)
+L
+dir = Up
+10, dir = Up
+Wall at next = (17,53)
+No move end = (18,53)
+R
+dir = Right
+24, dir = Right
+Wall at next = (18,54)
+No move end = (18,53)
+L
+dir = Up
+47, dir = Up
+Wall at next = (17,53)
+No move end = (18,53)
+R
+dir = Right
+45, dir = Right
+Wall at next = (18,54)
+No move end = (18,53)
+L
+dir = Up
+10, dir = Up
+Wall at next = (17,53)
+No move end = (18,53)
+R
+dir = Right
+9, dir = Right
+Wall at next = (18,54)
+No move end = (18,53)
+L
+dir = Up
+45, dir = Up
+Wall at next = (17,53)
+No move end = (18,53)
+L
+dir = Left
+16, dir = Left
+next = (18,50)
+wrapped = (18,150)
+remaining = 13
+Wall at next = (18,146)
+end = (18,147)
+R
+dir = Up
+23, dir = Up
+Wall at next = (17,147)
+No move end = (18,147)
+L
+dir = Left
+18, dir = Left
+Wall at next = (18,146)
+No move end = (18,147)
+R
+dir = Up
+6, dir = Up
+Wall at next = (17,147)
+No move end = (18,147)
+L
+dir = Left
+16, dir = Left
+Wall at next = (18,146)
+No move end = (18,147)
+L
+dir = Down
+12, dir = Down
+end = (30,147)
+L
+dir = Right
+8, dir = Right
+next = (30,151)
+wrapped = (30,51)
+remaining = 4
+Wall at next = (30,53)
+end = (30,52)
+R
+dir = Down
+24, dir = Down
+Wall at next = (35,52)
+end = (34,52)
+R
+dir = Left
+48, dir = Left
+next = (34,50)
+wrapped = (34,150)
+remaining = 46
+Wall at next = (34,140)
+end = (34,141)
+L
+dir = Down
+2, dir = Down
+end = (36,141)
+R
+dir = Left
+2, dir = Left
+end = (36,139)
+L
+dir = Down
+33, dir = Down
+Wall at next = (45,139)
+end = (44,139)
+R
+dir = Left
+42, dir = Left
+Wall at next = (44,138)
+No move end = (44,139)
+R
+dir = Up
+46, dir = Up
+next = (0,139)
+wrapped = (50,139)
+remaining = 2
+end = (48,139)
+R
+dir = Right
+29, dir = Right
+Wall at next = (48,149)
+end = (48,148)
+R
+dir = Down
+4, dir = Down
+next = (51,148)
+wrapped = (1,148)
+remaining = 1
+end = (2,148)
+R
+dir = Left
+3, dir = Left
+end = (2,145)
+L
+dir = Down
+5, dir = Down
+Wall at next = (3,145)
+No move end = (2,145)
+L
+dir = Right
+17, dir = Right
+next = (2,151)
+wrapped = (2,51)
+remaining = 11
+end = (2,62)
+R
+dir = Down
+9, dir = Down
+Wall at next = (4,62)
+end = (3,62)
+R
+dir = Left
+42, dir = Left
+Wall at next = (3,60)
+end = (3,61)
+L
+dir = Down
+20, dir = Down
+Wall at next = (13,61)
+end = (12,61)
+L
+dir = Right
+4, dir = Right
+end = (12,65)
+R
+dir = Down
+39, dir = Down
+end = (51,65)
+L
+dir = Right
+10, dir = Right
+end = (51,75)
+L
+dir = Up
+5, dir = Up
+end = (46,75)
+R
+dir = Right
+9, dir = Right
+end = (46,84)
+L
+dir = Up
+35, dir = Up
+Wall at next = (17,84)
+end = (18,84)
+R
+dir = Right
+6, dir = Right
+Wall at next = (18,87)
+end = (18,86)
+L
+dir = Up
+49, dir = Up
+next = (0,86)
+wrapped = (150,86)
+remaining = 31
+Wall at next = (148,86)
+end = (149,86)
+R
+dir = Right
+46, dir = Right
+Wall at next = (149,99)
+end = (149,98)
+L
+dir = Up
+15, dir = Up
+Wall at next = (134,98)
+end = (135,98)
+L
+dir = Left
+41, dir = Left
+Wall at next = (135,88)
+end = (135,89)
+R
+dir = Up
+32, dir = Up
+Wall at next = (126,89)
+end = (127,89)
+L
+dir = Left
+47, dir = Left
+Wall at next = (127,88)
+No move end = (127,89)
+L
+dir = Down
+42, dir = Down
+Wall at next = (138,89)
+end = (137,89)
+L
+dir = Right
+13, dir = Right
+next = (137,101)
+wrapped = (137,1)
+remaining = 1
+end = (137,2)
+L
+dir = Up
+9, dir = Up
+end = (128,2)
+R
+dir = Right
+46, dir = Right
+Wall at next = (128,8)
+end = (128,7)
+L
+dir = Up
+46, dir = Up
+Wall at next = (124,7)
+end = (125,7)
+R
+dir = Right
+24, dir = Right
+Wall at next = (125,22)
+end = (125,21)
+L
+dir = Up
+21, dir = Up
+Wall at next = (123,21)
+end = (124,21)
+R
+dir = Right
+38, dir = Right
+Wall at next = (124,22)
+No move end = (124,21)
+R
+dir = Down
+28, dir = Down
+Wall at next = (128,21)
+end = (127,21)
+L
+dir = Right
+10, dir = Right
+Wall at next = (127,24)
+end = (127,23)
+L
+dir = Up
+2, dir = Up
+end = (125,23)
+L
+dir = Left
+35, dir = Left
+Wall at next = (125,22)
+No move end = (125,23)
+R
+dir = Up
+27, dir = Up
+Wall at next = (120,23)
+end = (121,23)
+R
+dir = Right
+12, dir = Right
+Wall at next = (121,26)
+end = (121,25)
+R
+dir = Down
+25, dir = Down
+Wall at next = (123,25)
+end = (122,25)
+L
+dir = Right
+28, dir = Right
+Wall at next = (122,27)
+end = (122,26)
+R
+dir = Down
+41, dir = Down
+Wall at next = (129,26)
+end = (128,26)
+R
+dir = Left
+23, dir = Left
+Wall at next = (128,21)
+end = (128,22)
+R
+dir = Up
+2, dir = Up
+end = (126,22)
+L
+dir = Left
+18, dir = Left
+end = (126,4)
+R
+dir = Up
+2, dir = Up
+end = (124,4)
+L
+dir = Left
+4, dir = Left
+next = (124,0)
+wrapped = (124,100)
+remaining = 0
+Wall at next = (124,100)
+end = (124,1)
+L
+dir = Down
+33, dir = Down
+Wall at next = (134,1)
+end = (133,1)
+L
+dir = Right
+28, dir = Right
+Wall at next = (133,4)
+end = (133,3)
+R
+dir = Down
+3, dir = Down
+end = (136,3)
+L
+dir = Right
+11, dir = Right
+Wall at next = (136,14)
+end = (136,13)
+R
+dir = Down
+39, dir = Down
+Wall at next = (146,13)
+end = (145,13)
+R
+dir = Left
+15, dir = Left
+Wall at next = (145,8)
+end = (145,9)
+L
+dir = Down
+17, dir = Down
+Wall at next = (149,9)
+end = (148,9)
+R
+dir = Left
+14, dir = Left
+next = (148,0)
+wrapped = (148,100)
+remaining = 5
+end = (148,95)
+L
+dir = Down
+49, dir = Down
+next = (151,95)
+wrapped = (1,95)
+remaining = 46
+Wall at next = (2,95)
+end = (1,95)
+L
+dir = Right
+17, dir = Right
+Wall at next = (1,96)
+No move end = (1,95)
+R
+dir = Down
+10, dir = Down
+Wall at next = (2,95)
+No move end = (1,95)
+L
+dir = Right
+4, dir = Right
+Wall at next = (1,96)
+No move end = (1,95)
+L
+dir = Up
+5, dir = Up
+next = (0,95)
+wrapped = (150,95)
+remaining = 4
+end = (146,95)
+R
+dir = Right
+39, dir = Right
+next = (146,101)
+wrapped = (146,1)
+remaining = 33
+Wall at next = (146,7)
+end = (146,6)
+R
+dir = Down
+41, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+R
+dir = Left
+6, dir = Left
+next = (155,0)
+wrapped = (155,50)
+remaining = 0
+end = (155,50)
+R
+dir = Up
+32, dir = Up
+Wall at next = (150,50)
+end = (151,50)
+L
+dir = Left
+1, dir = Left
+Wall at next = (151,49)
+No move end = (151,50)
+R
+dir = Up
+1, dir = Up
+Wall at next = (150,50)
+No move end = (151,50)
+R
+dir = Right
+16, dir = Right
+next = (151,51)
+wrapped = (151,1)
+remaining = 15
+Wall at next = (151,12)
+end = (151,11)
+R
+dir = Down
+28, dir = Down
+Wall at next = (160,11)
+end = (159,11)
+R
+dir = Left
+11, dir = Left
+Wall at next = (159,8)
+end = (159,9)
+R
+dir = Up
+3, dir = Up
+end = (156,9)
+L
+dir = Left
+24, dir = Left
+Wall at next = (156,6)
+end = (156,7)
+R
+dir = Up
+32, dir = Up
+Wall at next = (149,7)
+end = (150,7)
+R
+dir = Right
+2, dir = Right
+end = (150,9)
+L
+dir = Up
+38, dir = Up
+Wall at next = (149,9)
+No move end = (150,9)
+L
+dir = Left
+7, dir = Left
+Wall at next = (150,2)
+end = (150,3)
+R
+dir = Up
+6, dir = Up
+end = (144,3)
+R
+dir = Right
+36, dir = Right
+Wall at next = (144,4)
+No move end = (144,3)
+L
+dir = Up
+2, dir = Up
+end = (142,3)
+L
+dir = Left
+11, dir = Left
+next = (142,0)
+wrapped = (142,100)
+remaining = 8
+end = (142,92)
+L
+dir = Down
+42, dir = Down
+next = (151,92)
+wrapped = (1,92)
+remaining = 33
+Wall at next = (10,92)
+end = (9,92)
+L
+dir = Right
+23, dir = Right
+Wall at next = (9,95)
+end = (9,94)
+R
+dir = Down
+21, dir = Down
+Wall at next = (10,94)
+No move end = (9,94)
+R
+dir = Left
+41, dir = Left
+Wall at next = (9,70)
+end = (9,71)
+R
+dir = Up
+43, dir = Up
+next = (0,71)
+wrapped = (150,71)
+remaining = 34
+Wall at next = (148,71)
+end = (149,71)
+L
+dir = Left
+48, dir = Left
+Wall at next = (149,51)
+end = (149,52)
+L
+dir = Down
+4, dir = Down
+next = (151,52)
+wrapped = (1,52)
+remaining = 2
+end = (3,52)
+R
+dir = Left
+13, dir = Left
+next = (3,50)
+wrapped = (3,150)
+remaining = 11
+Wall at next = (3,145)
+end = (3,146)
+R
+dir = Up
+38, dir = Up
+next = (0,146)
+wrapped = (50,146)
+remaining = 35
+Wall at next = (47,146)
+end = (48,146)
+L
+dir = Left
+44, dir = Left
+Wall at next = (48,137)
+end = (48,138)
+R
+dir = Up
+11, dir = Up
+Wall at next = (47,138)
+No move end = (48,138)
+R
+dir = Right
+5, dir = Right
+end = (48,143)
+L
+dir = Up
+31, dir = Up
+Wall at next = (44,143)
+end = (45,143)
+L
+dir = Left
+26, dir = Left
+Wall at next = (45,139)
+end = (45,140)
+L
+dir = Down
+23, dir = Down
+Wall at next = (50,140)
+end = (49,140)
+R
+dir = Left
+40, dir = Left
+Wall at next = (49,128)
+end = (49,129)
+L
+dir = Down
+43, dir = Down
+next = (51,129)
+wrapped = (1,129)
+remaining = 41
+Wall at next = (5,129)
+end = (4,129)
+R
+dir = Left
+24, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+R
+dir = Up
+46, dir = Up
+next = (0,129)
+wrapped = (50,129)
+remaining = 42
+Wall at next = (39,129)
+end = (40,129)
+L
+dir = Left
+9, dir = Left
+Wall at next = (40,123)
+end = (40,124)
+L
+dir = Down
+10, dir = Down
+Wall at next = (43,124)
+end = (42,124)
+R
+dir = Left
+20, dir = Left
+end = (42,104)
+L
+dir = Down
+15, dir = Down
+Wall at next = (44,104)
+end = (43,104)
+L
+dir = Right
+12, dir = Right
+Wall at next = (43,111)
+end = (43,110)
+R
+dir = Down
+6, dir = Down
+end = (49,110)
+L
+dir = Right
+28, dir = Right
+Wall at next = (49,115)
+end = (49,114)
+R
+dir = Down
+10, dir = Down
+next = (51,114)
+wrapped = (1,114)
+remaining = 8
+Wall at next = (2,114)
+end = (1,114)
+L
+dir = Right
+45, dir = Right
+Wall at next = (1,130)
+end = (1,129)
+R
+dir = Down
+24, dir = Down
+Wall at next = (5,129)
+end = (4,129)
+L
+dir = Right
+13, dir = Right
+Wall at next = (4,136)
+end = (4,135)
+L
+dir = Up
+7, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 3
+Wall at next = (48,135)
+end = (49,135)
+L
+dir = Left
+21, dir = Left
+Wall at next = (49,128)
+end = (49,129)
+L
+dir = Down
+31, dir = Down
+next = (51,129)
+wrapped = (1,129)
+remaining = 29
+Wall at next = (5,129)
+end = (4,129)
+L
+dir = Right
+42, dir = Right
+Wall at next = (4,136)
+end = (4,135)
+L
+dir = Up
+11, dir = Up
+next = (0,135)
+wrapped = (50,135)
+remaining = 7
+Wall at next = (48,135)
+end = (49,135)
+L
+dir = Left
+12, dir = Left
+Wall at next = (49,128)
+end = (49,129)
+L
+dir = Down
+29, dir = Down
+next = (51,129)
+wrapped = (1,129)
+remaining = 27
+Wall at next = (5,129)
+end = (4,129)
+R
+dir = Left
+29, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+L
+dir = Down
+26, dir = Down
+Wall at next = (5,129)
+No move end = (4,129)
+L
+dir = Right
+33, dir = Right
+Wall at next = (4,136)
+end = (4,135)
+R
+dir = Down
+40, dir = Down
+Wall at next = (24,135)
+end = (23,135)
+L
+dir = Right
+11, dir = Right
+Wall at next = (23,146)
+end = (23,145)
+R
+dir = Down
+49, dir = Down
+Wall at next = (39,145)
+end = (38,145)
+L
+dir = Right
+15, dir = Right
+next = (38,151)
+wrapped = (38,51)
+remaining = 9
+Wall at next = (38,55)
+end = (38,54)
+L
+dir = Up
+35, dir = Up
+Wall at next = (32,54)
+end = (33,54)
+R
+dir = Right
+38, dir = Right
+Wall at next = (33,75)
+end = (33,74)
+L
+dir = Up
+3, dir = Up
+end = (30,74)
+R
+dir = Right
+23, dir = Right
+Wall at next = (30,79)
+end = (30,78)
+R
+dir = Down
+48, dir = Down
+Wall at next = (35,78)
+end = (34,78)
+R
+dir = Left
+32, dir = Left
+Wall at next = (34,75)
+end = (34,76)
+R
+dir = Up
+21, dir = Up
+Wall at next = (32,76)
+end = (33,76)
+L
+dir = Left
+47, dir = Left
+Wall at next = (33,75)
+No move end = (33,76)
+L
+dir = Down
+29, dir = Down
+Wall at next = (41,76)
+end = (40,76)
+L
+dir = Right
+47, dir = Right
+Wall at next = (40,85)
+end = (40,84)
+R
+dir = Down
+15, dir = Down
+Wall at next = (47,84)
+end = (46,84)
+L
+dir = Right
+36, dir = Right
+Wall at next = (46,90)
+end = (46,89)
+L
+dir = Up
+18, dir = Up
+Wall at next = (45,89)
+No move end = (46,89)
+L
+dir = Left
+35, dir = Left
+Wall at next = (46,58)
+end = (46,59)
+R
+dir = Up
+41, dir = Up
+Wall at next = (41,59)
+end = (42,59)
+R
+dir = Right
+12, dir = Right
+Wall at next = (42,60)
+No move end = (42,59)
+R
+dir = Down
+32, dir = Down
+Wall at next = (50,59)
+end = (49,59)
+L
+dir = Right
+3, dir = Right
+end = (49,62)
+R
+dir = Down
+8, dir = Down
+Wall at next = (56,62)
+end = (55,62)
+L
+dir = Right
+9, dir = Right
+end = (55,71)
+R
+dir = Down
+28, dir = Down
+end = (83,71)
+L
+dir = Right
+40, dir = Right
+Wall at next = (83,72)
+No move end = (83,71)
+R
+dir = Down
+23, dir = Down
+Wall at next = (87,71)
+end = (86,71)
+R
+dir = Left
+13, dir = Left
+Wall at next = (86,62)
+end = (86,63)
+R
+dir = Up
+1, dir = Up
+end = (85,63)
+R
+dir = Right
+11, dir = Right
+end = (85,74)
+L
+dir = Up
+28, dir = Up
+Wall at next = (82,74)
+end = (83,74)
+R
+dir = Right
+6, dir = Right
+Wall at next = (83,77)
+end = (83,76)
+L
+dir = Up
+3, dir = Up
+end = (80,76)
+L
+dir = Left
+40, dir = Left
+Wall at next = (80,53)
+end = (80,54)
+R
+dir = Up
+18, dir = Up
+Wall at next = (62,54)
+end = (63,54)
+L
+dir = Left
+27, dir = Left
+next = (63,50)
+wrapped = (63,100)
+remaining = 23
+Wall at next = (63,99)
+end = (63,100)
+L
+dir = Down
+19, dir = Down
+Wall at next = (69,100)
+end = (68,100)
+L
+dir = Right
+40, dir = Right
+next = (68,101)
+wrapped = (68,51)
+remaining = 39
+Wall at next = (68,53)
+end = (68,52)
+R
+dir = Down
+40, dir = Down
+Wall at next = (70,52)
+end = (69,52)
+L
+dir = Right
+45, dir = Right
+Wall at next = (69,74)
+end = (69,73)
+L
+dir = Up
+21, dir = Up
+Wall at next = (58,73)
+end = (59,73)
+R
+dir = Right
+50, dir = Right
+Wall at next = (59,89)
+end = (59,88)
+R
+dir = Down
+27, dir = Down
+Wall at next = (65,88)
+end = (64,88)
+L
+dir = Right
+41, dir = Right
+next = (64,101)
+wrapped = (64,51)
+remaining = 28
+Wall at next = (64,51)
+end = (64,100)
+R
+dir = Down
+1, dir = Down
+end = (65,100)
+L
+dir = Right
+24, dir = Right
+next = (65,101)
+wrapped = (65,51)
+remaining = 23
+Wall at next = (65,55)
+end = (65,54)
+L
+dir = Up
+34, dir = Up
+Wall at next = (62,54)
+end = (63,54)
+L
+dir = Left
+20, dir = Left
+next = (63,50)
+wrapped = (63,100)
+remaining = 16
+Wall at next = (63,99)
+end = (63,100)
+L
+dir = Down
+20, dir = Down
+Wall at next = (69,100)
+end = (68,100)
+L
+dir = Right
+30, dir = Right
+next = (68,101)
+wrapped = (68,51)
+remaining = 29
+Wall at next = (68,53)
+end = (68,52)
+L
+dir = Up
+18, dir = Up
+Wall at next = (52,52)
+end = (53,52)
+R
+dir = Right
+23, dir = Right
+Wall at next = (53,61)
+end = (53,60)
+L
+dir = Up
+32, dir = Up
+Wall at next = (42,60)
+end = (43,60)
+R
+dir = Right
+9, dir = Right
+end = (43,69)
+L
+dir = Up
+26, dir = Up
+end = (17,69)
+L
+dir = Left
+32, dir = Left
+Wall at next = (17,53)
+end = (17,54)
+L
+dir = Down
+37, dir = Down
+Wall at next = (18,54)
+No move end = (17,54)
+R
+dir = Left
+44, dir = Left
+Wall at next = (17,53)
+No move end = (17,54)
+R
+dir = Up
+23, dir = Up
+Wall at next = (13,54)
+end = (14,54)
+R
+dir = Right
+35, dir = Right
+Wall at next = (14,74)
+end = (14,73)
+R
+dir = Down
+47, dir = Down
+Wall at next = (16,73)
+end = (15,73)
+L
+dir = Right
+48, dir = Right
+Wall at next = (15,93)
+end = (15,92)
+L
+dir = Up
+19, dir = Up
+Wall at next = (11,92)
+end = (12,92)
+L
+dir = Left
+28, dir = Left
+Wall at next = (12,82)
+end = (12,83)
+R
+dir = Up
+33, dir = Up
+next = (0,83)
+wrapped = (150,83)
+remaining = 21
+Wall at next = (149,83)
+end = (150,83)
+R
+dir = Right
+45, dir = Right
+Wall at next = (150,88)
+end = (150,87)
+L
+dir = Up
+36, dir = Up
+Wall at next = (145,87)
+end = (146,87)
+R
+dir = Right
+42, dir = Right
+next = (146,101)
+wrapped = (146,1)
+remaining = 28
+Wall at next = (146,7)
+end = (146,6)
+R
+dir = Down
+38, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+L
+dir = Right
+40, dir = Right
+Wall at next = (155,21)
+end = (155,20)
+L
+dir = Up
+12, dir = Up
+Wall at next = (147,20)
+end = (148,20)
+R
+dir = Right
+48, dir = Right
+Wall at next = (148,28)
+end = (148,27)
+L
+dir = Up
+10, dir = Up
+Wall at next = (138,27)
+end = (139,27)
+R
+dir = Right
+27, dir = Right
+Wall at next = (139,37)
+end = (139,36)
+R
+dir = Down
+8, dir = Down
+Wall at next = (145,36)
+end = (144,36)
+L
+dir = Right
+43, dir = Right
+Wall at next = (144,53)
+end = (144,52)
+R
+dir = Down
+25, dir = Down
+Wall at next = (145,52)
+No move end = (144,52)
+R
+dir = Left
+9, dir = Left
+end = (144,43)
+R
+dir = Up
+3, dir = Up
+end = (141,43)
+R
+dir = Right
+29, dir = Right
+Wall at next = (141,56)
+end = (141,55)
+L
+dir = Up
+48, dir = Up
+Wall at next = (133,55)
+end = (134,55)
+R
+dir = Right
+44, dir = Right
+Wall at next = (134,56)
+No move end = (134,55)
+R
+dir = Down
+33, dir = Down
+Wall at next = (146,55)
+end = (145,55)
+R
+dir = Left
+1, dir = Left
+end = (145,54)
+R
+dir = Up
+9, dir = Up
+Wall at next = (139,54)
+end = (140,54)
+L
+dir = Left
+49, dir = Left
+Wall at next = (140,53)
+No move end = (140,54)
+R
+dir = Up
+41, dir = Up
+Wall at next = (139,54)
+No move end = (140,54)
+R
+dir = Right
+48, dir = Right
+Wall at next = (140,61)
+end = (140,60)
+L
+dir = Up
+43, dir = Up
+Wall at next = (137,60)
+end = (138,60)
+L
+dir = Left
+29, dir = Left
+Wall at next = (138,44)
+end = (138,45)
+L
+dir = Down
+47, dir = Down
+Wall at next = (149,45)
+end = (148,45)
+L
+dir = Right
+34, dir = Right
+Wall at next = (148,56)
+end = (148,55)
+R
+dir = Down
+45, dir = Down
+next = (151,55)
+wrapped = (1,55)
+remaining = 42
+Wall at next = (29,55)
+end = (28,55)
+L
+dir = Right
+33, dir = Right
+Wall at next = (28,82)
+end = (28,81)
+L
+dir = Up
+49, dir = Up
+Wall at next = (21,81)
+end = (22,81)
+R
+dir = Right
+1, dir = Right
+Wall at next = (22,82)
+No move end = (22,81)
+L
+dir = Up
+3, dir = Up
+Wall at next = (21,81)
+No move end = (22,81)
+L
+dir = Left
+30, dir = Left
+Wall at next = (22,61)
+end = (22,62)
+R
+dir = Up
+8, dir = Up
+end = (14,62)
+L
+dir = Left
+7, dir = Left
+end = (14,55)
+L
+dir = Down
+9, dir = Down
+end = (23,55)
+R
+dir = Left
+7, dir = Left
+Wall at next = (23,51)
+end = (23,52)
+L
+dir = Down
+48, dir = Down
+Wall at next = (24,52)
+No move end = (23,52)
+L
+dir = Right
+46, dir = Right
+Wall at next = (23,75)
+end = (23,74)
+L
+dir = Up
+6, dir = Up
+end = (17,74)
+R
+dir = Right
+13, dir = Right
+Wall at next = (17,80)
+end = (17,79)
+L
+dir = Up
+4, dir = Up
+end = (13,79)
+R
+dir = Right
+14, dir = Right
+Wall at next = (13,89)
+end = (13,88)
+R
+dir = Down
+2, dir = Down
+end = (15,88)
+L
+dir = Right
+44, dir = Right
+Wall at next = (15,93)
+end = (15,92)
+R
+dir = Down
+38, dir = Down
+Wall at next = (32,92)
+end = (31,92)
+L
+dir = Right
+28, dir = Right
+Wall at next = (31,102)
+end = (31,101)
+L
+dir = Up
+41, dir = Up
+next = (0,101)
+wrapped = (50,101)
+remaining = 10
+end = (40,101)
+R
+dir = Right
+45, dir = Right
+Wall at next = (40,108)
+end = (40,107)
+R
+dir = Down
+40, dir = Down
+Wall at next = (47,107)
+end = (46,107)
+L
+dir = Right
+23, dir = Right
+Wall at next = (46,114)
+end = (46,113)
+L
+dir = Up
+46, dir = Up
+Wall at next = (38,113)
+end = (39,113)
+R
+dir = Right
+28, dir = Right
+Wall at next = (39,129)
+end = (39,128)
+R
+dir = Down
+28, dir = Down
+Wall at next = (49,128)
+end = (48,128)
+L
+dir = Right
+37, dir = Right
+Wall at next = (48,130)
+end = (48,129)
+R
+dir = Down
+32, dir = Down
+next = (51,129)
+wrapped = (1,129)
+remaining = 29
+Wall at next = (5,129)
+end = (4,129)
+R
+dir = Left
+10, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+L
+dir = Down
+8, dir = Down
+Wall at next = (5,129)
+No move end = (4,129)
+R
+dir = Left
+42, dir = Left
+Wall at next = (4,128)
+No move end = (4,129)
+R
+dir = Up
+37, dir = Up
+next = (0,129)
+wrapped = (50,129)
+remaining = 33
+Wall at next = (39,129)
+end = (40,129)
+R
+dir = Right
+3, dir = Right
+end = (40,132)
+R
+dir = Down
+47, dir = Down
+next = (51,132)
+wrapped = (1,132)
+remaining = 36
+Wall at next = (9,132)
+end = (8,132)
+R
+dir = Left
+39, dir = Left
+Wall at next = (8,104)
+end = (8,105)
+R
+dir = Up
+24, dir = Up
+Wall at next = (4,105)
+end = (5,105)
+L
+dir = Left
+8, dir = Left
+end = (5,97)
+L
+dir = Down
+34, dir = Down
+Wall at next = (10,97)
+end = (9,97)
+L
+dir = Right
+1, dir = Right
+end = (9,98)
+R
+dir = Down
+39, dir = Down
+Wall at next = (15,98)
+end = (14,98)
+L
+dir = Right
+7, dir = Right
+end = (14,105)
+R
+dir = Down
+18, dir = Down
+Wall at next = (23,105)
+end = (22,105)
+L
+dir = Right
+9, dir = Right
+Wall at next = (22,112)
+end = (22,111)
+L
+dir = Up
+11, dir = Up
+Wall at next = (14,111)
+end = (15,111)
+L
+dir = Left
+13, dir = Left
+Wall at next = (15,100)
+end = (15,101)
+R
+dir = Up
+26, dir = Up
+next = (0,101)
+wrapped = (50,101)
+remaining = 11
+end = (39,101)
+L
+dir = Left
+39, dir = Left
+Wall at next = (39,91)
+end = (39,92)
+R
+dir = Up
+9, dir = Up
+Wall at next = (32,92)
+end = (33,92)
+L
+dir = Left
+4, dir = Left
+end = (33,88)
+R
+dir = Up
+35, dir = Up
+Wall at next = (7,88)
+end = (8,88)
+L
+dir = Left
+36, dir = Left
+Wall at next = (8,87)
+No move end = (8,88)
+L
+dir = Down
+18, dir = Down
+end = (26,88)
+R
+dir = Left
+15, dir = Left
+Wall at next = (26,82)
+end = (26,83)
+L
+dir = Down
+34, dir = Down
+Wall at next = (30,83)
+end = (29,83)
+L
+dir = Right
+12, dir = Right
+Wall at next = (29,85)
+end = (29,84)
+L
+dir = Up
+7, dir = Up
+end = (22,84)
+L
+dir = Left
+30, dir = Left
+Wall at next = (22,82)
+end = (22,83)
+L
+dir = Down
+6, dir = Down
+end = (28,83)
+R
+dir = Left
+44, dir = Left
+Wall at next = (28,82)
+No move end = (28,83)
+R
+dir = Up
+24, dir = Up
+end = (4,83)
+R
+dir = Right
+45, dir = Right
+Wall at next = (4,97)
+end = (4,96)
+R
+dir = Down
+32, dir = Down
+Wall at next = (13,96)
+end = (12,96)
+R
+dir = Left
+44, dir = Left
+Wall at next = (12,82)
+end = (12,83)
+L
+dir = Down
+10, dir = Down
+end = (22,83)
+L
+dir = Right
+6, dir = Right
+end = (22,89)
+L
+dir = Up
+29, dir = Up
+Wall at next = (13,89)
+end = (14,89)
+L
+dir = Left
+35, dir = Left
+Wall at next = (14,74)
+end = (14,75)
+R
+dir = Up
+31, dir = Up
+Wall at next = (2,75)
+end = (3,75)
+R
+dir = Right
+37, dir = Right
+Wall at next = (3,91)
+end = (3,90)
+L
+dir = Up
+47, dir = Up
+next = (0,90)
+wrapped = (150,90)
+remaining = 44
+Wall at next = (145,90)
+end = (146,90)
+L
+dir = Left
+46, dir = Left
+Wall at next = (146,80)
+end = (146,81)
+R
+dir = Up
+10, dir = Up
+end = (136,81)
+R
+dir = Right
+40, dir = Right
+Wall at next = (136,90)
+end = (136,89)
+L
+dir = Up
+43, dir = Up
+Wall at next = (126,89)
+end = (127,89)
+L
+dir = Left
+8, dir = Left
+Wall at next = (127,88)
+No move end = (127,89)
+R
+dir = Up
+34, dir = Up
+Wall at next = (126,89)
+No move end = (127,89)
+L
+dir = Left
+41, dir = Left
+Wall at next = (127,88)
+No move end = (127,89)
+R
+dir = Up
+33, dir = Up
+Wall at next = (126,89)
+No move end = (127,89)
+R
+dir = Right
+14, dir = Right
+next = (127,101)
+wrapped = (127,1)
+remaining = 2
+end = (127,3)
+L
+dir = Up
+41, dir = Up
+Wall at next = (122,3)
+end = (123,3)
+R
+dir = Right
+29, dir = Right
+Wall at next = (123,12)
+end = (123,11)
+R
+dir = Down
+30, dir = Down
+Wall at next = (127,11)
+end = (126,11)
+R
+dir = Left
+50, dir = Left
+next = (126,0)
+wrapped = (126,100)
+remaining = 39
+Wall at next = (126,95)
+end = (126,96)
+R
+dir = Up
+17, dir = Up
+Wall at next = (115,96)
+end = (116,96)
+L
+dir = Left
+32, dir = Left
+Wall at next = (116,91)
+end = (116,92)
+R
+dir = Up
+31, dir = Up
+Wall at next = (96,92)
+end = (97,92)
+L
+dir = Left
+6, dir = Left
+Wall at next = (97,86)
+end = (97,87)
+R
+dir = Up
+26, dir = Up
+Wall at next = (95,87)
+end = (96,87)
+R
+dir = Right
+16, dir = Right
+Wall at next = (96,89)
+end = (96,88)
+L
+dir = Up
+49, dir = Up
+Wall at next = (67,88)
+end = (68,88)
+L
+dir = Left
+30, dir = Left
+Wall at next = (68,75)
+end = (68,76)
+L
+dir = Down
+14, dir = Down
+Wall at next = (70,76)
+end = (69,76)
+R
+dir = Left
+47, dir = Left
+Wall at next = (69,74)
+end = (69,75)
+R
+dir = Up
+37, dir = Up
+Wall at next = (68,75)
+No move end = (69,75)
+L
+dir = Left
+22, dir = Left
+Wall at next = (69,74)
+No move end = (69,75)
+L
+dir = Down
+39, dir = Down
+Wall at next = (90,75)
+end = (89,75)
+R
+dir = Left
+32, dir = Left
+Wall at next = (89,74)
+No move end = (89,75)
+L
+dir = Down
+8, dir = Down
+Wall at next = (90,75)
+No move end = (89,75)
+R
+dir = Left
+39, dir = Left
+Wall at next = (89,74)
+No move end = (89,75)
+L
+dir = Down
+31, dir = Down
+Wall at next = (90,75)
+No move end = (89,75)
+L
+dir = Right
+4, dir = Right
+Wall at next = (89,76)
+No move end = (89,75)
+L
+dir = Up
+47, dir = Up
+Wall at next = (68,75)
+end = (69,75)
+L
+dir = Left
+26, dir = Left
+Wall at next = (69,74)
+No move end = (69,75)
+L
+dir = Down
+24, dir = Down
+Wall at next = (90,75)
+end = (89,75)
+R
+dir = Left
+6, dir = Left
+Wall at next = (89,74)
+No move end = (89,75)
+L
+dir = Down
+9, dir = Down
+Wall at next = (90,75)
+No move end = (89,75)
+R
+dir = Left
+21, dir = Left
+Wall at next = (89,74)
+No move end = (89,75)
+R
+dir = Up
+35, dir = Up
+Wall at next = (68,75)
+end = (69,75)
+L
+dir = Left
+40, dir = Left
+Wall at next = (69,74)
+No move end = (69,75)
+R
+dir = Up
+29, dir = Up
+Wall at next = (68,75)
+No move end = (69,75)
+R
+dir = Right
+45, dir = Right
+Wall at next = (69,78)
+end = (69,77)
+R
+dir = Down
+9, dir = Down
+end = (78,77)
+L
+dir = Right
+4, dir = Right
+end = (78,81)
+L
+dir = Up
+20, dir = Up
+Wall at next = (62,81)
+end = (63,81)
+L
+dir = Left
+37, dir = Left
+Wall at next = (63,78)
+end = (63,79)
+R
+dir = Up
+2, dir = Up
+end = (61,79)
+L
+dir = Left
+23, dir = Left
+Wall at next = (61,75)
+end = (61,76)
+R
+dir = Up
+19, dir = Up
+end = (42,76)
+L
+dir = Left
+29, dir = Left
+Wall at next = (42,66)
+end = (42,67)
+L
+dir = Down
+17, dir = Down
+end = (59,67)
+R
+dir = Left
+38, dir = Left
+next = (59,50)
+wrapped = (59,100)
+remaining = 21
+Wall at next = (59,97)
+end = (59,98)
+R
+dir = Up
+15, dir = Up
+end = (44,98)
+L
+dir = Left
+34, dir = Left
+end = (44,64)
+R
+dir = Up
+32, dir = Up
+Wall at next = (18,64)
+end = (19,64)
+R
+dir = Right
+12, dir = Right
+end = (19,76)
+L
+dir = Up
+41, dir = Up
+next = (0,76)
+wrapped = (150,76)
+remaining = 22
+Wall at next = (139,76)
+end = (140,76)
+R
+dir = Right
+7, dir = Right
+end = (140,83)
+L
+dir = Up
+2, dir = Up
+end = (138,83)
+L
+dir = Left
+47, dir = Left
+Wall at next = (138,80)
+end = (138,81)
+R
+dir = Up
+22, dir = Up
+Wall at next = (128,81)
+end = (129,81)
+L
+dir = Left
+5, dir = Left
+end = (129,76)
+R
+dir = Up
+10, dir = Up
+Wall at next = (127,76)
+end = (128,76)
+L
+dir = Left
+41, dir = Left
+Wall at next = (128,65)
+end = (128,66)
+R
+dir = Up
+10, dir = Up
+Wall at next = (119,66)
+end = (120,66)
+L
+dir = Left
+15, dir = Left
+Wall at next = (120,61)
+end = (120,62)
+L
+dir = Down
+21, dir = Down
+Wall at next = (140,62)
+end = (139,62)
+R
+dir = Left
+19, dir = Left
+Wall at next = (139,54)
+end = (139,55)
+R
+dir = Up
+2, dir = Up
+end = (137,55)
+L
+dir = Left
+7, dir = Left
+Wall at next = (137,50)
+end = (137,51)
+L
+dir = Down
+42, dir = Down
+Wall at next = (146,51)
+end = (145,51)
+R
+dir = Left
+20, dir = Left
+Wall at next = (145,39)
+end = (145,40)
+L
+dir = Down
+24, dir = Down
+Wall at next = (156,40)
+end = (155,40)
+R
+dir = Left
+5, dir = Left
+end = (155,35)
+L
+dir = Down
+9, dir = Down
+Wall at next = (159,35)
+end = (158,35)
+L
+dir = Right
+8, dir = Right
+end = (158,43)
+R
+dir = Down
+48, dir = Down
+Wall at next = (166,43)
+end = (165,43)
+R
+dir = Left
+23, dir = Left
+Wall at next = (165,22)
+end = (165,23)
+R
+dir = Up
+26, dir = Up
+Wall at next = (152,23)
+end = (153,23)
+R
+dir = Right
+24, dir = Right
+end = (153,47)
+R
+dir = Down
+15, dir = Down
+Wall at next = (158,47)
+end = (157,47)
+R
+dir = Left
+30, dir = Left
+Wall at next = (157,43)
+end = (157,44)
+R
+dir = Up
+38, dir = Up
+Wall at next = (152,44)
+end = (153,44)
+R
+dir = Right
+17, dir = Right
+next = (153,51)
+wrapped = (153,1)
+remaining = 10
+end = (153,11)
+R
+dir = Down
+28, dir = Down
+Wall at next = (160,11)
+end = (159,11)
+L
+dir = Right
+4, dir = Right
+end = (159,15)
+R
+dir = Down
+10, dir = Down
+end = (169,15)
+L
+dir = Right
+11, dir = Right
+end = (169,26)
+R
+dir = Down
+22, dir = Down
+Wall at next = (179,26)
+end = (178,26)
+R
+dir = Left
+44, dir = Left
+Wall at next = (178,21)
+end = (178,22)
+L
+dir = Down
+44, dir = Down
+next = (201,22)
+wrapped = (101,22)
+remaining = 21
+Wall at next = (109,22)
+end = (108,22)
+R
+dir = Left
+8, dir = Left
+Wall at next = (108,17)
+end = (108,18)
+R
+dir = Up
+30, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+R
+dir = Right
+39, dir = Right
+Wall at next = (103,31)
+end = (103,30)
+R
+dir = Down
+8, dir = Down
+Wall at next = (110,30)
+end = (109,30)
+R
+dir = Left
+32, dir = Left
+Wall at next = (109,26)
+end = (109,27)
+R
+dir = Up
+5, dir = Up
+end = (104,27)
+L
+dir = Left
+24, dir = Left
+Wall at next = (104,25)
+end = (104,26)
+R
+dir = Up
+47, dir = Up
+next = (100,26)
+wrapped = (200,26)
+remaining = 43
+Wall at next = (179,26)
+end = (180,26)
+L
+dir = Left
+39, dir = Left
+Wall at next = (180,21)
+end = (180,22)
+L
+dir = Down
+48, dir = Down
+next = (201,22)
+wrapped = (101,22)
+remaining = 27
+Wall at next = (109,22)
+end = (108,22)
+R
+dir = Left
+35, dir = Left
+Wall at next = (108,17)
+end = (108,18)
+R
+dir = Up
+24, dir = Up
+Wall at next = (102,18)
+end = (103,18)
+L
+dir = Left
+2, dir = Left
+end = (103,16)
+R
+dir = Up
+47, dir = Up
+next = (100,16)
+wrapped = (200,16)
+remaining = 44
+Wall at next = (200,16)
+end = (101,16)
+L
+dir = Left
+4, dir = Left
+end = (101,12)
+R
+dir = Up
+47, dir = Up
+next = (100,12)
+wrapped = (200,12)
+remaining = 46
+Wall at next = (194,12)
+end = (195,12)
+R
+dir = Right
+25, dir = Right
+Wall at next = (195,15)
+end = (195,14)
+L
+dir = Up
+47, dir = Up
+Wall at next = (191,14)
+end = (192,14)
+R
+dir = Right
+13, dir = Right
+end = (192,27)
+R
+dir = Down
+13, dir = Down
+next = (201,27)
+wrapped = (101,27)
+remaining = 4
+Wall at next = (102,27)
+end = (101,27)
+L
+dir = Right
+6, dir = Right
+Wall at next = (101,32)
+end = (101,31)
+L
+dir = Up
+45, dir = Up
+next = (100,31)
+wrapped = (200,31)
+remaining = 44
+Wall at next = (194,31)
+end = (195,31)
+R
+dir = Right
+34, dir = Right
+next = (195,51)
+wrapped = (195,1)
+remaining = 14
+Wall at next = (195,7)
+end = (195,6)
+R
+dir = Down
+21, dir = Down
+Wall at next = (198,6)
+end = (197,6)
+L
+dir = Right
+28, dir = Right
+Wall at next = (197,25)
+end = (197,24)
+R
+dir = Down
+30, dir = Down
+next = (201,24)
+wrapped = (101,24)
+remaining = 26
+Wall at next = (127,24)
+end = (126,24)
+L
+dir = Right
+30, dir = Right
+Wall at next = (126,33)
+end = (126,32)
+R
+dir = Down
+14, dir = Down
+Wall at next = (135,32)
+end = (134,32)
+R
+dir = Left
+42, dir = Left
+Wall at next = (134,6)
+end = (134,7)
+L
+dir = Down
+47, dir = Down
+Wall at next = (140,7)
+end = (139,7)
+L
+dir = Right
+19, dir = Right
+Wall at next = (139,15)
+end = (139,14)
+R
+dir = Down
+17, dir = Down
+Wall at next = (142,14)
+end = (141,14)
+R
+dir = Left
+19, dir = Left
+Wall at next = (141,6)
+end = (141,7)
+L
+dir = Down
+8, dir = Down
+Wall at next = (146,7)
+end = (145,7)
+R
+dir = Left
+22, dir = Left
+next = (145,0)
+wrapped = (145,100)
+remaining = 15
+Wall at next = (145,93)
+end = (145,94)
+R
+dir = Up
+5, dir = Up
+end = (140,94)
+L
+dir = Left
+4, dir = Left
+end = (140,90)
+L
+dir = Down
+20, dir = Down
+Wall at next = (144,90)
+end = (143,90)
+L
+dir = Right
+6, dir = Right
+end = (143,96)
+L
+dir = Up
+45, dir = Up
+Wall at next = (138,96)
+end = (139,96)
+R
+dir = Right
+19, dir = Right
+next = (139,101)
+wrapped = (139,1)
+remaining = 14
+Wall at next = (139,15)
+end = (139,14)
+R
+dir = Down
+21, dir = Down
+Wall at next = (142,14)
+end = (141,14)
+R
+dir = Left
+32, dir = Left
+Wall at next = (141,6)
+end = (141,7)
+L
+dir = Down
+31, dir = Down
+Wall at next = (146,7)
+end = (145,7)
+R
+dir = Left
+25, dir = Left
+next = (145,0)
+wrapped = (145,100)
+remaining = 18
+Wall at next = (145,93)
+end = (145,94)
+L
+dir = Down
+35, dir = Down
+Wall at next = (147,94)
+end = (146,94)
+R
+dir = Left
+29, dir = Left
+Wall at next = (146,80)
+end = (146,81)
+L
+dir = Down
+28, dir = Down
+next = (151,81)
+wrapped = (1,81)
+remaining = 23
+Wall at next = (2,81)
+end = (1,81)
+L
+dir = Right
+14, dir = Right
+end = (1,95)
+L
+dir = Up
+5, dir = Up
+next = (0,95)
+wrapped = (150,95)
+remaining = 4
+end = (146,95)
+L
+dir = Left
+8, dir = Left
+end = (146,87)
+L
+dir = Down
+45, dir = Down
+next = (151,87)
+wrapped = (1,87)
+remaining = 40
+Wall at next = (8,87)
+end = (7,87)
+L
+dir = Right
+8, dir = Right
+Wall at next = (7,88)
+No move end = (7,87)
+R
+dir = Down
+23, dir = Down
+Wall at next = (8,87)
+No move end = (7,87)
+R
+dir = Left
+1, dir = Left
+end = (7,86)
+R
+dir = Up
+16, dir = Up
+next = (0,86)
+wrapped = (150,86)
+remaining = 9
+Wall at next = (148,86)
+end = (149,86)
+L
+dir = Left
+4, dir = Left
+Wall at next = (149,83)
+end = (149,84)
+R
+dir = Up
+46, dir = Up
+Wall at next = (148,84)
+No move end = (149,84)
+R
+dir = Right
+2, dir = Right
+end = (149,86)
+L
+dir = Up
+40, dir = Up
+Wall at next = (148,86)
+No move end = (149,86)
+L
+dir = Left
+42, dir = Left
+Wall at next = (149,83)
+end = (149,84)
+L
+dir = Down
+8, dir = Down
+next = (151,84)
+wrapped = (1,84)
+remaining = 6
+end = (7,84)
+L
+dir = Right
+3, dir = Right
+end = (7,87)
+L
+dir = Up
+19, dir = Up
+next = (0,87)
+wrapped = (150,87)
+remaining = 12
+Wall at next = (145,87)
+end = (146,87)
+R
+dir = Right
+16, dir = Right
+next = (146,101)
+wrapped = (146,1)
+remaining = 2
+end = (146,3)
+L
+dir = Up
+18, dir = Up
+end = (128,3)
+L
+dir = Left
+36, dir = Left
+next = (128,0)
+wrapped = (128,100)
+remaining = 33
+Wall at next = (128,100)
+end = (128,1)
+R
+dir = Up
+14, dir = Up
+Wall at next = (116,1)
+end = (117,1)
+L
+dir = Left
+12, dir = Left
+next = (117,0)
+wrapped = (117,100)
+remaining = 11
+Wall at next = (117,98)
+end = (117,99)
+R
+dir = Up
+7, dir = Up
+Wall at next = (114,99)
+end = (115,99)
+R
+dir = Right
+25, dir = Right
+next = (115,101)
+wrapped = (115,1)
+remaining = 23
+end = (115,24)
+L
+dir = Up
+48, dir = Up
+next = (100,24)
+wrapped = (200,24)
+remaining = 33
+Wall at next = (170,24)
+end = (171,24)
+L
+dir = Left
+12, dir = Left
+Wall at next = (171,13)
+end = (171,14)
+L
+dir = Down
+13, dir = Down
+Wall at next = (178,14)
+end = (177,14)
+L
+dir = Right
+40, dir = Right
+Wall at next = (177,18)
+end = (177,17)
+L
+dir = Up
+42, dir = Up
+Wall at next = (172,17)
+end = (173,17)
+L
+dir = Left
+21, dir = Left
+next = (173,0)
+wrapped = (173,50)
+remaining = 4
+end = (173,46)
+L
+dir = Down
+25, dir = Down
+Wall at next = (174,46)
+No move end = (173,46)
+R
+dir = Left
+35, dir = Left
+Wall at next = (173,45)
+No move end = (173,46)
+L
+dir = Down
+10, dir = Down
+Wall at next = (174,46)
+No move end = (173,46)
+L
+dir = Right
+47, dir = Right
+next = (173,51)
+wrapped = (173,1)
+remaining = 42
+Wall at next = (173,21)
+end = (173,20)
+L
+dir = Up
+28, dir = Up
+Wall at next = (166,20)
+end = (167,20)
+R
+dir = Right
+45, dir = Right
+Wall at next = (167,34)
+end = (167,33)
+R
+dir = Down
+19, dir = Down
+Wall at next = (177,33)
+end = (176,33)
+L
+dir = Right
+41, dir = Right
+Wall at next = (176,37)
+end = (176,36)
+R
+dir = Down
+1, dir = Down
+Wall at next = (177,36)
+No move end = (176,36)
+L
+dir = Right
+6, dir = Right
+Wall at next = (176,37)
+No move end = (176,36)
+L
+dir = Up
+47, dir = Up
+Wall at next = (173,36)
+end = (174,36)
+R
+dir = Right
+47, dir = Right
+Wall at next = (174,46)
+end = (174,45)
+L
+dir = Up
+2, dir = Up
+Wall at next = (173,45)
+No move end = (174,45)
+L
+dir = Left
+19, dir = Left
+end = (174,26)
+L
+dir = Down
+16, dir = Down
+Wall at next = (179,26)
+end = (178,26)
+L
+dir = Right
+17, dir = Right
+Wall at next = (178,27)
+No move end = (178,26)
+L
+dir = Up
+25, dir = Up
+end = (153,26)
+R
+dir = Right
+3, dir = Right
+end = (153,29)
+R
+dir = Down
+6, dir = Down
+end = (159,29)
+R
+dir = Left
+8, dir = Left
+end = (159,21)
+R
+dir = Up
+34, dir = Up
+Wall at next = (157,21)
+end = (158,21)
+L
+dir = Left
+9, dir = Left
+Wall at next = (158,19)
+end = (158,20)
+L
+dir = Down
+43, dir = Down
+Wall at next = (165,20)
+end = (164,20)
+R
+dir = Left
+49, dir = Left
+Wall at next = (164,8)
+end = (164,9)
+L
+dir = Down
+35, dir = Down
+Wall at next = (177,9)
+end = (176,9)
+L
+dir = Right
+38, dir = Right
+Wall at next = (176,16)
+end = (176,15)
+R
+dir = Down
+48, dir = Down
+Wall at next = (184,15)
+end = (183,15)
+R
+dir = Left
+39, dir = Left
+Wall at next = (183,14)
+No move end = (183,15)
+L
+dir = Down
+9, dir = Down
+Wall at next = (184,15)
+No move end = (183,15)
+L
+dir = Right
+36, dir = Right
+Wall at next = (183,17)
+end = (183,16)
+L
+dir = Up
+30, dir = Up
+Wall at next = (176,16)
+end = (177,16)
+L
+dir = Left
+43, dir = Left
+Wall at next = (177,11)
+end = (177,12)
+L
+dir = Down
+10, dir = Down
+Wall at next = (178,12)
+No move end = (177,12)
+R
+dir = Left
+9, dir = Left
+Wall at next = (177,11)
+No move end = (177,12)
+L
+dir = Down
+15, dir = Down
+Wall at next = (178,12)
+No move end = (177,12)
+R
+dir = Left
+9, dir = Left
+Wall at next = (177,11)
+No move end = (177,12)
+L
+dir = Down
+31, dir = Down
+Wall at next = (178,12)
+No move end = (177,12)
+L
+dir = Right
+43, dir = Right
+Wall at next = (177,18)
+end = (177,17)
+L
+dir = Up
+12, dir = Up
+Wall at next = (172,17)
+end = (173,17)
+L
+dir = Left
+47, dir = Left
+next = (173,0)
+wrapped = (173,50)
+remaining = 30
+Wall at next = (173,45)
+end = (173,46)
+R
+dir = Up
+33, dir = Up
+Wall at next = (172,46)
+No move end = (173,46)
+L
+dir = Left
+23, dir = Left
+Wall at next = (173,45)
+No move end = (173,46)
+L
+dir = Down
+27, dir = Down
+Wall at next = (174,46)
+No move end = (173,46)
+R
+dir = Left
+4, dir = Left
+Wall at next = (173,45)
+No move end = (173,46)
+R
+dir = Up
+18, dir = Up
+Wall at next = (172,46)
+No move end = (173,46)
+L
+dir = Left
+19, dir = Left
+Wall at next = (173,45)
+No move end = (173,46)
+R
+dir = Up
+29, dir = Up
+Wall at next = (172,46)
+No move end = (173,46)
+R
+dir = Right
+33, dir = Right
+next = (173,51)
+wrapped = (173,1)
+remaining = 28
+Wall at next = (173,21)
+end = (173,20)
+L
+dir = Up
+10, dir = Up
+Wall at next = (166,20)
+end = (167,20)
+R
+dir = Right
+29, dir = Right
+Wall at next = (167,34)
+end = (167,33)
+L
+dir = Up
+12, dir = Up
+Wall at next = (161,33)
+end = (162,33)
+L
+dir = Left
+29, dir = Left
+Wall at next = (162,16)
+end = (162,17)
+L
+dir = Down
+35, dir = Down
+Wall at next = (172,17)
+end = (171,17)
+L
+dir = Right
+17, dir = Right
+end = (171,34)
+L
+dir = Up
+19, dir = Up
+Wall at next = (167,34)
+end = (168,34)
+L
+dir = Left
+12, dir = Left
+Wall at next = (168,22)
+end = (168,23)
+L
+dir = Down
+9, dir = Down
+Wall at next = (174,23)
+end = (173,23)
+R
+dir = Left
+36, dir = Left
+Wall at next = (173,21)
+end = (173,22)
+R
+dir = Up
+15, dir = Up
+Wall at next = (170,22)
+end = (171,22)
+R
+dir = Right
+20, dir = Right
+Wall at next = (171,35)
+end = (171,34)
+R
+dir = Down
+37, dir = Down
+Wall at next = (180,34)
+end = (179,34)
+L
+dir = Right
+14, dir = Right
+Wall at next = (179,36)
+end = (179,35)
+L
+dir = Up
+38, dir = Up
+Wall at next = (171,35)
+end = (172,35)
+R
+dir = Right
+17, dir = Right
+Wall at next = (172,39)
+end = (172,38)
+L
+dir = Up
+14, dir = Up
+end = (158,38)
+R
+dir = Right
+40, dir = Right
+Wall at next = (158,47)
+end = (158,46)
+L
+dir = Up
+10, dir = Up
+Wall at next = (152,46)
+end = (153,46)
+R
+dir = Right
+50, dir = Right
+next = (153,51)
+wrapped = (153,1)
+remaining = 45
+Wall at next = (153,14)
+end = (153,13)
+R
+dir = Down
+31, dir = Down
+Wall at next = (158,13)
+end = (157,13)
+L
+dir = Right
+15, dir = Right
+Wall at next = (157,21)
+end = (157,20)
+R
+dir = Down
+8, dir = Down
+Wall at next = (165,20)
+end = (164,20)
+R
+dir = Left
+23, dir = Left
+Wall at next = (164,8)
+end = (164,9)
+R
+dir = Up
+42, dir = Up
+Wall at next = (149,9)
+end = (150,9)
+L
+dir = Left
+28, dir = Left
+Wall at next = (150,2)
+end = (150,3)
+L
+dir = Down
+41, dir = Down
+Wall at next = (152,3)
+end = (151,3)
+L
+dir = Right
+7, dir = Right
+end = (151,10)
+R
+dir = Down
+6, dir = Down
+Wall at next = (157,10)
+end = (156,10)
+R
+dir = Left
+16, dir = Left
+Wall at next = (156,6)
+end = (156,7)
+R
+dir = Up
+49, dir = Up
+Wall at next = (149,7)
+end = (150,7)
+R
+dir = Right
+15, dir = Right
+end = (150,22)
+R
+dir = Down
+41, dir = Down
+Wall at next = (153,22)
+end = (152,22)
+R
+dir = Left
+18, dir = Left
+Wall at next = (152,8)
+end = (152,9)
+L
+dir = Down
+33, dir = Down
+Wall at next = (177,9)
+end = (176,9)
+R
+dir = Left
+6, dir = Left
+end = (176,3)
+L
+dir = Down
+6, dir = Down
+end = (182,3)
+R
+dir = Left
+4, dir = Left
+next = (182,0)
+wrapped = (182,50)
+remaining = 1
+end = (182,49)
+R
+dir = Up
+19, dir = Up
+Wall at next = (176,49)
+end = (177,49)
+R
+dir = Right
+33, dir = Right
+next = (177,51)
+wrapped = (177,1)
+remaining = 31
+Wall at next = (177,1)
+end = (177,50)
+L
+dir = Up
+44, dir = Up
+Wall at next = (175,50)
+end = (176,50)
+L
+dir = Left
+5, dir = Left
+Wall at next = (176,49)
+No move end = (176,50)
+L
+dir = Down
+32, dir = Down
+Wall at next = (178,50)
+end = (177,50)
+R
+dir = Left
+24, dir = Left
+Wall at next = (177,44)
+end = (177,45)
+L
+dir = Down
+21, dir = Down
+Wall at next = (187,45)
+end = (186,45)
+R
+dir = Left
+34, dir = Left
+Wall at next = (186,20)
+end = (186,21)
+L
+dir = Down
+14, dir = Down
+end = (200,21)
+L
+dir = Right
+47, dir = Right
+Wall at next = (200,30)
+end = (200,29)
+L
+dir = Up
+18, dir = Up
+end = (182,29)
+L
+dir = Left
+3, dir = Left
+end = (182,26)
+L
+dir = Down
+43, dir = Down
+next = (201,26)
+wrapped = (101,26)
+remaining = 24
+Wall at next = (107,26)
+end = (106,26)
+L
+dir = Right
+16, dir = Right
+Wall at next = (106,31)
+end = (106,30)
+L
+dir = Up
+8, dir = Up
+next = (100,30)
+wrapped = (200,30)
+remaining = 2
+Wall at next = (200,30)
+end = (101,30)
+R
+dir = Right
+43, dir = Right
+Wall at next = (101,32)
+end = (101,31)
+R
+dir = Down
+42, dir = Down
+Wall at next = (103,31)
+end = (102,31)
+L
+dir = Right
+10, dir = Right
+Wall at next = (102,36)
+end = (102,35)
+R
+dir = Down
+10, dir = Down
+Wall at next = (109,35)
+end = (108,35)
+L
+dir = Right
+5, dir = Right
+end = (108,40)
+R
+dir = Down
+36, dir = Down
+Wall at next = (111,40)
+end = (110,40)
+R
+dir = Left
+23, dir = Left
+Wall at next = (110,38)
+end = (110,39)
+R
+dir = Up
+31, dir = Up
+Wall at next = (102,39)
+end = (103,39)
+L
+dir = Left
+3, dir = Left
+Wall at next = (103,36)
+end = (103,37)
+L
+dir = Down
+27, dir = Down
+Wall at next = (112,37)
+end = (111,37)
+L
+dir = Right
+14, dir = Right
+Wall at next = (111,40)
+end = (111,39)
+R
+dir = Down
+2, dir = Down
+end = (113,39)
+L
+dir = Right
+32, dir = Right
+Wall at next = (113,50)
+end = (113,49)
+R
+dir = Down
+21, dir = Down
+Wall at next = (134,49)
+end = (133,49)
+L
+dir = Right
+35, dir = Right
+Wall at next = (133,50)
+No move end = (133,49)
+R
+dir = Down
+50, dir = Down
+Wall at next = (134,49)
+No move end = (133,49)
+L
+dir = Right
+9, dir = Right
+Wall at next = (133,50)
+No move end = (133,49)
+R
+dir = Down
+23, dir = Down
+Wall at next = (134,49)
+No move end = (133,49)
+R
+dir = Left
+23, dir = Left
+Wall at next = (133,47)
+end = (133,48)
+L
+dir = Down
+12, dir = Down
+Wall at next = (137,48)
+end = (136,48)
+R
+dir = Left
+40, dir = Left
+Wall at next = (136,40)
+end = (136,41)
+R
+dir = Up
+49, dir = Up
+Wall at next = (127,41)
+end = (128,41)
+L
+dir = Left
+18, dir = Left
+Wall at next = (128,40)
+No move end = (128,41)
+L
+dir = Down
+48, dir = Down
+Wall at next = (141,41)
+end = (140,41)
+L
+dir = Right
+26, dir = Right
+Wall at next = (140,42)
+No move end = (140,41)
+L
+dir = Up
+13, dir = Up
+Wall at next = (127,41)
+end = (128,41)
+R
+dir = Right
+38, dir = Right
+Wall at next = (128,43)
+end = (128,42)
+R
+dir = Down
+10, dir = Down
+Wall at next = (138,42)
+end = (137,42)
+R
+dir = Left
+6, dir = Left
+Wall at next = (137,40)
+end = (137,41)
+L
+dir = Down
+48, dir = Down
+Wall at next = (141,41)
+end = (140,41)
+L
+dir = Right
+30, dir = Right
+Wall at next = (140,42)
+No move end = (140,41)
+L
+dir = Up
+25, dir = Up
+Wall at next = (127,41)
+end = (128,41)
+R
+dir = Right
+10, dir = Right
+Wall at next = (128,43)
+end = (128,42)
+R
+dir = Down
+50, dir = Down
+Wall at next = (138,42)
+end = (137,42)
+L
+dir = Right
+40, dir = Right
+Wall at next = (137,48)
+end = (137,47)
+L
+dir = Up
+25, dir = Up
+Wall at next = (133,47)
+end = (134,47)
+L
+dir = Left
+32, dir = Left
+Wall at next = (134,36)
+end = (134,37)
+R
+dir = Up
+27, dir = Up
+Wall at next = (129,37)
+end = (130,37)
+L
+dir = Left
+15, dir = Left
+Wall at next = (130,26)
+end = (130,27)
+L
+dir = Down
+35, dir = Down
+Wall at next = (131,27)
+No move end = (130,27)
+R
+dir = Left
+16, dir = Left
+Wall at next = (130,26)
+No move end = (130,27)
+R
+dir = Up
+1, dir = Up
+end = (129,27)
+R
+dir = Right
+33, dir = Right
+Wall at next = (129,33)
+end = (129,32)
+R
+dir = Down
+37, dir = Down
+Wall at next = (135,32)
+end = (134,32)
+R
+dir = Left
+5, dir = Left
+end = (134,27)
+R
+dir = Up
+43, dir = Up
+Wall at next = (131,27)
+end = (132,27)
+L
+dir = Left
+28, dir = Left
+Wall at next = (132,11)
+end = (132,12)
+L
+dir = Down
+22, dir = Down
+Wall at next = (149,12)
+end = (148,12)
+R
+dir = Left
+12, dir = Left
+Wall at next = (148,10)
+end = (148,11)
+R
+dir = Up
+18, dir = Up
+Wall at next = (142,11)
+end = (143,11)
+R
+dir = Right
+26, dir = Right
+Wall at next = (143,20)
+end = (143,19)
+L
+dir = Up
+45, dir = Up
+Wall at next = (133,19)
+end = (134,19)
+L
+dir = Left
+29, dir = Left
+Wall at next = (134,6)
+end = (134,7)
+L
+dir = Down
+40, dir = Down
+Wall at next = (140,7)
+end = (139,7)
+L
+dir = Right
+45, dir = Right
+Wall at next = (139,15)
+end = (139,14)
+R
+dir = Down
+1, dir = Down
+end = (140,14)
+R
+dir = Left
+12, dir = Left
+Wall at next = (140,11)
+end = (140,12)
+L
+dir = Down
+10, dir = Down
+Wall at next = (149,12)
+end = (148,12)
+R
+dir = Left
+29, dir = Left
+Wall at next = (148,10)
+end = (148,11)
+R
+dir = Up
+40, dir = Up
+Wall at next = (142,11)
+end = (143,11)
+L
+dir = Left
+50, dir = Left
+Wall at next = (143,5)
+end = (143,6)
+R
+dir = Up
+7, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+L
+dir = Left
+40, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+L
+dir = Down
+12, dir = Down
+end = (154,6)
+R
+dir = Left
+4, dir = Left
+Wall at next = (154,5)
+No move end = (154,6)
+R
+dir = Up
+38, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+L
+dir = Left
+49, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+R
+dir = Up
+42, dir = Up
+Wall at next = (141,6)
+No move end = (142,6)
+L
+dir = Left
+7, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+R
+dir = Up
+16, dir = Up
+Wall at next = (141,6)
+No move end = (142,6)
+L
+dir = Left
+22, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+L
+dir = Down
+28, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+L
+dir = Right
+7, dir = Right
+end = (155,13)
+R
+dir = Down
+16, dir = Down
+Wall at next = (158,13)
+end = (157,13)
+R
+dir = Left
+21, dir = Left
+Wall at next = (157,10)
+end = (157,11)
+R
+dir = Up
+8, dir = Up
+Wall at next = (149,11)
+end = (150,11)
+R
+dir = Right
+10, dir = Right
+end = (150,21)
+L
+dir = Up
+5, dir = Up
+end = (145,21)
+L
+dir = Left
+11, dir = Left
+Wall at next = (145,19)
+end = (145,20)
+R
+dir = Up
+17, dir = Up
+Wall at next = (143,20)
+end = (144,20)
+L
+dir = Left
+33, dir = Left
+Wall at next = (144,4)
+end = (144,5)
+L
+dir = Down
+23, dir = Down
+Wall at next = (147,5)
+end = (146,5)
+L
+dir = Right
+37, dir = Right
+Wall at next = (146,7)
+end = (146,6)
+L
+dir = Up
+2, dir = Up
+end = (144,6)
+L
+dir = Left
+47, dir = Left
+Wall at next = (144,4)
+end = (144,5)
+L
+dir = Down
+28, dir = Down
+Wall at next = (147,5)
+end = (146,5)
+R
+dir = Left
+49, dir = Left
+next = (146,0)
+wrapped = (146,100)
+remaining = 44
+Wall at next = (146,80)
+end = (146,81)
+L
+dir = Down
+3, dir = Down
+end = (149,81)
+L
+dir = Right
+38, dir = Right
+Wall at next = (149,82)
+No move end = (149,81)
+L
+dir = Up
+28, dir = Up
+Wall at next = (128,81)
+end = (129,81)
+L
+dir = Left
+37, dir = Left
+Wall at next = (129,54)
+end = (129,55)
+L
+dir = Down
+42, dir = Down
+Wall at next = (130,55)
+No move end = (129,55)
+R
+dir = Left
+1, dir = Left
+Wall at next = (129,54)
+No move end = (129,55)
+L
+dir = Down
+28, dir = Down
+Wall at next = (130,55)
+No move end = (129,55)
+L
+dir = Right
+33, dir = Right
+end = (129,88)
+L
+dir = Up
+14, dir = Up
+Wall at next = (127,88)
+end = (128,88)
+L
+dir = Left
+22, dir = Left
+Wall at next = (128,85)
+end = (128,86)
+L
+dir = Down
+10, dir = Down
+Wall at next = (134,86)
+end = (133,86)
+R
+dir = Left
+50, dir = Left
+Wall at next = (133,80)
+end = (133,81)
+L
+dir = Down
+5, dir = Down
+end = (138,81)
+L
+dir = Right
+6, dir = Right
+end = (138,87)
+R
+dir = Down
+20, dir = Down
+Wall at next = (145,87)
+end = (144,87)
+L
+dir = Right
+45, dir = Right
+Wall at next = (144,90)
+end = (144,89)
+L
+dir = Up
+34, dir = Up
+Wall at next = (141,89)
+end = (142,89)
+L
+dir = Left
+41, dir = Left
+Wall at next = (142,52)
+end = (142,53)
+R
+dir = Up
+3, dir = Up
+Wall at next = (140,53)
+end = (141,53)
+L
+dir = Left
+20, dir = Left
+Wall at next = (141,41)
+end = (141,42)
+R
+dir = Up
+27, dir = Up
+Wall at next = (140,42)
+No move end = (141,42)
+R
+dir = Right
+39, dir = Right
+Wall at next = (141,56)
+end = (141,55)
+R
+dir = Down
+29, dir = Down
+Wall at next = (146,55)
+end = (145,55)
+R
+dir = Left
+46, dir = Left
+Wall at next = (145,52)
+end = (145,53)
+L
+dir = Down
+19, dir = Down
+next = (151,53)
+wrapped = (1,53)
+remaining = 13
+Wall at next = (4,53)
+end = (3,53)
+L
+dir = Right
+5, dir = Right
+end = (3,58)
+L
+dir = Up
+22, dir = Up
+next = (0,58)
+wrapped = (150,58)
+remaining = 19
+Wall at next = (132,58)
+end = (133,58)
+L
+dir = Left
+36, dir = Left
+Wall at next = (133,55)
+end = (133,56)
+R
+dir = Up
+45, dir = Up
+Wall at next = (130,56)
+end = (131,56)
+R
+dir = Right
+11, dir = Right
+end = (131,67)
+L
+dir = Up
+25, dir = Up
+Wall at next = (123,67)
+end = (124,67)
+R
+dir = Right
+24, dir = Right
+Wall at next = (124,69)
+end = (124,68)
+L
+dir = Up
+20, dir = Up
+Wall at next = (108,68)
+end = (109,68)
+L
+dir = Left
+22, dir = Left
+Wall at next = (109,54)
+end = (109,55)
+R
+dir = Up
+19, dir = Up
+Wall at next = (106,55)
+end = (107,55)
+L
+dir = Left
+21, dir = Left
+Wall at next = (107,50)
+end = (107,51)
+R
+dir = Up
+13, dir = Up
+Wall at next = (99,51)
+end = (100,51)
+R
+dir = Right
+25, dir = Right
+Wall at next = (100,63)
+end = (100,62)
+L
+dir = Up
+36, dir = Up
+Wall at next = (92,62)
+end = (93,62)
+R
+dir = Right
+1, dir = Right
+end = (93,63)
+L
+dir = Up
+49, dir = Up
+Wall at next = (92,63)
+No move end = (93,63)
+L
+dir = Left
+1, dir = Left
+end = (93,62)
+L
+dir = Down
+7, dir = Down
+end = (100,62)
+R
+dir = Left
+21, dir = Left
+next = (100,50)
+wrapped = (100,100)
+remaining = 9
+end = (100,91)
+L
+dir = Down
+33, dir = Down
+Wall at next = (106,91)
+end = (105,91)
+R
+dir = Left
+43, dir = Left
+Wall at next = (105,85)
+end = (105,86)
+R
+dir = Up
+17, dir = Up
+Wall at next = (103,86)
+end = (104,86)
+L
+dir = Left
+48, dir = Left
+Wall at next = (104,81)
+end = (104,82)
+R
+dir = Up
+5, dir = Up
+end = (99,82)
+L
+dir = Left
+39, dir = Left
+Wall at next = (99,51)
+end = (99,52)
+L
+dir = Down
+28, dir = Down
+Wall at next = (104,52)
+end = (103,52)
+L
+dir = Right
+31, dir = Right
+end = (103,83)
+L
+dir = Up
+39, dir = Up
+Wall at next = (101,83)
+end = (102,83)
+L
+dir = Left
+43, dir = Left
+Wall at next = (102,81)
+end = (102,82)
+L
+dir = Down
+3, dir = Down
+end = (105,82)
+L
+dir = Right
+5, dir = Right
+Wall at next = (105,84)
+end = (105,83)
+L
+dir = Up
+22, dir = Up
+Wall at next = (101,83)
+end = (102,83)
+R
+dir = Right
+2, dir = Right
+end = (102,85)
+L
+dir = Up
+17, dir = Up
+Wall at next = (99,85)
+end = (100,85)
+R
+dir = Right
+25, dir = Right
+next = (100,101)
+wrapped = (100,51)
+remaining = 9
+end = (100,60)
+L
+dir = Up
+38, dir = Up
+Wall at next = (94,60)
+end = (95,60)
+R
+dir = Right
+49, dir = Right
+Wall at next = (95,64)
+end = (95,63)
+R
+dir = Down
+23, dir = Down
+Wall at next = (97,63)
+end = (96,63)
+R
+dir = Left
+21, dir = Left
+Wall at next = (96,55)
+end = (96,56)
+L
+dir = Down
+33, dir = Down
+Wall at next = (121,56)
+end = (120,56)
+R
+dir = Left
+6, dir = Left
+end = (120,50)
+L
+dir = Down
+24, dir = Down
+Wall at next = (133,50)
+end = (132,50)
+L
+dir = Right
+48, dir = Right
+Wall at next = (132,58)
+end = (132,57)
+L
+dir = Up
+11, dir = Up
+Wall at next = (121,57)
+end = (122,57)
+L
+dir = Left
+33, dir = Left
+Wall at next = (122,37)
+end = (122,38)
+L
+dir = Down
+23, dir = Down
+end = (145,38)
+L
+dir = Right
+31, dir = Right
+Wall at next = (145,39)
+No move end = (145,38)
+R
+dir = Down
+30, dir = Down
+Wall at next = (146,38)
+No move end = (145,38)
+L
+dir = Right
+50, dir = Right
+Wall at next = (145,39)
+No move end = (145,38)
+L
+dir = Up
+16, dir = Up
+end = (129,38)
+L
+dir = Left
+5, dir = Left
+Wall at next = (129,37)
+No move end = (129,38)
+R
+dir = Up
+19, dir = Up
+Wall at next = (116,38)
+end = (117,38)
+R
+dir = Right
+43, dir = Right
+Wall at next = (117,39)
+No move end = (117,38)
+R
+dir = Down
+46, dir = Down
+Wall at next = (146,38)
+end = (145,38)
+R
+dir = Left
+20, dir = Left
+Wall at next = (145,36)
+end = (145,37)
+L
+dir = Down
+44, dir = Down
+Wall at next = (162,37)
+end = (161,37)
+L
+dir = Right
+48, dir = Right
+next = (161,51)
+wrapped = (161,1)
+remaining = 34
+Wall at next = (161,2)
+end = (161,1)
+L
+dir = Up
+44, dir = Up
+Wall at next = (157,1)
+end = (158,1)
+L
+dir = Left
+44, dir = Left
+next = (158,0)
+wrapped = (158,50)
+remaining = 43
+Wall at next = (158,47)
+end = (158,48)
+L
+dir = Down
+28, dir = Down
+Wall at next = (172,48)
+end = (171,48)
+L
+dir = Right
+33, dir = Right
+Wall at next = (171,49)
+No move end = (171,48)
+L
+dir = Up
+39, dir = Up
+Wall at next = (157,48)
+end = (158,48)
+R
+dir = Right
+14, dir = Right
+next = (158,51)
+wrapped = (158,1)
+remaining = 11
+end = (158,12)
+L
+dir = Up
+4, dir = Up
+end = (154,12)
+L
+dir = Left
+28, dir = Left
+Wall at next = (154,5)
+end = (154,6)
+R
+dir = Up
+30, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+L
+dir = Left
+38, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+L
+dir = Down
+43, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+R
+dir = Left
+32, dir = Left
+next = (155,0)
+wrapped = (155,50)
+remaining = 26
+Wall at next = (155,30)
+end = (155,31)
+R
+dir = Up
+13, dir = Up
+Wall at next = (146,31)
+end = (147,31)
+R
+dir = Right
+13, dir = Right
+Wall at next = (147,32)
+No move end = (147,31)
+R
+dir = Down
+16, dir = Down
+Wall at next = (156,31)
+end = (155,31)
+L
+dir = Right
+35, dir = Right
+next = (155,51)
+wrapped = (155,1)
+remaining = 15
+end = (155,16)
+L
+dir = Up
+27, dir = Up
+end = (128,16)
+R
+dir = Right
+27, dir = Right
+Wall at next = (128,21)
+end = (128,20)
+L
+dir = Up
+12, dir = Up
+Wall at next = (124,20)
+end = (125,20)
+R
+dir = Right
+42, dir = Right
+Wall at next = (125,22)
+end = (125,21)
+L
+dir = Up
+13, dir = Up
+Wall at next = (123,21)
+end = (124,21)
+L
+dir = Left
+2, dir = Left
+Wall at next = (124,20)
+No move end = (124,21)
+L
+dir = Down
+49, dir = Down
+Wall at next = (128,21)
+end = (127,21)
+L
+dir = Right
+45, dir = Right
+Wall at next = (127,24)
+end = (127,23)
+R
+dir = Down
+27, dir = Down
+Wall at next = (149,23)
+end = (148,23)
+R
+dir = Left
+19, dir = Left
+Wall at next = (148,10)
+end = (148,11)
+R
+dir = Up
+39, dir = Up
+Wall at next = (142,11)
+end = (143,11)
+L
+dir = Left
+33, dir = Left
+Wall at next = (143,5)
+end = (143,6)
+R
+dir = Up
+29, dir = Up
+Wall at next = (141,6)
+end = (142,6)
+L
+dir = Left
+5, dir = Left
+Wall at next = (142,5)
+No move end = (142,6)
+R
+dir = Up
+45, dir = Up
+Wall at next = (141,6)
+No move end = (142,6)
+R
+dir = Right
+16, dir = Right
+Wall at next = (142,11)
+end = (142,10)
+L
+dir = Up
+11, dir = Up
+Wall at next = (131,10)
+end = (132,10)
+L
+dir = Left
+28, dir = Left
+Wall at next = (132,9)
+No move end = (132,10)
+L
+dir = Down
+31, dir = Down
+Wall at next = (148,10)
+end = (147,10)
+R
+dir = Left
+50, dir = Left
+Wall at next = (147,5)
+end = (147,6)
+L
+dir = Down
+42, dir = Down
+Wall at next = (156,6)
+end = (155,6)
+L
+dir = Right
+6, dir = Right
+end = (155,12)
+L
+dir = Up
+19, dir = Up
+Wall at next = (151,12)
+end = (152,12)
+R
+dir = Right
+26, dir = Right
+Wall at next = (152,23)
+end = (152,22)
+R
+dir = Down
+30, dir = Down
+Wall at next = (153,22)
+No move end = (152,22)
+R
+dir = Left
+8, dir = Left
+end = (152,14)
+L
+dir = Down
+43, dir = Down
+Wall at next = (153,14)
+No move end = (152,14)
+R
+dir = Left
+18, dir = Left
+Wall at next = (152,8)
+end = (152,9)
+L
+dir = Down
+6, dir = Down
+end = (158,9)
+L
+dir = Right
+34, dir = Right
+Wall at next = (158,13)
+end = (158,12)
+L
+dir = Up
+30, dir = Up
+Wall at next = (151,12)
+end = (152,12)
+L
+dir = Left
+31, dir = Left
+Wall at next = (152,8)
+end = (152,9)
+L
+dir = Down
+35, dir = Down
+Wall at next = (177,9)
+end = (176,9)
+R
+dir = Left
+9, dir = Left
+next = (176,0)
+wrapped = (176,50)
+remaining = 0
+end = (176,50)
+L
+dir = Down
+30, dir = Down
+Wall at next = (178,50)
+end = (177,50)
+L
+dir = Right
+47, dir = Right
+next = (177,51)
+wrapped = (177,1)
+remaining = 46
+Wall at next = (177,1)
+No move end = (177,50)
+R
+dir = Down
+38, dir = Down
+Wall at next = (178,50)
+No move end = (177,50)
+R
+dir = Left
+45, dir = Left
+Wall at next = (177,44)
+end = (177,45)
+L
+dir = Down
+21, dir = Down
+Wall at next = (187,45)
+end = (186,45)
+R
+dir = Left
+49, dir = Left
+Wall at next = (186,20)
+end = (186,21)
+L
+dir = Down
+20, dir = Down
+next = (201,21)
+wrapped = (101,21)
+remaining = 5
+Wall at next = (101,21)
+end = (200,21)
+R
+dir = Left
+33, dir = Left
+Wall at next = (200,16)
+end = (200,17)
+L
+dir = Down
+26, dir = Down
+next = (201,17)
+wrapped = (101,17)
+remaining = 25
+Wall at next = (108,17)
+end = (107,17)
+L
+dir = Right
+42, dir = Right
+Wall at next = (107,26)
+end = (107,25)
+R
+dir = Down
+50, dir = Down
+Wall at next = (110,25)
+end = (109,25)
+L
+dir = Right
+36, dir = Right
+Wall at next = (109,26)
+No move end = (109,25)
+R
+dir = Down
+39, dir = Down
+Wall at next = (110,25)
+No move end = (109,25)
+L
+dir = Right
+28, dir = Right
+Wall at next = (109,26)
+No move end = (109,25)
+R
+dir = Down
+30, dir = Down
+Wall at next = (110,25)
+No move end = (109,25)
+R
+dir = Left
+30, dir = Left
+Wall at next = (109,22)
+end = (109,23)
+end.row = 108
+end.col = 22
+1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) = 109092

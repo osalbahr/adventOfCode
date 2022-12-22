@@ -15,6 +15,8 @@ using namespace std;
 // #define REPORTP( P ) printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 #define REPORTP( P ) printf( "%s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 
+#define REPORTDIR( DIR ) printf( "%s = %s\n", #DIR, getDirStr( DIR ).c_str() )
+
 typedef pair<int,int> pi;
 #define col first
 #define row second
@@ -25,6 +27,16 @@ string path;
 enum DIR { rightDir=0, downDir=1, leftDir=2, upDir=3 };
 int dir = rightDir;
 int pathIdx = 0;
+
+static string getDirStr( int dir )
+{
+  return    dir == 0 ? "Right"  :
+            dir == 1 ? "Down"   :
+            dir == 2 ? "Left"   :
+            dir == 3 ? "Up"     :
+            "ERROR";
+
+}
 
 static pi getStart()
 {
@@ -70,27 +82,30 @@ static pi wrap( pi p, int dir )
 
     case downDir:
       // REPORT( p.row );
-      if ( p.row >= (signed)grid.size() || grid[ p.row ][ p.col ] == ' ' ) {
+      if ( p.row >= (signed)grid.size()
+          || p.col >= (signed)grid[ p.row ].size()
+          || grid[ p.row ][ p.col ] == ' ' ) {
         // REPORT( "Wrapping down (0)" );
         p.row = 0;
       }
-      while ( grid[ p.row ][ p.col ] == ' ' ) {
+      while ( p.col >= (signed)grid[ p.row ].size() || grid[ p.row ][ p.col ] == ' ' ) {
         p.row++;
       }
       break;
     
     case upDir:
-      if ( p.row < 0 ||  grid[ p.row ][ p.col ] == ' ' ) {
+      if ( p.row < 0
+          || grid[ p.row ][ p.col ] == ' ' ) {
         p.row = grid.size() - 1;
       }
-      while ( grid[ p.row ][ p.col ] == ' ' ) {
+      while ( p.col >= (signed)grid[ p.row ].size() || grid[ p.row ][ p.col ] == ' ' ) {
         p.row--;
       }
       break;
 
     default:
       cerr << "Unsupported wrap ";
-      REPORT( dir );
+      REPORTDIR( dir );
       exit( 1 );
   }
 
@@ -105,8 +120,11 @@ static pi moveDigit( pi p, int length )
   for ( int i = 0;; i++ ) {
     // REPORT( i );
     // Hit a wall
-    if ( grid[ next.row ][ next.col ] == '#' )
+    if ( grid[ next.row ][ next.col ] == '#' ) {
+      cout << "Wall at ";
+      REPORTP( next );
       break;
+    }
     // Update
     p = next;
     // Done
@@ -131,10 +149,14 @@ static pi moveDigit( pi p, int length )
         exit( 1 );
     }
 
-    // REPORTP( next );
-    next = wrap( next, dir );
-    // cout << "-> ";
-    // REPORTP( next );
+    pi wrapped = wrap( next, dir );
+    if ( next != wrapped ) {
+      REPORTP( next );
+      REPORTP( wrapped );
+      next = wrapped;
+      int remaining = length - i - 1;
+      REPORT( remaining );
+    }
   }
   return p;
 }
@@ -155,25 +177,24 @@ static pi movePath( pi p )
       REPORT( isdigit( nextCh ) );
       exit( 1 );
     }
-    p = moveDigit( p, length );
+    cout << path.substr( pathIdx, n ) << ", ";
+    REPORTDIR( dir );
 
-    cout << path.substr( pathIdx, n ) << endl;
+    p = moveDigit( p, length );
   } else {
+    n = 1;
+    cout << path.substr( pathIdx, n ) << endl;
+
     if ( nextCh == 'R' ) {
       dir = ( dir + 1 ) % 4;
     } else if ( nextCh == 'L' ) {
-      dir--;
-      if ( dir < 0 )
+      if ( --dir < 0 )
         dir += 4;
     } else {
       cerr << "Unsupported ";
       REPORT( nextCh );
       exit( 1 );
     }
-    // cout << "New ";
-    n = 1;
-
-    cout << "dir = " << dir << " (" + path.substr( pathIdx, n ) + ")" << endl;
   }
 
   pathIdx += n;
@@ -185,14 +206,20 @@ int limit = INT_MAX;
 
 static pi getEnd( pi start )
 {
+  REPORTDIR( dir );
   pi end = start;
   REPORTP( end );
   int moves = 0;
   while ( pathIdx < (signed)path.size() ) {
+    int oldDir = dir;
     pi newEnd = movePath( end );
-    // REPORT( path.substr( pathIdx ) );
-    if ( newEnd != end ) {
+    if ( newEnd != end ) {        // move
       end = newEnd;
+      REPORTP( end );
+    } else if ( oldDir != dir ) { // turn
+      REPORTDIR( dir );
+    } else {
+      cout << "No move ";
       REPORTP( end );
     }
     // REPORT( ++moves );
@@ -214,6 +241,10 @@ int main( int argc, char *argv[] )
     if ( line.empty() )
       break;
     grid.push_back( line );
+  }
+  if ( grid.size() == 0 ) {
+    cerr << "Empty grid" << endl;
+    exit( 1 );
   }
   getline( cin, path );
 
