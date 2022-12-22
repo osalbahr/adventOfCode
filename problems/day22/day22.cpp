@@ -11,7 +11,8 @@
 using namespace std;
 
 #define REPORT( X ) cout << #X " = " << X << endl
-#define REPORTP( P ) printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
+#define REPORTP( P )\
+printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 
 typedef pair<int,int> pi;
 #define col first
@@ -39,23 +40,23 @@ static pi wrap( pi p, int dir )
   switch( dir ) {
     case rightDir:
       currentRow = grid[ p.row ];
-      REPORT( p.col );
-      for ( int i = 0; i < p.col; i++ )
-        cout << " ";
-      cout << "v" << endl;
-      cout << currentRow << endl;
+      // REPORT( p.col );
+      // for ( int i = 0; i < p.col; i++ )
+      //   cout << " ";
+      // cout << "v" << endl;
+      // cout << currentRow << endl;
       if ( p.col >= currentRow.size() ) {
-        REPORTP( p );
-        REPORT( "Wrapping right" );
-        cout << "-> ";
+        // REPORTP( p );
+        // REPORT( "Wrapping right" );
+        // cout << "-> ";
         p.col = 0;
-        REPORTP( p );
+        // REPORTP( p );
       }
       while ( grid[ p.row ][ p.col ] == ' ' ) {
-        REPORTP( p );
-        cout << "->";
+        // REPORTP( p );
+        // cout << "->";
         p.col++;
-        REPORTP( p );
+        // REPORTP( p );
       }
       break;
     
@@ -67,9 +68,9 @@ static pi wrap( pi p, int dir )
       break;
 
     case downDir:
-      REPORT( p.row );
+      // REPORT( p.row );
       if ( p.row >= grid.size() || grid[ p.row ][ p.col ] == ' ' ) {
-        REPORT( "Wrapping down (0)" );
+        // REPORT( "Wrapping down (0)" );
         p.row = 0;
       }
       while ( grid[ p.row ][ p.col ] == ' ' ) {
@@ -97,11 +98,11 @@ static pi wrap( pi p, int dir )
 
 static pi moveDigit( pi p, int length )
 {
-  REPORT( length );
+  // REPORT( length );
 
   pi next = p;
   for ( int i = 0;; i++ ) {
-    REPORT( i );
+    // REPORT( i );
     // Hit a wall
     if ( grid[ next.row ][ next.col ] == '#' )
       break;
@@ -129,10 +130,10 @@ static pi moveDigit( pi p, int length )
         exit( 1 );
     }
 
-    REPORTP( next );
+    // REPORTP( next );
     next = wrap( next, dir );
-    cout << "-> ";
-    REPORTP( next );
+    // cout << "-> ";
+    // REPORTP( next );
   }
   return p;
 }
@@ -166,11 +167,11 @@ static pi movePath( pi p )
       REPORT( nextCh );
       exit( 1 );
     }
-    cout << "New ";
-    REPORT( dir );
+    // cout << "New ";
+    // REPORT( dir );
     n = 1;
   }
-  REPORT( path.substr( pathIdx ) );
+  // REPORT( path.substr( pathIdx ) );
   pathIdx += n;
   return p;
 }
@@ -184,13 +185,13 @@ static pi getEnd( pi start )
   int moves = 0;
   while ( pathIdx < path.size() ) {
     pi newEnd = movePath( end );
-    REPORT( path.substr( pathIdx ) );
+    // REPORT( path.substr( pathIdx ) );
     if ( newEnd != end ) {
-      REPORTP( end );
-      REPORTP( newEnd );
+      // REPORTP( end );
+      // REPORTP( newEnd );
       end = newEnd;
     }
-    REPORT( ++moves );
+    // REPORT( ++moves );
     if ( moves == limit ) {
       REPORT( moves );
       exit( 1 );
