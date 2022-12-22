@@ -1,3 +1,5 @@
+#define DEBUG
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -11,11 +13,30 @@
 
 using namespace std;
 
+#ifdef DEBUG
 #define REPORT( X ) cout << #X " = " << X << endl
-// #define REPORTP( P ) printf( "NOTE: (row,col) 1-indexed is %6s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 #define REPORTP( P ) printf( "%s = (%d,%d)\n", #P, P.row+1, P.col+1 )
 
-#define REPORTDIR( DIR ) printf( "%s = %s\n", #DIR, getDirStr( DIR ).c_str() )
+#define getDirStr( DIR )\
+            DIR == 0 ? "Right"  :\
+            DIR == 1 ? "Down"   :\
+            DIR == 2 ? "Left"   :\
+            DIR == 3 ? "Up"     :\
+            "ERROR"
+
+#define REPORTDIR( DIR ) printf( "%s = %s\n", #DIR, getDirStr( DIR ) )
+
+#define REPORTWALL( NEXT ) cout << "Wall at ", REPORTP( NEXT )
+#else
+#define REPORT( X )
+#define REPORTP( P )
+
+#define getDirStr( DIR )
+
+#define REPORTDIR( DIR )
+
+#define REPORTWALL( NEXT )
+#endif
 
 typedef pair<int,int> pi;
 #define col first
@@ -28,80 +49,61 @@ enum DIR { rightDir=0, downDir=1, leftDir=2, upDir=3 };
 int dir = rightDir;
 int pathIdx = 0;
 
-static string getDirStr( int dir )
-{
-  return    dir == 0 ? "Right"  :
-            dir == 1 ? "Down"   :
-            dir == 2 ? "Left"   :
-            dir == 3 ? "Up"     :
-            "ERROR";
-
-}
-
 static pi getStart()
 {
   pi start = {0,0};
-  while ( grid[ start.row ][ start.col ] == ' ' ) {
+  while ( grid[ start.row ][ start.col ] == ' ' )
     start.col++; // go right
-  }
+
   return start;
 }
 
 static pi wrap( pi p, int dir )
 {
-  string currentRow = "";
   switch( dir ) {
+    // >
     case rightDir:
-      currentRow = grid[ p.row ];
-      // REPORT( p.col );
-      // for ( int i = 0; i < p.col; i++ )
-      //   cout << " ";
-      // cout << "v" << endl;
-      // cout << currentRow << endl;
-      if ( p.col >= (signed)currentRow.size() ) {
-        // REPORTP( p );
-        // REPORT( "Wrapping right" );
-        // cout << "-> ";
+      if ( p.col >= (signed)grid[ p.row ].size() )  // out of bounds
         p.col = 0;
-        // REPORTP( p );
-      }
-      while ( grid[ p.row ][ p.col ] == ' ' ) {
-        // REPORTP( p );
-        // cout << "->";
+
+      while ( grid[ p.row ][ p.col ] == ' ' )       // skip empty
         p.col++;
-        // REPORTP( p );
-      }
-      break;
-    
-    case leftDir:
-      currentRow = grid[ p.row ];
-      if ( p.col < 0 || grid[ p.row ][ p.col ] == ' ' ) {
-        p.col = currentRow.size() - 1;
-      }
+
       break;
 
+    // <
+    case leftDir:
+      if ( p.col < 0                          // out of bounds
+          || grid[ p.row ][ p.col ] == ' ' )  // empty
+        p.col = grid[ p.row ].size() - 1;        // skip directly
+      break;
+
+    // v
     case downDir:
-      // REPORT( p.row );
-      if ( p.row >= (signed)grid.size()
-          || p.col >= (signed)grid[ p.row ].size()
-          || grid[ p.row ][ p.col ] == ' ' ) {
-        // REPORT( "Wrapping down (0)" );
+      if ( p.row >= (signed)grid.size()             // out of (row) bounds
+          || p.col >= (signed)grid[ p.row ].size()  // out of (col) bounds
+          || grid[ p.row ][ p.col ] == ' ' )        // empty
         p.row = 0;
-      }
-      while ( p.col >= (signed)grid[ p.row ].size() || grid[ p.row ][ p.col ] == ' ' ) {
+
+      while ( p.col >= (signed)grid[ p.row ].size() // skip short rows
+            || grid[ p.row ][ p.col ] == ' ' )      // skip empty
         p.row++;
-      }
+
       break;
-    
+
+    // ^
     case upDir:
-      if ( p.row < 0
-          || grid[ p.row ][ p.col ] == ' ' ) {
+      if ( p.row < 0                                // out of (row) bounds
+          || p.col >= (signed)grid[ p.row ].size()  // out of (col) bounds
+          || grid[ p.row ][ p.col ] == ' ' )        // empty
         p.row = grid.size() - 1;
-      }
-      while ( p.col >= (signed)grid[ p.row ].size() || grid[ p.row ][ p.col ] == ' ' ) {
+
+      while ( p.col >= (signed)grid[ p.row ].size() // skip short rows
+              || grid[ p.row ][ p.col ] == ' ' )    // skip empty
         p.row--;
-      }
+
       break;
+
 
     default:
       cerr << "Unsupported wrap ";
@@ -114,15 +116,11 @@ static pi wrap( pi p, int dir )
 
 static pi moveDigit( pi p, int length )
 {
-  // REPORT( length );
-
   pi next = p;
   for ( int i = 0;; i++ ) {
-    // REPORT( i );
     // Hit a wall
     if ( grid[ next.row ][ next.col ] == '#' ) {
-      cout << "Wall at ";
-      REPORTP( next );
+      REPORTWALL( next );
       break;
     }
     // Update
@@ -154,8 +152,10 @@ static pi moveDigit( pi p, int length )
       REPORTP( next );
       REPORTP( wrapped );
       next = wrapped;
+#ifdef DEBUG
       int remaining = length - i - 1;
       REPORT( remaining );
+#endif
     }
   }
   return p;
@@ -167,24 +167,17 @@ static pi movePath( pi p )
   int n;
   if ( isdigit( nextCh ) ) {
     int length;
-    int ret;
-    if ( ( ret = sscanf( path.c_str() + pathIdx, "%d%n", &length, &n ) ) != 1 ) {
-      cerr << "Not a digit" << endl;
-      REPORT( ret );
-      REPORT( path );
-      REPORT( pathIdx );
-      REPORT( nextCh );
-      REPORT( isdigit( nextCh ) );
-      exit( 1 );
-    }
+    sscanf( path.c_str() + pathIdx, "%d%n", &length, &n );
+#ifdef DEBUG
     cout << path.substr( pathIdx, n ) << ", ";
     REPORTDIR( dir );
-
+#endif
     p = moveDigit( p, length );
   } else {
     n = 1;
+#ifdef DEBUG
     cout << path.substr( pathIdx, n ) << endl;
-
+#endif
     if ( nextCh == 'R' ) {
       dir = ( dir + 1 ) % 4;
     } else if ( nextCh == 'L' ) {
@@ -209,24 +202,34 @@ static pi getEnd( pi start )
   REPORTDIR( dir );
   pi end = start;
   REPORTP( end );
-  int moves = 0;
+// #ifdef DEBUG
+//   int moves = 0;
+// #endif
   while ( pathIdx < (signed)path.size() ) {
-    int oldDir = dir;
+// #ifdef DEBUG
+//     int oldDir = dir;
+// #endif
+
     pi newEnd = movePath( end );
-    if ( newEnd != end ) {        // move
-      end = newEnd;
-      REPORTP( end );
-    } else if ( oldDir != dir ) { // turn
-      REPORTDIR( dir );
-    } else {
-      cout << "No move ";
-      REPORTP( end );
-    }
-    // REPORT( ++moves );
-    if ( moves == limit ) {
-      REPORT( moves );
-      exit( 1 );
-    }
+    end = newEnd;
+
+    REPORTP( end );
+
+// #ifdef DEBUG
+//     if ( newEnd != end ) {        // move
+//       REPORTP( newEnd );
+//     } else if ( oldDir != dir ) { // turn
+//       REPORTDIR( dir );
+//     } else {
+//       cout << "No move ";
+//       REPORTP( end );
+//     }
+//     // REPORT( ++moves );
+//     if ( moves == limit ) {
+//       REPORT( moves );
+//       exit( 1 );
+//     }
+// #endif
   }
   return end;
 }
@@ -249,10 +252,12 @@ int main( int argc, char *argv[] )
   getline( cin, path );
 
   // pi = (x, y)
-  // pi = (col-1,row-1)
-  pi start = getStart();
-  pi end = getEnd( start );
-  REPORT( end.row );
-  REPORT( end.col );
+  // pi = (col-1,row-1
+  pi end = getEnd( getStart() );
+  REPORT( end.row + 1 );
+  REPORT( end.col + 1 );
+  
+  printf( "End at (%d,%d)\n", end.row+1, end.col+1 );
   REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) );
+  cout << 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) << endl;
 }
