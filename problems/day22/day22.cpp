@@ -1,4 +1,4 @@
-// #define DEBUG
+#define DEBUG
 
 #include <iostream>
 #include <vector>
@@ -206,6 +206,7 @@ static pi getEnd( pi start )
 //   int moves = 0;
 // #endif
   while ( pathIdx < (signed)path.size() ) {
+    REPORT( pathIdx );
 // #ifdef DEBUG
 //     int oldDir = dir;
 // #endif
@@ -260,4 +261,6 @@ int main( int argc, char *argv[] )
   printf( "End at (%d,%d), dir = %d\n", end.row+1, end.col+1, dir );
   REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir );
   cout << 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir << endl;
+
+  cout << path[ 225 ] << endl;
 }
