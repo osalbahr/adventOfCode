@@ -227,7 +227,7 @@ static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
 
     // Let person explore options using DFS
     size_t size = q.size();
-    if ( minutes % 10 == 0 ) {
+    if ( minutes % 100 == 0 ) {
       REPORT( minutes );
       REPORT( size );
     }
