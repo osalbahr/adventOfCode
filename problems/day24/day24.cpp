@@ -126,46 +126,6 @@ static char getCell( const sprites_t& sprites, pi p )
   }
 }
 
-static pi getNewPos( pi pos, pi dir )
-{
-  pi newPos = pos + dir;
-
-  switch( newPos.row ) {
-    case 0:
-      newPos.row = rows;
-      break;
-    default:
-      if ( newPos.row == rows + 1 )
-        newPos.row = 1;
-  }
-  switch( newPos.col ) {
-    case 0:
-      newPos.col = cols;
-      break;
-    default:
-      if ( newPos.col == cols + 1 )
-        newPos.col = 1;
-  }
-
-  return newPos;
-}
-
-static sprites_t updateSprites( const sprites_t& oldSprites )
-{
-  // REPORT( "Updating..." );
-  sprites_t sprites;
-  for ( auto item : oldSprites ) {
-    pi pos = item.first;
-    for ( pi dir : item.second ) {
-      pi newPos = getNewPos( pos, dir );
-      vector<pi>& vec = sprites[ newPos ];
-      vec.push_back( dir );
-    }
-  }
-  // REPORT( "Done updating" );
-  return sprites;
-}
-
 static bool detectCycle( set<pi>& positions, pi pos ) {
   return ! positions.insert( pos ).second;
 }
@@ -206,18 +166,59 @@ static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
   fprintf( fp, "%c#\n", person == mp( rows + 1, cols ) ? 'E' : '.' );
 }
 
+static bool collision( const sprites_t& sprites, pi p, int minutes )
+{
+  // Safe haven
+  if ( p == start || p == dest )
+    return false;
+  
+  // Check all 4 candidates
+
+  // up, looking v
+  pi up = p + minutes * dirs[ upIdx ];
+  up.row %= rows;
+  if ( up.row <= 0 )
+    up.row += rows;
+  sprites_t::const_iterator it;
+  if ( ( it = sprites.find( up ) ) != sprites.end() && it->second[ 0 ] == dirs[ downIdx ] )
+    return true;
+
+
+  // down, looking ^
+  pi down = p + minutes * dirs[ downIdx ];
+  down.row = ( down.row - 1 ) % rows + 1;
+  if ( ( it = sprites.find( down ) ) != sprites.end() && it->second[ 0 ] == dirs[ upIdx ] )
+    return true;
+  
+  // left, looking >
+  pi left = p + minutes * dirs[ leftIdx ];
+  left.col %= cols;
+  if ( left.col <= 0 )
+    left.col += cols;
+  if ( ( it = sprites.find( left ) ) != sprites.end() && it->second[ 0 ] == dirs[ rightIdx ] )
+    return true;
+  
+  // right, looking <
+  pi right = p + minutes * dirs[ rightIdx ];
+  right.col = ( right.col - 1 ) % cols + 1;
+  if ( ( it = sprites.find( right ) ) != sprites.end() && it->second[ 0 ] == dirs[ leftIdx ] )
+    return true;
+
+  return false;
+}
+
+sprites_t initial;
 int maxMinutes;
-static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
+static bool reachDest( pi person, int minutes )
 {
   // Shadowing
   pi start = person;
 
-  sprites_t sprites = oldSprites;
   set<pi> positions;
   queue<pi> q;
   q.push( person );
   for (;;) {
-    sprites = updateSprites( sprites );
+    // sprites = updateSprites( sprites );
     positions.clear();
 
     // printGrid( stdout, sprites, person );
@@ -267,11 +268,11 @@ static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
         
         // Don't hit a sprite or the wall
         if ( pos != start
-            && ( sprites.count( pos ) > 0
+            && ( collision( initial, pos, minutes )
             || pos.row <= 0 || pos.row > rows
             || pos.col <= 0 || pos.col > cols ) )
           continue;
-                
+
         // Next layer
         if ( !detectCycle( positions, pos ) ) {
           q.push( pos );
@@ -298,7 +299,6 @@ int main( int argc, char *argv[] )
 
 
   // Quickly tell if there is at least one sprite
-  sprites_t initial;
   for ( rows = 0; getline( cin, line ) && line[ 1 ] != '#'; rows++ ) {
     for ( int col = 1; col <= cols; col++ ) {
       if ( line[ col ] != '.' ) {
@@ -318,7 +318,7 @@ int main( int argc, char *argv[] )
   fclose( parse );
 
   int minutes = 0;
-  if ( !reachDest( initial, person, minutes ) ) {
+  if ( !reachDest( person, minutes ) ) {
     cerr << "Never reached dest" << endl;
     exit( 1 );
   }
