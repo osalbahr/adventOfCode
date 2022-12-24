@@ -315,9 +315,9 @@ int main( int argc, char *argv[] )
   // Last line
   dest = { rows + 1, line.size() - 2 };
 
-  // FILE *parse = fopen( "PARSE", "w" );
-  // printGrid( parse, initial, { -1, -1 } );
-  // fclose( parse );
+  FILE *parse = fopen( "PARSE", "w" );
+  printGrid( parse, initial, { -1, -1 } );
+  fclose( parse );
 
   int minutes = 0;
   if ( ( minutes = reachDest( person, minutes ) ) == -1 ) {
