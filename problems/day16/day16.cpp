@@ -3,6 +3,7 @@
 #include <set>
 #include <map>
 #include <sstream>
+#include <queue>
 
 #include <cstdio>
 
@@ -30,6 +31,14 @@ int pathCount = 0;
 
 int minuteMax = 30;
 
+// What needs to be queued for bfs
+typedef struct {
+  string current;
+  set<Valve*> openValves;
+  set<string> visited;
+  int total;
+} State;
+
 /**
  * Simulate brute-force
  * 
@@ -39,71 +48,109 @@ int minuteMax = 30;
  * @param openValves open valves
  * @param visited nodes visited since the last open valve
  */
-static void simulate( string current, int minute, int total, set<Valve*> openValves, vector<string> path, set<string> visited )
+static int simulate( string current, int minute, int total, set<Valve*> openValves, vector<string> path, set<string> visited )
 {
-  // Add from previous
-  int releasing = 0;
-  for ( Valve *valve : openValves )
-    releasing += valve->rate;
+  State state;
+  state.current = current;
+  state.openValves = openValves;
+  state.visited = visited;
+  state.total = total;
 
-  if ( openValves.size() == valves.size() ) {
-    total += ( minuteMax - minute + 1 ) * releasing;
-    if ( total > totals )
-      totals = total;
-    return;
-  } else {
-    total += releasing;
-  }
+  queue<State> q;
+  q.push( state );
 
-  // REPORT( current );
+  while ( !q.empty() ) {
+    size_t size = q.size();
+    for ( size_t i = 0; i < size; i++ ) {
+      State state = q.front();
+      q.pop();
 
-  // printf( "== Minute %d == \n", minute );
-  // if ( openValves.size() == 4 ) {
-  //   cout << "No valves are open.\n";
-  // } else {
-  //   cout << "Valves ";
-  //   for ( auto valve : openValves )
-  //     if ( valve->rate )
-  //       cout << valve->name << " ";
-  //   cout << "are open ";
-  // }
+      current = state.current;
+      openValves = state.openValves;
+      visited = state.visited;
+      total = state.total;
 
-  path.push_back( current );
+      // Add from previous
+      int releasing = 0;
+      for ( Valve *valve : openValves )
+        releasing += valve->rate;
 
-  // cout << endl;
+      if ( openValves.size() == valves.size() ) {
+        REPORT( openValves.size() );
+        total += ( minuteMax - minute + 1 ) * releasing;
+        return total;
+      } else {
+        total += releasing;
+      }
 
-  // Done
-  if ( minute >= minuteMax ) {
-    // for ( string str : path )
-    //   cout << str << ", ";
-    // cout << endl;
-    if ( total > totals )
-      totals = total;
-    // REPORT( total );
-    return;
-  }
+      path.push_back( current );
 
-  // Prune out paths that just do nothing
-  if ( ! visited.insert( current ).second )
-    return;
+      // cout << endl;
 
-  // Get the current valve
-  Valve *valve = valves[ current ];
+      // Done
+      if ( minute >= minuteMax ) {
+        // for ( string str : path )
+        //   cout << str << ", ";
+        // cout << endl;
+        if ( total > totals )
+          totals = total;
+        REPORT( total );
+        continue;
+      }
 
-  // Try all possiblities
-  if ( openValves.count( valve ) == 1 ) { // already open
-    for ( string name : *valve->list )
-      simulate( name, minute + 1, total, openValves, path, visited );
-  } else {
-    // Skip it
-    for ( string name : *valve->list )
-      simulate( name, minute + 1, total, openValves, path, visited );
+      // Prune out paths that just do nothing
+      if ( ! visited.insert( current ).second )
+        continue;
+
+      // Get the current valve
+      Valve *valve = valves[ current ];
+
+      // Try all possiblities
+      if ( openValves.count( valve ) == 1 ) { // already open
+        for ( string name : *valve->list ) {
+          State state;
+          state.current = name;
+          state.total = total;
+          state.openValves = openValves;
+          state.visited = visited;
+
+          // simulate( name, minute + 1, total, openValves, path, visited );
+
+          q.push( state );
+        }
+      } else {
+        // Skip it
+        for ( string name : *valve->list ) {
+          State state;
+          state.current = name;
+          state.total = total;
+          state.openValves = openValves;
+          state.visited = visited;
+
+          // simulate( name, minute + 1, total, openValves, path, visited );
+
+          q.push( state );
+        }
+        
+        // Open it
+        openValves.insert( valve );
+        visited.clear();
+
+        State state;
+        state.current = current;
+        state.total = total;
+        state.openValves = openValves;
+        state.visited = visited;
     
-    // Open it
-    openValves.insert( valve );
-    visited.clear();
-    simulate( current, minute + 1, total, openValves, path, visited );
+        // simulate( current, minute + 1, total, openValves, path, visited );
+
+        q.push( state );
+      }
+    }
+
+    minute++;
   }
+  return -1;
 }
 
 int main( int argc, char *argv[] )
@@ -113,7 +160,7 @@ int main( int argc, char *argv[] )
 
   string line;
     
-  while (getline( cin, line ) ) {
+  while ( getline( cin, line ) ) {
     // Make the valve
     Valve *valve;
     valve = (Valve *)malloc( sizeof( *valve ) );
@@ -182,7 +229,5 @@ int main( int argc, char *argv[] )
       openValves.insert( item.second );
   }
 
-  simulate( "AA", minute, total, openValves, path, visited );
-
-  cout << totals << endl;
+  cout << simulate( "AA", minute, total, openValves, path, visited ) << endl;
 }
