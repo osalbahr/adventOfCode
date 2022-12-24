@@ -1,5 +1,5 @@
-CC = g++-12
-CXX = g++-12
+CC = g++
+CXX = g++
 CPPFLAGS = -Wall -g -O2 -std=gnu++20
 LDLIBS = -lm
 
