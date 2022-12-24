@@ -209,6 +209,9 @@ static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
 int maxMinutes;
 static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
 {
+  // Shadowing
+  pi start = person;
+
   sprites_t sprites = oldSprites;
   set<pi> positions;
   queue<pi> q;
@@ -236,7 +239,7 @@ static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
         cerr << "size is 0" << endl;
         exit( 1 );
       default:
-        if ( (signed)size > rows * cols ) {
+        if ( (signed)size > rows * cols + 1 ) {
           cerr << "size too big" << endl;
           REPORT( size );
           exit( 1 );
@@ -263,9 +266,10 @@ static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
         }
         
         // Don't hit a sprite or the wall
-        if ( sprites.count( pos ) > 0
-            || pos.row <= 0 || pos.row == rows + 1
-            || pos.col <= 0 || pos.col == cols + 1 )
+        if ( pos != start
+            && ( sprites.count( pos ) > 0
+            || pos.row <= 0 || pos.row > rows
+            || pos.col <= 0 || pos.col > cols ) )
           continue;
                 
         // Next layer
