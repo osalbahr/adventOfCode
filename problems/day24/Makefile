@@ -1,9 +1,9 @@
-CC = g++
-CXX = g++
+CC = g++-12
+CXX = g++-12
 CPPFLAGS = -Wall -g -O2 -std=gnu++20
 LDLIBS = -lm
 
-EXE = day24 day24_2
+EXE = day24 day24_2 day24_2_constant_cycle
 
 all: $(EXE)
 
