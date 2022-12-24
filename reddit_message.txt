@@ -1,17 +1,15 @@
-Solved in **C++** (8092/7865)
+# C++ (8092/7865)
 
           --------Part 1--------   --------Part 2--------
     Day       Time   Rank  Score       Time   Rank  Score
-     23   10:04:25   8092      0   10:16:16   7865      0
+     24   10:42:20   6524      0   11:31:56   6467      0
 
-[Part 1](https://github.com/osalbahr/adventOfCode/blob/main/problems/day23/day23.cpp)
-
-[Part 2](https://github.com/osalbahr/adventOfCode/blob/main/problems/day23/day23_2.cpp)
+[Part 1](https://github.com/osalbahr/adventOfCode/blob/main/problems/day24/day24.cpp); [Part 2](https://github.com/osalbahr/adventOfCode/blob/main/problems/day24/day24_2.cpp)
 
 Feel free to ask any questions!
 
-You can find more C++ solutions (and other languages) here:
+You can find more C++ solutions (and other languages) at [Bogdanp/awesome-advent-of-code#c++](https://github.com/Bogdanp/awesome-advent-of-code#c-2)
 
-[https://github.com/Bogdanp/awesome-advent-of-code#c-2](https://github.com/Bogdanp/awesome-advent-of-code#c-2)
+My solution boils down to BFS, with a set for duplicate detection. The sprites (blizzards) are stored as a mapping `(row,col) -> vector<pi> of directions`, for two reasons. First, to make `printGrid` more efficient because I like to visualize as I am testing. Second, to make detecting whether a position contains at least one blizzard `O(log n)` as the C++ standard guarantees that for sets and maps (likely implemented as a [red-black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)). I could use slightly more memory and get `O(1)` with `unordered_map`, but I would need to supply my own hash function (sadly, `std::pair` does not have that by default, but `point.x ^ point.y` would probably be fine for non-security purposes.
 
-Anyone else found today's problem kind of odd? Like, I did not expect Day 23 to be an easy simulation. Granted, I got to use `multiset` (C++) for the first time, but that is only syntactic sugar.
+For part 2, I merely cached the current sprite positions to avoid re-calculating (but turned out to not be necessary), and made my solution function more general for any points A->B. In the process I noticed some hardcoding that made my life more difficult, such as the person refusing to consider staying at the entrance as an option since it is out of the `[1, rows]` range i.e. the inner grid.
