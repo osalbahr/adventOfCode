@@ -7,7 +7,7 @@ Added to [Bogdanp/awesome-advent-of-code#C++](https://github.com/Bogdanp/awesome
 
 # Example use of the template
 
-## Folder creation example
+## Folder creation
 ```
 $ cd adventofcode/problems/
 $ ./newday.sh day24 # Add "&& code day24" if you also want to open it in Visual Studio Code
