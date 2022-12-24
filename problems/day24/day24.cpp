@@ -166,25 +166,8 @@ static sprites_t updateSprites( const sprites_t& oldSprites )
   return sprites;
 }
 
-map<const sprites_t,set<pi>> seenBefore;
-static bool detectCycle( const sprites_t& sprites, pi pos ) {
-  auto item = seenBefore.find( sprites );
-  if ( item == seenBefore.end() ) {
-    seenBefore[ sprites ].insert( pos );
-    // cout << "New sprites" << endl;
-    return false;
-  }
-  
-  auto retPair = item->second.insert( pos );
-  // True if insertion successful
-  if ( retPair.second ) {
-    // cout << "New pos" << endl;
-    return false;
-  }
-
-  // Insertion failed, so a cycle!
-  // cout << "Cycle" << endl;
-  return true;
+static bool detectCycle( set<pi>& positions, pi pos ) {
+  return ! positions.insert( pos ).second;
 }
 
 static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
@@ -227,10 +210,13 @@ int maxMinutes;
 static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
 {
   sprites_t sprites = oldSprites;
+  set<pi> positions;
   queue<pi> q;
   q.push( person );
   for (;;) {
     sprites = updateSprites( sprites );
+    positions.clear();
+
     // printGrid( stdout, sprites, person );
     minutes++;
 
@@ -283,7 +269,7 @@ static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
           continue;
                 
         // Next layer
-        if ( !detectCycle( sprites, pos ) ) {
+        if ( !detectCycle( positions, pos ) ) {
           q.push( pos );
         }
       }
