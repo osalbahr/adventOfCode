@@ -152,55 +152,54 @@ static pi getNewPos( pi pos, pi dir )
 
 static sprites_t updateSprites( const sprites_t& oldSprites )
 {
+  // REPORT( "Updating..." );
   sprites_t sprites;
   for ( auto item : oldSprites ) {
     pi pos = item.first;
     for ( pi dir : item.second ) {
       pi newPos = getNewPos( pos, dir );
-      sprites[ newPos ].push_back( dir );
+      vector<pi>& vec = sprites[ newPos ];
+      vec.push_back( dir );
     }
   }
+  // REPORT( "Done updating" );
   return sprites;
 }
 
-int maxMinutes;
-// Will exit
-static void reachDest( const sprites_t& oldSprites, pi person, int minutes )
-{
-  if ( minutes == maxMinutes ) {
-    exit( 1 );
+map<const sprites_t,set<pi>> seenBefore;
+static bool detectCycle( const sprites_t& sprites, pi pos ) {
+  auto item = seenBefore.find( sprites );
+  if ( item == seenBefore.end() ) {
+    seenBefore[ sprites ].insert( pos );
+    // cout << "New sprites" << endl;
+    return false;
+  }
+  
+  auto retPair = item->second.insert( pos );
+  // True if insertion successful
+  if ( retPair.second ) {
+    // cout << "New pos" << endl;
+    return false;
   }
 
-  sprites_t sprites = updateSprites( oldSprites );
-  
-  // Let person explore options recursively
-  for ( int i = 0; i < 5; i++ ) {
-    pi dir = dirs[ i ];
-    pi pos = getNewPos( person, dir );
-    if ( pos == dest )
-      break;
-    
-    // Don't hit a sprite or the wall
-    if ( sprites.count( pos ) > 0
-        || pos.row == 0 || pos.row == rows + 1
-        || pos.col == 0 || pos.col == cols + 1 )
-      continue;
-    
-    // printf( "(%d,%d)->(%d,%d) dir (%d,%d)\n",
-    //         person.row, person.col,
-    //         pos.row,    pos.col,
-    //         dir.row,    dir.col );
-    // fflush( stdout );
-  
-    reachDest( sprites, pos, minutes + 1 );
-  }
-
-  // cerr << "Dead" << endl;
-  // exit( 1 );
+  // Insertion failed, so a cycle!
+  // cout << "Cycle" << endl;
+  return true;
 }
 
 static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
 {
+  if ( fp == stdout )
+    return;
+
+  // Check sprite size
+  int spriteSize = 0;
+  for ( auto it : sprites ) {
+    spriteSize++;
+  }
+  REPORT( sprites.size() );
+  REPORT( spriteSize );
+
   // First line
   fprintf( fp, "#%c", person == start ? 'E' : '.' );
   for ( int i = 0; i < cols - 1; i++ )
@@ -212,7 +211,7 @@ static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
     fprintf( fp, "#" );
 
     for ( int col = 1; col <= cols; col++ )
-      fprintf( fp, "%c", person == dest ? 'E' : getCell( sprites, { i + 1, col } ) );
+      fprintf( fp, "%c", person == mp( i + 1, col ) ? 'E' : getCell( sprites, { i + 1, col } ) );
 
     fprintf( fp, "#\n" );
   }
@@ -222,6 +221,74 @@ static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
   for ( int i = 0; i < cols - 1; i++ )
     fprintf( fp, "#" );
   fprintf( fp, "%c#\n", person == mp( rows + 1, cols ) ? 'E' : '.' );
+}
+
+int maxMinutes;
+static bool reachDest( const sprites_t& oldSprites, pi person, int minutes )
+{
+  sprites_t sprites = oldSprites;
+  queue<pi> q;
+  q.push( person );
+  for (;;) {
+    sprites = updateSprites( sprites );
+    // printGrid( stdout, sprites, person );
+    minutes++;
+
+    if ( minutes == maxMinutes ) {
+      REPORT( maxMinutes );
+      return false;
+    }
+
+    // Let person explore options using DFS
+    size_t size = q.size();
+    if ( minutes % 10 == 0 ) {
+      REPORT( minutes );
+      REPORT( size );
+    }
+    switch( size ) {
+      case 0:
+        cerr << "size is 0" << endl;
+        exit( 1 );
+      default:
+        if ( (signed)size > rows * cols ) {
+          cerr << "size too big" << endl;
+          REPORT( size );
+          exit( 1 );
+        }
+    }
+
+    for ( size_t i = 0; i < size; i++ ) {
+      person = q.front();
+      // printGrid( stdout, sprites, person );
+      q.pop();
+
+      for ( int i = 0; i < 5; i++ ) {
+        pi dir = dirs[ i ];
+        pi pos = person + dir;
+
+        // printf( "(%d,%d) + (%d,%d) = (%d,%d)\n",
+        //         person.row, person.col,
+        //         dir.row,    dir.col,
+        //         pos.row,    pos.col );
+
+        if ( pos == dest ) {
+          REPORT( minutes );
+          return true;
+        }
+        
+        // Don't hit a sprite or the wall
+        if ( sprites.count( pos ) > 0
+            || pos.row <= 0 || pos.row == rows + 1
+            || pos.col <= 0 || pos.col == cols + 1 )
+          continue;
+                
+        // Next layer
+        if ( !detectCycle( sprites, pos ) ) {
+          q.push( pos );
+        }
+      }
+    }
+  }
 }
 
 int main( int argc, char *argv[] )
@@ -253,7 +320,7 @@ int main( int argc, char *argv[] )
   }
 
   // Last line
-  dest = { rows + 1, line.size() - 1 };
+  dest = { rows + 1, line.size() - 2 };
   REPORTP( dest );
 
   FILE *parse = fopen( "PARSE", "w" );
@@ -261,8 +328,8 @@ int main( int argc, char *argv[] )
   fclose( parse );
 
   int minutes = 0;
-  reachDest( initial, person, minutes );
-
-  cerr << "Never reached dest" << endl;
-  exit( 1 );
+  if ( !reachDest( initial, person, minutes ) ) {
+    cerr << "Never reached dest" << endl;
+    exit( 1 );
+  }
 }
