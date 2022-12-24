@@ -3,7 +3,7 @@
 
 Feel free to create a new issue if you have any questions!
 
-Added to [Bogdanp/awesome-advent-of-code#C++](https://github.com/Bogdanp/awesome-advent-of-code#c-2)
+Added to [Bogdanp/awesome-advent-of-code#C++](https://github.com/Bogdanp/awesome-advent-of-code#c-2) (Solutions to AoC in C++)
 
 # Example use of the template (in a [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) shell)
 
