@@ -58,18 +58,14 @@ int rows, cols;
 pi start = { 0, 1 };
 pi dest;
 
-typedef struct {
-  pi pos;
-  pi dir;
-} Sprite;
-
 // ( row, col )
 // Sorted heuristically
 pi dirs[]  {    { 0, 1 },  { 1, 0 }, { 0, 0 }, { 0, -1 },  { -1, 0 } };
 enum Index {    rightIdx,  downIdx,  stayIdx,  leftIdx,    upIdx };
 
-// 1-indexed points
-typedef map<pi,vector<Sprite>> sprites_t;
+// 1-indexed points -> direction(s) of sprites
+// pos -> vector<dir>
+typedef map<pi,vector<pi>> sprites_t;
 
 // direction point from ch
 static pi getDir( char ch )
@@ -122,7 +118,7 @@ static char getCell( const sprites_t& sprites, pi p )
     }
     return '0' + size;
   } else if ( size == 1 ) {
-    return getSpriteChar( it->second[ 0 ].dir );
+    return getSpriteChar( it->second[ 0 ] );
   } else {
     cerr << "Invalid cell" << endl;
     REPORT( size );
@@ -130,17 +126,77 @@ static char getCell( const sprites_t& sprites, pi p )
   }
 }
 
-int maxMinutes = 1000;
+static pi getNewPos( pi pos, pi dir )
+{
+  pi newPos = pos + dir;
+
+  switch( newPos.row ) {
+    case 0:
+      newPos.row = rows;
+      break;
+    default:
+      if ( newPos.row == rows + 1 )
+        newPos.row = 1;
+  }
+  switch( newPos.col ) {
+    case 0:
+      newPos.col = cols;
+      break;
+    default:
+      if ( newPos.col == cols + 1 )
+        newPos.col = 1;
+  }
+
+  return newPos;
+}
+
+static sprites_t updateSprites( const sprites_t& oldSprites )
+{
+  sprites_t sprites;
+  for ( auto item : oldSprites ) {
+    pi pos = item.first;
+    for ( pi dir : item.second ) {
+      pi newPos = getNewPos( pos, dir );
+      sprites[ newPos ].push_back( dir );
+    }
+  }
+  return sprites;
+}
+
+int maxMinutes;
 // Will exit
 static void reachDest( const sprites_t& oldSprites, pi person, int minutes )
 {
-  sprites_t sprites = oldSprites;
   if ( minutes == maxMinutes ) {
-    REPORT( maxMinutes );
     exit( 1 );
   }
+
+  sprites_t sprites = updateSprites( oldSprites );
   
-  reachDest( sprites, person, minutes + 1 );
+  // Let person explore options recursively
+  for ( int i = 0; i < 5; i++ ) {
+    pi dir = dirs[ i ];
+    pi pos = getNewPos( person, dir );
+    if ( pos == dest )
+      break;
+    
+    // Don't hit a sprite or the wall
+    if ( sprites.count( pos ) > 0
+        || pos.row == 0 || pos.row == rows + 1
+        || pos.col == 0 || pos.col == cols + 1 )
+      continue;
+    
+    // printf( "(%d,%d)->(%d,%d) dir (%d,%d)\n",
+    //         person.row, person.col,
+    //         pos.row,    pos.col,
+    //         dir.row,    dir.col );
+    // fflush( stdout );
+  
+    reachDest( sprites, pos, minutes + 1 );
+  }
+
+  // cerr << "Dead" << endl;
+  // exit( 1 );
 }
 
 static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
@@ -173,7 +229,7 @@ int main( int argc, char *argv[] )
   if ( argc == 2 )
     maxMinutes = atoi( argv[ 1 ] );
   else
-    maxMinutes = UINT8_MAX;
+    maxMinutes = INT_MAX;
 
   string line;
   // First line
@@ -189,10 +245,9 @@ int main( int argc, char *argv[] )
   for ( rows = 0; getline( cin, line ) && line[ 1 ] != '#'; rows++ ) {
     for ( int col = 1; col <= cols; col++ ) {
       if ( line[ col ] != '.' ) {
-        Sprite sp;
-        sp.pos = { rows + 1, col };
-        sp.dir = getDir( line[ col ] );
-        initial[ sp.pos ].push_back( sp );
+        pi pos = { rows + 1, col };
+        pi dir = getDir( line[ col ] );
+        initial[ pos ].push_back( dir );
       }
     }
   }

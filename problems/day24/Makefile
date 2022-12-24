@@ -7,7 +7,8 @@ EXE = day24 day24_2
 
 all: $(EXE)
 
-%: %.cpp
+%: %.o
+%.o: %.cpp
 
 clean:
 	rm -f $(EXE)
