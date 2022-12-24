@@ -126,8 +126,15 @@ static char getCell( const sprites_t& sprites, pi p )
   }
 }
 
-static bool detectCycle( set<pi>& positions, pi pos ) {
-  return ! positions.insert( pos ).second;
+static bool detectCycle( bool *positions, pi pos ) {
+  int idx = ( cols + 1 ) * pos.row +  pos.col;
+  switch( positions[ idx ] ) {
+    case true:
+      return true;
+    case false:
+      positions[ idx ] = true;
+      return false;
+  }
 }
 
 static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
@@ -216,7 +223,9 @@ static int reachAtoB( pi A, int minutes, pi B )
   queue<pi> q;
   q.push( person );
   for (;;) {
-    positions.clear();
+#define ROWS 27
+#define COLS 120
+    bool positions[ ( ROWS + 2 ) * ( COLS + 1 ) ] = {};
 
     // printGrid( stdout, sprites, person );
     minutes++;
