@@ -268,9 +268,9 @@ static bool reachDest( pi person, int minutes )
         
         // Don't hit a sprite or the wall
         if ( pos != start
-            && ( collision( initial, pos, minutes )
-            || pos.row <= 0 || pos.row > rows
-            || pos.col <= 0 || pos.col > cols ) )
+            && ( pos.row <= 0 || pos.row > rows
+            || pos.col <= 0 || pos.col > cols
+            || collision( initial, pos, minutes ) ) )
           continue;
 
         // Next layer
