@@ -1,9 +1,17 @@
-Solved in C++
+Solved in **C++** (8092/7865)
 
-https://github.com/osalbahr/adventOfCode/tree/main/problems/day15
+          --------Part 1--------   --------Part 2--------
+    Day       Time   Rank  Score       Time   Rank  Score
+     23   10:04:25   8092      0   10:16:16   7865      0
+
+[Part 1](https://github.com/osalbahr/adventOfCode/blob/main/problems/day23/day23.cpp)
+
+[Part 2](https://github.com/osalbahr/adventOfCode/blob/main/problems/day23/day23_2.cpp)
 
 Feel free to ask any questions!
 
 You can find more C++ solutions (and other languages) here:
 
-https://github.com/Bogdanp/awesome-advent-of-code#c-2
+[https://github.com/Bogdanp/awesome-advent-of-code#c-2](https://github.com/Bogdanp/awesome-advent-of-code#c-2)
+
+Anyone else found today's problem kind of odd? Like, I did not expect Day 23 to be an easy simulation. Granted, I got to use `multiset` (C++) for the first time, but that is only syntactic sugar.
