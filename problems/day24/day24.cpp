@@ -27,14 +27,15 @@ using namespace std;
 for ( int _i = 0; _i < ( X ); _i++ )
 
 // Point syntactic sugar
-typedef pair<int,int> pi;
+typedef int i_t;
+typedef pair<i_t,i_t> pi;
 // Grid
 #define row first
 #define col second
 // Raw points
 // #define x first
 // #define y second
-#define mp( X, Y ) make_pair( X, Y )
+#define mp( X, Y ) make_pair( (i_t)(X), (i_t)(Y) )
 
 // Apadted from
 // https://stackoverflow.com/a/21956177/18633613
@@ -67,7 +68,8 @@ typedef struct {
 pi dirs[]  {    { 0, 1 },  { 1, 0 }, { 0, 0 }, { 0, -1 },  { -1, 0 } };
 enum Index {    rightIdx,  downIdx,  stayIdx,  leftIdx,    upIdx };
 
-typedef map<pi,vector<Sprite*>> sprites_t;
+// 1-indexed points
+typedef map<pi,vector<Sprite>> sprites_t;
 
 // direction point from ch
 static pi getDir( char ch )
@@ -120,12 +122,25 @@ static char getCell( const sprites_t& sprites, pi p )
     }
     return '0' + size;
   } else if ( size == 1 ) {
-    return getSpriteChar( it->second[ 0 ]->dir );
+    return getSpriteChar( it->second[ 0 ].dir );
   } else {
     cerr << "Invalid cell" << endl;
     REPORT( size );
     exit( 1 );
   }
+}
+
+int maxMinutes = 1000;
+// Will exit
+static void reachDest( const sprites_t& oldSprites, pi person, int minutes )
+{
+  sprites_t sprites = oldSprites;
+  if ( minutes == maxMinutes ) {
+    REPORT( maxMinutes );
+    exit( 1 );
+  }
+  
+  reachDest( sprites, person, minutes + 1 );
 }
 
 static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
@@ -153,8 +168,13 @@ static void printGrid( FILE *fp, const sprites_t& sprites, pi person )
   fprintf( fp, "%c#\n", person == mp( rows + 1, cols ) ? 'E' : '.' );
 }
 
-int main()
+int main( int argc, char *argv[] )
 {
+  if ( argc == 2 )
+    maxMinutes = atoi( argv[ 1 ] );
+  else
+    maxMinutes = UINT8_MAX;
+
   string line;
   // First line
   getline( cin, line );
@@ -166,18 +186,16 @@ int main()
 
   // Quickly tell if there is at least one sprite
   sprites_t initial;
-  REPORT( "Parsing" );
   for ( rows = 0; getline( cin, line ) && line[ 1 ] != '#'; rows++ ) {
     for ( int col = 1; col <= cols; col++ ) {
       if ( line[ col ] != '.' ) {
-        Sprite *sp = new Sprite;
-        sp->pos = { rows + 1, col };
-        sp->dir = getDir( line[ col ] );
-        initial[ sp->pos ].push_back( sp );
+        Sprite sp;
+        sp.pos = { rows + 1, col };
+        sp.dir = getDir( line[ col ] );
+        initial[ sp.pos ].push_back( sp );
       }
     }
   }
-  REPORT( "Done" );
 
   // Last line
   dest = { rows + 1, line.size() - 1 };
@@ -186,4 +204,10 @@ int main()
   FILE *parse = fopen( "PARSE", "w" );
   printGrid( parse, initial, { -1, -1 } );
   fclose( parse );
+
+  int minutes = 0;
+  reachDest( initial, person, minutes );
+
+  cerr << "Never reached dest" << endl;
+  exit( 1 );
 }
