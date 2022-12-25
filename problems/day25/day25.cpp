@@ -66,27 +66,21 @@ min( abs( X ), abs( Y ) )
 
 static int getExponent( int n )
 {
-  n = abs( n );
-  int exp = 1;
+  REPORT( n );
 
-  // Find the maximum positive minimizer
-  while ( n - pow( 5, exp + 1 ) > 0 ) {
+  n = abs( n );
+  int exp = 0;
+  int total = 2;
+
+  // Find the minimum needed number of digits
+  while ( n > total  ) {
+    total *= 5;
+    total += 2;
     exp++;
   }
 
-  // Take into account negative minimizer
-  int raised      = pow( 5, exp );
-  int nextRaised  = pow( 5, exp + 1 );
-
-  int currMin =  minabs( n - raised,      n - 2 * raised );
-  int nextMin =  minabs( n - nextRaised,  n - 2 * nextRaised );
-
-  REPORT( currMin );
-  REPORT( nextMin );
-
-  if ( nextMin < currMin )
-    exp++;
-
+  REPORT( exp );
+  REPORT( pow( 5, exp ) );
   return exp;
 }
 
