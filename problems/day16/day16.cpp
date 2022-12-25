@@ -148,6 +148,49 @@ static void populateDistances()
   }
 }
 
+static set<string> getPaths()
+{
+  set<string> allPaths;
+  for ( auto item : usefulValves )
+    allPaths.insert( item.second->name );
+  
+  int size = usefulValves.size();
+  for ( int i = 0; i < size - 1; i++ ) {
+    set<string> allPathsCopy = allPaths;
+    allPaths.clear();
+    for ( auto item : usefulValves )
+      for ( string path : allPathsCopy ) {
+        string name = item.second->name;
+        bool duplicate = false;
+        for ( int i = 0; i < path.size() - 1; i += 2 )
+          if ( path[ i ] == name[ 0 ] && path[ i + 1 ] == name[ 1 ] ) {
+            duplicate = true;
+            break;
+          }
+
+        if ( !duplicate ) {
+          string newPath = path + name;
+          allPaths.insert( newPath );
+        }
+      }
+  }
+  REPORT( allPaths.size() );
+  for ( string path : allPaths )
+    REPORT( path );
+  REPORT( "Done" );
+  exit( 0 );
+
+  set<string> paths;
+  return paths;
+}
+
+static vector<int> getFlowRates()
+{
+  Valve *start = valves[ "AA" ];
+  int minutes = 0;
+  set<string> paths = getPaths();
+}
+
 int main()
 {
   string line;
@@ -181,4 +224,9 @@ int main()
       fprintf( graph, "%s <- %d -> %s\n", s1.c_str(), dist, s2.c_str() );
   }
   fclose( graph );
+
+  vector<int> rates = getFlowRates();
+  sort( rates.begin(), rates.end() );
+  reverse( rates.begin(), rates.end() );
+  cout << rates[ 0 ] << endl;
 }
