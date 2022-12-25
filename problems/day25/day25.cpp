@@ -64,23 +64,28 @@ pi operator*(const int a, const pi& p) {
 #define minabs( X, Y )\
 min( abs( X ), abs( Y ) )
 
-static int getExponent( int n )
+static int getExponent( long n )
 {
-  REPORT( n );
+  // REPORT( n );
 
   n = abs( n );
+
+  // REPORT( n );
   int exp = 0;
-  int total = 2;
+  long total = 2;
 
   // Find the minimum needed number of digits
-  while ( n > total  ) {
+  while ( n > total ) {
+    // REPORT( n );
+    // REPORT( total );
+
     total *= 5;
     total += 2;
     exp++;
   }
 
-  REPORT( exp );
-  REPORT( pow( 5, exp ) );
+  // REPORT( exp );
+  // REPORT( pow( 5, exp ) );
   return exp;
 }
 
@@ -97,14 +102,14 @@ static string mergeSNAFU( string leading, string rest, int exp )
   }
 
   for ( int i = 0; i < exp - rest.size(); i++ ) {
-    REPORT( i );
+    // REPORT( i );
     snafu += '0';
   }
 
   return snafu + rest;
 }
 
-static string itoSNAFU( int n )
+static string ltoSNAFU( long n )
 {
   // Base case: abs( n ) <= 2
   switch( n ) {
@@ -121,23 +126,24 @@ static string itoSNAFU( int n )
   }
 
   int exp = getExponent( n );
-  int raised = pow( 5, exp );
+  long raised = pow( 5, exp );
 
-  REPORT( n );
-  REPORT( raised );
+  // REPORT( n );
+  // REPORT( exp );
+  // REPORT( raised );
 
   // If it is negative, the leading is negative
   if ( n < 0 ) {
-    int m = abs( n );
+    long m = abs( n );
     // Try to minimize, assume aggressive
     if ( abs( m - 2 * raised ) < abs( m - raised ) ) {
-      int rem = n - ( -2 * raised );
-      REPORT( "=" );
-      return mergeSNAFU( "=", itoSNAFU( rem ), exp );
+      long rem = n - ( -2 * raised );
+      // REPORT( "=" );
+      return mergeSNAFU( "=", ltoSNAFU( rem ), exp );
     } else if ( abs( m - raised ) < m ) {
-      int rem = n - ( -1 * raised );
-      REPORT( "-" );
-      return mergeSNAFU( "-", itoSNAFU( rem ), exp );
+      long rem = n - ( -1 * raised );
+      // REPORT( "-" );
+      return mergeSNAFU( "-", ltoSNAFU( rem ), exp );
     } else {
       cerr << "Unexpected (n < 0)" << endl;
       REPORT( n );
@@ -146,13 +152,13 @@ static string itoSNAFU( int n )
   } else {
     // Try to minimize
     if ( abs( n - 2 * raised ) < abs( n - raised ) ) {
-      int rem = n - ( 2 * raised );
-      REPORT( "2" );
-      return mergeSNAFU( "2", itoSNAFU( rem ), exp );
+      long rem = n - ( 2 * raised );
+      // REPORT( "2" );
+      return mergeSNAFU( "2", ltoSNAFU( rem ), exp );
     } else if ( abs( n - raised ) < n ) {
-      int rem = n - ( 1 * raised );
-      REPORT( "1" );
-      return mergeSNAFU( "1", itoSNAFU( rem ), exp );
+      long rem = n - ( 1 * raised );
+      // REPORT( "1" );
+      return mergeSNAFU( "1", ltoSNAFU( rem ), exp );
     } else {
       cerr << "Unexpected (n > 0)" << endl;
       REPORT( n );
@@ -161,7 +167,7 @@ static string itoSNAFU( int n )
   }
 }
 
-static int SNAFUtoi( string snafu )
+static long SNAFUtol( string snafu )
 {
   if ( snafu.size() == 1 ) {
     switch( snafu[ 0 ] ) {
@@ -183,32 +189,32 @@ static int SNAFUtoi( string snafu )
     }
   }
 
-  return 5 * SNAFUtoi( snafu.substr( 0, snafu.size() - 1 ) )
-        + SNAFUtoi( snafu.substr( snafu.size() - 1, 1 ) );
+  return 5 * SNAFUtol( snafu.substr( 0, snafu.size() - 1 ) )
+        + SNAFUtol( snafu.substr( snafu.size() - 1, 1 ) );
 }
 
 int main()
 {
-  int total = 0;
+  long total = 0;
 
   string line;
   while ( getline( cin, line ) ) {  
-    REPORT( line );
-    int inputN = SNAFUtoi( line );     // e = expected
-    REPORT( inputN );
-    string lina = itoSNAFU( inputN );  // a = actual
+    // REPORT( line );
+    long inputN = SNAFUtol( line );     // e = expected
+    // REPORT( inputN );
+    string lina = ltoSNAFU( inputN );  // a = actual
     if ( line != lina ) {
       REPORT( inputN );
       REPORT( line );
       REPORT( lina );
-      REPORT( SNAFUtoi( lina ) );
+      REPORT( SNAFUtol( lina ) );
       exit( 1 );
     }
     total += inputN;
   }
   REPORT( total );
-  string snafu = itoSNAFU( total );
-  int n = SNAFUtoi( snafu );
+  string snafu = ltoSNAFU( total );
+  long n = SNAFUtol( snafu );
   if ( total != n ) {
     REPORT( total );
     REPORT( n );
