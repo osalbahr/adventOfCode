@@ -40,7 +40,10 @@ map<string,Valve*> valves;
 typedef pair<string,string> ps;
 
 // Note: distance is bi-directional
-map<ps,int> distance;
+map<ps,int> distances;
+
+// Subset of valves, only the important ones
+map<string,Valve*> usefulValves;
 
 static Valve* parseLine( string line )
 {
@@ -100,6 +103,51 @@ static void printValves( FILE *fp )
   }
 }
 
+// Using bfs
+static void populateDistances()
+{
+  for ( const auto& item : valves ) {
+    Valve *valve = item.second;
+    string name = valve->name;
+    int rate = valve->rate;
+
+    if ( rate == 0 && name != "AA" )
+      continue;
+
+    int distance = 0;
+    queue<Valve*> q;
+    set<string> visited;
+    for ( string otherString : valve->list ) {
+      q.push( valves[ otherString ] );
+      visited.insert( otherString );
+    }
+
+    visited.insert( name );
+    
+    while ( !q.empty() ) {
+      distance++;
+      int size = q.size();
+      for ( int i = 0; i < size; i++ ) {
+        Valve* other = q.front();
+        q.pop();
+
+        string otherString = other->name;
+        if ( usefulValves.count( otherString ) > 0 ) {
+          ps p = { name, otherString };
+          ps p2 = { otherString, name };
+          distances[ p ] = distances[ p2 ] = distance;
+        }
+
+        for ( string nextString : other->list ) {
+          // Newly inserted
+          if ( visited.insert( nextString ).second )
+            q.push( valves[ nextString ] );
+        }
+      }
+    }
+  }
+}
+
 int main()
 {
   string line;
@@ -107,6 +155,8 @@ int main()
   while ( getline( cin, line ) ) {
     Valve *valve = parseLine( line );
     valves[ valve->name ] = valve;
+    if ( valve->rate > 0 )
+      usefulValves[ valve->name ] = valve;
     parsingList.push_back( valve );
   }
 
@@ -114,4 +164,21 @@ int main()
   FILE *parse = fopen( "PARSE", "w" );
   printValves( parse );
   fclose( parse );
+  REPORT( valves.size() );
+  REPORT( usefulValves.size() );
+
+  populateDistances();
+
+  REPORT( distances.size() );
+
+  FILE *graph = fopen( "GRAPH", "w" );
+  for ( auto item : distances ) {
+    ps p = item.first;
+    string s1 = p.first;
+    string s2 = p.second;
+    int dist = item.second;
+    if ( s1 < s2 )
+      fprintf( graph, "%s <- %d -> %s\n", s1.c_str(), dist, s2.c_str() );
+  }
+  fclose( graph );
 }
