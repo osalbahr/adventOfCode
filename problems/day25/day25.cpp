@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <cstdlib>  // atoi, malloc
 #include <climits>  // INT_MIN
+#include <cmath>
 #include <ctype.h>  // isdigit
 // #include <cstring>  // I mean, if you really wanted to
 
@@ -53,67 +54,117 @@ pi operator*(const int a, const pi& p) {
 
 // Add program state (global variables) here
 
-static string stripSNAFU( string snafu )
+// static string stripSNAFU( string snafu )
+// {
+//   if ( snafu[ 0 ] == '0' )
+//     snafu = snafu.substr( 1, snafu.size() - 1 );
+//   return snafu;
+// }
+
+#define minabs( X, Y )\
+min( abs( X ), abs( Y ) )
+
+static int getExponent( int n )
 {
-  if ( snafu[ 0 ] == '0' )
-    snafu = snafu.substr( 1, snafu.size() - 1 );
-  return snafu;
+  n = abs( n );
+  int exp = 1;
+
+  // Find the maximum positive minimizer
+  while ( n - pow( 5, exp + 1 ) > 0 ) {
+    exp++;
+  }
+
+  // Take into account negative minimizer
+  int raised      = pow( 5, exp );
+  int nextRaised  = pow( 5, exp + 1 );
+
+  int currMin =  minabs( n - raised,      n - 2 * raised );
+  int nextMin =  minabs( n - nextRaised,  n - 2 * nextRaised );
+
+  REPORT( currMin );
+  REPORT( nextMin );
+
+  if ( nextMin < currMin )
+    exp++;
+
+  return exp;
+}
+
+static string mergeSNAFU( string leading, string rest, int exp )
+{
+  string snafu = leading;
+  // Fill with zeros
+  if ( rest.size() > exp ) {
+    cerr << "Invalid merge" << endl;
+    REPORT( leading );
+    REPORT( rest );
+    REPORT( exp );
+    exit( 1 );
+  }
+
+  for ( int i = 0; i < exp - rest.size(); i++ ) {
+    REPORT( i );
+    snafu += '0';
+  }
+
+  return snafu + rest;
 }
 
 static string itoSNAFU( int n )
 {
-  string snafu = "";
-  while ( n != 0 ) {
-    // REPORT( n );
-    // REPORT( n % 5 );
-    // REPORT( snafu );
-    switch( n % 5 ) {
-      case -1:
-        snafu = '-' + snafu;
-        n += 1;
-        break;
-      case -2:
-        snafu = '=' + snafu;
-        n += 2;
-        break;
-      case -3:
-        snafu += "-2" + snafu;
-        n += 3;
-        break;
-      case -4:
-        snafu += "-1" + snafu;
-        n += 4;
-        break;
-      case 0:
-        snafu = '0' + snafu;
-        n /= 5;
-        break;
-      case 1:
-        snafu = '1' + snafu;
-        n /= 5;
-        break;
-      case 2:
-        snafu = '2' + snafu;
-        n /= 5;
-        break;
-      case 3:
-        snafu = '=' + snafu;
-        n += 2;
-        n /= 5;
-        break;
-      case 4:
-        snafu = '-' + snafu;
-        n += 2;
-        n /= 5;
-        break;
-      default:
-        cerr << "Not handled ";
-        REPORT( n % 5 );
-        exit( 1 );
-    }
+  // Base case: abs( n ) <= 2
+  switch( n ) {
+    case -2:
+      return "=";
+    case -1:
+      return "-";
+    case 0:
+      return "0";
+    case 1:
+      return "1";
+    case 2:
+      return "2";
   }
 
-  return stripSNAFU(snafu);
+  int exp = getExponent( n );
+  int raised = pow( 5, exp );
+
+  REPORT( n );
+  REPORT( raised );
+
+  // If it is negative, the leading is negative
+  if ( n < 0 ) {
+    int m = abs( n );
+    // Try to minimize, assume aggressive
+    if ( abs( m - 2 * raised ) < abs( m - raised ) ) {
+      int rem = n - ( -2 * raised );
+      REPORT( "=" );
+      return mergeSNAFU( "=", itoSNAFU( rem ), exp );
+    } else if ( abs( m - raised ) < m ) {
+      int rem = n - ( -1 * raised );
+      REPORT( "-" );
+      return mergeSNAFU( "-", itoSNAFU( rem ), exp );
+    } else {
+      cerr << "Unexpected (n < 0)" << endl;
+      REPORT( n );
+      exit( 1 );
+    }
+  } else {
+    // Try to minimize
+    if ( abs( n - 2 * raised ) < abs( n - raised ) ) {
+      int rem = n - ( 2 * raised );
+      REPORT( "2" );
+      return mergeSNAFU( "2", itoSNAFU( rem ), exp );
+    } else if ( abs( n - raised ) < n ) {
+      int rem = n - ( 1 * raised );
+      REPORT( "1" );
+      return mergeSNAFU( "1", itoSNAFU( rem ), exp );
+    } else {
+      cerr << "Unexpected (n > 0)" << endl;
+      REPORT( n );
+      exit( 1 );
+    }
+  }
 }
 
 static int SNAFUtoi( string snafu )
@@ -133,6 +184,7 @@ static int SNAFUtoi( string snafu )
       default:
         cerr << "Invalid digit ";
         REPORT( snafu[ 0 ] );
+        REPORT( (int)snafu[ 0 ] );
         exit( 1 );
     }
   }
@@ -146,18 +198,19 @@ int main()
   int total = 0;
 
   string line;
-  while ( getline( cin, line ) ) {
-    int n = SNAFUtoi( line );     // e = expected
-    // REPORT( n );
-    string lina = itoSNAFU( n );  // a = actual
+  while ( getline( cin, line ) ) {  
+    REPORT( line );
+    int inputN = SNAFUtoi( line );     // e = expected
+    REPORT( inputN );
+    string lina = itoSNAFU( inputN );  // a = actual
     if ( line != lina ) {
-      REPORT( n );
+      REPORT( inputN );
       REPORT( line );
       REPORT( lina );
       REPORT( SNAFUtoi( lina ) );
       exit( 1 );
     }
-    total += n;
+    total += inputN;
   }
   REPORT( total );
   string snafu = itoSNAFU( total );
