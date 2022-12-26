@@ -211,18 +211,52 @@ static set<string> getPaths()
   return allPaths;
 }
 
+static int getRate( string path )
+{
+  set<Valve*> openValves;
+
+  int rate = 0;
+  int throughput = 0;
+  int minute = 0;
+  for ( int i = 0; i < path.size() - 3; i += 2 ) {
+    string src = path.substr( i, 2 );
+    string openvalve = path.substr( i + 2, 2 );
+
+    // Go and open it
+    int time = distances[ { src, openvalve } ] + 1;
+    minute += time;
+
+    REPORT( openvalve );
+    REPORT( minute );
+    REPORT( throughput );
+    REPORT( rate );
+    cout << endl;
+
+    // Old profit
+    rate = ( time + 1 ) * throughput;
+
+    // New profit
+    throughput += usefulValves[ openvalve ]->rate;
+  }
+
+  // Leftover profit
+  rate += ( 30 - minute ) * throughput;
+
+  return rate;
+}
+
 static vector<int> getFlowRates()
 {
-  Valve *start = valves[ "AA" ];
-  int minutes = 0;
-
   cout << "Generating PATHSFILE ... " << flush;
   set<string> paths = getPaths();
   cout << "Done" << endl;
   REPORT( paths.size() );
 
   vector<int> rates;
-  rates.push_back( -1 );
+  for ( string path : paths ) {
+    int rate = getRate( path );
+    rates.push_back( rate );
+  }
   return rates;
 }
 
@@ -266,8 +300,14 @@ int main()
   fclose( graph );
   cout << "Done" << endl;
 
-  vector<int> rates = getFlowRates();
-  sort( rates.begin(), rates.end() );
-  reverse( rates.begin(), rates.end() );
-  cout << rates[ 0 ] << endl;
+  // vector<int> rates = getFlowRates();
+  // sort( rates.begin(), rates.end() );
+  // reverse( rates.begin(), rates.end() );
+  // cout << "Max = " << rates[ 0 ] << endl;
+
+  string path = "AADDBBJJHHEECC";
+  int rate = getRate( path );
+
+  REPORT( path );
+  REPORT( rate );
 }
