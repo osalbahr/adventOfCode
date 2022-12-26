@@ -148,17 +148,33 @@ static void populateDistances()
   }
 }
 
-static set<string> getPaths()
+static int getTime( string path )
+{
+  // Go to it and open it
+  int time = distances[ {"AA", path.substr( 0, 2 ) } ] + 1;
+  for ( int i = 2; i < path.size() - 3; i += 2 ) {
+    string s1 = path.substr( i, 2 );
+    string s2 = path.substr( i + 2, 2 );
+    time += distances[ { s1, s2 } ] + 1;
+  }
+  return time;
+}
+
+static vector<string> getPaths()
 {
   set<string> allPaths;
-  for ( auto item : usefulValves )
-    allPaths.insert( item.second->name );
+  for ( auto item : usefulValves ) {
+    string newPath = "AA" + item.second->name;
+    if ( getTime( newPath ) < 30 )
+      allPaths.insert( newPath );
+  }
   
   int size = usefulValves.size();
   for ( int i = 0; i < size - 1; i++ ) {
+    // REPORT( allPaths.size() );
     set<string> allPathsCopy = allPaths;
-    allPaths.clear();
-    for ( auto item : usefulValves )
+    set<string> toBeRemoved;
+    for ( auto item : usefulValves ) {
       for ( string path : allPathsCopy ) {
         string name = item.second->name;
         bool duplicate = false;
@@ -168,19 +184,32 @@ static set<string> getPaths()
             break;
           }
 
-        if ( !duplicate ) {
-          string newPath = path + name;
+        string newPath = path + name;
+        if ( !duplicate && getTime( newPath ) < 30 ) {
           allPaths.insert( newPath );
+          toBeRemoved.insert( path );
         }
       }
-  }
-  REPORT( allPaths.size() );
-  for ( string path : allPaths )
-    REPORT( path );
-  REPORT( "Done" );
-  exit( 0 );
+    }
 
-  set<string> paths;
+    if ( toBeRemoved.empty() ) {
+      // cout << "PRIMED at ";
+      // REPORT( i );
+      break;
+    }
+  
+    for ( string removal : toBeRemoved )
+      allPaths.erase( removal );
+  }
+
+  vector<string> paths;
+  FILE *pathsfile = fopen( "PATHSFILE", "w" );
+  for ( string path : allPaths ) {
+    fprintf( pathsfile, "%s\n", path.c_str() );
+    paths.push_back( path );
+  }
+  fclose( pathsfile );
+
   return paths;
 }
 
@@ -188,13 +217,23 @@ static vector<int> getFlowRates()
 {
   Valve *start = valves[ "AA" ];
   int minutes = 0;
-  set<string> paths = getPaths();
+
+  cout << "Generating PATHSFILE ... " << flush;
+  vector<string> paths = getPaths();
+  cout << "Done" << endl;
+  REPORT( paths.size() );
+
+  vector<int> rates;
+  rates.push_back( -1 );
+  return rates;
 }
 
 int main()
 {
   string line;
 
+  cout << "Parsing ... ";
+  cout.flush();
   while ( getline( cin, line ) ) {
     Valve *valve = parseLine( line );
     valves[ valve->name ] = valve;
@@ -202,18 +241,21 @@ int main()
       usefulValves[ valve->name ] = valve;
     parsingList.push_back( valve );
   }
+  cout << "Done" << endl;
 
   // Check parsing
+  cout << "Creating PARSE ... " << flush;
   FILE *parse = fopen( "PARSE", "w" );
   printValves( parse );
   fclose( parse );
-  REPORT( valves.size() );
-  REPORT( usefulValves.size() );
+  cout << "Done" << endl;
 
+  cout << "Populating distance ... " << flush;
   populateDistances();
+  cout << "Done" << endl;
 
-  REPORT( distances.size() );
-
+  cout << "Creating GRAPH ... " << flush;
+  cout.flush();
   FILE *graph = fopen( "GRAPH", "w" );
   for ( auto item : distances ) {
     ps p = item.first;
@@ -224,6 +266,7 @@ int main()
       fprintf( graph, "%s <- %d -> %s\n", s1.c_str(), dist, s2.c_str() );
   }
   fclose( graph );
+  cout << "Done" << endl;
 
   vector<int> rates = getFlowRates();
   sort( rates.begin(), rates.end() );
