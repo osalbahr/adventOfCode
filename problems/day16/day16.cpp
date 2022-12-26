@@ -160,7 +160,7 @@ static int getTime( string path )
   return time;
 }
 
-static vector<string> getPaths()
+static set<string> getPaths()
 {
   set<string> allPaths;
   for ( auto item : usefulValves ) {
@@ -202,15 +202,13 @@ static vector<string> getPaths()
       allPaths.erase( removal );
   }
 
-  vector<string> paths;
   FILE *pathsfile = fopen( "PATHSFILE", "w" );
   for ( string path : allPaths ) {
     fprintf( pathsfile, "%s\n", path.c_str() );
-    paths.push_back( path );
   }
   fclose( pathsfile );
 
-  return paths;
+  return allPaths;
 }
 
 static vector<int> getFlowRates()
@@ -219,7 +217,7 @@ static vector<int> getFlowRates()
   int minutes = 0;
 
   cout << "Generating PATHSFILE ... " << flush;
-  vector<string> paths = getPaths();
+  set<string> paths = getPaths();
   cout << "Done" << endl;
   REPORT( paths.size() );
 
