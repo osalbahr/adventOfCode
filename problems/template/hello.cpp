@@ -24,7 +24,7 @@ using namespace std;
 
 // Aliasing
 #define forn( X ) \
-for ( int _i = 0; _i < ( X ); _i++ )
+for ( int i_ = 0; i_ < ( X ); i_++ )
 
 // Point syntactic sugar
 typedef pair<int,int> pi;
