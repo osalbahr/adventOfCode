@@ -1,3 +1,5 @@
+// #define DEBUG
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -28,6 +30,7 @@ static void printListReverse( const list<int>& numbers, FILE *fp )
     fprintf( fp, "%d\n", *it );
 }
 
+#ifdef DEBUG
 static void printListCommas( list<int> numbers, FILE *fp, const int *n )
 {
   if ( n == NULL )
@@ -43,6 +46,7 @@ static void printListCommas( list<int> numbers, FILE *fp, const int *n )
 
   fprintf( fp, "\n" );
 }
+#endif
 
 static void mixNode( list<int>& numbers, list<int>::iterator node )
 {
@@ -69,27 +73,33 @@ static void mixNode( list<int>& numbers, list<int>::iterator node )
         pos = numbers.end();
       }
       node = numbers.insert( pos, n );
-      // printListCommas( numbers, stdout, &n );
     }
   }
 }
 
 static void mix( list<int>& numbers )
 {
+#ifdef DEBUG
   FILE *out = fopen( "out", "w" );
   printListCommas( numbers, out, NULL );
-
+#endif
   vector< list<int>::iterator > nodes;
   for ( auto node = numbers.begin(); node != numbers.end(); node++ )
     nodes.push_back( node );
   
   for ( auto node : nodes ) {
+#ifdef DEBUG
     int n = *node;
+#endif
     mixNode( numbers, node );
+#ifdef DEBUG
     fprintf( out, "\n" );
     printListCommas( numbers, out, &n );
+#endif
   }
+#ifdef DEBUG
   fclose( out );
+#endif
 }
 
 static int getZeroIdx( const list<int>& numbers )

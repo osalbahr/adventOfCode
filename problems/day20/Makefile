@@ -1,6 +1,6 @@
 CC = g++
 CXX = g++
-CPPFLAGS = -Wall -g -std=gnu++20
+CPPFLAGS = -Wall -g -O2 -std=gnu++20
 LDLIBS = -lm
 
 EXE = day20 day20_2
