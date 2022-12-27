@@ -78,7 +78,6 @@ static void mix( list<int>& numbers )
 {
   FILE *out = fopen( "out", "w" );
   printListCommas( numbers, out, NULL );
-  fprintf( out, "\n" );
 
   vector< list<int>::iterator > nodes;
   for ( auto node = numbers.begin(); node != numbers.end(); node++ )
@@ -87,8 +86,8 @@ static void mix( list<int>& numbers )
   for ( auto node : nodes ) {
     int n = *node;
     mixNode( numbers, node );
-    printListCommas( numbers, out, &n );
     fprintf( out, "\n" );
+    printListCommas( numbers, out, &n );
   }
   fclose( out );
 }
