@@ -1,4 +1,4 @@
-// #define DEBUG
+#define DEBUG
 
 #include <iostream>
 #include <vector>
@@ -55,7 +55,7 @@ static void mixNode( list<int>& numbers, list<int>::iterator node )
   if ( n == 0 )
     return;
   
-  int moves = n;
+  int moves = abs( n ) % ( numbers.size() - 1 );
 
   if ( n > 0 ) {
     forn( moves ) {
@@ -67,7 +67,7 @@ static void mixNode( list<int>& numbers, list<int>::iterator node )
       node = numbers.insert( pos, n );
     }
   } else { // n < 0
-    forn( abs( moves ) ) {
+    forn( moves ) {
       auto pos = numbers.erase( node );
       pos--;
       if ( pos == numbers.begin() ) {
