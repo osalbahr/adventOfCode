@@ -1,5 +1,0 @@
-./day20_2 < 1.IN
-
-day20_2(47640,0x119a7e600) malloc: *** error for object 0x7fc038705b40: pointer being freed was not allocated
-day20_2(47640,0x119a7e600) malloc: *** set a breakpoint in malloc_error_break to debug
-Abort trap: 6

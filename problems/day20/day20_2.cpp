@@ -48,15 +48,15 @@ static void printListCommas( list<long> numbers, FILE *fp )
 }
 #endif
 
-static void mixNode( list<long>& numbers, list<long>::iterator node )
+static list<long>::iterator mixNode( list<long>& numbers, list<long>::iterator node )
 {
   long n = *node;
   if ( n == 0 )
-    return;
+    return node;
   
   int moves = abs( n ) % ( numbers.size() - 1 );
   if ( moves == 0 )
-    return;
+    return node;
 
   if ( n > 0 ) {
     forn( moves ) {
@@ -77,12 +77,16 @@ static void mixNode( list<long>& numbers, list<long>::iterator node )
       node = numbers.insert( pos, n );
     }
   }
+
+  return node;
 }
 
-static void mix( list<long>& numbers, const vector< list<long>::iterator >& initial )
-{  
-  for ( auto node : initial )
-    mixNode( numbers, node );
+vector< list<long>::iterator > initial;
+static void mix( list<long>& numbers, vector< list<long>::iterator > nodes )
+{
+  initial.clear();
+  for ( auto node : nodes )
+    initial.push_back( mixNode( numbers, node ) );
 }
 
 static int getZeroIdx( const list<long>& numbers )
@@ -120,7 +124,6 @@ int main( int argc, char *argv[] )
   printListReverse( numbers, rev );
   fclose( rev );
 
-  vector< list<long>::iterator > initial;
   for ( auto node = numbers.begin(); node != numbers.end(); node++ )
     initial.push_back( node );
 
@@ -129,6 +132,7 @@ int main( int argc, char *argv[] )
   fprintf( out, "Initial arrangement:\n" );
   printListCommas( numbers, out );
   fprintf( out, "\n" );
+  fflush( out );
 #endif
 
   cout << "Mixing ... " << flush;
@@ -140,6 +144,7 @@ int main( int argc, char *argv[] )
   fprintf( out, "After %d rounds of mixing:\n", i_ + 1 );
   printListCommas( numbers, out );
   fprintf( out, "\n" );
+  fflush( out );
 #endif
   }
   cout << "Done" << endl;
