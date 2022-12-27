@@ -15,43 +15,45 @@ using namespace std;
 #define forn( X ) \
 for ( int i_ = 0; i_ < ( X ); i_++ )
 
-static void printList( list<int> numbers, FILE *fp )
+static void printList( const list<int>& numbers, FILE *fp )
 {
   for ( int n : numbers ) {
     fprintf( fp, "%d\n", n );
   }
 }
 
-static void printListReverse( list<int> numbers, FILE *fp )
+static void printListReverse( const list<int>& numbers, FILE *fp )
 {
   for ( auto it = numbers.rbegin(); it != numbers.rend(); it++ )
     fprintf( fp, "%d\n", *it );
 }
 
-// static void printListCommas( list<int> numbers, FILE *fp, const int *n )
-// {
-//   if ( n == NULL )
-//     cout << "Initial arrangement:" << endl;
-//   else
-//     cout << *n << " moves:" << endl;
+static void printListCommas( list<int> numbers, FILE *fp, const int *n )
+{
+  if ( n == NULL )
+    fprintf( fp, "Initial arrangement:\n" );
+  else
+    fprintf( fp, "%d moves:\n", *n );
   
-//   auto node = numbers.begin();
-//   fprintf( fp, "%d", *node );
+  auto node = numbers.begin();
+  fprintf( fp, "%d", *node );
 
-//   while ( (++node) != numbers.end() )
-//     fprintf( fp, ", %d", *node );
+  while ( (++node) != numbers.end() )
+    fprintf( fp, ", %d", *node );
 
-//   cout << endl;
-// }
+  fprintf( fp, "\n" );
+}
 
 static void mixNode( list<int>& numbers, list<int>::iterator node )
 {
   int n = *node;
   if ( n == 0 )
     return;
+  
+  int moves = n;
 
   if ( n > 0 ) {
-    forn( n ) {
+    forn( moves ) {
       auto pos = numbers.erase( node );
       if ( pos == numbers.end() ) {
         pos = numbers.begin();
@@ -60,7 +62,7 @@ static void mixNode( list<int>& numbers, list<int>::iterator node )
       node = numbers.insert( pos, n );
     }
   } else { // n < 0
-    forn( abs( n ) ) {
+    forn( abs( moves ) ) {
       auto pos = numbers.erase( node );
       pos--;
       if ( pos == numbers.begin() ) {
@@ -74,20 +76,21 @@ static void mixNode( list<int>& numbers, list<int>::iterator node )
 
 static void mix( list<int>& numbers )
 {
-  // printListCommas( numbers, stdout, NULL );
-  // cout << endl;
+  FILE *out = fopen( "out", "w" );
+  printListCommas( numbers, out, NULL );
+  fprintf( out, "\n" );
 
   vector< list<int>::iterator > nodes;
   for ( auto node = numbers.begin(); node != numbers.end(); node++ )
     nodes.push_back( node );
   
   for ( auto node : nodes ) {
-    // int n = *node;
+    int n = *node;
     mixNode( numbers, node );
-    // printListCommas( numbers, stdout, &n );
-    // cout << endl;
+    printListCommas( numbers, out, &n );
+    fprintf( out, "\n" );
   }
-
+  fclose( out );
 }
 
 static int getZeroIdx( const list<int>& numbers )
@@ -144,5 +147,9 @@ int main()
   REPORT( ( n1 = numbersVec[ ( zeroIdx + 1000 ) % size ] ) );
   REPORT( ( n2 = numbersVec[ ( zeroIdx + 2000 ) % size ] ) );
   REPORT( ( n3 = numbersVec[ ( zeroIdx + 3000 ) % size ] ) );
-  REPORT( n1 + n2 + n3 );
+
+  int total = n1 + n2 + n3;
+  REPORT( total );
+
+  assert( total == 3 || total == 7225 );
 }
