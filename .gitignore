@@ -1,6 +1,11 @@
-# Mac stuff
+# Mac files
 *.DS_Store
 *.dSYM
 
-# VS Code stuff
+# VS Code files
 *.vscode
+
+# Debugging files
+out
+err
+debug
