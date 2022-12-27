@@ -2,6 +2,8 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <list>
+#include <algorithm>
 
 #include <cstdio>
 
@@ -9,88 +11,138 @@ using namespace std;
 
 #define REPORT( X ) cout << #X << " = " << (X) << endl
 
-typedef struct NodeTag {
-  struct NodeTag *prev;
-  struct NodeTag *next;
-  int n;
-} Node;
+// Aliasing
+#define forn( X ) \
+for ( int i_ = 0; i_ < ( X ); i_++ )
 
-typedef struct {
-  Node *tail;
-  Node *head;
-} List;
-
-static void printList( List *list, FILE *fp )
+static void printList( list<int> numbers, FILE *fp )
 {
-  for ( Node *c = list->head; c; c = c->next )
-    fprintf( fp, "%d\n", c->n );
+  for ( int n : numbers ) {
+    fprintf( fp, "%d\n", n );
+  }
 }
 
-static void printListReverse( List *list, FILE *fp )
+static void printListReverse( list<int> numbers, FILE *fp )
 {
-  for ( Node *c = list->tail; c; c = c->prev )
-    fprintf( fp, "%d\n", c->n );
+  for ( auto it = numbers.rbegin(); it != numbers.rend(); it++ )
+    fprintf( fp, "%d\n", *it );
 }
 
-// static void mix( List *list )
+// static void printListCommas( list<int> numbers, FILE *fp, const int *n )
 // {
-//   for ( Node *c = list->head; c; ) {
-//     // Preserve the actual next
-//   }
+//   if ( n == NULL )
+//     cout << "Initial arrangement:" << endl;
+//   else
+//     cout << *n << " moves:" << endl;
+  
+//   auto node = numbers.begin();
+//   fprintf( fp, "%d", *node );
+
+//   while ( (++node) != numbers.end() )
+//     fprintf( fp, ", %d", *node );
+
+//   cout << endl;
 // }
 
-static void freeList( List *list )
+static void mixNode( list<int>& numbers, list<int>::iterator node )
 {
-  for ( Node *c = list->head; c; ) {
-    Node *temp = c;
-    c = temp->next;
-    free( temp );
+  int n = *node;
+  if ( n == 0 )
+    return;
+
+  if ( n > 0 ) {
+    forn( n ) {
+      auto pos = numbers.erase( node );
+      if ( pos == numbers.end() ) {
+        pos = numbers.begin();
+      }
+      pos++;
+      node = numbers.insert( pos, n );
+    }
+  } else { // n < 0
+    forn( abs( n ) ) {
+      auto pos = numbers.erase( node );
+      pos--;
+      if ( pos == numbers.begin() ) {
+        pos = numbers.end();
+      }
+      node = numbers.insert( pos, n );
+      // printListCommas( numbers, stdout, &n );
+    }
   }
-  free( list );
+}
+
+static void mix( list<int>& numbers )
+{
+  // printListCommas( numbers, stdout, NULL );
+  // cout << endl;
+
+  vector< list<int>::iterator > nodes;
+  for ( auto node = numbers.begin(); node != numbers.end(); node++ )
+    nodes.push_back( node );
+  
+  for ( auto node : nodes ) {
+    // int n = *node;
+    mixNode( numbers, node );
+    // printListCommas( numbers, stdout, &n );
+    // cout << endl;
+  }
+
+}
+
+static int getZeroIdx( const list<int>& numbers )
+{
+  int idx = 0;
+  for ( auto it = numbers.begin(); it != numbers.end(); it++ ) {
+    if ( *it == 0 )
+      return idx;
+    idx++;
+  }
+  cerr << "Zero node not found" << endl;
+  exit( 1 );
 }
 
 int main()
 {
-  List *list = (List *)malloc( sizeof( *list ) );
-  // same as calloc( 1, sizeof( *list ) )
-  list->head = nullptr;
-  list->tail = nullptr;
+  list<int> numbers;
 
   int n;
-  cin >> n;
-  Node *head;
-  head = (Node *)malloc( sizeof( *head ) );
-  head->n = n;
-  head->prev = nullptr;
-  list->head = head;
-
-  Node *prev = head;
-  while ( cin >> n ) {
-    Node *temp = (Node *)malloc( sizeof( *temp ) );
-    temp->n = n;
-    prev->next = temp;
-    temp->prev = prev;
-    prev = temp;
-  }
-  Node *tail = prev;
-  tail->next = nullptr;
-  list->tail = tail;
+  while ( cin >> n )
+    numbers.push_back( n );
 
   // Check it
   fclose( fopen( "PARSE", "w" ) );
-  FILE *out = fopen( "PARSE", "w" );
-  printList( list, out );
-  fclose( out );
+  FILE *parse = fopen( "PARSE", "w" );
+  printList( numbers, parse );
+  fclose( parse );
 
   // Check it reversed
   fclose( fopen( "REVERSE", "w" ) );
   FILE *rev = fopen( "REVERSE", "w" );
-  printListReverse( list, rev );
+  printListReverse( numbers, rev );
   fclose( rev );
 
-  // // Mix them
-  // mix( list );
-  // printList( list, stdout );
+  // Mix them
+  mix( numbers );
 
-  freeList( list );
+  // printListCommas( numbers, stdout, NULL );
+  
+  int zeroIdx = getZeroIdx( numbers );
+  REPORT( zeroIdx );
+
+  // Dump it all in a vector
+  vector<int> numbersVec;
+  for ( int n : numbers )
+    numbersVec.push_back( n );
+
+  assert( numbersVec.size() == numbers.size() );
+  int size = numbers.size();
+
+  REPORT( numbersVec[ zeroIdx ] );
+
+  int n1, n2, n3;
+  REPORT( ( n1 = numbersVec[ ( zeroIdx + 1000 ) % size ] ) );
+  REPORT( ( n2 = numbersVec[ ( zeroIdx + 2000 ) % size ] ) );
+  REPORT( ( n3 = numbersVec[ ( zeroIdx + 3000 ) % size ] ) );
+  REPORT( n1 + n2 + n3 );
 }
