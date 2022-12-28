@@ -165,7 +165,7 @@ static set<string> getPaths()
   set<string> allPaths;
   for ( auto item : usefulValves ) {
     string newPath = "AA" + item.second->name;
-    if ( getTime( newPath ) <= 30 )
+    if ( getTime( newPath ) < 30 )
       allPaths.insert( newPath );
   }
   
@@ -185,7 +185,7 @@ static set<string> getPaths()
           }
 
         string newPath = path + name;
-        if ( !duplicate && getTime( newPath ) <= 30 ) {
+        if ( !duplicate && getTime( newPath ) < 30 ) {
           allPaths.insert( newPath );
           toBeRemoved.insert( path );
         }
