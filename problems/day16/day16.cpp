@@ -96,7 +96,7 @@ static void printValves( FILE *fp )
     }
   
     fprintf( fp, "Valve %s has flow rate=%d; tunnels lead to valves ", valve->name.c_str(), valve->rate );
-    int i;
+    size_t i;
     for ( i = 0; i < valve->list.size() - 1; i++ )
       fprintf( fp, "%s, ", valve->list[ i ].c_str() );
     fprintf( fp, "%s\n", valve->list[ i ].c_str() );
@@ -152,7 +152,7 @@ static int getTime( string path )
 {
   // Go to it and open it
   int time = 0;
-  for ( int i = 0; i < path.size() - 3; i += 2 ) {
+  for ( size_t i = 0; i < path.size() - 3; i += 2 ) {
     string s1 = path.substr( i, 2 );
     string s2 = path.substr( i + 2, 2 );
     time += distances[ { s1, s2 } ] + 1;
@@ -178,7 +178,7 @@ static set<string> getPaths()
       for ( string path : allPathsCopy ) {
         string name = item.second->name;
         bool duplicate = false;
-        for ( int i = 0; i < path.size() - 1; i += 2 )
+        for ( size_t i = 0; i < path.size() - 1; i += 2 )
           if ( path[ i ] == name[ 0 ] && path[ i + 1 ] == name[ 1 ] ) {
             duplicate = true;
             break;
@@ -213,13 +213,12 @@ static set<string> getPaths()
 
 static int getRate( string path )
 {
-  REPORT( path );
   set<Valve*> openValves;
 
   int rate = 0;
   int throughput = 0;
   int minute = 0;
-  for ( int i = 0; i < path.size() - 3; i += 2 ) {
+  for ( size_t i = 0; i < path.size() - 3; i += 2 ) {
     string src = path.substr( i, 2 );
     string openvalve = path.substr( i + 2, 2 );
 
@@ -230,25 +229,13 @@ static int getRate( string path )
 
     // Old profit
     rate += time * throughput;
-    // REPORT( rate );
-
-    // REPORT( openvalve );
-    // REPORT( minute );
-    // REPORT( throughput );
-    // REPORT( rate );
-    // cout << endl;
 
     // New profit
     throughput += usefulValves[ openvalve ]->rate;
   }
 
   // Leftover profit
-  // REPORT( rate );
-  // REPORT( minute );
   rate += ( 30 - minute ) * throughput;
-  // REPORT( rate );
-
-  REPORT( rate );
   return rate;
 }
 
