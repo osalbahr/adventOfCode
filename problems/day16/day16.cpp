@@ -151,8 +151,8 @@ static void populateDistances()
 static int getTime( string path )
 {
   // Go to it and open it
-  int time = distances[ {"AA", path.substr( 0, 2 ) } ] + 1;
-  for ( int i = 2; i < path.size() - 3; i += 2 ) {
+  int time = 0;
+  for ( int i = 0; i < path.size() - 3; i += 2 ) {
     string s1 = path.substr( i, 2 );
     string s2 = path.substr( i + 2, 2 );
     time += distances[ { s1, s2 } ] + 1;
@@ -165,7 +165,7 @@ static set<string> getPaths()
   set<string> allPaths;
   for ( auto item : usefulValves ) {
     string newPath = "AA" + item.second->name;
-    if ( getTime( newPath ) < 30 )
+    if ( getTime( newPath ) <= 30 )
       allPaths.insert( newPath );
   }
   
@@ -185,7 +185,7 @@ static set<string> getPaths()
           }
 
         string newPath = path + name;
-        if ( !duplicate && getTime( newPath ) < 30 ) {
+        if ( !duplicate && getTime( newPath ) <= 30 ) {
           allPaths.insert( newPath );
           toBeRemoved.insert( path );
         }
@@ -193,8 +193,8 @@ static set<string> getPaths()
     }
 
     if ( toBeRemoved.empty() ) {
-      // cout << "PRIMED at ";
-      // REPORT( i );
+      cout << "PRIMED at ";
+      REPORT( i );
       break;
     }
   
@@ -213,6 +213,7 @@ static set<string> getPaths()
 
 static int getRate( string path )
 {
+  REPORT( path );
   set<Valve*> openValves;
 
   int rate = 0;
@@ -224,24 +225,30 @@ static int getRate( string path )
 
     // Go and open it
     int time = distances[ { src, openvalve } ] + 1;
+
     minute += time;
 
-    REPORT( openvalve );
-    REPORT( minute );
-    REPORT( throughput );
-    REPORT( rate );
-    cout << endl;
-
     // Old profit
-    rate = ( time + 1 ) * throughput;
+    rate += time * throughput;
+    // REPORT( rate );
+
+    // REPORT( openvalve );
+    // REPORT( minute );
+    // REPORT( throughput );
+    // REPORT( rate );
+    // cout << endl;
 
     // New profit
     throughput += usefulValves[ openvalve ]->rate;
   }
 
   // Leftover profit
+  // REPORT( rate );
+  // REPORT( minute );
   rate += ( 30 - minute ) * throughput;
+  // REPORT( rate );
 
+  REPORT( rate );
   return rate;
 }
 
@@ -300,14 +307,15 @@ int main()
   fclose( graph );
   cout << "Done" << endl;
 
-  // vector<int> rates = getFlowRates();
-  // sort( rates.begin(), rates.end() );
-  // reverse( rates.begin(), rates.end() );
-  // cout << "Max = " << rates[ 0 ] << endl;
+  vector<int> rates = getFlowRates();
+  sort( rates.begin(), rates.end() );
+  cout << "Min = " << rates[ 0 ] << endl;
+  reverse( rates.begin(), rates.end() );
+  cout << "Max = " << rates[ 0 ] << endl;
 
-  string path = "AADDBBJJHHEECC";
-  int rate = getRate( path );
+  // string path = "AAZBLZRECYJFIU";
+  // int rate = getRate( path );
 
-  REPORT( path );
-  REPORT( rate );
+  // REPORT( path );
+  // REPORT( rate );
 }
