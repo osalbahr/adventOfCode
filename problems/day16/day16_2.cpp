@@ -21,6 +21,8 @@ using namespace std;
 // like echo -n
 #define REPORTN( X ) cout << #X << " = " << ( X ) << ", "
 
+#define REPORTPS( PS ) cout << #PS << " = " << PS.first << ":" << PS.second << endl;
+
 // Aliasing
 #define forn( X ) \
 for ( int ii = 0; ii < ( X ); ii++ )
@@ -151,12 +153,14 @@ static void populateDistances()
 map<string,int> memoizeTimes;
 static int getTime( string path )
 {
-  if ( path.size() == 2 ) {
+  if ( path.size() == 4 ) {
     return memoizeTimes[ path ] = distances[ { "AA", path.substr( 2, 2 ) } ] + 1;
   } else {
     string lastTwo = path.substr( path.size() - 4, 4 );
     ps pairString = { lastTwo.substr( 0, 2 ), lastTwo.substr( 2, 2 ) };
-    return memoizeTimes[ path ] = memoizeTimes[ path ] + distances[ pairString ] + 1;
+    return memoizeTimes[ path ] =
+    memoizeTimes[ path.substr( 2, path.size() - 2) ]
+    + distances[ pairString ] + 1;
   }
 }
 
@@ -198,18 +202,13 @@ static set<ps> getPaths()
     string newPath = "AA" + item.first;
     if ( getTime( newPath ) >= 26 )
       continue;
-    bool done = false;
     for ( auto item2 : usefulValves ) {
       string newPath2 = "AA" + item2.first;
-      if ( newPath == newPath2 || getTime( newPath2 ) >= 26 )
+      if ( newPath <= newPath2 || getTime( newPath2 ) >= 26 )
         continue;
-      if ( newPath < newPath2 )
-        allPaths.insert( { newPath, newPath2 } );
-      else
-        done = true;
+      if ( newPath > newPath2 )
+        allPaths.insert( { newPath2, newPath } );
     }
-    if ( done )
-      break;
   }
   assert( allPaths.size() );
   for ( ps pairString : allPaths ) {
@@ -300,10 +299,19 @@ static int getRate( string path )
   return rate;
 }
 
-static int getRateBoth( string str1, string str2 )
-{
-  return getRate( str1 ) + getRate( str2 );
-}
+// static int getRateBoth( string str1, string str2 )
+// {
+//   REPORT( str1 );
+//   int time1 = getTime( str1 );
+//   REPORT( time1 );
+//   assert( time1 < 26 );
+
+//   REPORT( str1 );
+//   int time2 = getTime( str2 );
+//   REPORT( time2 );
+//   assert( time2 < 26 );
+//   return getRate( str1 ) + getRate( str2 );
+// }
 
 static vector<int> getFlowRates()
 {
@@ -322,7 +330,6 @@ static vector<int> getFlowRates()
     pathsRates[ str1 ] = rate1;
     pathsRates[ str2 ] = rate2;
   }
-  cout << endl;
   REPORT( pathsRates.size() );
 
   cout << "Generating rates ... " << flush;
@@ -340,7 +347,6 @@ static vector<int> getFlowRates()
       exit( 1 );
     }
   }
-  cout << "Done" << endl;
   REPORT( rates.size() );
 
   return rates;
@@ -387,6 +393,7 @@ int main()
   cout << "Done" << endl;
 
   vector<int> rates = getFlowRates();
+
   assert( rates.size() );
   sort( rates.begin(), rates.end() );
   cout << "Min = " << rates[ 0 ] << endl;
@@ -396,10 +403,7 @@ int main()
   // string path = "AAZBLZRECYJFIU";
   // int rate = getRate( path );
 
-  // REPORT( path );
-  // REPORT( rate );
-
-  string you = "AAJJBBCC";
-  string elephant = "AADDHHEE";
-  REPORT( getRateBoth( you, elephant ) );
+  // string you = "AAJJBBCC";
+  // string elephant = "AADDHHEE";
+  // REPORT( getRateBoth( you, elephant ) );
 }
