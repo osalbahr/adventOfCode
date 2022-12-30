@@ -67,6 +67,8 @@ int boxSize = sizeof( box ) / sizeof( box[ 0 ] );
 pi *shapes[] = { horizontal, plusShape, reverseL, vertical, box };
 int sizes[] = { horizontalSize, plusShapeSize, reverseLSize, verticalSize, boxSize };
 
+enum { horizontalIdx, plusShapeIdx, reverseLIdx, verticalIdx, boxIdx };
+
 // Adapted from
 // https://stackoverflow.com/questions/32685540/why-cant-i-compile-an-unordered-map-with-a-pair-as-key
 // Only for pairs of long
@@ -91,21 +93,6 @@ int height = 0;
 string jetPattern;
 int idx = 0;
 
-// Returns maxY
-static int updateHeight()
-{
-  int maxY = INT_MIN;
-
-  for ( auto itemPair : grid ) {
-    pi point = itemPair.first;
-    if ( point.y > maxY )
-      maxY = point.y;
-  }
-
-  height = maxY + 1;
-  return maxY;
-}
-
 static void printGrid()
 {
   if ( grid.size() == 0 ) {
@@ -114,7 +101,7 @@ static void printGrid()
   }
 
   // Get the height
-  int maxY = updateHeight();
+  int maxY = height - 1;
 
 #ifdef VIZ
   int minY = 0;
@@ -195,10 +182,10 @@ static bool downMove( pi initial, pi *shape, int size )
 //     grid.erase( initial + shape[ i ] );
 // }
 
-static void placeShape( int n )
+static void placeShape( int shapeIdx )
 {
-  pi *shape = shapes[ n ];
-  int size = sizes[ n ];
+  pi *shape = shapes[ shapeIdx ];
+  int size = sizes[ shapeIdx ];
 
   pi initial = { 2, height + 3 }; // one more for plusShape
   if ( shape == plusShape )
@@ -220,7 +207,32 @@ static void placeShape( int n )
     grid[ initial + shape[ i ] ] = '#';
   }
 
-  updateHeight();
+  // Update height
+  int shapeHeight = initial.y + 1;
+  switch( shapeIdx ) {
+    case horizontalIdx:
+      // Do nothing
+      break;
+    case plusShapeIdx:
+      shapeHeight += 1;
+      break;
+    case reverseLIdx:
+      shapeHeight += 2;
+      break;
+    case verticalIdx:
+      shapeHeight += 3;
+      break;
+    case boxIdx:
+      shapeHeight += 1;
+      break;
+    default:
+      cerr << "Unkown" << endl;
+      REPORT( shapeIdx );
+      exit( 1 );
+  }
+
+  if ( shapeHeight > height )
+    height = shapeHeight;
 }
 
 int main( int argc, char *argv[] )
