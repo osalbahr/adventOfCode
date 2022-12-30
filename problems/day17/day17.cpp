@@ -231,8 +231,7 @@ static void placeShape( int shapeIdx )
       exit( 1 );
   }
 
-  if ( shapeHeight > height )
-    height = shapeHeight;
+  height = max( height, shapeHeight );
 }
 
 int main( int argc, char *argv[] )
