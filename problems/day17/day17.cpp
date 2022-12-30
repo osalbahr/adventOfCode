@@ -4,6 +4,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <unordered_map>
 
 #include <cstdio>
 #include <cmath>
@@ -66,10 +67,24 @@ int boxSize = sizeof( box ) / sizeof( box[ 0 ] );
 pi *shapes[] = { horizontal, plusShape, reverseL, vertical, box };
 int sizes[] = { horizontalSize, plusShapeSize, reverseLSize, verticalSize, boxSize };
 
+// Adapted from
+// https://stackoverflow.com/questions/32685540/why-cant-i-compile-an-unordered-map-with-a-pair-as-key
+// Only for pairs of long
+// You can of course template this struct to allow other hash functions
+struct pi_hash {
+    long operator () (const pi &p) const {
+        auto hasher = hash<int>{};
+
+        // Not cryptographically secure, I know
+        return hasher(p.x) ^ hasher(p.y);  
+    }
+};
+
+
 // Yes, this is the grid
 // x = [0, 6]
 // y = [0, inf)
-map<pi,char> grid;
+unordered_map<pi,char,pi_hash> grid;
 
 int height = 0;
 
@@ -210,11 +225,10 @@ static void placeShape( int n )
 
 int main( int argc, char *argv[] )
 {
-  if ( argc != 2 ) {
-    cerr << "Usage: day17 n" << endl;
-    exit( 1 );
-  }
-  int n = atoi( argv[ 1 ] );
+  int n = argc == 2
+  ? atoi( argv[ 1 ] )
+  : 2022;
+
   cin >> jetPattern;
   
   forn( n )
