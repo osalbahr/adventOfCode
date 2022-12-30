@@ -1,9 +1,10 @@
 // #define VIZ
+// #define CHOP
 
 #include <iostream>
 #include <vector>
 #include <set>
-// #include <map>
+#include <map>
 #include <unordered_map>
 
 #include <cstdio>
@@ -11,9 +12,15 @@
 
 using namespace std;
 
+#define endl "\n"
+
 #define REPORT( X ) cout << #X << " = " << ( X ) << endl
+// Like echo -n
+#define REPORTN( X ) cout << #X << " = " << ( X ) << ", "
+
 #define REPORTP( P ) cout << #P << " = " << "(" << P.x << "," << P.y << ")" << endl
 
+#define GB ( (long)1024 * 1024 * 1024 )
 
 #define forn( X ) \
 for ( long i = 0; i < ( X ); i++ )
@@ -67,7 +74,7 @@ int boxSize = sizeof( box ) / sizeof( box[ 0 ] );
 pl *shapes[] = { horizontal, plusShape, reverseL, vertical, box };
 int sizes[] = { horizontalSize, plusShapeSize, reverseLSize, verticalSize, boxSize };
 
-enum { horizontalIdx, plusShapeIdx, reverseLIdx, verticalIdx, boxIdx };
+enum shapeIdx { horizontalIdx, plusShapeIdx, reverseLIdx, verticalIdx, boxIdx };
 
 // Adapted from
 // https://stackoverflow.com/questions/32685540/why-cant-i-compile-an-unordered-map-with-a-pair-as-key
@@ -81,11 +88,22 @@ struct pl_hash {
     }
 };
 
+#define ENTRY_SIZE ( sizeof( pl ) + sizeof( char ) )
 
 // Yes, this is the grid
 // x = [0, 6]
 // y = [0, inf)
 unordered_map<pl,char,pl_hash> grid;
+
+typedef struct {
+  shapeIdx currentShapeIdx;
+  int jetIdx;
+  int height;
+} CycleDetector;
+
+
+// Map cycle detectors to a vector of heights
+map<CycleDetector,vector<int>> cycleHeights;
 
 long height = 0;
 
@@ -99,10 +117,10 @@ static void printGrid()
     return;
   }
 
+#ifdef VIZ
   // Get the height
   long maxY = height - 1;
 
-#ifdef VIZ
   int minY = 0;
   int minX = 0, maxX = 6;
   // Print numbers
@@ -129,7 +147,6 @@ static void printGrid()
   }
 #endif
 
-  height = maxY + 1;
   REPORT( height );
 }
 
@@ -233,6 +250,21 @@ static void placeShape( int shapeIdx )
   height = max( height, shapeHeight );
 }
 
+#ifdef CHOP
+// Keep only the last 100
+static void chopGrid() {
+  cout << "Chopping" << endl;
+  unordered_map<pl,char,pl_hash> newGrid;
+  int maxY = height - 1;
+  for ( int y = maxY; y > maxY - 100; y-- ) {
+    for ( int x = 0; x < 7; x++ )
+      if ( grid.count( { x, y } ) > 0 )
+        newGrid[ { x, y } ] = '#';
+  }
+  grid = newGrid;
+}
+#endif
+
 int main( int argc, char *argv[] )
 {
   long x = 1000000000000;
@@ -241,19 +273,28 @@ int main( int argc, char *argv[] )
   : x;
 
   cin >> jetPattern;
+
   
+
   int reportFrequency = 10000000;
   REPORT( reportFrequency );
   forn( n ) {
-    if ( i % reportFrequency == 0 ) {
-      REPORT( i );
+    if ( idx == 0 && i % 5 == 0 ) {
       REPORT( grid.size() );
+      REPORT( ( grid.size() * ENTRY_SIZE * 2 ) / GB );
       printGrid();
     }
+
     placeShape( i % 5 );
 
-    // if ( i >= 10000 )
-    //   exit( 1 );
+#ifdef CHOP
+    // Assuming a load factor of 0.5
+    // Keep the table < 2 GB
+    if ( grid.size() * ENTRY_SIZE * 2 > 2 * GB ) {
+      chopGrid();
+      cout << "Done chopping";
+    }
+#endif
   }
 
   printGrid();
