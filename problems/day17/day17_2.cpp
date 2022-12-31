@@ -1,5 +1,4 @@
 // #define VIZ
-// #define CHOP
 
 #include <iostream>
 #include <vector>
@@ -110,46 +109,6 @@ long height = 0;
 string jetPattern;
 int idx = 0;
 
-static void printGrid()
-{
-  if ( grid.size() == 0 ) {
-    cout << "Empty grid" << endl;
-    return;
-  }
-
-#ifdef VIZ
-  // Get the height
-  long maxY = height - 1;
-
-  int minY = 0;
-  int minX = 0, maxX = 6;
-  // Print numbers
-  // REPORT( height );
-  cout << "    ";
-  for ( int i = minX; i <= maxX; i++ ) {
-    cout << i;
-  }
-  cout << endl;
-  for ( int j = maxY; j >= minY; j-- ) {
-    printf( "%3d ", j );
-    for ( int i = minX; i <= maxX; i++ ) {
-      auto it = grid.find( { i, j } );
-      if ( it == grid.end() )
-        cout << '.';
-      else {
-        char ch = it->second;
-        // if ( ch == '#' )
-        //   ch = '.';
-        cout << ch;
-      }
-    }
-    cout << endl;
-  }
-#endif
-
-  REPORT( height );
-}
-
 static char jetDirection()
 {
   char dir = jetPattern[ idx ];
@@ -250,19 +209,116 @@ static void placeShape( int shapeIdx )
   height = max( height, shapeHeight );
 }
 
-#ifdef CHOP
-// Keep only the last 100
+static set<pl> dropletsFall( const set<pl>& waterfall )
+{
+  set<pl> newWaterfall;
+  for ( pl droplet : waterfall ) {
+    pl fall = droplet;
+    fall.y--;
+    if ( grid.count( fall ) == 0 )
+      newWaterfall.insert( fall );
+  }
+  return newWaterfall;
+}
+
+// Use a "waterfall" model to find minY
+static long waterfallY()
+{
+  set<pl> waterfall;
+
+  // Initial droplets (hopefully compiler unrolls it)
+  for ( long x = 0; x < 7; x++ )
+    waterfall.insert( { x, height } );
+  
+  long minY = height;
+  while ( minY > 0 ) {
+    set<pl> tempWaterfall = waterfall;
+    // First extend the layer
+    for ( pl droplet : waterfall ) {
+      // Try to go left
+      pl pLeft = droplet + leftDiff;
+      if ( droplet.x > 0 && grid.count( leftDiff ) == 0 )
+        tempWaterfall.insert( pLeft );
+      // Try to go right
+      pl pRight = droplet + rightDiff;
+      if ( droplet.x < 6 && grid.count( leftDiff ) == 0 )
+        tempWaterfall.insert( pRight );
+    }
+
+    waterfall = dropletsFall( tempWaterfall );
+    if ( waterfall.empty() )
+      break;
+    minY--;
+  }
+
+  return minY;
+}
+
+static void printGrid()
+{
+  if ( grid.size() == 0 ) {
+    cout << "Empty grid" << endl;
+    return;
+  }
+
+#ifdef VIZ
+  // Get the height
+  long maxY = height - 1;
+
+  int minY = waterfallY() - 2; // Print one more
+  int minX = 0, maxX = 6;
+  // Print numbers
+  // REPORT( height );
+  cout << "    ";
+  for ( int i = minX; i <= maxX; i++ ) {
+    cout << i;
+  }
+  cout << endl;
+  // bool setMinY = false;
+  for ( int j = maxY; j >= minY; j-- ) {
+    // bool emptyLine = true;
+    printf( "%3d ", j );
+    for ( int i = minX; i <= maxX; i++ ) {
+      auto it = grid.find( { i, j } );
+      if ( it == grid.end() ) {
+        cout << '.';
+      } else {
+        // emptyLine = false;
+        char ch = it->second;
+        // if ( ch == '#' )
+        //   ch = '.';
+        cout << ch;
+      }
+    }
+    cout << endl;
+    // if ( emptyLine && !setMinY ) {
+    //   minY = j;
+    //   setMinY = true;
+    // }
+  }
+#endif
+
+  REPORT( height );
+}
+
+// Keep only important points
 static void chopGrid() {
   unordered_map<pl,char,pl_hash> newGrid;
-  int maxY = height - 1;
-  for ( int y = maxY; y > maxY - 100; y-- ) {
-    for ( int x = 0; x < 7; x++ )
+  long maxY = height - 1;
+  long minY = waterfallY() - 1; // Keep one more
+  if ( minY < -1 ) {
+    REPORT( minY );
+    exit( 1 );
+  }
+  // But don't go lower than 0
+  minY = max( minY, (long)0 );
+  for ( long y = maxY; y >= minY; y-- ) {
+    for ( long x = 0; x < 7; x++ )
       if ( grid.count( { x, y } ) > 0 )
         newGrid[ { x, y } ] = '#';
   }
   grid = newGrid;
 }
-#endif
 
 int main( int argc, char *argv[] )
 {
@@ -275,27 +331,29 @@ int main( int argc, char *argv[] )
 
   
 
-  int reportFrequency = 5000000;
+  int reportFrequency = 500000;
   REPORT( reportFrequency );
   forn( n ) {
     if ( i % reportFrequency == 0 ) {
       REPORT( i );
       REPORT( ( grid.size() * ENTRY_SIZE * 2 ) / GB );
       printGrid();
+      if ( i > 0 ) exit( 1 );
     }
 
     placeShape( i % 5 );
+    // chopGrid();
 
-#ifdef CHOP
     // Assuming a load factor of 0.5
     // Keep the table < 2 GB (I only have 8 GB)
     if ( grid.size() * (ENTRY_SIZE * 2) >= 2 * GB ) {
       cout << "Chopping ... " << flush;
       chopGrid();
       cout << "Done chopping" << endl;
+      printGrid();
     }
-#endif
   }
 
+  cout << "DONE placing " << n << endl;
   printGrid();
 }
