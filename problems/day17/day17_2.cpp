@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define endl "\n"
+// #define endl "\n"
 
 #define REPORT( X ) cout << #X << " = " << ( X ) << endl
 // Like echo -n
@@ -253,7 +253,6 @@ static void placeShape( int shapeIdx )
 #ifdef CHOP
 // Keep only the last 100
 static void chopGrid() {
-  cout << "Chopping" << endl;
   unordered_map<pl,char,pl_hash> newGrid;
   int maxY = height - 1;
   for ( int y = maxY; y > maxY - 100; y-- ) {
@@ -276,11 +275,11 @@ int main( int argc, char *argv[] )
 
   
 
-  int reportFrequency = 10000000;
+  int reportFrequency = 5000000;
   REPORT( reportFrequency );
   forn( n ) {
-    if ( idx == 0 && i % 5 == 0 ) {
-      REPORT( grid.size() );
+    if ( i % reportFrequency == 0 ) {
+      REPORT( i );
       REPORT( ( grid.size() * ENTRY_SIZE * 2 ) / GB );
       printGrid();
     }
@@ -289,10 +288,11 @@ int main( int argc, char *argv[] )
 
 #ifdef CHOP
     // Assuming a load factor of 0.5
-    // Keep the table < 2 GB
-    if ( grid.size() * ENTRY_SIZE * 2 > 2 * GB ) {
+    // Keep the table < 2 GB (I only have 8 GB)
+    if ( grid.size() * (ENTRY_SIZE * 2) >= 2 * GB ) {
+      cout << "Chopping ... " << flush;
       chopGrid();
-      cout << "Done chopping";
+      cout << "Done chopping" << endl;
     }
 #endif
   }
