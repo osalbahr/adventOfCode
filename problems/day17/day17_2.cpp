@@ -40,6 +40,10 @@ pl operator*(const int a, const pl& p) {
     return {a * p.x, a * p.y};
 }
 
+pl operator-(const pl& a, const pl& b) {
+    return a + -1 * b;
+}
+
 // Store offsets from the left (the bottom if there is a tie)
 
 // ####
@@ -88,21 +92,28 @@ struct pl_hash {
 };
 
 #define ENTRY_SIZE ( sizeof( pl ) + sizeof( char ) )
+typedef unordered_map<pl,char,pl_hash> grid_t;
 
 // Yes, this is the grid
 // x = [0, 6]
 // y = [0, inf)
-unordered_map<pl,char,pl_hash> grid;
+grid_t grid;
 
 typedef struct {
-  shapeIdx currentShapeIdx;
+  int shapeIdx;
   int jetIdx;
-  int height;
+  set<pl> environment;
 } CycleDetector;
 
+// Adapted from
+// https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct
+bool operator<(const CycleDetector& x, const CycleDetector& y) {
+    return tie(x.shapeIdx, x.jetIdx, x.environment) < tie(y.shapeIdx, y.jetIdx, y.environment);
+}
 
-// Map cycle detectors to a vector of heights
-map<CycleDetector,vector<int>> cycleHeights;
+
+// Map cycle detectors to a vector of <insertedSoFar,height>
+map<CycleDetector,vector<pl>> allCycleInfo;
 
 long height = 0;
 
@@ -157,8 +168,110 @@ static bool downMove( pl initial, pl *shape, int size )
 //     grid.erase( initial + shape[ i ] );
 // }
 
-static void placeShape( int shapeIdx )
+static set<pl> dropletsFall( const set<pl>& waterfall )
 {
+  set<pl> newWaterfall;
+  for ( pl droplet : waterfall ) {
+    pl fall = droplet;
+    fall.y--;
+    if ( grid.count( fall ) == 0 )
+      newWaterfall.insert( fall );
+  }
+  return newWaterfall;
+}
+
+// Use a "waterfall" model to find minY
+static long waterfallY()
+{
+  set<pl> waterfall;
+
+  // Initial droplets (hopefully compiler unrolls it)
+  for ( long x = 0; x < 7; x++ )
+    waterfall.insert( { x, height } );
+  
+  long minY = height;
+  while ( minY > 0 ) {
+    set<pl> tempWaterfall = waterfall;
+    // First extend the layer
+    for ( pl droplet : waterfall ) {
+      // Try to go left
+      pl pLeft = droplet + leftDiff;
+      if ( droplet.x > 0 && grid.count( leftDiff ) == 0 )
+        tempWaterfall.insert( pLeft );
+      // Try to go right
+      pl pRight = droplet + rightDiff;
+      if ( droplet.x < 6 && grid.count( leftDiff ) == 0 )
+        tempWaterfall.insert( pRight );
+    }
+
+    waterfall = dropletsFall( tempWaterfall );
+    if ( waterfall.empty() )
+      break;
+    minY--;
+  }
+
+  return minY;
+}
+
+// Keep only important points
+static void chopGrid() {
+  unordered_map<pl,char,pl_hash> newGrid;
+  long maxY = height - 1;
+  long minY = waterfallY() - 1; // Keep one more for vizuals
+  if ( minY < -1 ) {
+    REPORT( minY );
+    exit( 1 );
+  }
+  // But don't go lower than 0
+  minY = max( minY, (long)0 );
+  for ( long y = maxY; y >= minY; y-- ) {
+    for ( long x = 0; x < 7; x++ )
+      if ( grid.count( { x, y } ) > 0 )
+        newGrid[ { x, y } ] = '#';
+  }
+  grid = newGrid;
+}
+
+// Simply capture the environment before
+// placing the shape
+static set<pl> getEnvironment()
+{
+  set<pl> environment;
+  long y = waterfallY();
+  if ( y == 0 )
+    return environment; // yes, empty
+
+  // Normalize the points
+  pl normalizer = { 0, -y };
+  chopGrid();
+  for ( const auto& [ p, ch ] : grid ) {
+    // this was there only for visuals
+    if ( p.y < y ) continue;
+
+    environment.insert( p + normalizer );
+  }
+
+  return environment;
+}
+
+/**
+ * @brief Returns a vector of cycle heights
+ * 
+ * @param shapeIdx 
+ * @param insertedSoFar if -1, place normally
+ * @return vector<pl> of <insertedSoFar,height>
+ */
+static vector<pl> placeShape( int shapeIdx, long insertedSoFar )
+{
+  // Insert previous info
+  CycleDetector detector = {
+    .shapeIdx = shapeIdx,
+    .jetIdx = idx,
+    .environment = getEnvironment()
+  };
+  pl cycleInfo = { insertedSoFar, height };
+  allCycleInfo[ detector ].push_back( cycleInfo );
+
   pl *shape = shapes[ shapeIdx ];
   int size = sizes[ shapeIdx ];
 
@@ -207,51 +320,8 @@ static void placeShape( int shapeIdx )
   }
 
   height = max( height, shapeHeight );
-}
 
-static set<pl> dropletsFall( const set<pl>& waterfall )
-{
-  set<pl> newWaterfall;
-  for ( pl droplet : waterfall ) {
-    pl fall = droplet;
-    fall.y--;
-    if ( grid.count( fall ) == 0 )
-      newWaterfall.insert( fall );
-  }
-  return newWaterfall;
-}
-
-// Use a "waterfall" model to find minY
-static long waterfallY()
-{
-  set<pl> waterfall;
-
-  // Initial droplets (hopefully compiler unrolls it)
-  for ( long x = 0; x < 7; x++ )
-    waterfall.insert( { x, height } );
-  
-  long minY = height;
-  while ( minY > 0 ) {
-    set<pl> tempWaterfall = waterfall;
-    // First extend the layer
-    for ( pl droplet : waterfall ) {
-      // Try to go left
-      pl pLeft = droplet + leftDiff;
-      if ( droplet.x > 0 && grid.count( leftDiff ) == 0 )
-        tempWaterfall.insert( pLeft );
-      // Try to go right
-      pl pRight = droplet + rightDiff;
-      if ( droplet.x < 6 && grid.count( leftDiff ) == 0 )
-        tempWaterfall.insert( pRight );
-    }
-
-    waterfall = dropletsFall( tempWaterfall );
-    if ( waterfall.empty() )
-      break;
-    minY--;
-  }
-
-  return minY;
+  return allCycleInfo[ detector ];
 }
 
 static void printGrid()
@@ -265,7 +335,8 @@ static void printGrid()
   // Get the height
   long maxY = height - 1;
 
-  int minY = waterfallY() - 2; // Print one more
+  // Print one more, but not lower than 0
+  int minY = max( waterfallY() - 2, (long)0 );
   int minX = 0, maxX = 6;
   // Print numbers
   // REPORT( height );
@@ -301,25 +372,6 @@ static void printGrid()
   REPORT( height );
 }
 
-// Keep only important points
-static void chopGrid() {
-  unordered_map<pl,char,pl_hash> newGrid;
-  long maxY = height - 1;
-  long minY = waterfallY() - 1; // Keep one more
-  if ( minY < -1 ) {
-    REPORT( minY );
-    exit( 1 );
-  }
-  // But don't go lower than 0
-  minY = max( minY, (long)0 );
-  for ( long y = maxY; y >= minY; y-- ) {
-    for ( long x = 0; x < 7; x++ )
-      if ( grid.count( { x, y } ) > 0 )
-        newGrid[ { x, y } ] = '#';
-  }
-  grid = newGrid;
-}
-
 int main( int argc, char *argv[] )
 {
   long x = 1000000000000;
@@ -341,8 +393,27 @@ int main( int argc, char *argv[] )
       if ( i > 0 ) exit( 1 );
     }
 
-    placeShape( i % 5 );
+    // REPORT( i );
+    // REPORTN( i % 5 ), REPORT( idx );
+
+    auto shapeCycleInfo = placeShape( i % 5, i );
     // chopGrid();
+    // printGrid();
+    if ( shapeCycleInfo.size() > 1 ) {
+      pl differ = shapeCycleInfo[ 1 ] - shapeCycleInfo[ 0 ];
+      if ( i + differ.first + 1 < n ) {
+        i += differ.first + 1;
+        i--;
+        height += differ.second;
+        grid_t newGrid;
+        pl normalizer = { 0, differ.second };
+        for ( auto& [ p, ch ] : grid ) {
+          pl newP = p + normalizer;
+          newGrid[ newP ] = ch;
+        }
+        grid = newGrid;
+      }
+    }
 
     // Assuming a load factor of 0.5
     // Keep the table < 2 GB (I only have 8 GB)
