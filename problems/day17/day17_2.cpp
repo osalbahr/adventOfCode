@@ -92,6 +92,7 @@ struct pl_hash {
 };
 
 #define ENTRY_SIZE ( sizeof( pl ) + sizeof( char ) )
+// typedef map<pl,char/*,pl_hash*/> grid_t;
 typedef unordered_map<pl,char,pl_hash> grid_t;
 
 // Yes, this is the grid
@@ -215,7 +216,7 @@ static long waterfallY()
 
 // Keep only important points
 static void chopGrid() {
-  unordered_map<pl,char,pl_hash> newGrid;
+  grid_t newGrid;
   long maxY = height - 1;
   long minY = waterfallY() - 1; // Keep one more for vizuals
   if ( minY < -1 ) {
@@ -270,7 +271,9 @@ static vector<pl> placeShape( int shapeIdx, long insertedSoFar )
     .environment = getEnvironment()
   };
   pl cycleInfo = { insertedSoFar, height };
-  allCycleInfo[ detector ].push_back( cycleInfo );
+  auto it = allCycleInfo.find( detector );
+  if ( it != allCycleInfo.end() && it->second.size() < 2 )
+    allCycleInfo[ detector ].push_back( cycleInfo );
 
   pl *shape = shapes[ shapeIdx ];
   int size = sizes[ shapeIdx ];
@@ -401,6 +404,7 @@ int main( int argc, char *argv[] )
     // printGrid();
     if ( shapeCycleInfo.size() > 1 ) {
       pl differ = shapeCycleInfo[ 1 ] - shapeCycleInfo[ 0 ];
+      // REPORTP( differ );
       if ( i + differ.first + 1 < n ) {
         i += differ.first + 1;
         i--;
