@@ -24,17 +24,17 @@ using namespace std;
 // like echo -n
 #define REPORTN( X ) cout << #X << " = " << ( X ) << ", "
 
-
+int limit = 100;
 
 static set<vector<int>> generate( int n )
 {
   if ( n == 1 )
-    return { { 100 } };
+    return { { limit } };
 
   set<vector<int>> allOrders;
 
-  // Insert 0 to 100
-  for ( int number = 0; number <= 100; number++ ) {
+  // Insert 0 to limit
+  for ( int number = 0; number <= limit; number++ ) {
     allOrders.insert( { number } );
   }
 
@@ -45,7 +45,7 @@ static set<vector<int>> generate( int n )
     for ( auto order : oldOrders ) {
       int sum = accumulate( order.begin(), order.end(), 0 );
       // Append without overflowing
-      for ( int number = 0; number <= 100 - sum; number++ ) {
+      for ( int number = 0; number <= limit - sum; number++ ) {
         auto newOrder = order;
         newOrder.push_back( number );
         allOrders.insert( newOrder );
@@ -57,7 +57,7 @@ static set<vector<int>> generate( int n )
   set<vector<int>> ret;
   for ( auto order : allOrders ) {
     int sum = accumulate( order.begin(), order.end(), 0 );
-    order.push_back( 100 - sum );
+    order.push_back( limit - sum );
     ret.insert( order );
   }
   return ret;
@@ -74,8 +74,11 @@ static void printNumbers( const set<vector<int>>& orders, FILE *fp )
   }
 }
 
-int main()
+int main( int argc, char *argv[] )
 {
+  if ( argc == 2 )
+    limit = atoi( argv[ 1 ] );
+
   for ( int n = 1; n <= 5; n++ ) {
     set<vector<int>> orders = generate( n );
     string filename("GENERATEFILE");
