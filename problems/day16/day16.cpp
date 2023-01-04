@@ -34,10 +34,10 @@ typedef struct {
 } Valve;
 
 // Only for parsing
-vector<Valve*> parsingList;
+vector<Valve> parsingList;
 
 // name lookup
-map<string,Valve*> valves;
+map<string,Valve> valves;
 
 typedef pair<string,string> ps;
 
@@ -45,12 +45,12 @@ typedef pair<string,string> ps;
 map<ps,int> distances;
 
 // Subset of valves, only the important ones
-map<string,Valve*> usefulValves;
+map<string,Valve> usefulValves;
 
-static Valve* parseLine( string line )
+static Valve parseLine( string line )
 {
   // Make the valve
-  Valve *valve = new Valve;
+  Valve valve;
 
   // Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
   stringstream ss( line );
@@ -62,7 +62,7 @@ static Valve* parseLine( string line )
   forn( 1 )
     ss >> discardStr;
   // AA
-  ss >> valve->name;
+  ss >> valve.name;
   // has flow
   forn( 2 )
     ss >> discardStr; 
@@ -70,7 +70,7 @@ static Valve* parseLine( string line )
   forn( 5 )
     ss >> discardChar;
   //0
-  ss >> valve->rate;
+  ss >> valve.rate;
   // ; tunnels lead to valves
   forn( 5 )
     ss >> discardStr;
@@ -80,7 +80,7 @@ static Valve* parseLine( string line )
     string name;
     name += ch1;
     name += ch2;
-    valve->list.push_back( name );
+    valve.list.push_back( name );
     // Maybe comma
     ss >> discardChar;
   }
@@ -90,18 +90,18 @@ static Valve* parseLine( string line )
 
 static void printValves( FILE *fp )
 {
-  for ( Valve* valve : parsingList ) {
+  for ( Valve valve : parsingList ) {
     // Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
-    if ( valve->list.size() == 1 ) {
-      fprintf( fp, "Valve %s has flow rate=%d; tunnel leads to valve %s\n", valve->name.c_str(), valve->rate, valve->list[ 0 ].c_str() );
+    if ( valve.list.size() == 1 ) {
+      fprintf( fp, "Valve %s has flow rate=%d; tunnel leads to valve %s\n", valve.name.c_str(), valve.rate, valve.list[ 0 ].c_str() );
       continue;
     }
   
-    fprintf( fp, "Valve %s has flow rate=%d; tunnels lead to valves ", valve->name.c_str(), valve->rate );
+    fprintf( fp, "Valve %s has flow rate=%d; tunnels lead to valves ", valve.name.c_str(), valve.rate );
     size_t i;
-    for ( i = 0; i < valve->list.size() - 1; i++ )
-      fprintf( fp, "%s, ", valve->list[ i ].c_str() );
-    fprintf( fp, "%s\n", valve->list[ i ].c_str() );
+    for ( i = 0; i < valve.list.size() - 1; i++ )
+      fprintf( fp, "%s, ", valve.list[ i ].c_str() );
+    fprintf( fp, "%s\n", valve.list[ i ].c_str() );
   }
 }
 
@@ -109,17 +109,17 @@ static void printValves( FILE *fp )
 static void populateDistances()
 {
   for ( const auto& item : valves ) {
-    Valve *valve = item.second;
-    string name = valve->name;
-    int rate = valve->rate;
+    Valve valve = item.second;
+    string name = valve.name;
+    int rate = valve.rate;
 
     if ( rate == 0 && name != "AA" )
       continue;
 
     int distance = 0;
-    queue<Valve*> q;
+    queue<Valve> q;
     set<string> visited;
-    for ( string otherString : valve->list ) {
+    for ( string otherString : valve.list ) {
       q.push( valves[ otherString ] );
       visited.insert( otherString );
     }
@@ -130,17 +130,17 @@ static void populateDistances()
       distance++;
       int size = q.size();
       for ( int i = 0; i < size; i++ ) {
-        Valve* other = q.front();
+        Valve other = q.front();
         q.pop();
 
-        string otherString = other->name;
+        string otherString = other.name;
         if ( usefulValves.count( otherString ) > 0 ) {
           ps p = { name, otherString };
           ps p2 = { otherString, name };
           distances[ p ] = distances[ p2 ] = distance;
         }
 
-        for ( string nextString : other->list ) {
+        for ( string nextString : other.list ) {
           // Newly inserted
           if ( visited.insert( nextString ).second )
             q.push( valves[ nextString ] );
@@ -168,7 +168,7 @@ static unordered_set<string> getPaths()
 {
   unordered_set<string> allPaths;
   for ( auto item : usefulValves ) {
-    string newPath = "AA" + item.second->name;
+    string newPath = "AA" + item.second.name;
     if ( getTime( newPath ) < 30 )
       allPaths.insert( newPath );
   }
@@ -180,7 +180,7 @@ static unordered_set<string> getPaths()
     set<string> toBeRemoved;
     for ( auto item : usefulValves ) {
       for ( string path : allPathsCopy ) {
-        string name = item.second->name;
+        string name = item.second.name;
         bool duplicate = false;
         for ( size_t i = 0; i < path.size() - 1; i += 2 )
           if ( path[ i ] == name[ 0 ] && path[ i + 1 ] == name[ 1 ] ) {
@@ -216,17 +216,18 @@ static unordered_set<string> getPaths()
 
 static int getRate( string path )
 {
-  set<Valve*> openValves;
+  set<Valve> openValves;
 
   int rate = 0;
   int throughput = 0;
   int minute = 0;
+
   for ( size_t i = 0; i < path.size() - 3; i += 2 ) {
-    string src = path.substr( i, 2 );
-    string openvalve = path.substr( i + 2, 2 );
+    string sourceValve = path.substr( i, 2 );
+    string valveToOpen = path.substr( i + 2, 2 );
 
     // Go and open it
-    int time = distances[ { src, openvalve } ] + 1;
+    int time = distances[ { sourceValve, valveToOpen } ] + 1;
 
     minute += time;
 
@@ -234,7 +235,7 @@ static int getRate( string path )
     rate += time * throughput;
 
     // New profit
-    throughput += usefulValves[ openvalve ]->rate;
+    throughput += usefulValves[ valveToOpen ].rate;
   }
 
   // Leftover profit
@@ -264,10 +265,10 @@ int main()
 
   cout.flush();
   while ( getline( cin, line ) ) {
-    Valve *valve = parseLine( line );
-    valves[ valve->name ] = valve;
-    if ( valve->rate > 0 )
-      usefulValves[ valve->name ] = valve;
+    Valve valve = parseLine( line );
+    valves[ valve.name ] = valve;
+    if ( valve.rate > 0 )
+      usefulValves[ valve.name ] = valve;
     parsingList.push_back( valve );
   }
 
