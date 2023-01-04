@@ -6,6 +6,8 @@
 #include <algorithm>  // sort
 #include <queue>
 #include <stack>
+#include <unordered_set>
+#include <unordered_map>
 
 // C
 #include <cstdio>
@@ -148,21 +150,23 @@ static void populateDistances()
   }
 }
 
+unordered_map<string,int> memoizeTimes;
 static int getTime( string path )
 {
-  // Go to it and open it
-  int time = 0;
-  for ( size_t i = 0; i < path.size() - 3; i += 2 ) {
-    string s1 = path.substr( i, 2 );
-    string s2 = path.substr( i + 2, 2 );
-    time += distances[ { s1, s2 } ] + 1;
-  }
-  return time;
+  if ( path.size() == 4 )
+    return distances[ { path.substr( 0, 2 ), path.substr( 2, 2 ) } ] + 1;
+  
+  if ( memoizeTimes.count( path ) > 0 )
+    return memoizeTimes[ path ];
+
+  string main = path.substr( 0, path.size() - 2 );
+  string other = path.substr( path.size() - 4, 4 );
+  return memoizeTimes[ path ] = getTime( main ) + getTime( other );
 }
 
-static set<string> getPaths()
+static unordered_set<string> getPaths()
 {
-  set<string> allPaths;
+  unordered_set<string> allPaths;
   for ( auto item : usefulValves ) {
     string newPath = "AA" + item.second->name;
     if ( getTime( newPath ) < 30 )
@@ -172,7 +176,7 @@ static set<string> getPaths()
   int size = usefulValves.size();
   for ( int i = 0; i < size - 1; i++ ) {
     // REPORT( allPaths.size() );
-    set<string> allPathsCopy = allPaths;
+    unordered_set<string> allPathsCopy = allPaths;
     set<string> toBeRemoved;
     for ( auto item : usefulValves ) {
       for ( string path : allPathsCopy ) {
@@ -193,8 +197,7 @@ static set<string> getPaths()
     }
 
     if ( toBeRemoved.empty() ) {
-      cout << "PRIMED at ";
-      REPORT( i );
+      cout << "PRIMED at i = " << i << " " << flush;
       break;
     }
   
@@ -242,9 +245,10 @@ static int getRate( string path )
 static vector<int> getFlowRates()
 {
   cout << "Generating PATHSFILE ... " << flush;
-  set<string> paths = getPaths();
+  unordered_set<string> paths = getPaths();
   cout << "Done" << endl;
   REPORT( paths.size() );
+  REPORT( memoizeTimes.size() );
 
   vector<int> rates;
   for ( string path : paths ) {
@@ -258,7 +262,6 @@ int main()
 {
   string line;
 
-  cout << "Parsing ... ";
   cout.flush();
   while ( getline( cin, line ) ) {
     Valve *valve = parseLine( line );
@@ -267,18 +270,13 @@ int main()
       usefulValves[ valve->name ] = valve;
     parsingList.push_back( valve );
   }
-  cout << "Done" << endl;
 
   // Check parsing
-  cout << "Creating PARSE ... " << flush;
   FILE *parse = fopen( "PARSE", "w" );
   printValves( parse );
   fclose( parse );
-  cout << "Done" << endl;
 
-  cout << "Populating distance ... " << flush;
   populateDistances();
-  cout << "Done" << endl;
 
   cout << "Creating GRAPH ... " << flush;
   cout.flush();
@@ -297,12 +295,9 @@ int main()
   vector<int> rates = getFlowRates();
   sort( rates.begin(), rates.end() );
   cout << "Min = " << rates[ 0 ] << endl;
-  reverse( rates.begin(), rates.end() );
-  cout << "Max = " << rates[ 0 ] << endl;
+  cout << "Max = " << rates[ rates.size() - 1 ] << endl;
 
-  // string path = "AAZBLZRECYJFIU";
-  // int rate = getRate( path );
-
-  // REPORT( path );
-  // REPORT( rate );
+  // for ( const auto& [ key, val ] : memoizeTimes ) {
+  //   REPORT( key );
+  // }
 }
