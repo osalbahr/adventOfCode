@@ -66,7 +66,7 @@ struct ps_hash {
 unordered_map<ps,int,ps_hash> distances;
 
 // Subset of valves, only the important ones
-unordered_map<string,Valve> usefulValves;
+map<string,Valve> usefulValves;
 
 static Valve parseLine( string line )
 {
@@ -187,8 +187,9 @@ static int getTime( const string& path )
     getTime( main ) + getTime( other );
 }
 
-static unordered_set<string> getPaths( const unordered_map<string,Valve>& usefulValves )
+static unordered_set<string> getPaths( const map<string,Valve>& usefulValves )
 {
+  // cout << "Start ... " << flush;
   unordered_set<string> shortPaths;
   unordered_set<string> allPaths;
   for ( auto item : usefulValves ) {
@@ -232,13 +233,9 @@ static unordered_set<string> getPaths( const unordered_map<string,Valve>& useful
     }
   }
 
-  FILE *pathsfile = fopen( "PATHSFILE", "w" );
-  for ( string path : allPaths ) {
-    fprintf( pathsfile, "%s\n", path.c_str() );
-  }
-  fclose( pathsfile );
-
   allPaths.insert( shortPaths.begin(), shortPaths.end() );
+
+  // REPORT( allPaths.size() );
   return allPaths;
 }
 
@@ -299,15 +296,23 @@ static int getRate( string path )
   return rate;
 }
 
+unordered_map<string,int> elephantRates;
 static int getRateElephant( string path )
 {
   int rate = 0;
-  unordered_map<string,Valve> copyValves = usefulValves;
+  map<string,Valve> copyValves = usefulValves;
 
   // Get the paths of the compliment
   for ( int i = 2; i < (signed)path.size() - 1; i += 2 ) {
     copyValves.erase( path.substr( i, 2 ) );
   }
+  string elephantString;
+  for ( auto& [ key, val ] : copyValves )
+    elephantString += key;
+
+  if ( elephantRates.count( elephantString ) > 0 )
+    return elephantRates[ elephantString ];
+
   auto paths = getPaths( copyValves );
 
   // Get the max rate
@@ -315,13 +320,19 @@ static int getRateElephant( string path )
     rate = max( rate, getRate( path ) );
   }
 
-  return rate;
+  return elephantRates[ elephantString ] = rate;
 }
 
 static vector<int> getFlowRates()
 {
   cout << "Generating PATHSFILE ... " << flush;
   unordered_set<string> paths = getPaths( usefulValves );
+  FILE *pathsfile = fopen( "PATHSFILE", "w" );
+  for ( string path : paths ) {
+    fprintf( pathsfile, "%s\n", path.c_str() );
+  }
+  fclose( pathsfile );
+
   cout << "Done" << endl;
   REPORT( paths.size() );
   REPORT( memoizeTimes.size() );
@@ -329,7 +340,7 @@ static vector<int> getFlowRates()
   vector<int> rates;
   int i = 0;
   for ( string path : paths ) {
-    if ( i++ % 100 == 0 )
+    if ( i++ % 1000 == 0 )
       REPORT( i - 1 );
     int person = getRate( path );
     int elephant = getRateElephant( path );
