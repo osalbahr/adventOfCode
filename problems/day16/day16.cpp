@@ -27,11 +27,17 @@ using namespace std;
 #define forn( X ) \
 for ( int ii = 0; ii < ( X ); ii++ )
 
-typedef struct {
+typedef struct Valve {
   string name;
   int rate;
   vector<string> list;
 } Valve;
+
+// Adapted from
+// https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct
+bool operator<(const Valve& x, const Valve& y) {
+    return tie(x.name, x.rate, x.list) < tie(y.name, y.rate, y.list);
+}
 
 // Only for parsing
 vector<Valve> parsingList;
@@ -118,7 +124,7 @@ static void populateDistances()
 
     int distance = 0;
     queue<Valve> q;
-    set<string> visited;
+    unordered_set<string> visited;
     for ( string otherString : valve.list ) {
       q.push( valves[ otherString ] );
       visited.insert( otherString );
@@ -151,7 +157,7 @@ static void populateDistances()
 }
 
 unordered_map<string,int> memoizeTimes;
-static int getTime( string path )
+static int getTime( const string& path )
 {
   if ( path.size() == 4 )
     return distances[ { path.substr( 0, 2 ), path.substr( 2, 2 ) } ] + 1;
@@ -161,7 +167,8 @@ static int getTime( string path )
 
   string main = path.substr( 0, path.size() - 2 );
   string other = path.substr( path.size() - 4, 4 );
-  return memoizeTimes[ path ] = getTime( main ) + getTime( other );
+  return memoizeTimes[ path ] =
+    getTime( main ) + getTime( other );
 }
 
 static unordered_set<string> getPaths()
@@ -177,7 +184,7 @@ static unordered_set<string> getPaths()
   for ( int i = 0; i < size - 1; i++ ) {
     // REPORT( allPaths.size() );
     unordered_set<string> allPathsCopy = allPaths;
-    set<string> toBeRemoved;
+    unordered_set<string> toBeRemoved;
     for ( auto item : usefulValves ) {
       for ( string path : allPathsCopy ) {
         string name = item.second.name;
@@ -214,29 +221,57 @@ static unordered_set<string> getPaths()
   return allPaths;
 }
 
+typedef struct {
+  int rate;
+  int throughput;
+  int minute;
+} RateInfo;
+unordered_map<string,RateInfo> memoizeRates;
+
+// set<Valve> operator+( set<Valve>& lhs, const set<Valve>& rhs ) {
+//   lhs.insert( rhs.begin(), rhs.end() );
+//   return lhs;
+// }
+
+static RateInfo getRateHelper( const string& path )
+{
+  if ( memoizeRates.count( path ) > 0 ) {
+    // cout << "HIT " << path << "\n";
+    return memoizeRates[ path ];
+  }
+  // cout << "MISS " << path << "\n";
+
+  if ( path.size() == 4 ) {
+    RateInfo rateInfo;
+    Valve valve = usefulValves[ path.substr( 2, 2 ) ];
+    rateInfo.rate = 0;
+    rateInfo.throughput = valve.rate;
+    rateInfo.minute = getTime( path );
+    return memoizeRates[ path ] =
+      rateInfo;
+  }
+
+  string oldString = path.substr( 0, path.size() - 2 );
+  string newString = path.substr( path.size() - 4, 4 );
+  RateInfo oldInfo = memoizeRates[ oldString ]
+    = getRateHelper( oldString );
+  RateInfo newInfo  = memoizeRates[ newString ]
+    = getRateHelper( newString );
+  int time = newInfo.minute;
+  return memoizeRates[ path ]
+    = {
+        oldInfo.rate + time * oldInfo.throughput,
+        oldInfo.throughput + newInfo.throughput,
+        oldInfo.minute + time
+      };
+}
+
 static int getRate( string path )
 {
-  set<Valve> openValves;
-
-  int rate = 0;
-  int throughput = 0;
-  int minute = 0;
-
-  for ( size_t i = 0; i < path.size() - 3; i += 2 ) {
-    string sourceValve = path.substr( i, 2 );
-    string valveToOpen = path.substr( i + 2, 2 );
-
-    // Go and open it
-    int time = distances[ { sourceValve, valveToOpen } ] + 1;
-
-    minute += time;
-
-    // Old profit
-    rate += time * throughput;
-
-    // New profit
-    throughput += usefulValves[ valveToOpen ].rate;
-  }
+  RateInfo rateInfo = getRateHelper( path );
+  int rate = rateInfo.rate;
+  int throughput = rateInfo.throughput;
+  int minute = rateInfo.minute;
 
   // Leftover profit
   rate += ( 30 - minute ) * throughput;
@@ -256,6 +291,7 @@ static vector<int> getFlowRates()
     int rate = getRate( path );
     rates.push_back( rate );
   }
+  REPORT( memoizeRates.size() );
   return rates;
 }
 
@@ -279,7 +315,6 @@ int main()
 
   populateDistances();
 
-  cout << "Creating GRAPH ... " << flush;
   cout.flush();
   FILE *graph = fopen( "GRAPH", "w" );
   for ( auto item : distances ) {
@@ -291,14 +326,9 @@ int main()
       fprintf( graph, "%s <- %d -> %s\n", s1.c_str(), dist, s2.c_str() );
   }
   fclose( graph );
-  cout << "Done" << endl;
 
   vector<int> rates = getFlowRates();
   sort( rates.begin(), rates.end() );
   cout << "Min = " << rates[ 0 ] << endl;
   cout << "Max = " << rates[ rates.size() - 1 ] << endl;
-
-  // for ( const auto& [ key, val ] : memoizeTimes ) {
-  //   REPORT( key );
-  // }
 }
