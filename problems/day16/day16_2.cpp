@@ -6,6 +6,8 @@
 #include <algorithm>  // sort
 #include <queue>
 #include <stack>
+#include <unordered_set>
+#include <unordered_map>
 
 // C
 #include <cstdio>
@@ -16,41 +18,60 @@
 
 using namespace std;
 
+#define TIME_LIMIT 26
+
 // For debugging
 #define REPORT( X ) cout << #X " = " << X << endl
 // like echo -n
 #define REPORTN( X ) cout << #X << " = " << ( X ) << ", "
 
-#define REPORTPS( PS ) cout << #PS << " = " << PS.first << ":" << PS.second << endl;
-
 // Aliasing
 #define forn( X ) \
 for ( int ii = 0; ii < ( X ); ii++ )
 
-typedef struct {
+typedef struct Valve {
   string name;
   int rate;
-  vector<string> list;
+  // vector<string> list;
 } Valve;
+unordered_map<string,vector<string>> valveList;
+
+// Adapted from
+// https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct
+bool operator<(const Valve& x, const Valve& y) {
+    return x.name < y.name;
+}
 
 // Only for parsing
-vector<Valve*> parsingList;
+vector<Valve> parsingList;
 
 // name lookup
-map<string,Valve*> valves;
+unordered_map<string,Valve> valves;
 
 typedef pair<string,string> ps;
 
+// Adapted from
+// https://stackoverflow.com/questions/32685540/why-cant-i-compile-an-unordered-map-with-a-pair-as-key
+// Only for pairs of long
+// You can of course template this struct to allow other hash functions
+struct ps_hash {
+    long operator () (const ps &p) const {
+        auto hasher = hash<string>{};
+        // Not cryptographically secure, I know
+        return hasher(p.first) ^ hasher(p.second);  
+    }
+};
+
 // Note: distance is bi-directional
-map<ps,int> distances;
+unordered_map<ps,int,ps_hash> distances;
 
 // Subset of valves, only the important ones
-map<string,Valve*> usefulValves;
+unordered_map<string,Valve> usefulValves;
 
-static Valve* parseLine( string line )
+static Valve parseLine( string line )
 {
   // Make the valve
-  Valve *valve = new Valve;
+  Valve valve;
 
   // Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
   stringstream ss( line );
@@ -62,7 +83,7 @@ static Valve* parseLine( string line )
   forn( 1 )
     ss >> discardStr;
   // AA
-  ss >> valve->name;
+  ss >> valve.name;
   // has flow
   forn( 2 )
     ss >> discardStr; 
@@ -70,7 +91,7 @@ static Valve* parseLine( string line )
   forn( 5 )
     ss >> discardChar;
   //0
-  ss >> valve->rate;
+  ss >> valve.rate;
   // ; tunnels lead to valves
   forn( 5 )
     ss >> discardStr;
@@ -80,7 +101,7 @@ static Valve* parseLine( string line )
     string name;
     name += ch1;
     name += ch2;
-    valve->list.push_back( name );
+    valveList[ valve.name ].push_back( name );
     // Maybe comma
     ss >> discardChar;
   }
@@ -90,18 +111,19 @@ static Valve* parseLine( string line )
 
 static void printValves( FILE *fp )
 {
-  for ( Valve* valve : parsingList ) {
+  for ( Valve valve : parsingList ) {
+    auto list = valveList[ valve.name ];
     // Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
-    if ( valve->list.size() == 1 ) {
-      fprintf( fp, "Valve %s has flow rate=%d; tunnel leads to valve %s\n", valve->name.c_str(), valve->rate, valve->list[ 0 ].c_str() );
+    if ( list.size() == 1 ) {
+      fprintf( fp, "Valve %s has flow rate=%d; tunnel leads to valve %s\n", valve.name.c_str(), valve.rate, list[ 0 ].c_str() );
       continue;
     }
   
-    fprintf( fp, "Valve %s has flow rate=%d; tunnels lead to valves ", valve->name.c_str(), valve->rate );
+    fprintf( fp, "Valve %s has flow rate=%d; tunnels lead to valves ", valve.name.c_str(), valve.rate );
     size_t i;
-    for ( i = 0; i < valve->list.size() - 1; i++ )
-      fprintf( fp, "%s, ", valve->list[ i ].c_str() );
-    fprintf( fp, "%s\n", valve->list[ i ].c_str() );
+    for ( i = 0; i < list.size() - 1; i++ )
+      fprintf( fp, "%s, ", list[ i ].c_str() );
+    fprintf( fp, "%s\n", list[ i ].c_str() );
   }
 }
 
@@ -109,17 +131,17 @@ static void printValves( FILE *fp )
 static void populateDistances()
 {
   for ( const auto& item : valves ) {
-    Valve *valve = item.second;
-    string name = valve->name;
-    int rate = valve->rate;
+    Valve valve = item.second;
+    string name = valve.name;
+    int rate = valve.rate;
 
     if ( rate == 0 && name != "AA" )
       continue;
 
     int distance = 0;
-    queue<Valve*> q;
-    set<string> visited;
-    for ( string otherString : valve->list ) {
+    queue<Valve> q;
+    unordered_set<string> visited;
+    for ( string otherString : valveList[ valve.name ] ) {
       q.push( valves[ otherString ] );
       visited.insert( otherString );
     }
@@ -130,17 +152,17 @@ static void populateDistances()
       distance++;
       int size = q.size();
       for ( int i = 0; i < size; i++ ) {
-        Valve* other = q.front();
+        Valve other = q.front();
         q.pop();
 
-        string otherString = other->name;
+        string otherString = other.name;
         if ( usefulValves.count( otherString ) > 0 ) {
           ps p = { name, otherString };
           ps p2 = { otherString, name };
           distances[ p ] = distances[ p2 ] = distance;
         }
 
-        for ( string nextString : other->list ) {
+        for ( string nextString : valveList[ other.name ] ) {
           // Newly inserted
           if ( visited.insert( nextString ).second )
             q.push( valves[ nextString ] );
@@ -150,205 +172,172 @@ static void populateDistances()
   }
 }
 
-map<string,int> memoizeTimes;
-static int getTime( string path )
+unordered_map<string,int> memoizeTimes;
+static int getTime( const string& path )
 {
-  if ( path.size() == 4 ) {
-    return memoizeTimes[ path ] = distances[ { "AA", path.substr( 2, 2 ) } ] + 1;
-  } else {
-    string lastTwo = path.substr( path.size() - 4, 4 );
-    ps pairString = { lastTwo.substr( 0, 2 ), lastTwo.substr( 2, 2 ) };
-    return memoizeTimes[ path ] =
-    memoizeTimes[ path.substr( 2, path.size() - 2) ]
-    + distances[ pairString ] + 1;
-  }
+  if ( path.size() == 4 )
+    return distances[ { path.substr( 0, 2 ), path.substr( 2, 2 ) } ] + 1;
+  
+  if ( memoizeTimes.count( path ) > 0 )
+    return memoizeTimes[ path ];
+
+  string main = path.substr( 0, path.size() - 2 );
+  string other = path.substr( path.size() - 4, 4 );
+  return memoizeTimes[ path ] =
+    getTime( main ) + getTime( other );
 }
 
-static bool duplicate( string path, string newValve ) {
-  for ( int i = 2; i < path.size() - 1; i += 2 ) {
-    if ( path.substr( i, 2 ) == newValve )
-      return true;
-  }
-  return false;
-}
-
-static void assertPS( ps pairString )
+static unordered_set<string> getPaths( const unordered_map<string,Valve>& usefulValves )
 {
-  return;
-
-  string str1 = pairString.first;
-  string str2 = pairString.second;
-  if ( str1 >= str2 ) {
-    REPORT( str1 );
-    REPORT( str2 );
-    exit( 1 );
-  }
-
-  for ( int i = 2; i < str1.size(); i += 2 )
-    for ( int j = 2; j < str2.size(); j += 2 )
-      if ( str1.substr( i, 2 ) == str2.substr( j, 2 ) ) {
-        REPORT( str1 );
-        REPORT( str2 );
-        exit( 1 );
-      }
-}
-
-static set<ps> getPaths()
-{
-  set<ps> allPaths;
-
-  // Double ignite
+  unordered_set<string> shortPaths;
+  unordered_set<string> allPaths;
   for ( auto item : usefulValves ) {
-    string newPath = "AA" + item.first;
-    if ( getTime( newPath ) >= 26 )
-      continue;
-    for ( auto item2 : usefulValves ) {
-      string newPath2 = "AA" + item2.first;
-      if ( newPath <= newPath2 || getTime( newPath2 ) >= 26 )
-        continue;
-      if ( newPath > newPath2 )
-        allPaths.insert( { newPath2, newPath } );
-    }
-  }
-  assert( allPaths.size() );
-  for ( ps pairString : allPaths ) {
-    assertPS( pairString );
+    string newPath = "AA" + item.second.name;
+    if ( getTime( newPath ) < TIME_LIMIT )
+      allPaths.insert( newPath );
   }
   
   int size = usefulValves.size();
   for ( int i = 0; i < size - 1; i++ ) {
-    REPORT( i );
-    REPORT( allPaths.size() );
-    set<ps> allPathsCopy = allPaths;
-    REPORT( allPathsCopy.size() );
-    set<ps> toBeRemoved;
+    // REPORT( allPaths.size() );
+    unordered_set<string> allPathsCopy = allPaths;
+    unordered_set<string> toBeRemoved;
     for ( auto item : usefulValves ) {
-      for ( ps pairString : allPathsCopy ) {
-        assertPS( pairString );
-        string path1 = pairString.first;
-        string path2 = pairString.second;
-        string name = item.second->name;
-        bool duplicate1 = duplicate( path1, name );
-        bool duplicate2 = duplicate( path2, name );
+      for ( string path : allPathsCopy ) {
+        string name = item.second.name;
+        bool duplicate = false;
+        for ( size_t i = 0; i < path.size() - 1; i += 2 )
+          if ( path[ i ] == name[ 0 ] && path[ i + 1 ] == name[ 1 ] ) {
+            duplicate = true;
+            break;
+          }
 
-        string newPath1 = path1 + name;
-        if ( !duplicate1 && !duplicate2 && getTime( newPath1 ) < 26 ) {
-          newPath1 < path2
-          ? allPaths.insert( { newPath1, path2 } )
-          : allPaths.insert( { path2, newPath1 } );
-          toBeRemoved.insert( pairString );
-        }
-
-        string newPath2 = path2 + name;
-        if ( !duplicate2 && !duplicate1 && getTime( newPath2 ) < 26 ) {
-          path1 < newPath2
-          ? allPaths.insert( { path1, newPath2 } )
-          : allPaths.insert( { newPath2, path1 } );
-          toBeRemoved.insert( pairString );
+        string newPath = path + name;
+        if ( !duplicate && getTime( newPath ) < TIME_LIMIT ) {
+          allPaths.insert( newPath );
+          toBeRemoved.insert( path );
         }
       }
     }
 
     if ( toBeRemoved.empty() ) {
-      cout << "PRIMED at ";
-      REPORT( i );
+      // cout << "PRIMED at i = " << i << " " << flush;
       break;
     }
-  
-    for ( ps removal : toBeRemoved )
+
+    // For part 2 we actually want to keep them for later
+    for ( string removal : toBeRemoved ) {
       allPaths.erase( removal );
+      shortPaths.insert( removal );
+    }
   }
 
   FILE *pathsfile = fopen( "PATHSFILE", "w" );
-  for ( ps paths : allPaths ) {
-    fprintf( pathsfile, "%s:%s\n", paths.first.c_str(), paths.second.c_str() );
+  for ( string path : allPaths ) {
+    fprintf( pathsfile, "%s\n", path.c_str() );
   }
   fclose( pathsfile );
 
+  allPaths.insert( shortPaths.begin(), shortPaths.end() );
   return allPaths;
+}
+
+typedef struct {
+  int rate;
+  int throughput;
+  int minute;
+} RateInfo;
+unordered_map<string,RateInfo> memoizeRates;
+
+// set<Valve> operator+( set<Valve>& lhs, const set<Valve>& rhs ) {
+//   lhs.insert( rhs.begin(), rhs.end() );
+//   return lhs;
+// }
+
+static RateInfo getRateHelper( const string& path )
+{
+  if ( memoizeRates.count( path ) > 0 ) {
+    // cout << "HIT " << path << "\n";
+    return memoizeRates[ path ];
+  }
+  // cout << "MISS " << path << "\n";
+
+  if ( path.size() == 4 ) {
+    RateInfo rateInfo;
+    Valve valve = usefulValves[ path.substr( 2, 2 ) ];
+    rateInfo.rate = 0;
+    rateInfo.throughput = valve.rate;
+    rateInfo.minute = getTime( path );
+    return memoizeRates[ path ] =
+      rateInfo;
+  }
+
+  string oldString = path.substr( 0, path.size() - 2 );
+  string newString = path.substr( path.size() - 4, 4 );
+  RateInfo oldInfo = memoizeRates[ oldString ]
+    = getRateHelper( oldString );
+  RateInfo newInfo  = memoizeRates[ newString ]
+    = getRateHelper( newString );
+  int time = newInfo.minute;
+  return memoizeRates[ path ]
+    = {
+        oldInfo.rate + time * oldInfo.throughput,
+        oldInfo.throughput + newInfo.throughput,
+        oldInfo.minute + time
+      };
 }
 
 static int getRate( string path )
 {
-  if ( path == "AA" )
-    return 0;
-
-  set<Valve*> openValves;
-
-  int rate = 0;
-  int throughput = 0;
-  int minute = 0;
-  for ( int i = 0; i < path.size() - 3; i += 2 ) {
-    string src = path.substr( i, 2 );
-    string openvalve = path.substr( i + 2, 2 );
-
-    // Go and open it
-    int time = distances[ { src, openvalve } ] + 1;
-
-    minute += time;
-
-    // Old profit
-    rate += time * throughput;
-
-    // New profit
-    throughput += usefulValves[ openvalve ]->rate;
-  }
+  RateInfo rateInfo = getRateHelper( path );
+  int rate = rateInfo.rate;
+  int throughput = rateInfo.throughput;
+  int minute = rateInfo.minute;
 
   // Leftover profit
-  rate += ( 26 - minute ) * throughput;
+  rate += ( TIME_LIMIT - minute ) * throughput;
   return rate;
 }
 
-// static int getRateBoth( string str1, string str2 )
-// {
-//   REPORT( str1 );
-//   int time1 = getTime( str1 );
-//   REPORT( time1 );
-//   assert( time1 < 26 );
+static int getRateElephant( string path )
+{
+  int rate = 0;
+  unordered_map<string,Valve> copyValves = usefulValves;
 
-//   REPORT( str1 );
-//   int time2 = getTime( str2 );
-//   REPORT( time2 );
-//   assert( time2 < 26 );
-//   return getRate( str1 ) + getRate( str2 );
-// }
+  // Get the paths of the compliment
+  for ( int i = 2; i < (signed)path.size() - 1; i += 2 ) {
+    copyValves.erase( path.substr( i, 2 ) );
+  }
+  auto paths = getPaths( copyValves );
+
+  // Get the max rate
+  for ( string path : paths ) {
+    rate = max( rate, getRate( path ) );
+  }
+
+  return rate;
+}
 
 static vector<int> getFlowRates()
 {
   cout << "Generating PATHSFILE ... " << flush;
-  set<ps> paths = getPaths();
+  unordered_set<string> paths = getPaths( usefulValves );
   cout << "Done" << endl;
   REPORT( paths.size() );
+  REPORT( memoizeTimes.size() );
 
-  cout << "Generating pathsRates ... " << flush;
-  map<string,int> pathsRates;
-  for ( ps pathsPair : paths ) {
-    string str1 = pathsPair.first;
-    string str2 = pathsPair.second;
-    int rate1 = getRate( str1 );
-    int rate2 = getRate( str2 );
-    pathsRates[ str1 ] = rate1;
-    pathsRates[ str2 ] = rate2;
-  }
-  REPORT( pathsRates.size() );
-
-  cout << "Generating rates ... " << flush;
   vector<int> rates;
-  for ( ps pathsPair : paths ) {
-    string str1 = pathsPair.first;
-    string str2 = pathsPair.second;
-    int total = pathsRates[ str1 ] + pathsRates[ str2 ];
+  int i = 0;
+  for ( string path : paths ) {
+    if ( i++ % 100 == 0 )
+      REPORT( i - 1 );
+    int person = getRate( path );
+    int elephant = getRateElephant( path );
+    int total = person + elephant;
     rates.push_back( total );
-    if ( total > 1707 ) {
-      cout << endl;
-      REPORTN( str1 ), REPORTN( str2 ), REPORT( total );
-      REPORT( getTime( str1 ) );
-      REPORT( getTime( str2 ) );
-      exit( 1 );
-    }
+    // cout << person << " + " << elephant << " = " << total << endl;
   }
-  REPORT( rates.size() );
-
+  REPORT( memoizeRates.size() );
   return rates;
 }
 
@@ -356,29 +345,22 @@ int main()
 {
   string line;
 
-  cout << "Parsing ... ";
   cout.flush();
   while ( getline( cin, line ) ) {
-    Valve *valve = parseLine( line );
-    valves[ valve->name ] = valve;
-    if ( valve->rate > 0 )
-      usefulValves[ valve->name ] = valve;
+    Valve valve = parseLine( line );
+    valves[ valve.name ] = valve;
+    if ( valve.rate > 0 )
+      usefulValves[ valve.name ] = valve;
     parsingList.push_back( valve );
   }
-  cout << "Done" << endl;
 
   // Check parsing
-  cout << "Creating PARSE ... " << flush;
   FILE *parse = fopen( "PARSE", "w" );
   printValves( parse );
   fclose( parse );
-  cout << "Done" << endl;
 
-  cout << "Populating distance ... " << flush;
   populateDistances();
-  cout << "Done" << endl;
 
-  cout << "Creating GRAPH ... " << flush;
   cout.flush();
   FILE *graph = fopen( "GRAPH", "w" );
   for ( auto item : distances ) {
@@ -390,20 +372,9 @@ int main()
       fprintf( graph, "%s <- %d -> %s\n", s1.c_str(), dist, s2.c_str() );
   }
   fclose( graph );
-  cout << "Done" << endl;
 
   vector<int> rates = getFlowRates();
-
-  assert( rates.size() );
   sort( rates.begin(), rates.end() );
   cout << "Min = " << rates[ 0 ] << endl;
-  reverse( rates.begin(), rates.end() );
-  cout << "Max = " << rates[ 0 ] << endl;
-
-  // string path = "AAZBLZRECYJFIU";
-  // int rate = getRate( path );
-
-  // string you = "AAJJBBCC";
-  // string elephant = "AADDHHEE";
-  // REPORT( getRateBoth( you, elephant ) );
+  cout << "Max = " << rates[ rates.size() - 1 ] << endl;
 }
