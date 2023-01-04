@@ -43,15 +43,27 @@ bool operator<(const Valve& x, const Valve& y) {
 vector<Valve> parsingList;
 
 // name lookup
-map<string,Valve> valves;
+unordered_map<string,Valve> valves;
 
 typedef pair<string,string> ps;
 
+// Adapted from
+// https://stackoverflow.com/questions/32685540/why-cant-i-compile-an-unordered-map-with-a-pair-as-key
+// Only for pairs of long
+// You can of course template this struct to allow other hash functions
+struct ps_hash {
+    long operator () (const ps &p) const {
+        auto hasher = hash<string>{};
+        // Not cryptographically secure, I know
+        return hasher(p.first) ^ hasher(p.second);  
+    }
+};
+
 // Note: distance is bi-directional
-map<ps,int> distances;
+unordered_map<ps,int,ps_hash> distances;
 
 // Subset of valves, only the important ones
-map<string,Valve> usefulValves;
+unordered_map<string,Valve> usefulValves;
 
 static Valve parseLine( string line )
 {
