@@ -39,8 +39,8 @@ using namespace std;
 #endif
 
 typedef pair<int,int> pi;
-#define col first
-#define row second
+#define row first
+#define col second
 
 
 vector<string> grid;
@@ -58,59 +58,61 @@ static pi getStart()
   return start;
 }
 
+static bool validCoords( pi p )
+{
+  // Invalid row
+  if ( p.row < 0 || p.row >= grid.size() ) {
+    return false;
+  }
+  // Invalid col
+  string row = grid[ p.row ];
+  if ( p.col < 0 || p.col >= row.size() ) {
+    return false;
+  }
+  return true;
+}
+
 static pi wrap( pi p, int dir )
 {
   switch( dir ) {
     // >
     case rightDir:
-      if ( p.col >= (signed)grid[ p.row ].size() )  // out of bounds
+      if ( !validCoords( p ) )
         p.col = 0;
-
-      while ( grid[ p.row ][ p.col ] == ' ' )       // skip empty
+      while ( grid[ p.row ][ p.col ] == ' ' ) // skip empty
         p.col++;
-
       break;
-
     // <
     case leftDir:
-      if ( p.col < 0                          // out of bounds
-          || grid[ p.row ][ p.col ] == ' ' )  // empty
-        p.col = grid[ p.row ].size() - 1;        // skip directly
+      if ( !validCoords( p )
+          || grid[ p.row ][ p.col ] == ' ' )
+        p.col = grid[ p.row ].size() - 1; // skip directly
       break;
-
     // v
     case downDir:
-      if ( p.row >= (signed)grid.size()             // out of (row) bounds
-          || p.col >= (signed)grid[ p.row ].size()  // out of (col) bounds
-          || grid[ p.row ][ p.col ] == ' ' )        // empty
+      if ( !validCoords( p )
+          || grid[ p.row ][ p.col ] == ' ' ) // empty
         p.row = 0;
-
-      while ( p.col >= (signed)grid[ p.row ].size() // skip short rows
-            || grid[ p.row ][ p.col ] == ' ' )      // skip empty
+      while ( !validCoords( p )
+            || grid[ p.row ][ p.col ] == ' ' )  // skip empty
         p.row++;
-
       break;
-
     // ^
     case upDir:
-      if ( p.row < 0                                // out of (row) bounds
-          || p.col >= (signed)grid[ p.row ].size()  // out of (col) bounds
-          || grid[ p.row ][ p.col ] == ' ' )        // empty
+      if ( !validCoords( p )
+          || grid[ p.row ][ p.col ] == ' ' )  // empty
         p.row = grid.size() - 1;
 
-      while ( p.col >= (signed)grid[ p.row ].size() // skip short rows
-              || grid[ p.row ][ p.col ] == ' ' )    // skip empty
+      while ( !validCoords( p )
+              || grid[ p.row ][ p.col ] == ' ' )  // skip empty
         p.row--;
-
       break;
-
-
+    // For debugging only
     default:
       cerr << "Unsupported wrap ";
       REPORTDIR( dir );
       exit( 1 );
   }
-
   return p;
 }
 
