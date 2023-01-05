@@ -52,9 +52,9 @@ int pathIdx = 0;
 static pi getStart()
 {
   pi start = {0,0};
-  while ( grid[ start.row ][ start.col ] == ' ' )
+  while ( grid[ start.row ][ start.col ] == ' ' ) {
     start.col++; // go right
-
+  }
   return start;
 }
 
@@ -122,7 +122,6 @@ static pi moveDigit( pi p, int length )
   for ( int i = 0;; i++ ) {
     // Hit a wall
     if ( grid[ next.row ][ next.col ] == '#' ) {
-      REPORTWALL( next );
       break;
     }
     // Update
@@ -149,16 +148,7 @@ static pi moveDigit( pi p, int length )
         exit( 1 );
     }
 
-    pi wrapped = wrap( next, dir );
-    if ( next != wrapped ) {
-      REPORTP( next );
-      REPORTP( wrapped );
-      next = wrapped;
-#ifdef DEBUG
-      int remaining = length - i - 1;
-      REPORT( remaining );
-#endif
-    }
+    next = wrap( next, dir );
   }
   return p;
 }
@@ -170,16 +160,9 @@ static pi movePath( pi p )
   if ( isdigit( nextCh ) ) {
     int length;
     sscanf( path.c_str() + pathIdx, "%d%n", &length, &n );
-#ifdef DEBUG
-    cout << path.substr( pathIdx, n ) << ", ";
-    REPORTDIR( dir );
-#endif
     p = moveDigit( p, length );
   } else {
     n = 1;
-#ifdef DEBUG
-    cout << path.substr( pathIdx, n ) << endl;
-#endif
     if ( nextCh == 'R' ) {
       dir = ( dir + 1 ) % 4;
     } else if ( nextCh == 'L' ) {
@@ -201,38 +184,9 @@ int limit = INT_MAX;
 
 static pi getEnd( pi start )
 {
-  REPORTDIR( dir );
   pi end = start;
-  REPORTP( end );
-// #ifdef DEBUG
-//   int moves = 0;
-// #endif
   while ( pathIdx < (signed)path.size() ) {
-    REPORT( pathIdx );
-// #ifdef DEBUG
-//     int oldDir = dir;
-// #endif
-
-    pi newEnd = movePath( end );
-    end = newEnd;
-
-    REPORTP( end );
-
-// #ifdef DEBUG
-//     if ( newEnd != end ) {        // move
-//       REPORTP( newEnd );
-//     } else if ( oldDir != dir ) { // turn
-//       REPORTDIR( dir );
-//     } else {
-//       cout << "No move ";
-//       REPORTP( end );
-//     }
-//     // REPORT( ++moves );
-//     if ( moves == limit ) {
-//       REPORT( moves );
-//       exit( 1 );
-//     }
-// #endif
+    end = movePath( end );
   }
   return end;
 }
@@ -257,10 +211,8 @@ int main( int argc, char *argv[] )
   // pi = (x, y)
   // pi = (col-1,row-1
   pi end = getEnd( getStart() );
-  REPORT( end.row + 1 );
-  REPORT( end.col + 1 );
   
-  printf( "End at (%d,%d), dir = %d\n", end.row+1, end.col+1, dir );
-  REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir );
+  // printf( "End at (%d,%d), dir = %d\n", end.row+1, end.col+1, dir );
+  // REPORT( 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir );
   cout << 1000 * ( end.row + 1 ) + 4 * ( end.col + 1 ) + dir << endl;
 }
