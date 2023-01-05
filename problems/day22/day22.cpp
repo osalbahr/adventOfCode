@@ -58,18 +58,20 @@ static pi getStart()
   return start;
 }
 
+static bool validRow( pi p )
+{
+  return p.row >= 0 && p.row < grid.size();
+}
+
+static bool validCol( pi p )
+{
+  string row = grid[ p.row ];
+  return p.col >= 0 && p.col < row.size();
+}
+
 static bool validCoords( pi p )
 {
-  // Invalid row
-  if ( p.row < 0 || p.row >= grid.size() ) {
-    return false;
-  }
-  // Invalid col
-  string row = grid[ p.row ];
-  if ( p.col < 0 || p.col >= row.size() ) {
-    return false;
-  }
-  return true;
+  return validRow( p ) && validCol( p );
 }
 
 static pi wrap( pi p, int dir )
