@@ -106,10 +106,17 @@ static void printMinute( const Elements& inventory, const Elements& rates, int m
 }
 #endif
 
+int globalMax;
 static int getTotal( const BluePrint& bp, Elements inventory, Elements rates, int minutesLeft )
 {
+  int geodeRate = rates.geode;
+  int upperLimit = inventory.geode;
+  for ( int i = 0; i < minutesLeft; i++ )
+    upperLimit += geodeRate++;
+  if ( upperLimit < globalMax )
+    return 0;
   if ( minutesLeft == 0 )
-    return inventory.geode;
+    return globalMax = max( globalMax, inventory.geode );
   minutesLeft--;
 
 #ifdef DEBUG
@@ -137,6 +144,9 @@ static int getTotal( const BluePrint& bp, Elements inventory, Elements rates, in
     
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
+  if ( rates.ore >= geodeOre
+      && rates.obsidian >= geodeObsidian )
+    return total;
 
   // Obsidian robot
   auto [obsidianOre, obsidianClay] = bp.obsidianCosts;
@@ -187,8 +197,8 @@ static int getTotal( const BluePrint& bp, Elements inventory, Elements rates, in
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
 
-  // Do nothing
-  if ( rates.ore < bp.maxOre && rates.clay < bp.obsidianCosts.second
+  // Do nothing if it can be useful
+  if ( rates.ore < bp.maxOre && rates.clay < obsidianClay
       && rates.obsidian < geodeObsidian ) {
 #ifdef DEBUG
     cout << "Doing nothing" << endl;
@@ -229,17 +239,21 @@ int main()
   Elements rates = { 1, 0, 0, 0 };
   // Kickstart
   // inventory += rates;
-  for ( int i = 0; i < max( 3, (int)bps.size() ); i++ ) {
-    auto bp = bps[ i ];
+  int i = 0;
+  for ( const auto& bp : bps ) {
+    globalMax = 0;
     i++;
     int total = getTotal( bp, inventory, rates, MINUTES );
     ret *= total;
-    REPORT( total );
+    cout << i << ": " << total << endl;
 #ifdef DEBUG
     if ( ( i == 1 && total != 9 ) || ( i == 2 && total != 12 ) ) {
       exit( 1 );
     }
 #endif
+
+    if ( i == 3 )
+      break;
   }
   cout << ret << endl;
 }
