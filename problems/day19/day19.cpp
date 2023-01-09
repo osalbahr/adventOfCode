@@ -1,3 +1,5 @@
+// #define DEBUG
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -6,6 +8,8 @@
 #include <cstdio>
 
 using namespace std;
+
+#define endl "\n"
 
 #define REPORT( X ) cout << #X << " = " << (X) << endl
 // like echo -n
@@ -65,74 +69,133 @@ Elements operator+( const Elements& lhs, const Elements& rhs )
           lhs.geode + rhs.geode };
 }
 
+Elements operator*( const Elements& e, const int a )
+{
+  return { a * e.ore,
+          a * e.clay,
+          a * e.obsidian,
+          a * e .geode };
+}
+
+Elements operator-( const Elements& lhs, const Elements& rhs )
+{
+  return lhs + rhs * -1;
+}
+
 Elements& operator+=( Elements& lhs, const Elements& rhs )
 {
   lhs = lhs + rhs;
   return lhs;
 }
 
+#ifdef DEBUG
+static void printMinute( const Elements& inventory, const Elements& rates, int minutesLeft )
+{
+  if ( rates.ore > 0 ) {
+    printf( "%d ore-collecting robot collects %d ore; you now have %d ore.\n", rates.ore, rates.ore, inventory.ore );
+  }
+  if ( rates.clay > 0 ) {
+    printf( "%d clay-collecting robot collects %d clay; you now have %d clay.\n", rates.clay, rates.clay, inventory.clay );
+  }
+  if ( rates.obsidian > 0 ) {
+    printf( "%d obsidian-collecting robot collects %d obsidian; you now have %d obsidian.\n", rates.obsidian, rates.obsidian, inventory.obsidian );
+  }
+  if ( rates.geode > 0 ) {
+    printf( "%d geode-collecting robot collects %d geode; you now have %d geode.\n", rates.geode, rates.geode, inventory.geode );
+  }
+}
+#endif
+
 static int getTotal( const BluePrint& bp, Elements inventory, Elements rates, int minutesLeft )
 {
-  // REPORT( minutesLeft );
-  // REPORT3( inventory, rates, minutesLeft );
-  // REPORTN( inventory.ore ), REPORTN( rates.ore ), REPORT( minutesLeft );
   if ( minutesLeft == 0 )
     return inventory.geode;
   minutesLeft--;
+
+#ifdef DEBUG
+  cout << endl;
+  printf( "== Minute %2d ==\n", 24 - minutesLeft );
+  printMinute( inventory, rates, minutesLeft );
+#endif
+  // REPORTN( inventory.ore ), REPORTN( rates.ore ), REPORT( minutesLeft );
   
   int total = 0;
 
   // Geode robot
   auto [geodeOre, geodeObsidian] = bp.geodeCosts;
-  if ( inventory.ore > geodeOre && inventory.obsidian > geodeObsidian ) {
+  if ( inventory.ore >= geodeOre && inventory.obsidian >= geodeObsidian ) {
+#ifdef DEBUG
+    cout << "Buying geode-collecting" << endl;
+#endif
     // REPORTN( inventory.geode ), REPORT( minutesLeft );
     auto newInv = inventory + rates;
     auto newRates = rates;
     newInv.ore -= geodeOre;
     newInv.obsidian -= geodeObsidian;
     newRates.geode++;
+
+    
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
 
   // Obsidian robot
   auto [obsidianOre, obsidianClay] = bp.obsidianCosts;
-  if ( rates.obsidian < geodeObsidian && inventory.ore > obsidianOre && inventory.clay > obsidianClay ) {
+#ifdef DEBUG
+  REPORT( inventory.ore >= obsidianOre );
+  REPORT( inventory.clay >= obsidianClay );
+#endif
+  if ( rates.obsidian < geodeObsidian && inventory.ore >= obsidianOre && inventory.clay >= obsidianClay ) {
+#ifdef DEBUG
+    cout << "Buying obsidian-collecting" << endl;
+#endif
     // cout << "Obsidian ", REPORT( minutesLeft );
     auto newInv = inventory + rates;
     auto newRates = rates;
     newInv.ore -= obsidianOre;
     newInv.clay -= obsidianClay;
     newRates.obsidian++;
+
+    
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
 
   // Clay robot
-  if ( rates.clay < bp.obsidianCosts.second && inventory.ore > bp.clayCost ) {
-    // cout << "Clay ", REPORT( minutesLeft );
+  if ( rates.clay < bp.obsidianCosts.second && inventory.ore >= bp.clayCost ) {
+#ifdef DEBUG
+    cout << "Buying clay-collecting" << endl;
+#endif
     auto newInv = inventory + rates;
     auto newRates = rates;
     newInv.ore -= bp.clayCost;
     newRates.clay++;
+
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
   
   // Ore robot
   // REPORT( inventory.ore );
-  if ( rates.ore < bp.maxOre && inventory.ore > bp.oreCost ) {
+  if ( rates.ore < bp.maxOre && inventory.ore >= bp.oreCost ) {
+#ifdef DEBUG
+    cout << "Buying ore-collecting" << endl;
+#endif
     // cout << "Ore ", REPORT( minutesLeft );
     auto newInv = inventory + rates;
     auto newRates = rates;
     newInv.ore -= bp.oreCost;
     newRates.ore++;
+
     total = max( total, getTotal( bp, newInv, newRates, minutesLeft ) );
   }
 
-  // Do nothing
-  if ( total == 0 ) {
+  // Do nothing if it can be useful
+  if ( rates.ore < bp.maxOre && rates.clay < bp.obsidianCosts.second
+      && rates.obsidian < geodeObsidian ) {
+#ifdef DEBUG
+    cout << "Doing nothing" << endl;
+#endif
     auto newInv = inventory + rates;
-    total = getTotal( bp, newInv, rates, minutesLeft );
+    total = max( total, getTotal( bp, newInv, rates, minutesLeft ) );
   }
-
 
   return total;
 }
@@ -164,13 +227,19 @@ int main()
 
   Elements inventory = {};
   Elements rates = { 1, 0, 0, 0 };
-  inventory += rates;
+  // Kickstart
+  // inventory += rates;
   int i = 0;
   for ( const auto& bp : bps ) {
     i++;
     int total = getTotal( bp, inventory, rates, MINUTES );
     ret += i * total;
     cout << i << ": " << total << " (" << i * total << ")" << endl;
+#ifdef DEBUG
+    if ( ( i == 1 && total != 9 ) || ( i == 2 && total != 12 ) ) {
+      exit( 1 );
+    }
+#endif
   }
   cout << ret << endl;
 }
