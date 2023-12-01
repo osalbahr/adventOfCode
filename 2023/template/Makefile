@@ -1,6 +1,4 @@
-CC = g++
-CXX = g++
-CPPFLAGS = -Wall -g -O2 -std=gnu++20
+CPPFLAGS = -Wall -Wextra -std=gnu++17
 LDLIBS = -lm
 
 EXE = hello
