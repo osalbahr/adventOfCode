@@ -39,8 +39,6 @@ bool isPossible(stringstream& stream)
 
 int main()
 {
-	
-
 	int ret = 0;
 	string line;
 	for (int i = 1; getline(cin, line); i++) {
