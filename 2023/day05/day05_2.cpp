@@ -2,18 +2,23 @@
 #include <vector>
 #include <sstream>
 
+#include <cassert>
+
 using namespace std;
 
 #define REPORT(X) cout << #X << " = " << (X) << endl
 #define endl "\n"
 
+using ll = long long;
+using pll = pair<ll, ll>;
+
 struct Mapping {
-	long long dest;
-	long long src;
-	long long range;
+	ll dest;
+	ll src;
+	ll range;
 };
 
-static vector<long long> getSeeds()
+static vector<pll> getSeedRanges()
 {
 	string line;
 	getline(cin, line);
@@ -22,21 +27,15 @@ static vector<long long> getSeeds()
 	string trash;
 	ss >> trash;
 
-	vector<long long> seeds;
-	long long start, range;
+	vector<pll> seedRanges;
+	ll start, range;
 	while (ss >> start >> range) {
-		for (long long i = start; i <= start + range; i++) {
-			seeds.push_back(i);
-			if (seeds.size() % 10'000'000 == 0)
-				REPORT(seeds.size());
-		}
-		// seeds.push_back(start);
-		// seeds.push_back(range);
+		seedRanges.push_back({start, range});
 	}
 	
 	getline(cin, trash);
 	
-	return seeds;
+	return seedRanges;
 }
 
 static vector<Mapping> getMap()
@@ -47,7 +46,7 @@ static vector<Mapping> getMap()
 	while (getline(cin, line) && line != "") {
 		stringstream ss(line);
 
-		long long dest, src, range;
+		ll dest, src, range;
 		while (ss >> dest >> src >> range)
 			mapping.push_back( {dest, src, range} );
 	}
@@ -55,20 +54,70 @@ static vector<Mapping> getMap()
 	return mapping;
 }
 
-static long long lookUp(long long key, vector<Mapping> mp)
+static void printMapping(const Mapping& mapping)
 {
-	for (const auto& mapping : mp) {
-		if (key >= mapping.src && key <= mapping.src + mapping.range) {
-			return mapping.dest + ( key - mapping.src );
+	auto src = mapping.src, dest = mapping.dest, range = mapping.range;
+	printf("mapping: %lld-%lld -> %lld-%lld\n", src, src + range, dest, dest + range);
+}
+
+static void printRanges(const vector<pll>& keyRanges)
+{
+	cout << "ranges: ";
+	for (const auto& range : keyRanges) {
+		printf("[%lld, %lld], ", range.first, range.first + range.second);
+	}
+	cout << endl;
+}
+
+static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
+{
+	vector<pll> results;
+
+	printRanges(keyRanges);
+
+	for (const auto& keyRange : keyRanges) {
+		ll minKey = keyRange.first;
+		ll maxKey = minKey + keyRange.second;
+
+		for (const auto& mapping : mp) {
+			ll minMapping = mapping.src;
+			ll maxMapping = mapping.src + mapping.range;
+
+			printMapping(mapping);
+
+			// no overlap
+			if (minMapping > maxKey || minKey > maxMapping) {
+				continue;
+			}
+
+			ll minResult = max(minKey, minMapping);
+			ll maxResult = min(maxKey, maxMapping);
+			ll range = maxResult - minResult;
+	
+			ll delta = mapping.dest - mapping.src;
+			results.push_back({minResult + delta, range});
+			REPORT(results.size());
 		}
 	}
 
-	return key;
+	printRanges(results);
+
+	cout << endl;
+	return results;
+}
+
+static ll getMin(ll current, const vector<pll>& ranges)
+{
+	ll ans = current;
+	for (const auto& range : ranges) {
+		ans = min(ans, range.first);
+	}
+	return ans;
 }
 
 int main()
 {
-	vector<long long> seeds = getSeeds();
+	vector<pll> seedRanges = getSeedRanges();
 	vector<Mapping> mp1 = getMap();
 	vector<Mapping> mp2 = getMap();
 	vector<Mapping> mp3 = getMap();
@@ -77,29 +126,18 @@ int main()
 	vector<Mapping> mp6 = getMap();
 	vector<Mapping> mp7 = getMap();
 
-	long long ans = LONG_LONG_MAX;
-	for (const auto seed : seeds) {
-		// REPORT(seed);
-	// for (size_t i = 0; i < seeds.size() - 1; i++) {
-	// 	for (long long seed = seeds[i]; seed <= seeds[i] + seeds[i+1]; i++) {
-		long long soil = lookUp(seed, mp1);
-		long long fertilizer = lookUp(soil, mp2);
-		long long water = lookUp(fertilizer, mp3);
-		long long light = lookUp(water, mp4);
-		long long temperature = lookUp(light, mp5);
-		long long humidity = lookUp(temperature, mp6);
-		long long location = lookUp(humidity, mp7);
-		ans = min(ans, location);
-		
-		// REPORT(soil);
-		// REPORT(fertilizer);
-		// REPORT(water);
-		// REPORT(light);
-		// REPORT(temperature);
-		// REPORT(humidity);
-		// REPORT(location);
-		// REPORT("");
-		// }
+	ll ans = LONG_LONG_MAX;
+	for (const auto& seedRange: seedRanges) {
+		const auto soil = lookUp({seedRange}, mp1);
+		REPORT(soil.size());
+		const auto fertilizer = lookUp(soil, mp2);
+		const auto water = lookUp(fertilizer, mp3);
+		const auto light = lookUp(water, mp4);
+		const auto temperature = lookUp(light, mp5);
+		const auto humidity = lookUp(temperature, mp6);
+		const auto location = lookUp(humidity, mp7);
+		ans = getMin(ans, location);
+		REPORT(ans);
 	}
 
 	REPORT(ans);
