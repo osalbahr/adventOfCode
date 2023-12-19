@@ -61,17 +61,17 @@ static vector<Mapping> getMap()
 	return mapping;
 }
 
+#ifdef DEBUG
 static void printMapping(const Mapping& mapping)
 {
-#ifdef DEBUG
 	auto src = mapping.src, dest = mapping.dest, range = mapping.range;
 	printf(	"mapping: %lld-%lld -> %lld-%lld (%lld)\n",
 			src,
 			src + range,
 			dest, dest + range,
 			range);
-#endif
 }
+#endif
 
 static ll printRanges(const vector<pll>& keyRanges)
 {
@@ -114,7 +114,9 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 			ll minMapping = mapping.src;
 			ll maxMapping = mapping.src + mapping.range - 1;
 
+#ifdef DEBUG
 			printMapping(mapping);
+#endif
 
 			// no overlap
 			if (minMapping > maxKey || minKey > maxMapping) {
@@ -150,7 +152,9 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 		REPORT(totalAfter);
 	}
 	assert(totalBefore == totalAfter);
+#ifdef DEBUG
 	cout << endl;
+#endif
 	return results;
 }
 
@@ -188,5 +192,5 @@ int main()
 		REPORT(ans);
 	}
 
-	REPORT(ans);
+	cout << ans << endl;
 }
