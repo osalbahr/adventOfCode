@@ -8,7 +8,12 @@
 
 using namespace std;
 
+#ifdef DEBUG
 #define REPORT(X) cout << "(" << __LINE__ << ") " << #X << " = " << (X) << endl
+#else
+#define REPORT(X)
+#endif
+
 #define endl "\n"
 
 using ll = long long;
@@ -58,20 +63,37 @@ static vector<Mapping> getMap()
 
 static void printMapping(const Mapping& mapping)
 {
+#ifdef DEBUG
 	auto src = mapping.src, dest = mapping.dest, range = mapping.range;
-	printf("mapping: %lld-%lld -> %lld-%lld\n", src, src + range, dest, dest + range);
+	printf(	"mapping: %lld-%lld -> %lld-%lld (%lld)\n",
+			src,
+			src + range,
+			dest, dest + range,
+			range);
+#endif
 }
 
 static ll printRanges(const vector<pll>& keyRanges)
 {
 	ll total = 0;
 
+#ifdef DEBUG
 	cout << "ranges: ";
 	for (const auto& range : keyRanges) {
-		printf("[%lld, %lld], ", range.first, range.first + range.second);
+		printf(	"[%lld, %lld] (%lld), ",
+				range.first,
+				range.first + range.second - 1,
+				range.second);
+
 		total += range.second;
 	}
 	printf("(%lld)\n", total);
+#else
+	for (const auto& range : keyRanges) {
+		total += range.second;
+	}
+#endif
+
 	return total;
 }
 
@@ -84,13 +106,13 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 	ll totalAfter = 0;
 	for (const auto& keyRange : keyRanges) {
 		ll minKey = keyRange.first;
-		ll maxKey = minKey + keyRange.second;
+		ll maxKey = minKey + keyRange.second - 1;
 
 		vector<pll> usedRanges;
 
 		for (const auto& mapping : mp) {
 			ll minMapping = mapping.src;
-			ll maxMapping = mapping.src + mapping.range;
+			ll maxMapping = mapping.src + mapping.range - 1;
 
 			printMapping(mapping);
 
@@ -102,7 +124,7 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 			ll minResult = max(minKey, minMapping);
 			ll maxResult = min(maxKey, maxMapping);
 			usedRanges.push_back({minResult, maxResult});
-			ll range = maxResult - minResult;
+			ll range = maxResult - minResult + 1;
 	
 			ll delta = mapping.dest - mapping.src;
 			results.push_back({minResult + delta, range});
@@ -112,24 +134,22 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 		sort(usedRanges.begin(), usedRanges.end());
 		// REPORT(usedRanges.size());
 		ll start = minKey;
-		ll end = start;
 		for (const auto& usedRange : usedRanges) {
-			end = usedRange.second;
-	
-			if (usedRange.first > start) {
-				results.push_back({start, end - start});
+			if (start < usedRange.first) {
+				results.push_back({start, usedRange.first - start});
 			}
 
-			end++;
-			start = end;
+			start = usedRange.second + 1;
 		}
 		// REPORT(end);
-		if ( end <= maxKey ) {
-			results.push_back({start, maxKey - start});
+		if ( start <= maxKey ) {
+			results.push_back({start, maxKey - start + 1});
 		}
 
 		totalAfter = printRanges(results);
+		REPORT(totalAfter);
 	}
+	assert(totalBefore == totalAfter);
 	cout << endl;
 	return results;
 }
