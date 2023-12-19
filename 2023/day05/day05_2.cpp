@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 #include <cassert>
+#include <climits>
 
 using namespace std;
 
-#define REPORT(X) cout << #X << " = " << (X) << endl
+#define REPORT(X) cout << "(" << __LINE__ << ") " << #X << " = " << (X) << endl
 #define endl "\n"
 
 using ll = long long;
@@ -60,24 +62,31 @@ static void printMapping(const Mapping& mapping)
 	printf("mapping: %lld-%lld -> %lld-%lld\n", src, src + range, dest, dest + range);
 }
 
-static void printRanges(const vector<pll>& keyRanges)
+static ll printRanges(const vector<pll>& keyRanges)
 {
+	ll total = 0;
+
 	cout << "ranges: ";
 	for (const auto& range : keyRanges) {
 		printf("[%lld, %lld], ", range.first, range.first + range.second);
+		total += range.second;
 	}
-	cout << endl;
+	printf("(%lld)\n", total);
+	return total;
 }
 
 static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 {
 	vector<pll> results;
 
-	printRanges(keyRanges);
+	ll totalBefore = printRanges(keyRanges);
 
+	ll totalAfter = 0;
 	for (const auto& keyRange : keyRanges) {
 		ll minKey = keyRange.first;
 		ll maxKey = minKey + keyRange.second;
+
+		vector<pll> usedRanges;
 
 		for (const auto& mapping : mp) {
 			ll minMapping = mapping.src;
@@ -92,16 +101,35 @@ static vector<pll> lookUp(vector<pll> keyRanges, vector<Mapping> mp)
 
 			ll minResult = max(minKey, minMapping);
 			ll maxResult = min(maxKey, maxMapping);
+			usedRanges.push_back({minResult, maxResult});
 			ll range = maxResult - minResult;
 	
 			ll delta = mapping.dest - mapping.src;
 			results.push_back({minResult + delta, range});
-			REPORT(results.size());
+			// REPORT(results.size());
 		}
+
+		sort(usedRanges.begin(), usedRanges.end());
+		// REPORT(usedRanges.size());
+		ll start = minKey;
+		ll end = start;
+		for (const auto& usedRange : usedRanges) {
+			end = usedRange.second;
+	
+			if (usedRange.first > start) {
+				results.push_back({start, end - start});
+			}
+
+			end++;
+			start = end;
+		}
+		// REPORT(end);
+		if ( end <= maxKey ) {
+			results.push_back({start, maxKey - start});
+		}
+
+		totalAfter = printRanges(results);
 	}
-
-	printRanges(results);
-
 	cout << endl;
 	return results;
 }

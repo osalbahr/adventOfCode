@@ -2,6 +2,8 @@
 #include <vector>
 #include <sstream>
 
+#include <climits>
+
 using namespace std;
 
 #define REPORT(X) cout << #X << " = " << (X) << endl

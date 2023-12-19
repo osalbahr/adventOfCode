@@ -6,6 +6,7 @@
 
 #include <cstdio>
 #include <cmath>
+#include <cassert>
 
 using namespace std;
 

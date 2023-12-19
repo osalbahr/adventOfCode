@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -ftrapv -std=gnu++17
+CXXFLAGS = -Wall -Wextra -Wshadow -ftrapv -std=gnu++17
 LDLIBS = -lm
 
 EXE = day05 day05_2
