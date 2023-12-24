@@ -13,6 +13,8 @@ using ll = long long;
 
 #define REPORT(X) cout << #X << " = " << (X) << endl
 
+#define endl '\n'
+
 static int getType(const string& hand)
 {
 	enum {
@@ -68,10 +70,38 @@ static string transform(const string& hand, const map<char,int>& char2strength)
 	return transformed;
 }
 
+static vector<string> jokerize(const string& hand, const string& order, int startIdx)
+{
+	vector<int> indices;
+	for (size_t i = startIdx; i < hand.size(); i++) {
+		if (hand[i] == 'J') {
+			indices.push_back(i);
+		}
+	}
+
+	if (indices.size() == 0) {
+		return {hand};
+	}
+
+	vector<string> hands;
+
+	for (const auto i : indices) {
+		string newHand = hand;
+		for (const auto ch : order) {
+			newHand[i] = ch;
+
+			vector<string> newHands = jokerize(newHand, order, i + 1);
+			hands.insert(hands.end(), newHands.begin(), newHands.end());
+		}
+	}
+
+	return hands;
+}
+
 int main()
 {
 	map<char,int> char2strength;
-	string order = "AKQJT98765432";
+	string order = "AKQJT9876543210";
 	reverse(order.begin(), order.end());
 	for (size_t i = 0; i < order.size(); i++) {
 		char2strength[order[i]] = i;
@@ -90,7 +120,18 @@ int main()
 	// (type, transformed, hand)
 	vector<tuple<int, string, string>> toSort;
 	for (const auto& hand : hands) {
-		int type = getType(hand);
+		REPORT(hand);
+		vector<string> jokerized = jokerize(hand, order, 0);
+		REPORT(jokerized.size());
+
+		int type = 0;
+		for (const auto& newHand : jokerized) {
+			// REPORT(newHand);
+			type = max(type, getType(newHand));
+		}
+
+		REPORT(type);
+
 		string transformed = transform(hand, char2strength);
 		toSort.push_back( {type, transformed, hand} );
 	}
