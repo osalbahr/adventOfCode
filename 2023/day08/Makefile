@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -Ofast -std=gnu++17
+CXXFLAGS = -Wall -Wextra -Ofast -march=native -std=gnu++17
 LDLIBS = -lm
 
 EXE = day08 day08_2

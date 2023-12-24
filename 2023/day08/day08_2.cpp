@@ -10,9 +10,19 @@ using namespace std;
 #define REPORT(X) cout << #X << " = " << (X) << endl
 
 // map node to left/right pair
-using MapDS = unordered_map<string, pair<string, string>>;
+using MapDS = unordered_map<int, pair<int, int>>;
 #define left first
 #define right second
+
+// 'A' = 0 -> 'Z' = 25
+static int base26ToInt(const char* base26)
+{
+	int ret = 0;
+	for (int i = 2, exp = 0; i >= 0; i--, exp++) {
+		ret += (base26[i] - 'A') * pow(26, exp);
+	}
+	return ret;
+}
 
 static MapDS getMap()
 {
@@ -29,9 +39,9 @@ static MapDS getMap()
 		
 		assert(matches == 3);
 
-		string src(srcPtr);
-		string left(leftPtr);
-		string right(rightPtr);
+		int src = base26ToInt(srcPtr);
+		int left = base26ToInt(leftPtr);
+		int right = base26ToInt(rightPtr);
 
 		mp[src] = {left, right};
 	}
@@ -40,18 +50,15 @@ static MapDS getMap()
 	return mp;
 }
 
-static unordered_set<string> visited;
-
-static vector<string> move(const vector<string>& pos, MapDS mp, char next)
+static vector<int> move(const vector<int>& pos, const MapDS& mp, char next)
 {
 
-	vector<string> newPos;
+	vector<int> newPos;
 	for (const auto& curPos : pos) {
-		visited.insert(curPos);
 		if (next == 'L') {
-			newPos.push_back(mp[curPos].left);
+			newPos.push_back(mp.at(curPos).left);
 		} else { // next == 'R'
-			newPos.push_back(mp[curPos].right);
+			newPos.push_back(mp.at(curPos).right);
 		}
 	}
 
@@ -60,21 +67,21 @@ static vector<string> move(const vector<string>& pos, MapDS mp, char next)
 	return newPos;
 }
 
-static vector<string> getPos(MapDS mp)
+static vector<int> getPos(MapDS mp)
 {
-	vector<string> pos;
+	vector<int> pos;
 	for (const auto& [key, val] : mp) {
-		if (key.back() == 'A') {
+		if (key % 26  == 0) { // ends with 'A'
 			pos.push_back(key);
 		}
 	}
 	return pos;
 }
 
-static bool endWithZ(vector<string> pos)
+static bool endWithZ(vector<int> pos)
 {
 	for (const auto& curPos : pos) {
-		if (curPos.back() != 'Z') {
+		if (curPos % 26 != 25) { // end with 'Z'
 			return false;
 		}
 	}
@@ -92,13 +99,13 @@ int main()
 
 	MapDS mp = getMap();
 
-	vector<string> pos = getPos(mp);
+	vector<int> pos = getPos(mp);
 	size_t steps;
 	for (steps = 0; !endWithZ(pos); steps++) {
 		char next = instructions[ steps % instructions.size() ];
 		pos = move(pos, mp, next);
 		
-		if (steps % 10'000 == 0) {
+		if (steps % 1'000'000 == 0) {
 			REPORT(steps);
 		}
 	}
