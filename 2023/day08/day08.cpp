@@ -39,12 +39,12 @@ static MapDS getMap()
 	return mp;
 }
 
-static string move(const string& pos, MapDS mp, char next)
+static string move(const string& pos, const MapDS& mp, char next)
 {
 	if (next == 'L') {
-		return mp[pos].left;
+		return mp.at(pos).left;
 	} else { // next == 'R'
-		return mp[pos].right;
+		return mp.at(pos).right;
 	}
 }
 
