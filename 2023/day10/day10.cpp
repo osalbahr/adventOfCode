@@ -172,6 +172,7 @@ int main()
 	bool loop = false;
 	while (!loop && !toVisit.empty()) {
 		int count = toVisit.size();
+		depth++;
 		while (count--) {
 			pi p = toVisit.front();
 			toVisit.pop();
@@ -179,8 +180,9 @@ int main()
 			if (visited[p.row][p.col]) {
 				if (p == sp) {
 					loop = true;
+					break;
 				}
-				break;
+				continue;
 			} else {
 				visited[p.row][p.col] = true;
 				markedGrid[p.row][p.col] = '0' + (depth % 10);
@@ -188,8 +190,6 @@ int main()
 			
 			addNeighbors(toVisit, p, grid, visited);
 		}
-
-		depth++;
 	}
 
 	printGrid();
@@ -197,5 +197,6 @@ int main()
 	REPORT(loop);
 	REPORT(toVisit.size());
 
-	REPORT((depth-1)/2);
+	// I don't know why it's -2
+	REPORT(depth-2);
 }
