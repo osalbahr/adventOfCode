@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <cassert>
+#include <unordered_set>
 
 using namespace std;
 
@@ -39,13 +40,46 @@ static MapDS getMap()
 	return mp;
 }
 
-static string move(const string& pos, MapDS mp, char next)
+static unordered_set<string> visited;
+
+static vector<string> move(const vector<string>& pos, MapDS mp, char next)
 {
-	if (next == 'L') {
-		return mp[pos].left;
-	} else { // next == 'R'
-		return mp[pos].right;
+
+	vector<string> newPos;
+	for (const auto& curPos : pos) {
+		visited.insert(curPos);
+		if (next == 'L') {
+			newPos.push_back(mp[curPos].left);
+		} else { // next == 'R'
+			newPos.push_back(mp[curPos].right);
+		}
 	}
+
+	// auto newSize = visited.size();
+
+	return newPos;
+}
+
+static vector<string> getPos(MapDS mp)
+{
+	vector<string> pos;
+	for (const auto& [key, val] : mp) {
+		if (key.back() == 'A') {
+			pos.push_back(key);
+		}
+	}
+	return pos;
+}
+
+static bool endWithZ(vector<string> pos)
+{
+	for (const auto& curPos : pos) {
+		if (curPos.back() != 'Z') {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 int main()
@@ -58,11 +92,15 @@ int main()
 
 	MapDS mp = getMap();
 
-	string pos = "AAA";
+	vector<string> pos = getPos(mp);
 	size_t steps;
-	for (steps = 0; pos != "ZZZ"; steps++) {
+	for (steps = 0; !endWithZ(pos); steps++) {
 		char next = instructions[ steps % instructions.size() ];
 		pos = move(pos, mp, next);
+		
+		if (steps % 10'000 == 0) {
+			REPORT(steps);
+		}
 	}
 
 	REPORT(steps);
